@@ -23,4 +23,7 @@ export default function Home() {
         <EcosystemSection />
     </main>
   );
-} //test
+}
+
+export default App;
+
