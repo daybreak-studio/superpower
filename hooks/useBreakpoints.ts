@@ -74,6 +74,16 @@ export function useAllBreakpoints() {
   return currentBreakpoint;
 }
 
+/**
+ * Returns true when the browser width is bigger than the specific breakpoint number
+ * usage:
+ *
+ * const isBiggerThanMd = useBreakpoint(breakpoints.md); // breakpoints.md is a number
+ * const isBiggerThanMiniNav = useBreakpoint(400);
+ *
+ * @param breakpointSize
+ * @returns
+ */
 export function useBreakpoint(breakpointSize: number) {
   const windowDimension = useWindowDimension();
   const [isOverBreakpoint, setIsOverBreakpoint] = useState(false);
@@ -82,23 +92,6 @@ export function useBreakpoint(breakpointSize: number) {
     setIsOverBreakpoint(windowDimension.width > breakpointSize);
   }, [windowDimension.width, breakpointSize]);
 
-  // useEffect(() => {
-  //   function handleResize() {
-  //     const currentScreenWidth = window.innerWidth;
-  //     if (currentScreenWidth > breakpointSize) {
-  //       // only change when it is not the current state
-  //       !isOverBreakpoint && setIsOverBreakpoint(true);
-  //       return;
-  //     }
-  //     isOverBreakpoint && setIsOverBreakpoint(false);
-  //   }
-  //   forceRefreshBreakpoint();
-
-  //   window.addEventListener("resize", handleResize);
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, [isOverBreakpoint]);
   return isOverBreakpoint;
 }
 
