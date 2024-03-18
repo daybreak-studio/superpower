@@ -17,7 +17,7 @@ type BoundingBoxInfo = {
   bottom: number;
 };
 
-export function useBoundingBox<T extends HTMLElement>(
+export function useBoundingClientRect<T extends HTMLElement>(
   dependency?: any[],
 ): [MutableRefObject<T>, BoundingBoxInfo] {
   const containerRef = useRef<T>() as MutableRefObject<T>;
