@@ -19,6 +19,14 @@ interface BreakpointValues {
   "2xl"?: number | string | Function;
 }
 
+/**
+ *
+ * Quick way to toggle between different breakpoint values
+ *
+ * @param breakpointValues
+ * @param deps
+ * @returns
+ */
 export function useBreakpointValues(
   breakpointValues: BreakpointValues,
   deps: any[],
