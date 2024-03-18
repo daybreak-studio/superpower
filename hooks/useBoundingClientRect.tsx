@@ -17,6 +17,18 @@ type BoundingBoxInfo = {
   bottom: number;
 };
 
+/**
+ *
+ * A state that measures the size of an HTML element
+ *
+ * Example:
+ *
+ * const [elmRef, elmBounds] = useBoundingClientRect<HTMLDivElement>([]);
+ * return <div ref={elmRef}></div>;
+ *
+ * @param dependency
+ * @returns [containerRef, bounds]
+ */
 export function useBoundingClientRect<T extends HTMLElement>(
   dependency?: any[],
 ): [MutableRefObject<T>, BoundingBoxInfo] {
