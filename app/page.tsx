@@ -8,7 +8,6 @@
 //   );
 // }
 
-
 import ListGroup from ".././components/JpegSequence";
 
 function App() {
@@ -30,4 +29,3 @@ function App() {
 }
 
 export default App;
-
