@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useLayoutEffect } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
 
