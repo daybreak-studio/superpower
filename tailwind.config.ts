@@ -96,13 +96,13 @@ const config: Config = {
         },
         "sans-xs": {
           "font-size": ".75rem",
-          "letter-spacing": "-0.03rem",
-          "line-height": "85%",
+          "letter-spacing": "0rem",
+          "line-height": "110%",
         },
         "sans-sm": {
-          "font-size": ".875rem",
-          "letter-spacing": "-0.035rem",
-          "line-height": "85%",
+          "font-size": "1rem",
+          "letter-spacing": "-0.02em",
+          "line-height": "110%",
         },
         "sans-md": {
           "font-size": "1.125rem",

@@ -1,7 +1,7 @@
 import { useMemo, useEffect, useState } from "react";
 import resolveConfig from "tailwindcss/resolveConfig";
 //@ts-ignore
-import tailwindConfig from "../tailwind.config.js";
+import tailwindConfig from "../tailwind.config.ts";
 import { useWindowDimension } from "./useWindowDimension";
 
 // USAGE
