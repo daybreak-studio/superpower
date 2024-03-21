@@ -1,9 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { WindowDimensionContextProvider } from "@/hooks/useWindowDimension";
 
-const inter = Inter({ subsets: ["latin"] });
+const nb_international_regular = localFont({
+  src: "../public/typography/NBInternationalProReg.woff2",
+  display: "swap",
+  variable: "--font-nb-international",
+  weight: "400",
+});
+
+const nb_international_mono = localFont({
+  src: "../public/typography/NBInternationalProMono.woff2",
+  display: "swap",
+  variable: "--font-nb-international-mono",
+  weight: "400",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={`${nb_international_regular.className} ${nb_international_regular.variable} ${nb_international_mono.variable}`}
+      >
         <WindowDimensionContextProvider>
           {children}
         </WindowDimensionContextProvider>
