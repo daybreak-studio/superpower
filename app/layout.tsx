@@ -13,7 +13,7 @@ const nb_international_regular = localFont({
 const nb_international_mono = localFont({
   src: "../public/typography/NBInternationalProMono.woff2",
   display: "swap",
-  variable: "--font-nb-international",
+  variable: "--font-nb-international-mono",
   weight: "400",
 });
 
