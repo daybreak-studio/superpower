@@ -26,6 +26,7 @@ const config: Config = {
   },
   plugins: [
     TypeSystemPlugin({
+      // default base stlying (mobile)
       default: {
         // mono
         "mono-xs": {
@@ -84,6 +85,7 @@ const config: Config = {
           "line-height": "1.25em",
         },
       },
+      // When screen is at lg breakpoint (desktop)
       lg: {
         // mono
         "mono-xs": {
