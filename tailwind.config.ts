@@ -25,6 +25,20 @@ const config: Config = {
     },
   },
   plugins: [
+    //
+    // USAGE:
+    //
+    // the syntax of the type system is uses a "font" prefix
+    // to indicate a reference to a type style.
+    //
+    // Example Syntax: font-[sans/mono]-[size]
+    //
+    // eg: font-mono-xs, font-sans-lg, font-sans-sm
+    //
+    // size could be xs, sm, md, lg, xl, 2xl, 3xl, 4xl
+    //
+    // TODO: add tablet responsive sizing definition
+
     TypeSystemPlugin({
       // default base stlying (mobile)
       default: {
@@ -85,6 +99,7 @@ const config: Config = {
           "line-height": "1.25em",
         },
       },
+
       // When screen is at lg breakpoint (desktop)
       lg: {
         // mono
@@ -97,12 +112,12 @@ const config: Config = {
         "sans-xs": {
           "font-size": ".75rem",
           "letter-spacing": "-0.03rem",
-          "line-height": "85%",
+          "line-height": "110%",
         },
         "sans-sm": {
-          "font-size": ".875rem",
+          "font-size": "1rem",
           "letter-spacing": "-0.035rem",
-          "line-height": "85%",
+          "line-height": "110%",
         },
         "sans-md": {
           "font-size": "1.125rem",

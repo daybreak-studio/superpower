@@ -4,7 +4,16 @@ type Props = {};
 
 const TypescaleExample = (props: Props) => {
   return (
-    <div className="m-8">
+    <div className="m-4">
+      <div className="my-12 rounded-xl bg-zinc-100 p-4 text-zinc-500 lg:p-6">
+        <div className="font-sans-xl mb-[1em]">About Typescale</div>
+        <div className="font-sans-sm">
+          Example Syntax: font-[sans/mono]-[size] <br />
+          eg: font-mono-xs, font-sans-lg, font-sans-sm
+          <br />
+          size could be xs, sm, md, lg, xl, 2xl, 3xl, 4xl
+        </div>
+      </div>
       <div className="font-mono-xs my-4 opacity-50">font-sans-4xl</div>
       <div className="font-sans-4xl">
         Meet the world's most comprehensive digital clinic.
