@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { AnimationConfig } from "../AnimationConfig";
 
 type Props = {
   previewSrc: string;
@@ -17,7 +19,16 @@ const BaselineSlideHorizontalItem = ({
   isCurrent,
 }: Props) => {
   return (
-    <div className="h-full w-full overflow-hidden rounded-3xl">
+    <motion.div
+      className="h-[100vw] max-h-[60vh] w-[60vw]  overflow-hidden rounded-3xl"
+      animate={{
+        scale: isCurrent ? 1 : 0.7,
+        transition: {
+          duration: AnimationConfig.SLOW,
+          ease: AnimationConfig.EASING,
+        },
+      }}
+    >
       <Image
         className="h-full w-full object-cover"
         src={previewSrc}
@@ -25,7 +36,7 @@ const BaselineSlideHorizontalItem = ({
         height={122}
         alt={""}
       />
-    </div>
+    </motion.div>
   );
 };
 
