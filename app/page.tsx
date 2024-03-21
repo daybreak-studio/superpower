@@ -1,3 +1,5 @@
+"use client";
+
 // import Alert from ".././components/ExampleHeader";
 
 // export default function Home() {
