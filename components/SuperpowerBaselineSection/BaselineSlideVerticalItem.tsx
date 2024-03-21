@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { AnimationConfig } from "../AnimationConfig";
 
 type Props = {
   previewSrc: string;
@@ -25,7 +26,7 @@ const BaselineSlideVerticalItem = ({
 }: Props) => {
   return (
     <button
-      onClick={() => onSelect()}
+      onPointerEnter={() => onSelect()}
       className="relative flex flex-row items-center"
     >
       {/* main expanding image */}
@@ -38,6 +39,10 @@ const BaselineSlideVerticalItem = ({
         animate={{
           width: isExpanded ? "auto" : 282,
           height: isExpanded ? "auto" : 122,
+          transition: {
+            ease: AnimationConfig.EASING,
+            duration: AnimationConfig.SLOW,
+          },
         }}
       >
         <motion.div className="h-full w-full">
@@ -76,7 +81,13 @@ const BaselineSlideVerticalItem = ({
             animate={{
               opacity: isExpanded ? 1 : 0,
               y: isExpanded ? 0 : -10,
-              transition: { delay: isExpanded ? 0.2 : 0 },
+              transition: {
+                delay: isExpanded ? AnimationConfig.FAST : 0,
+                duration: isExpanded
+                  ? AnimationConfig.SLOW
+                  : AnimationConfig.FAST,
+                ease: AnimationConfig.EASING,
+              },
             }}
           >
             {description}
