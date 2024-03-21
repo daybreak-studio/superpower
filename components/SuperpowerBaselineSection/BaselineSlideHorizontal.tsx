@@ -60,19 +60,41 @@ const BaselineSlideHorizontal = ({ slides }: Props) => {
     [containerWidth, cardWidth],
   );
 
-  // snap to a item base on current slide value when it is not scrubbing
-  useEffect(() => {
-    if (!isScrubbing) {
-      posTarget.set(-currentSlide * (cardWidth + gapSize));
-    }
-  }, [currentSlide, isScrubbing, cardWidth]);
-
-  useMotionValueEvent(pos, "change", (latest) => {
-    const latestClamped = clamp(-totalCardWidth, 0, latest);
+  const getSlideByPosition = (pos: number) => {
+    const latestClamped = clamp(-totalCardWidth, 0, pos);
     const curSlide = Math.round(
       (-latestClamped / totalScrollWidth) * (slideCount - 1),
     );
-    setCurrentSlide(curSlide);
+    return curSlide;
+  };
+  const getPosiitonBySlide = (slide: number) => {
+    return -slide * (cardWidth + gapSize);
+  };
+
+  // snap to a item base on current slide value when it is not scrubbing
+  useEffect(() => {
+    if (!isScrubbing) {
+      posTarget.set(getPosiitonBySlide(currentSlide));
+    }
+  }, [currentSlide, isScrubbing, cardWidth]);
+
+  // detecting a flick
+  const flickMomentum = 0.2;
+
+  useEffect(() => {
+    if (isPointerDown || !isScrubbing) return;
+    // initate homing when the pointer up
+    const direction = pos.getVelocity() > 0 ? 1 : -1;
+    const projectedPosition =
+      pos.get() + direction * Math.abs(pos.getVelocity() * flickMomentum);
+
+    const projectedSlide = getSlideByPosition(projectedPosition);
+    posTarget.set(getPosiitonBySlide(projectedSlide));
+  }, [isPointerDown, isScrubbing, pos]);
+
+  useMotionValueEvent(pos, "change", (latest) => {
+    const slide = getSlideByPosition(latest);
+    setCurrentSlide(slide);
   });
 
   const xOffset = useTransform(pos, (latest) => initialPadding + latest);
