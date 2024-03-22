@@ -102,11 +102,17 @@ const Carousel = ({ children, controls }: Props) => {
   });
 
   // carousel control
+  const [isUsingCarouselControl, setIsUsingCarouselControl] = useState(false);
+  useEffect(() => {
+    if (isScrubbing) setIsUsingCarouselControl(false);
+  }, [isScrubbing]);
+
   useEffect(() => {
     if (!controls) return;
 
     const goto = (slide: number) => {
       posTarget.set(getPositionBySlide(slide, slideCount, sizes));
+      setIsUsingCarouselControl(true);
     };
     const next = () => goto(currentSlide + 1);
     const prev = () => goto(currentSlide - 1);
@@ -133,11 +139,12 @@ const Carousel = ({ children, controls }: Props) => {
   );
 
   // snap to a item base on current slide value when it is not scrubbing
+  const shouldSnapToSlide = !isScrubbing && !isUsingCarouselControl;
   useEffect(() => {
-    if (!isScrubbing) {
+    if (shouldSnapToSlide) {
       posTarget.set(getPositionBySlide(currentSlide, slideCount, sizes));
     }
-  }, [currentSlide, isScrubbing, slideCount, sizes]);
+  }, [currentSlide, shouldSnapToSlide, slideCount, sizes]);
 
   // detecting a flick
   const flickMomentum = 0.2;
