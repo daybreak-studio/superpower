@@ -11,15 +11,17 @@ type Props = {
 
 const BaselineCarousel = ({ slides }: Props) => {
   const controls = useCarouselControls();
-  const renderTime = useRef(0);
-  const handleClick = () => {
-    console.log(renderTime.current);
+  const handleNextClick = () => {
     controls.next();
+  };
+  const handlePrevClick = () => {
+    controls.prev();
   };
 
   return (
     <div className="w-full">
-      <button onClick={handleClick}>next</button>
+      <button onClick={handlePrevClick}>prev</button>
+      <button onClick={handleNextClick}>next</button>
       <Carousel controls={controls}>
         {slides.map((slide, index) => (
           <BaselineCarouselItem key={index} slide={slide} />
