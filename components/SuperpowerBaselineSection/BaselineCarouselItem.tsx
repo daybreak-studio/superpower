@@ -35,7 +35,7 @@ const BaselineCarouselItem = ({ slide }: Props) => {
   return (
     <TracyShadow
       color={slide.color}
-      elevation={isCurrent ? (isPointerDown ? 0.85 : 1) : 0}
+      elevation={isCurrent ? (isPointerDown ? 0.9 : 1) : 0}
       lightSourceOffset={lightOffset}
     >
       <motion.div
