@@ -59,7 +59,16 @@ const BaselineCarouselItem = ({ slide }: Props) => {
             alt={""}
           />
         </motion.div>
-        <motion.div className="bg-blur absolute bottom-0 z-10 m-2 rounded-lg border border-[rgba(255,255,255,.2)] p-6 text-white backdrop-blur-lg">
+        <motion.div
+          animate={{
+            opacity: isCurrent ? 1 : 0,
+            transition: {
+              ease: AnimationConfig.EASING,
+              duration: AnimationConfig.VERY_SLOW,
+            },
+          }}
+          className="bg-blur absolute bottom-0 left-0 right-0 z-10 m-2 rounded-2xl border border-[rgba(255,255,255,.2)] p-6 text-white backdrop-blur-lg"
+        >
           <h3 className="font-mono-xs mb-4">{slide.header}</h3>
           <p className="font-sans-sm opacity-70">{slide.description}</p>
         </motion.div>
