@@ -2,22 +2,16 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { AnimationConfig } from "../AnimationConfig";
+import { useCarouselItemContext } from "../Carousel/Carousel";
+import { SlideInfo } from "./SuperpowerBaselineSection";
 
 type Props = {
-  previewSrc: string;
-  expandedSrc: string;
-  index: string;
-  header: string;
-  description: string;
-  isCurrent: boolean;
-  onSelect: () => void;
+  slide: SlideInfo;
 };
 
-const BaselineSlideHorizontalItem = ({
-  previewSrc,
-  expandedSrc,
-  isCurrent,
-}: Props) => {
+const BaselineCarouselItem = ({ slide }: Props) => {
+  const { isCurrent, index } = useCarouselItemContext();
+
   return (
     <motion.div
       className="h-[100vw] max-h-[60vh] w-[60vw]  overflow-hidden rounded-3xl"
@@ -31,7 +25,7 @@ const BaselineSlideHorizontalItem = ({
     >
       <Image
         className="h-full w-full object-cover"
-        src={previewSrc}
+        src={slide.previewSrc}
         width={282}
         height={122}
         alt={""}
@@ -40,4 +34,4 @@ const BaselineSlideHorizontalItem = ({
   );
 };
 
-export default BaselineSlideHorizontalItem;
+export default BaselineCarouselItem;
