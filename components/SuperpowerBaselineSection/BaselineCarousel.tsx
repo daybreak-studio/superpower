@@ -19,14 +19,14 @@ const BaselineCarousel = ({ slides }: Props) => {
   };
 
   return (
-    <div className="w-full">
-      <button onClick={handlePrevClick}>prev</button>
-      <button onClick={handleNextClick}>next</button>
+    <div className="w-full pt-12">
       <Carousel controls={controls}>
         {slides.map((slide, index) => (
           <BaselineCarouselItem key={index} slide={slide} />
         ))}
       </Carousel>
+      <button onClick={handlePrevClick}>prev</button>
+      <button onClick={handleNextClick}>next</button>
     </div>
   );
 };

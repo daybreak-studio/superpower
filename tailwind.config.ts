@@ -14,6 +14,9 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      backgroundColor: {
+        blur: `rgba(255,255,255,.05)`,
+      },
       fontFamily: {
         sans: ["var(--font-nb-international)", "ui-sans-serif", "system-ui"],
         mono: [

@@ -58,6 +58,7 @@ export const useCarouselControls = () =>
 type Props = {
   children: React.ReactNode;
   controls?: ComponentControls<CarouselComponentControls>;
+  onSlideChange?: (currentSlide: number) => void;
 };
 
 export interface CarouselSizing {
@@ -68,7 +69,7 @@ export interface CarouselSizing {
   totalScrollWidth: number;
 }
 
-const Carousel = ({ children, controls }: Props) => {
+const Carousel = ({ children, controls, onSlideChange = () => {} }: Props) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPointerDown, setIsPointerDown] = useState(false);
 
@@ -124,6 +125,10 @@ const Carousel = ({ children, controls }: Props) => {
       goto,
     });
   }, [controls, currentSlide, slideCount]);
+
+  useEffect(() => {
+    onSlideChange(currentSlide);
+  }, [currentSlide]);
 
   const containerWidth = useMemo(
     () =>
@@ -181,7 +186,7 @@ const Carousel = ({ children, controls }: Props) => {
         setIsPointerDown(false);
       }}
       ref={scrubContainerRef}
-      className="h-screen w-full overflow-x-hidden"
+      className="w-full overflow-x-hidden"
       style={{
         cursor: isPointerDown ? "grabbing" : "grab",
       }}
@@ -191,7 +196,7 @@ const Carousel = ({ children, controls }: Props) => {
           x: xOffset,
           gap: sizes.gap,
         }}
-        className="pointer-events-none mt-12 flex select-none flex-row items-center  pb-24"
+        className="pointer-events-none flex select-none flex-row items-center"
       >
         {childrenArray.map((slide, index) => (
           <div className="flex-shrink-0" key={index} ref={scrollContentRef}>
