@@ -22,6 +22,7 @@ import {
   useComponentControls,
 } from "@/hooks/useComponentControls";
 import useStateRef from "@/hooks/useStateRef";
+import { getPositionBySlide, getSlideByPosition } from "./CarouselUtilities";
 
 export interface CarouselItemInfo {
   index: number;
@@ -58,7 +59,7 @@ type Props = {
   controls?: ComponentControls<CarouselComponentControls>;
 };
 
-interface CarouselSizing {
+export interface CarouselSizing {
   slideWidth: number;
   gap: number;
   totalSlidesWidth: number;
@@ -100,27 +101,6 @@ const Carousel = ({ children, controls }: Props) => {
     dampingConst: 6,
   });
 
-  const getSlideByPosition = (
-    pos: number,
-    totalSlides: number,
-    sizes: CarouselSizing,
-  ) => {
-    const latestClamped = clamp(-sizes.totalSlidesWidth, 0, pos);
-    const curSlide = Math.round(
-      (-latestClamped / sizes.totalScrollWidth) * (totalSlides - 1),
-    );
-    return curSlide;
-  };
-
-  const getPositionBySlide = (
-    slide: number,
-    totalSlides: number,
-    sizes: CarouselSizing,
-  ) => {
-    const clampedSlide = clamp(0, totalSlides - 1, slide);
-    return -clampedSlide * (sizes.slideWidth + sizes.gap);
-  };
-
   // carousel control
   useEffect(() => {
     if (!controls) return;
@@ -146,7 +126,7 @@ const Carousel = ({ children, controls }: Props) => {
     [windowDim.width, scrubContainerRef.current],
   );
 
-  // margin to make it center align
+  // left margin to make it center align
   const initialPadding = useMemo(
     () => (containerWidth - sizes.slideWidth) / 2,
     [containerWidth, sizes.slideWidth],
@@ -161,7 +141,6 @@ const Carousel = ({ children, controls }: Props) => {
 
   // detecting a flick
   const flickMomentum = 0.2;
-
   useEffect(() => {
     if (isPointerDown || !isScrubbing) return;
     // initate homing when the pointer up
