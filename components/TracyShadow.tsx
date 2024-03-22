@@ -36,12 +36,14 @@ const TracyShadow = ({
       <div className="absolute -bottom-3 flex w-full">
         <motion.div
           className="-z-10 mx-auto h-16 w-[80%] blur-2xl"
+          initial={{ opacity: 0 }}
           style={{
             backgroundColor: color,
             x: lightSourceOffset || defaultLightSourceOffset,
             scaleX,
           }}
           animate={{
+            opacity: 1,
             y: yOffset * (elevation / 1) - yOffset,
             scale: elevation,
             transition: {
