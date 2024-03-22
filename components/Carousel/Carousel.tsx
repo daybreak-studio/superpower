@@ -58,8 +58,16 @@ type Props = {
   controls?: ComponentControls<CarouselComponentControls>;
 };
 
+interface CarouselSizing {
+  slideWidth: number;
+  gap: number;
+  totalSlidesWidth: number;
+  totalGapSpacing: number;
+  totalScrollWidth: number;
+}
+
 const Carousel = ({ children, controls }: Props) => {
-  const [currentSlide, setCurrentSlide, currentSlideRef] = useStateRef(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [isPointerDown, setIsPointerDown] = useState(false);
 
   const windowDim = useWindowDimension();
@@ -69,43 +77,64 @@ const Carousel = ({ children, controls }: Props) => {
   const childrenArray = React.Children.toArray(children);
   const slideCount = childrenArray.length;
 
-  const cardWidth = scrollContentBound.width;
-  const gapSize = 0;
-  const totalCardWidth = cardWidth * (slideCount - 1);
-  const totalGapSpacing = gapSize * (slideCount - 1);
-  const totalScrollWidth = totalCardWidth + totalGapSpacing;
+  const sizes: CarouselSizing = useMemo(() => {
+    const slideWidth = scrollContentBound.width;
+    const gap = 0;
+    const totalSlidesWidth = slideWidth * (slideCount - 1);
+    const totalGapSpacing = gap * (slideCount - 1);
+    const totalScrollWidth = totalSlidesWidth + totalGapSpacing;
+
+    return {
+      slideWidth,
+      gap,
+      totalSlidesWidth,
+      totalGapSpacing,
+      totalScrollWidth,
+    };
+  }, [scrollContentBound.width, slideCount]);
 
   const [scrubContainerRef, pos, posTarget, isScrubbing] = useScrub({
-    maxDistance: totalScrollWidth,
+    maxDistance: sizes.totalScrollWidth,
     canUseMouseWheel: true,
     responsiveness: 0.17,
     dampingConst: 6,
   });
-  const getSlideByPosition = (pos: number) => {
-    const latestClamped = clamp(-totalCardWidth, 0, pos);
+
+  const getSlideByPosition = (
+    pos: number,
+    totalSlides: number,
+    sizes: CarouselSizing,
+  ) => {
+    const latestClamped = clamp(-sizes.totalSlidesWidth, 0, pos);
     const curSlide = Math.round(
-      (-latestClamped / totalScrollWidth) * (slideCount - 1),
+      (-latestClamped / sizes.totalScrollWidth) * (totalSlides - 1),
     );
     return curSlide;
   };
-  const getPosiitonBySlide = (slide: number) => {
-    const clampedSlide = clamp(0, slideCount - 1, slide);
-    return -clampedSlide * (cardWidth + gapSize);
+
+  const getPositionBySlide = (
+    slide: number,
+    totalSlides: number,
+    sizes: CarouselSizing,
+  ) => {
+    const clampedSlide = clamp(0, totalSlides - 1, slide);
+    return -clampedSlide * (sizes.slideWidth + sizes.gap);
   };
 
   // carousel control
   useEffect(() => {
     if (!controls) return;
+
+    const goto = (slide: number) => {
+      posTarget.set(getPositionBySlide(slide, slideCount, sizes));
+    };
+    const next = () => goto(currentSlide + 1);
+    const prev = () => goto(currentSlide - 1);
+
     controls.exposeInternalFunctions({
-      next: () => {
-        posTarget.set(getPosiitonBySlide(currentSlide + 1));
-      },
-      prev: () => {
-        posTarget.set(getPosiitonBySlide(currentSlide - 1));
-      },
-      goto: (slide: number) => {
-        posTarget.set(getPosiitonBySlide(slide));
-      },
+      next,
+      prev,
+      goto,
     });
   }, [controls, currentSlide, slideCount]);
 
@@ -119,16 +148,16 @@ const Carousel = ({ children, controls }: Props) => {
 
   // margin to make it center align
   const initialPadding = useMemo(
-    () => (containerWidth - cardWidth) / 2,
-    [containerWidth, cardWidth],
+    () => (containerWidth - sizes.slideWidth) / 2,
+    [containerWidth, sizes.slideWidth],
   );
 
   // snap to a item base on current slide value when it is not scrubbing
   useEffect(() => {
     if (!isScrubbing) {
-      posTarget.set(getPosiitonBySlide(currentSlide));
+      posTarget.set(getPositionBySlide(currentSlide, slideCount, sizes));
     }
-  }, [currentSlide, isScrubbing, cardWidth]);
+  }, [currentSlide, isScrubbing, slideCount, sizes]);
 
   // detecting a flick
   const flickMomentum = 0.2;
@@ -140,17 +169,22 @@ const Carousel = ({ children, controls }: Props) => {
     const projectedPosition =
       pos.get() + direction * Math.abs(pos.getVelocity() * flickMomentum);
 
-    const projectedSlide = getSlideByPosition(projectedPosition);
-    posTarget.set(getPosiitonBySlide(projectedSlide));
-  }, [isPointerDown, isScrubbing, pos]);
+    const projectedSlide = getSlideByPosition(
+      projectedPosition,
+      slideCount,
+      sizes,
+    );
+    posTarget.set(getPositionBySlide(projectedSlide, slideCount, sizes));
+  }, [isPointerDown, isScrubbing, pos, slideCount, sizes]);
 
   // match the current slide with the position
   useMotionValueEvent(pos, "change", (latest) => {
-    const slide = getSlideByPosition(latest);
+    const slide = getSlideByPosition(latest, slideCount, sizes);
     setCurrentSlide(slide);
   });
 
   const xOffset = useTransform(pos, (latest) => initialPadding + latest);
+
   return (
     <div
       onPointerDown={(e) => {
@@ -168,7 +202,7 @@ const Carousel = ({ children, controls }: Props) => {
       <motion.div
         style={{
           x: xOffset,
-          gap: gapSize,
+          gap: sizes.gap,
         }}
         className="pointer-events-none mt-12 flex select-none flex-row items-center  pb-24"
       >

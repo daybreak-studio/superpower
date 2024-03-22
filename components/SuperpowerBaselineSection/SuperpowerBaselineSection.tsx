@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import BaselineSlide from "./BaselineSlideVerticalItem";
 import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
 import BaselineSlideVertical from "./BaselineSlideVertical";
-import BaselineSlideHorizontal from "./BaselineSlideHorizontal";
+import BaselineCarousel from "./BaselineCarousel";
 
 type Props = {};
 
@@ -68,7 +68,7 @@ function SuperpowerBaselineSection({}: Props) {
         action plan to improve your health and transform your life.
       </p>
       {isDesktop && <BaselineSlideVertical slides={SLIDES} />}
-      {!isDesktop && <BaselineSlideHorizontal slides={SLIDES} />}
+      {!isDesktop && <BaselineCarousel slides={SLIDES} />}
     </section>
   );
 }

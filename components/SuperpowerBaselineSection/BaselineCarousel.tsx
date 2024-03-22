@@ -9,7 +9,7 @@ type Props = {
   slides: Array<SlideInfo>;
 };
 
-const BaselineSlideHorizontal = ({ slides }: Props) => {
+const BaselineCarousel = ({ slides }: Props) => {
   const controls = useCarouselControls();
   const renderTime = useRef(0);
   const handleClick = () => {
@@ -29,4 +29,4 @@ const BaselineSlideHorizontal = ({ slides }: Props) => {
   );
 };
 
-export default BaselineSlideHorizontal;
+export default BaselineCarousel;
