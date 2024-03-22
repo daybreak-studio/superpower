@@ -24,12 +24,12 @@ import {
 import useStateRef from "@/hooks/useStateRef";
 import { getPositionBySlide, getSlideByPosition } from "./CarouselUtilities";
 
-export interface CarouselItemInfo {
+export type CarouselItemInfo = {
   index: number;
   isCurrent: boolean;
   currentSlide: number;
   isPointerDown: boolean;
-}
+};
 
 const CarouselItemContext = createContext<CarouselItemInfo>({
   index: 0,
@@ -39,9 +39,10 @@ const CarouselItemContext = createContext<CarouselItemInfo>({
 });
 
 /**
- * Provide information about the current item.
+ * Provide information about the current carousel item.
  * Used in the children component of the carousel.
- * @returns
+ *
+ * @returns index, isCurrent, currentSlide, isPointerDown
  */
 export const useCarouselItemContext = () => useContext(CarouselItemContext);
 
