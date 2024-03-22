@@ -40,7 +40,7 @@ export function useComponentControls<
 
     internalFunctionsNames.forEach((functionName) => {
       internalFunctionsCopy[functionName] = function () {
-        const argsArray = Array.prototype.slice.call(arguments, 1);
+        const argsArray = Array.prototype.slice.call(arguments, 0);
         // reference the original original function in ref
         controllerFunctionsRef.current[functionName].apply(null, argsArray);
       };
