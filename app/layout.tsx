@@ -30,7 +30,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${nb_international_regular.className} ${nb_international_regular.variable} ${nb_international_mono.variable}`}
+        className={`
+          ${nb_international_regular.className} 
+          ${nb_international_regular.variable} 
+          ${nb_international_mono.variable} 
+          overflow-x-hidden
+        `}
       >
         <WindowDimensionContextProvider>
           {children}

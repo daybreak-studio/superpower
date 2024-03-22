@@ -1,10 +1,7 @@
-import TypescaleExample from "@/components/TypescaleExample/TypescaleExample";
+"use client";
+
+import SuperpowerBaselineSection from "@/components/SuperpowerBaselineSection/SuperpowerBaselineSection";
 
 export default function Home() {
-  return (
-    <main className="">
-      <h1>Home</h1>
-      <TypescaleExample />
-    </main>
-  );
+  return <main>{<SuperpowerBaselineSection />}</main>;
 }

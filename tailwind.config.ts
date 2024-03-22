@@ -14,6 +14,9 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      backgroundColor: {
+        blur: `rgba(255,255,255,.05)`,
+      },
       fontFamily: {
         sans: ["var(--font-nb-international)", "ui-sans-serif", "system-ui"],
         mono: [
@@ -111,12 +114,12 @@ const config: Config = {
         },
         "sans-xs": {
           "font-size": ".75rem",
-          "letter-spacing": "-0.03rem",
+          "letter-spacing": "0rem",
           "line-height": "110%",
         },
         "sans-sm": {
           "font-size": "1rem",
-          "letter-spacing": "-0.035rem",
+          "letter-spacing": "-0.02em",
           "line-height": "110%",
         },
         "sans-md": {
