@@ -2,6 +2,7 @@ import { useBoundingClientRect } from "@/hooks/useBoundingClientRect";
 import { useScrub } from "@/hooks/useScrub";
 import { useWindowDimension } from "@/hooks/useWindowDimension";
 import {
+  MotionValue,
   clamp,
   motion,
   useMotionValueEvent,
@@ -29,13 +30,27 @@ export type CarouselItemInfo = {
   isCurrent: boolean;
   currentSlide: number;
   isPointerDown: boolean;
+  scrollOffset: MotionValue;
+  dimensions: CarouselItemDimensions;
+};
+
+type CarouselItemDimensions = {
+  x: number;
+  width: number;
+  gap: number;
 };
 
 const CarouselItemContext = createContext<CarouselItemInfo>({
   index: 0,
   isCurrent: false,
   currentSlide: 0,
+  dimensions: {
+    width: 0,
+    x: 0,
+    gap: 0,
+  },
   isPointerDown: false,
+  scrollOffset: new MotionValue(),
 });
 
 /**
@@ -206,6 +221,12 @@ const Carousel = ({ children, controls, onSlideChange = () => {} }: Props) => {
                 isCurrent: currentSlide === index,
                 currentSlide,
                 isPointerDown,
+                scrollOffset: pos,
+                dimensions: {
+                  gap: sizes.gap,
+                  x: sizes.gap * index + sizes.slideWidth * index,
+                  width: sizes.slideWidth,
+                },
               }}
             >
               {slide}

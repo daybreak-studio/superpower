@@ -13,6 +13,7 @@ export type SlideInfo = {
   expandedSrc: string;
   header: string;
   description: string;
+  color: string;
 };
 
 const SLIDES = [
@@ -22,6 +23,7 @@ const SLIDES = [
     header: "Test 80+ Biomarkers",
     description:
       "Hormones, stress, thyroid, heart, metabolic, toxins and much more.",
+    color: "#063D2A",
   },
   {
     previewSrc: "/baseline-section/baseline-2-preview.png",
@@ -29,6 +31,7 @@ const SLIDES = [
     header: "Visualize your results",
     description:
       "Track blood biomarkers, genetics. Microbiome testing, and data from any wearable device.",
+    color: "#B9431C",
   },
   {
     previewSrc: "/baseline-section/baseline-3-preview.png",
@@ -36,6 +39,7 @@ const SLIDES = [
     header: "Longevity Clinician Assessment",
     description:
       "Your data is reviewed by our leading clinicians, drawing out functional insights.",
+    color: "#12495B",
   },
   {
     previewSrc: "/baseline-section/baseline-4-preview.png",
@@ -43,6 +47,7 @@ const SLIDES = [
     header: "Personalized Action PLan",
     description:
       "With the latest in research and science to superpower your health.",
+    color: "#4E1308",
   },
   {
     previewSrc: "/baseline-section/baseline-5-preview.png",
@@ -50,6 +55,7 @@ const SLIDES = [
     header: "Unlimited Concierge SMS",
     description:
       "For everyday questions about diet, supplements, performance, testing, general healthcare and more.",
+    color: "#8D4B32",
   },
 ];
 
