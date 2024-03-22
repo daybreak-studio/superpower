@@ -32,7 +32,7 @@ const BaselineCarousel = ({ slides }: Props) => {
         ))}
       </Carousel>
 
-      <div className="mx-auto mt-8 flex flex-col items-center">
+      <div className="mx-auto -mt-24 flex flex-col items-center">
         <div className="mb-4 h-8 w-[1px] bg-[#FC5F2B] opacity-40" />
         <CarouselPageIndicator currentSlide={currentSlide} slides={slides} />
       </div>
