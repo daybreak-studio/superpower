@@ -96,18 +96,19 @@ export function useScrub({
     elm.addEventListener("pointerdown", handlePointerDown);
     window.addEventListener("pointerup", handlePointerUp);
     window.addEventListener("pointermove", handlePointerMove);
-    window.addEventListener("pointercancel", handlePointerMove);
+    window.addEventListener("pointercancel", handlePointerCancel);
 
     return () => {
       elm.removeEventListener("pointerdown", handlePointerDown);
       window.removeEventListener("pointerup", handlePointerUp);
-      window.removeEventListener("pointercancel", handlePointerCancel);
       window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointercancel", handlePointerCancel);
     };
   }, [containerRef, maxDistance, windowDim.width, windowDim.height]);
 
   useEffect(() => {
     if (!canUseMouseWheel) return;
+
     const handleContainerWheel = (e: WheelEvent) => {
       // delta value
       const delta = direction === ScrubDirection.x ? e.deltaX : e.deltaY;

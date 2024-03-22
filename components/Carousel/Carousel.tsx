@@ -201,7 +201,7 @@ const Carousel = ({ children, controls, onSlideChange = () => {} }: Props) => {
         setIsPointerDown(false);
       }}
       ref={scrubContainerRef}
-      className="w-full overflow-x-hidden"
+      className="w-full touch-none overflow-x-hidden"
       style={{
         cursor: isPointerDown ? "grabbing" : "grab",
       }}
