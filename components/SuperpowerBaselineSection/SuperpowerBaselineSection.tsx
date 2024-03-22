@@ -64,11 +64,11 @@ function SuperpowerBaselineSection({}: Props) {
 
   return (
     <section className="flex flex-col items-center">
-      <div className="font-mono-sm mb-4 text-center">How it works</div>
-      <h2 className="font-sans-4xl mb-6 max-w-[20ch] text-center">
+      <div className="font-mono-sm mx-4 mb-4 text-center">How it works</div>
+      <h2 className="font-sans-4xl mx-4 mb-6 max-w-[20ch] text-center">
         Our cornerstone is the superpower baseline
       </h2>
-      <p className="font-sans-lg max-w-[50ch] text-center opacity-50">
+      <p className="font-sans-lg mx-4 max-w-[50ch] text-center opacity-50">
         Membership includes unlimited messaging with your doctor team, a
         comprehensive annual assessment with 80 advanced lab tests, and a custom
         action plan to improve your health and transform your life.
