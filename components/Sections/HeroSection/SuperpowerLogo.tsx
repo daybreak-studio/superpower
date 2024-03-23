@@ -5,6 +5,7 @@ type Props = {};
 const Logo = (props: Props) => {
   return (
     <svg
+      className="h-full"
       width="222"
       height="30"
       viewBox="0 0 222 30"
