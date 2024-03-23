@@ -7,7 +7,7 @@ type Props = {};
 
 const HeroSection = (props: Props) => {
   return (
-    <section className="relative w-screen bg-zinc-900 text-white">
+    <section className="relative min-h-screen bg-zinc-900 text-white">
       <div className="absolute left-0 right-0 top-0 z-10 h-screen w-full p-4 md:p-10">
         <div className="absolute z-10 flex w-full justify-center">
           <SuperpowerLogo />
