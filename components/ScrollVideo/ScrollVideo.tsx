@@ -38,7 +38,7 @@ const ScrollVideo = ({ playbackConst }: Props) => {
       ref={containerRef}
     >
       <video
-        className="sticky top-0 h-screen object-cover"
+        className="sticky top-0 h-screen w-full object-cover"
         //@ts-ignore
         autobuffer="autobuffer"
         ref={videoRef}
