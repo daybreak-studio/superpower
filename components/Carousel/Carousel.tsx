@@ -1,4 +1,4 @@
-import { useBoundingClientRect } from "@/hooks/useBoundingClientRect";
+import { useBounds } from "@/hooks/useBounds";
 import { useScrub } from "@/hooks/useScrub";
 import { useWindowDimension } from "@/hooks/useWindowDimension";
 import {
@@ -89,8 +89,7 @@ const Carousel = ({ children, controls, onSlideChange = () => {} }: Props) => {
   const [isPointerDown, setIsPointerDown] = useState(false);
 
   const windowDim = useWindowDimension();
-  const [scrollContentRef, scrollContentBound] =
-    useBoundingClientRect<HTMLDivElement>([]);
+  const [scrollContentRef, scrollContentBound] = useBounds<HTMLDivElement>([]);
 
   const childrenArray = React.Children.toArray(children);
   const slideCount = childrenArray.length;

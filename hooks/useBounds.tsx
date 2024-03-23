@@ -1,3 +1,4 @@
+import { useScroll } from "framer-motion";
 import {
   MutableRefObject,
   useEffect,
@@ -19,17 +20,19 @@ type BoundingBoxInfo = {
 
 /**
  *
- * A state that measures the size of an HTML element
+ * A state that measures the size of an HTML element.
+ * Note that vertical positioning is relative to the page,
+ * unlike browser native boundingClientRect.
  *
  * Example:
  *
- * const [elmRef, elmBounds] = useBoundingClientRect<HTMLDivElement>([]);
+ * const [elmRef, elmBounds] = useBounds<HTMLDivElement>([]);
  * return <div ref={elmRef}></div>;
  *
  * @param dependency
  * @returns [containerRef, bounds]
  */
-export function useBoundingClientRect<T extends HTMLElement>(
+export function useBounds<T extends HTMLElement>(
   dependency?: any[],
 ): [MutableRefObject<T>, BoundingBoxInfo] {
   const containerRef = useRef<T>() as MutableRefObject<T>;
@@ -44,10 +47,24 @@ export function useBoundingClientRect<T extends HTMLElement>(
     bottom: 0,
   });
 
+  const { scrollY } = useScroll();
+
   useLayoutEffect(() => {
     const handleResize = () => {
       const bounds = containerRef.current.getBoundingClientRect();
-      setBounds(bounds);
+
+      const scrollOffset = scrollY.get();
+
+      setBounds({
+        x: bounds.x,
+        y: bounds.y + scrollOffset,
+        width: bounds.width,
+        height: bounds.height,
+        left: bounds.left,
+        right: bounds.right,
+        top: bounds.top + scrollOffset,
+        bottom: bounds.bottom + scrollOffset,
+      });
     };
     window.addEventListener("resize", handleResize);
     handleResize();

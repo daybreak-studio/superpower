@@ -1,12 +1,12 @@
 import React, { MutableRefObject, useEffect, useRef, useState } from "react";
 import { useVideoInfo } from "./useVideoInfo";
-import { useBoundingClientRect } from "@/hooks/useBoundingClientRect";
 import {
   useAnimationFrame,
   useMotionValueEvent,
   useScroll,
 } from "framer-motion";
 import { useVideoSeeker } from "./useVideoSeeker";
+import { useBounds } from "@/hooks/useBounds";
 
 type Props = {
   playbackConst: number; // higher it is, the slower it plays
@@ -16,9 +16,7 @@ const ScrollVideo = ({ playbackConst }: Props) => {
   const { videoRef, duration, isVideoReady } = useVideoInfo();
   const seek = useVideoSeeker({ videoRef, isVideoReady });
 
-  const [containerRef, bounds] = useBoundingClientRect<HTMLDivElement>([
-    duration,
-  ]);
+  const [containerRef, bounds] = useBounds<HTMLDivElement>([duration]);
 
   const { scrollY } = useScroll();
 
