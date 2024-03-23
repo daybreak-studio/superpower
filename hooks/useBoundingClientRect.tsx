@@ -44,7 +44,7 @@ export function useBoundingClientRect<T extends HTMLElement>(
     bottom: 0,
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleResize = () => {
       const bounds = containerRef.current.getBoundingClientRect();
       setBounds(bounds);
