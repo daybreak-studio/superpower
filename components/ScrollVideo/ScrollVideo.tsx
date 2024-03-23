@@ -10,9 +10,10 @@ import { useBounds } from "@/hooks/useBounds";
 
 type Props = {
   playbackConst: number; // higher it is, the slower it plays
+  children: React.ReactNode;
 };
 
-const ScrollVideo = ({ playbackConst }: Props) => {
+const ScrollVideo = ({ playbackConst, children }: Props) => {
   const { videoRef, duration, isVideoReady } = useVideoInfo();
   const seek = useVideoSeeker({ videoRef, isVideoReady });
 
@@ -45,10 +46,7 @@ const ScrollVideo = ({ playbackConst }: Props) => {
         loop
         muted
       >
-        <source
-          type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
-          src="https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4"
-        ></source>
+        {children}
       </video>
     </div>
   );
