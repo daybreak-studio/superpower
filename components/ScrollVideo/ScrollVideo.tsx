@@ -11,15 +11,20 @@ import { useBounds } from "@/hooks/useBounds";
 type Props = {
   playbackConst: number; // higher it is, the slower it plays
   children: React.ReactNode;
+  onVideoReady?: () => void;
 };
 
-const ScrollVideo = ({ playbackConst, children }: Props) => {
+const ScrollVideo = ({ playbackConst, children, onVideoReady }: Props) => {
   const { videoRef, duration, isVideoReady } = useVideoInfo();
   const seek = useVideoSeeker({ videoRef, isVideoReady });
 
   const [containerRef, bounds] = useBounds<HTMLDivElement>([duration]);
 
   const { scrollY } = useScroll();
+
+  useEffect(() => {
+    onVideoReady?.();
+  }, [isVideoReady]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (!isVideoReady) return;
