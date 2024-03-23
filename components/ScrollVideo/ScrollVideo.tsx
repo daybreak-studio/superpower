@@ -9,7 +9,7 @@ import {
 import { useVideoSeeker } from "./useVideoSeeker";
 
 type Props = {
-  playbackConst: number;
+  playbackConst: number; // higher it is, the slower it plays
 };
 
 const ScrollVideo = ({ playbackConst }: Props) => {
