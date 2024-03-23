@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { SlideInfo } from "./SuperpowerBaselineSection";
-import Carousel, { useCarouselControls } from "../Carousel/Carousel";
+import Carousel, { useCarouselControls } from "../../Carousel/Carousel";
 import BaselineCarouselItem from "./BaselineCarouselItem";
 import { CarouselPageIndicator } from "./CarouselPageIndicator";
 

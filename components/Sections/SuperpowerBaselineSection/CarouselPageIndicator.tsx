@@ -3,7 +3,7 @@
 import { useBounds } from "@/hooks/useBounds";
 import { SlideInfo } from "./SuperpowerBaselineSection";
 import { motion } from "framer-motion";
-import { AnimationConfig } from "../AnimationConfig";
+import { AnimationConfig } from "../../AnimationConfig";
 
 interface CarouselPageIndicatorProps {
   currentSlide: number;

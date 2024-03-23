@@ -1,7 +1,7 @@
 "use client";
 
 import ScrollVideo from "@/components/ScrollVideo/ScrollVideo";
-import SuperpowerBaselineSection from "@/components/SuperpowerBaselineSection/SuperpowerBaselineSection";
+import SuperpowerBaselineSection from "@/components/Sections/SuperpowerBaselineSection/SuperpowerBaselineSection";
 import { ReactLenis } from "@studio-freight/react-lenis";
 
 export default function Home() {
