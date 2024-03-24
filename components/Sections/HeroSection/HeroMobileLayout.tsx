@@ -42,7 +42,7 @@ const HeroMobileLayout = (props: Props) => {
         <CTAButton href={"https://www.google.com"}>Get started</CTAButton>
       </div>
 
-      <div className="flex h-[120svh]  basis-1 flex-col items-center justify-stretch">
+      <div className="flex h-[100svh] flex-col items-center justify-stretch">
         <LineElement length="auto" color={"rgba(255,255,255,.5)"} vertical />
 
         <div className="my-24 max-w-[24ch] text-center">

@@ -22,6 +22,8 @@ export function useVideoSeeker({
   useAnimationFrame(() => {
     if (!isVideoReady) return;
     if (!hasFrameUpdateRef.current) return;
+    if (isNaN(currentTimeRef.current)) return;
+
     videoRef.current.currentTime = currentTimeRef.current;
 
     // round current frame to 0.000
