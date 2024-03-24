@@ -23,7 +23,7 @@ export function useVideoInfo() {
       const video = videoRef.current;
       if (!video) return;
 
-      setDuration(duration);
+      setDuration(video.duration);
       setIsVideoReady(true);
       console.log(`The video is ${video.duration} seconds long.`);
     };
