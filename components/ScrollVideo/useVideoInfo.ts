@@ -20,18 +20,18 @@ export function useVideoInfo() {
     }
 
     const handleLoadedMetadata = () => {
-      console.log("fuck you");
-
       const video = videoRef.current;
       if (!video) return;
 
       setDuration(duration);
+      setIsVideoReady(true);
       console.log(`The video is ${video.duration} seconds long.`);
     };
 
     videoRef.current.addEventListener("loadedmetadata", handleLoadedMetadata);
 
     return () => {
+      if (!videoRef.current) return;
       videoRef.current.removeEventListener(
         "loadedmetadata",
         handleLoadedMetadata,
