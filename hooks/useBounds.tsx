@@ -47,13 +47,11 @@ export function useBounds<T extends HTMLElement>(
     bottom: 0,
   });
 
-  const { scrollY } = useScroll();
-
   useLayoutEffect(() => {
     const handleResize = () => {
       const bounds = containerRef.current.getBoundingClientRect();
 
-      const scrollOffset = scrollY.get();
+      const scrollOffset = window.scrollY;
 
       setBounds({
         x: bounds.x,

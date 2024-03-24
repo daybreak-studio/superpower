@@ -24,6 +24,8 @@ export function useVideoSeeker({
     if (!hasFrameUpdateRef.current) return;
     videoRef.current.currentTime = currentTimeRef.current;
 
+    console.log(currentTimeRef.current);
+
     // round current frame to 0.0
     const currentFrameRounded = Math.round(currentTimeRef.current * 10) / 10;
     const updateThreshold = 0.1;
