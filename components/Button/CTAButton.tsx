@@ -13,7 +13,6 @@ const CTAButton = ({ href, children }: Props) => {
       className="font-mono-sm relative inline-block bg-white px-8 py-4 text-zinc-900"
     >
       {children}
-
       <div className="absolute inset-0 bg-white blur-2xl"></div>
     </a>
   );

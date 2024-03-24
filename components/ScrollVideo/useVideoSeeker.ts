@@ -24,9 +24,10 @@ export function useVideoSeeker({
     if (!hasFrameUpdateRef.current) return;
     videoRef.current.currentTime = currentTimeRef.current;
 
-    // round current frame to 0.0
-    const currentFrameRounded = Math.round(currentTimeRef.current * 10) / 10;
-    const updateThreshold = 0.1;
+    // round current frame to 0.000
+    const currentFrameRounded =
+      Math.round(currentTimeRef.current * 1000) / 1000;
+    const updateThreshold = 0.05;
 
     // only update frame when it is more than a specific delta
     if (

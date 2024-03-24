@@ -8,11 +8,11 @@ export function useVideoInfo() {
   useEffect(() => {
     // have enough info
     // Ready state
-    // 1 - HAVE_NOTHING
-    // 2 - HAVE_METADATA;
-    // 3 - HAVE_CURRENT_DATA;
-    // 4 - HAVE_FUTURE_DATA;
-    // 5 - HAVE_ENOUGH_DATA;
+    // 0 - HAVE_NOTHING
+    // 1 - HAVE_METADATA;
+    // 2 - HAVE_CURRENT_DATA;
+    // 3 - HAVE_FUTURE_DATA;
+    // 4 - HAVE_ENOUGH_DATA;
 
     if (videoRef.current.readyState > 0) {
       setDuration(videoRef.current.duration);

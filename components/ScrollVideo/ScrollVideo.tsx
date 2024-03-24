@@ -1,12 +1,15 @@
 import React, { MutableRefObject, useEffect, useRef, useState } from "react";
 import { useVideoInfo } from "./useVideoInfo";
 import {
+  motion,
   useAnimationFrame,
   useMotionValueEvent,
   useScroll,
 } from "framer-motion";
 import { useVideoSeeker } from "./useVideoSeeker";
 import { useBounds } from "@/hooks/useBounds";
+import { AnimationClip } from "three";
+import { AnimationConfig } from "../AnimationConfig";
 
 type Props = {
   playbackConst: number; // higher it is, the slower it plays
@@ -33,16 +36,29 @@ const ScrollVideo = ({ playbackConst, children, onVideoReady }: Props) => {
     seek(duration * (scrolledOffset / bounds.height));
   });
 
+  useEffect(() => {
+    if (!isVideoReady) return;
+    videoRef.current.pause();
+    const scrolledOffset = scrollY.get() - bounds.top;
+    seek(duration * (scrolledOffset / bounds.height));
+  }, [isVideoReady]);
+
   return (
-    <div
+    <motion.div
       className={"relative flex items-start"}
+      initial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: isVideoReady ? 1 : 0,
+      }}
       style={{
         height: playbackConst * duration,
       }}
       ref={containerRef}
     >
       <video
-        className="sticky top-0 h-screen w-full object-cover"
+        className="sticky top-0 h-screen w-full bg-black object-cover"
         //@ts-ignore
         autobuffer="autobuffer"
         ref={videoRef}
@@ -50,10 +66,11 @@ const ScrollVideo = ({ playbackConst, children, onVideoReady }: Props) => {
         playsInline
         loop
         muted
+        autoPlay
       >
         {children}
       </video>
-    </div>
+    </motion.div>
   );
 };
 

@@ -35,14 +35,14 @@ const HeroMobileLayout = (props: Props) => {
       <div className="absolute mt-12 flex h-4">
         <SuperpowerLogo />
       </div>
-      <div className="mb-12 mt-[70vh] flex flex-col items-center text-center">
+      <div className="mb-12 mt-[65svh] flex flex-col items-center text-center">
         <h1 className="font-sans-3xl mb-6 max-w-[13ch]">
           A new era of personal health
         </h1>
         <CTAButton href={"https://www.google.com"}>Get started</CTAButton>
       </div>
 
-      <div className="flex min-h-[120vh]  basis-1 flex-col items-center justify-stretch">
+      <div className="flex h-[120svh]  basis-1 flex-col items-center justify-stretch">
         <LineElement length="auto" color={"rgba(255,255,255,.5)"} vertical />
 
         <div className="my-24 max-w-[24ch] text-center">
