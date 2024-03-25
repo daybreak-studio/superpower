@@ -15,7 +15,7 @@ type Props = {
 const FadingText = ({ children, progress }: Props) => {
   const [container, bounds] = useBounds<HTMLDivElement>([children]);
 
-  const maskFadingSizeFactor = 8;
+  const maskFadingSizeFactor = 9;
 
   const testProg = useTransform(progress, [0, 1], [0, 1]);
   const maskX = useTransform(
@@ -28,7 +28,7 @@ const FadingText = ({ children, progress }: Props) => {
   const maskFadeOutEndPos = maskFadingSizeFactor * 1.5; // around 15%
   const maskFadeOutStartPos = maskFadingSizeFactor * 3.5; // around 30%
   const maskFadeInEndPos = maskFadingSizeFactor * 6.5; // around 50%
-  const maskFadeInStartPos = maskFadingSizeFactor * 8.5; // around 70%
+  const maskFadeInStartPos = maskFadingSizeFactor * 8.6; // around 70%
 
   // make the mask slightly bigger
   const maskWidth = bounds.width * maskFadingSizeFactor * 1.1;
