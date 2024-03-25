@@ -1,12 +1,9 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { SlideInfo } from "./SuperpowerBaselineSection";
-import Carousel, { useCarouselControls } from "../Carousel/Carousel";
+import Carousel, { useCarouselControls } from "../../Carousel/Carousel";
 import BaselineCarouselItem from "./BaselineCarouselItem";
-import { motion } from "framer-motion";
-import { useBoundingClientRect } from "@/hooks/useBoundingClientRect";
-import { AnimationConfig } from "../AnimationConfig";
 import { CarouselPageIndicator } from "./CarouselPageIndicator";
 
 type Props = {

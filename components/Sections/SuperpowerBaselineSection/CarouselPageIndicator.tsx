@@ -1,9 +1,9 @@
 "use client";
 
-import { useBoundingClientRect } from "@/hooks/useBoundingClientRect";
+import { useBounds } from "@/hooks/useBounds";
 import { SlideInfo } from "./SuperpowerBaselineSection";
 import { motion } from "framer-motion";
-import { AnimationConfig } from "../AnimationConfig";
+import { AnimationConfig } from "../../AnimationConfig";
 
 interface CarouselPageIndicatorProps {
   currentSlide: number;
@@ -14,7 +14,7 @@ export const CarouselPageIndicator = ({
   currentSlide,
   slides,
 }: CarouselPageIndicatorProps) => {
-  const [containerRef, bounds] = useBoundingClientRect<HTMLDivElement>([]);
+  const [containerRef, bounds] = useBounds<HTMLDivElement>([]);
 
   return (
     <motion.div
