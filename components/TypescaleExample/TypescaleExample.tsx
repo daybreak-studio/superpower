@@ -16,7 +16,7 @@ const TypescaleExample = (props: Props) => {
       </div>
       <div className="font-mono-xs my-4 opacity-50">font-sans-4xl</div>
       <div className="font-sans-4xl">
-        Meet the world's most comprehensive digital clinic.
+        Meet the world&apos;s most comprehensive digital clinic.
       </div>
       <div className="font-mono-xs my-4 opacity-50">font-sans-3xl</div>
       <div className="font-sans-3xl">A new era of personal health</div>
@@ -27,8 +27,8 @@ const TypescaleExample = (props: Props) => {
       </div>
       <div className="font-mono-xs my-4 opacity-50">font-sans-xl</div>
       <div className="font-sans-xl">
-        The world's most advanced digital clinic for prevention, performance and
-        longevity.
+        The world&apos;s most advanced digital clinic for prevention,
+        performance and longevity.
       </div>
       <div className="font-mono-xs my-4 opacity-50">font-sans-lg</div>
       <div className="font-sans-lg">
@@ -38,17 +38,17 @@ const TypescaleExample = (props: Props) => {
       <div className="font-mono-xs my-4 opacity-50">font-sans-md</div>
       <div className="font-sans-md">
         Leading doctors, whole-body testing, and the latest technology, like
-        you’ve never experienced before.
+        you&apos;ve never experienced before.
       </div>
       <div className="font-mono-xs my-4 opacity-50">font-mono-sm</div>
       <div className="font-mono-sm">
         Mono sm Leading doctors, whole-body testing, and the latest technology,
-        like you’ve never experienced before.
+        like you&apos;ve never experienced before.
       </div>
       <div className="font-mono-xs my-4 opacity-50">font-mono-xs</div>
       <div className="font-mono-xs">
         Mono xs Leading doctors, whole-body testing, and the latest technology,
-        like you’ve never experienced before.
+        like you&apos;ve never experienced before.
       </div>
     </div>
   );

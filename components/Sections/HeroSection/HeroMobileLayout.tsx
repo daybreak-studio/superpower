@@ -56,12 +56,12 @@ const HeroMobileLayout = (props: Props) => {
 
         <div className="my-24 max-w-[24ch] text-center">
           <p className="font-sans-xl mb-3 leading-tight">
-            The world's most advanced digital clinic for prevention, performance
-            and longevity.
+            The world&apos;s most advanced digital clinic for prevention,
+            performance and longevity.
           </p>
           <p className="font-sans-sm mb-auto opacity-70">
             Leading doctors, whole-body testing, and the latest technology, like
-            you’ve never experienced before.
+            you&apos;ve never experienced before.
           </p>
         </div>
 
