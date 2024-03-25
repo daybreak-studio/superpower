@@ -2,7 +2,12 @@ import React from "react";
 import SuperpowerLogo from "./SuperpowerLogo";
 import CTAButton from "@/components/Button/CTAButton";
 import LineElement from "@/components/LineElement/LineElement";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useMotionTemplate,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { useBounds } from "@/hooks/useBounds";
 import { useWindowDimension } from "@/hooks/useWindowDimension";
 
@@ -13,7 +18,7 @@ const HeroMobileLayout = (props: Props) => {
   const [containerRef, bounds] = useBounds<HTMLDivElement>([]);
 
   const windowDim = useWindowDimension();
-  const fadeOutDistance = windowDim.height * 1.2;
+  const fadeOutDistance = windowDim.height * 0.85;
 
   const sectionOpacity = useTransform(
     scrollY,
@@ -21,13 +26,17 @@ const HeroMobileLayout = (props: Props) => {
     [1, 0],
   );
 
+  const blur = useTransform(sectionOpacity, [1, 0], [0, 32]);
+  const blurString = useMotionTemplate`blur(${blur}px)`;
+
   return (
     <motion.div
       initial={{
         opacity: 1,
       }}
       style={{
-        opacity: sectionOpacity,
+        // opacity: sectionOpacity,
+        filter: blurString,
       }}
       ref={containerRef}
       className="absolute left-0 right-0 top-0 z-10 flex min-h-screen w-full flex-col items-center px-4"

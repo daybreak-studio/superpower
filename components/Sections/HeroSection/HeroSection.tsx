@@ -35,7 +35,7 @@ const HeroSection = (props: Props) => {
       )}
       {!isDesktop && (
         <StickySlide>
-          <StickySlideItem scrollHeight={windowDim.height * 0.8}>
+          <StickySlideItem scrollHeight={windowDim.height * 0.5}>
             <Image
               src={"/hero-section/hero-mobile-slide-1.jpg"}
               width={393}
@@ -44,7 +44,7 @@ const HeroSection = (props: Props) => {
               className="fixed inset-0 h-screen w-full object-cover"
             />
           </StickySlideItem>
-          <StickySlideItem scrollHeight={windowDim.height}>
+          <StickySlideItem scrollHeight={windowDim.height * 1}>
             <Image
               src={"/hero-section/hero-mobile-slide-2.jpg"}
               width={393}
