@@ -34,7 +34,7 @@ const FadingText = ({ children, progress }: Props) => {
   const maskWidth = bounds.width * maskFadingSizeFactor * 1.1;
 
   return (
-    <motion.div
+    <motion.span
       style={{
         mask: `linear-gradient(45deg, 
           rgba(0,0,0,0) 0%, 
@@ -51,7 +51,7 @@ const FadingText = ({ children, progress }: Props) => {
       ref={container}
     >
       {children}
-    </motion.div>
+    </motion.span>
   );
 };
 
