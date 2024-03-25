@@ -36,6 +36,12 @@ const ScrollVideo = ({ playbackConst, children, onVideoReady }: Props) => {
     seek(duration * (scrolledOffset / bounds.height));
   });
 
+  // This useEffect stops the video instantaneously after
+  // the page is loaded. This is done to counteract the
+  // necessary "autoPlay" setting on the video play.
+  //
+  // Autoplay is turned on to trick the browser loading
+  // the video without the user interacting with the video.
   useEffect(() => {
     if (!isVideoReady) return;
     videoRef.current.pause();

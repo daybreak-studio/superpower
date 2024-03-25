@@ -35,7 +35,20 @@ const HeroSection = (props: Props) => {
       )}
       {!isDesktop && (
         <StickySlide>
+          {/* 
+            scrollHeight here deontes how much scroll 
+            each slide would occupy before changing into another 
+            one. 
+          */}
           <StickySlideItem scrollHeight={windowDim.height * 0.5}>
+            {/* 
+              the slide content is deliberiately set as style 
+              agnostic so that you can fit whatever slide content 
+              inside it—image, text, video, other components.
+
+              remember to style it with fixed positioning if you want
+              it to remain fixed at the viewport all the time.
+            */}
             <Image
               src={"/hero-section/hero-mobile-slide-1.jpg"}
               width={393}
@@ -70,6 +83,8 @@ const HeroSection = (props: Props) => {
 };
 
 const SlideInText = () => {
+  // useSlideProgress is a hook to access the scroll progress of the slide.
+  // The context is provided by StickySlide.
   const progress = useSlideProgress();
 
   return (

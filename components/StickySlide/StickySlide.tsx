@@ -14,8 +14,8 @@ const StickySlideItemContext = createContext({
 });
 
 /**
- * Sub components inside a <StickySlideItem/> could use this
- * hook to access the scroll progress on the specific slide.
+ * Sub components inside a StickySlideItem could use this
+ * hook to access the scroll progress of the slide.
  * @returns
  */
 export const useSlideProgress = () =>
