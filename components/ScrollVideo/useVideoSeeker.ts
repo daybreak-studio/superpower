@@ -22,7 +22,8 @@ export function useVideoSeeker({
   useAnimationFrame(() => {
     if (!isVideoReady) return;
     if (!hasFrameUpdateRef.current) return;
-    if (isNaN(currentTimeRef.current)) return;
+    if (isNaN(currentTimeRef.current) || currentTimeRef.current === Infinity)
+      return;
 
     videoRef.current.currentTime = currentTimeRef.current;
 
