@@ -74,6 +74,7 @@ const HeroSection = (props: Props) => {
               alt={""}
               className="fixed inset-0 h-screen w-full object-cover"
             />
+            {/* example for adding not only image to a slide */}
             <SlideInText />
           </StickySlideItem>
         </StickySlide>
