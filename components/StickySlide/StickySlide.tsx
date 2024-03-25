@@ -30,6 +30,8 @@ export const StickySlideItem = ({ children, scrollHeight }: ItemProps) => {
     useState(false);
   const [isActive, setIsActive] = useState(false);
 
+  // the active state change detection will only updates
+  // when the slide is currently in view
   useEffect(() => {
     if (!isScrollPlaceholderInView) return;
 
@@ -89,6 +91,6 @@ type ContainerProps = {
   children: React.ReactNode;
 };
 export const StickySlide = ({ children }: ContainerProps) => {
-  // a extra screen height padding for the last item
+  // a extra screen-height padding for the last item
   return <div className="min-h-screen pb-[100vh]">{children}</div>;
 };
