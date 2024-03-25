@@ -57,7 +57,10 @@ export const StickySlideItem = ({ children, scrollHeight }: ItemProps) => {
     <motion.div
       className="-z-10"
       ref={containerBounds}
-      style={{ height: scrollHeight }}
+      style={{
+        height: scrollHeight,
+        pointerEvents: isScrollPlaceholderInView ? "all" : "none",
+      }}
       onViewportEnter={() => setIsIsScrollPlaceholderInView(true)}
       onViewportLeave={() => setIsIsScrollPlaceholderInView(false)}
     >
