@@ -79,6 +79,7 @@ const ScrollVideo = ({
         className="sticky top-0 h-screen w-full bg-black object-cover"
         //@ts-ignore
         autobuffer="autobuffer"
+        disablePictureInPicture
         ref={videoRef}
         preload="preload"
         playsInline
