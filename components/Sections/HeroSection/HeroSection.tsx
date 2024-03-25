@@ -74,7 +74,9 @@ const SlideInText = () => {
 
   return (
     <div className="font-sans-3xl fixed inset-0 flex h-full w-full items-center justify-center">
-      <FadingText progress={progress}>This is literally saur crazy</FadingText>
+      <FadingText progress={progress}>
+        This is literally so crazy omg
+      </FadingText>
     </div>
   );
 };
