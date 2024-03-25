@@ -10,14 +10,21 @@ import { useVideoSeeker } from "./useVideoSeeker";
 import { useBounds } from "@/hooks/useBounds";
 import { AnimationClip } from "three";
 import { AnimationConfig } from "../AnimationConfig";
+import { useIsLowPowerMode } from "@/hooks/useIsLowPowerMode";
 
 type Props = {
   playbackConst: number; // higher it is, the slower it plays
   children: React.ReactNode;
   onVideoReady?: () => void;
+  onLowPowerModeDetected?: () => void;
 };
 
-const ScrollVideo = ({ playbackConst, children, onVideoReady }: Props) => {
+const ScrollVideo = ({
+  playbackConst,
+  children,
+  onVideoReady,
+  onLowPowerModeDetected,
+}: Props) => {
   const { videoRef, duration, isVideoReady } = useVideoInfo();
   const seek = useVideoSeeker({ videoRef, isVideoReady });
 
@@ -28,6 +35,11 @@ const ScrollVideo = ({ playbackConst, children, onVideoReady }: Props) => {
   useEffect(() => {
     onVideoReady?.();
   }, [isVideoReady]);
+
+  const isLowPowerMode = useIsLowPowerMode(videoRef);
+  useEffect(() => {
+    if (isLowPowerMode) onLowPowerModeDetected?.();
+  }, [isLowPowerMode]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (!isVideoReady) return;

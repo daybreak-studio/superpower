@@ -1,7 +1,5 @@
 import ScrollVideo from "@/components/ScrollVideo/ScrollVideo";
-import React from "react";
-import SuperpowerLogo from "./SuperpowerLogo";
-import CTAButton from "@/components/Button/CTAButton";
+import React, { useState } from "react";
 import HeroDesktopLayout from "./HeroDesktopLayout";
 import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
 import HeroMobileLayout from "./HeroMobileLayout";
@@ -19,21 +17,25 @@ type Props = {};
 const HeroSection = (props: Props) => {
   const windowDim = useWindowDimension();
   const isDesktop = useBreakpoint(breakpoints.md);
+  const [isLowPowerMode, setIsLowPowerMode] = useState(false);
 
   return (
     <section className="relative min-h-screen bg-zinc-900 text-white">
       {isDesktop && <HeroDesktopLayout />}
       {!isDesktop && <HeroMobileLayout />}
       {/* playbackConst: higher it is, the slower it plays */}
-      {isDesktop && (
-        <ScrollVideo playbackConst={400}>
+      {!isLowPowerMode && (
+        <ScrollVideo
+          playbackConst={400}
+          onLowPowerModeDetected={() => setIsLowPowerMode(true)}
+        >
           <source
             type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
             src="https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4"
           />
         </ScrollVideo>
       )}
-      {!isDesktop && (
+      {isLowPowerMode && (
         <StickySlide>
           {/* 
             scrollHeight here deontes how much scroll 
