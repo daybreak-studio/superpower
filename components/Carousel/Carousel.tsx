@@ -138,18 +138,18 @@ const Carousel = ({ children, controls, onSlideChange = () => {} }: Props) => {
       prev,
       goto,
     });
-  }, [controls, currentSlide, slideCount]);
+  }, [controls, currentSlide, posTarget, sizes, slideCount]);
 
   useEffect(() => {
     onSlideChange(currentSlide);
-  }, [currentSlide]);
+  }, [currentSlide, onSlideChange]);
 
   const containerWidth = useMemo(
     () =>
       scrubContainerRef.current
         ? scrubContainerRef.current.getBoundingClientRect().width
-        : 0,
-    [windowDim.width, scrubContainerRef.current],
+        : windowDim.width,
+    [windowDim.width, scrubContainerRef],
   );
 
   // left margin to make it center align
@@ -164,7 +164,7 @@ const Carousel = ({ children, controls, onSlideChange = () => {} }: Props) => {
     if (shouldSnapToSlide) {
       posTarget.set(getPositionBySlide(currentSlide, slideCount, sizes));
     }
-  }, [currentSlide, shouldSnapToSlide, slideCount, sizes]);
+  }, [currentSlide, shouldSnapToSlide, slideCount, sizes, posTarget]);
 
   // detecting a flick
   const flickMomentum = 0.2;
@@ -181,7 +181,7 @@ const Carousel = ({ children, controls, onSlideChange = () => {} }: Props) => {
       sizes,
     );
     posTarget.set(getPositionBySlide(projectedSlide, slideCount, sizes));
-  }, [isPointerDown, isScrubbing, pos, slideCount, sizes]);
+  }, [isPointerDown, isScrubbing, pos, slideCount, sizes, posTarget]);
 
   // match the current slide with the position
   useMotionValueEvent(pos, "change", (latest) => {
@@ -200,7 +200,7 @@ const Carousel = ({ children, controls, onSlideChange = () => {} }: Props) => {
         setIsPointerDown(false);
       }}
       ref={scrubContainerRef}
-      className="w-full touch-none overflow-x-hidden"
+      className="w-full touch-pan-y overflow-x-hidden"
       style={{
         cursor: isPointerDown ? "grabbing" : "grab",
       }}
