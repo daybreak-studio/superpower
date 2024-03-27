@@ -11,18 +11,9 @@ const TestimonialsWrapper = (props: Props) => {
       </div>
 
       <div className="my-24 max-w-[24ch] text-center">
-        <p className="font-sans-xl mb-3 leading-tight">
-          The world's most advanced digital clinic for prevention, performance
-          and longevity.
-        </p>
-        <p className="font-sans-xl mb-3 leading-tight">
-          The world's most advanced digital clinic for prevention, performance
-          and longevity.
-        </p>
-        <p className="font-sans-xl mb-3 leading-tight">
-          The world's most advanced digital clinic for prevention, performance
-          and longevity.
-        </p>
+        <p className="font-sans-xl mb-3 leading-tight">The</p>
+        <p className="font-sans-xl mb-3 leading-tight">The</p>
+        <p className="font-sans-xl mb-3 leading-tight">The</p>
       </div>
     </div>
   );
