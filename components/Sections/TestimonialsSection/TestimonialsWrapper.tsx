@@ -1,10 +1,27 @@
 import React from "react";
 import LineElement from "@/components/LineElement/LineElement";
 import TestimonialsSelector from "./TestimonialsSelector";
+import { useState } from "react";
 
 type Props = {};
+const quotes = [
+  {
+    quote: "Changed my life forever.",
+    author: "Vinay hiremath, Co-counder of loom"
+  },
+  {
+    quote: "The best thing since sliced bread",
+    author: "Vinay hiremath, Co-counder of loom"
+  },
+  {
+    quote: "I can't believe it's not butter",
+    author: "Vinay hiremath, Co-counder of loom"
+  }
+]
 
 const TestimonialsWrapper = (props: Props) => {
+  const [quoteIndex, setQuoteIndex] = useState(0);
+
   return (
     <div>
       <div className="absolute w-full h-full flex flex-col gap-6 justify-center items-center">
