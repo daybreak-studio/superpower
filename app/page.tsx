@@ -10,8 +10,8 @@ export default function Home() {
   return (
     <main>
       {/* <ReactLenis root> */}
-      {/* <HeroSection />
-      <SuperpowerBaselineSection /> */}
+      {/* <HeroSection /> */}
+      <SuperpowerBaselineSection />
       <ProtocolSection />
       {/* </ReactLenis> */}
     </main>
