@@ -1,10 +1,14 @@
 import React from "react";
 import ProtocolSectionDesktop from "./desktop/ProtocolSectionDesktop";
 import { PROTOCOLS } from "./Protocols";
+import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
+import ProtocolSectionMobile from "./mobile/ProtocolSectionMobile";
 
 type Props = {};
 
 const ProtocolSection = (props: Props) => {
+  const isDesktop = useBreakpoint(breakpoints.md);
+
   return (
     <section className="my-24 flex flex-col items-center">
       <div className="font-mono-sm mx-4 mb-4 text-center">
@@ -17,7 +21,8 @@ const ProtocolSection = (props: Props) => {
         A revolutionary approach to health, starting with over 60 advanced lab
         tests and a custom action plan.
       </p>
-      <ProtocolSectionDesktop protocols={PROTOCOLS} />
+      {isDesktop && <ProtocolSectionDesktop protocols={PROTOCOLS} />}
+      {!isDesktop && <ProtocolSectionMobile protocols={PROTOCOLS} />}
     </section>
   );
 };

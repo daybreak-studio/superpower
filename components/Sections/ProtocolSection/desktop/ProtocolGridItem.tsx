@@ -44,13 +44,13 @@ export const ProtocolGridItem = ({
       animate={{
         width: currentWidth,
         transition: {
-          duration: AnimationConfig.SLOW,
+          duration: AnimationConfig.VERY_SLOW,
           ease: AnimationConfig.EASING,
         },
       }}
       className={`relative flex h-full w-screen grow items-center justify-center overflow-hidden`}
-      onPointerEnter={() => onExpand()}
-      onPointerLeave={() => onUnexpand()}
+      onClick={() => onExpand()}
+      // onPointerLeave={() => onUnexpand()}
       onFocus={() => onExpand()}
       onBlur={() => onUnexpand()}
     >
@@ -76,7 +76,7 @@ export const ProtocolGridItem = ({
           "--greyscale-progress": isExpanded ? 0 : 1,
           width: isExpanded ? itemWidth * 1.2 : itemWidth,
           transition: {
-            duration: AnimationConfig.SLOW,
+            duration: AnimationConfig.VERY_SLOW,
             ease: AnimationConfig.EASING,
           },
         }}
