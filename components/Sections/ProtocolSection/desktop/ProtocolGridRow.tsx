@@ -3,6 +3,7 @@ import { ExpandHandler, ProtocolProps } from "./ProtocolGrid";
 import { useBounds } from "@/hooks/useBounds";
 import { motion } from "framer-motion";
 import { ProtocolGridItem } from "./ProtocolGridItem";
+import { AnimationConfig } from "@/components/AnimationConfig";
 
 export const ProtocolGridRow = ({
   row,
@@ -64,6 +65,10 @@ export const ProtocolGridRow = ({
           : isCurrentRowInFocus
             ? itemHeight * (1 + 1 / 3)
             : itemHeight * (2 / 3),
+        transition: {
+          duration: AnimationConfig.VERY_SLOW,
+          ease: AnimationConfig.EASING,
+        },
       }}
     >
       {protocols.map((protocol, index) => (
