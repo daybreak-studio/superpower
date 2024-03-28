@@ -42,6 +42,9 @@ export const ProtocolGridItem = ({
   return (
     <motion.button
       animate={{
+        //@ts-ignore
+        "--greyscale-progress": isExpanded ? 0 : 1,
+        cursor: isExpanded ? "default" : "pointer",
         width: currentWidth,
         transition: {
           duration: AnimationConfig.VERY_SLOW,
@@ -53,6 +56,11 @@ export const ProtocolGridItem = ({
       // onPointerLeave={() => onUnexpand()}
       onFocus={() => onExpand()}
       onBlur={() => onUnexpand()}
+      initial={{}}
+      whileHover={{
+        //@ts-ignore
+        "--greyscale-progress": 0,
+      }}
     >
       {/* left side */}
       <HealthArea
@@ -67,13 +75,7 @@ export const ProtocolGridItem = ({
           filter: "grayscale(var(--greyscale-progress))",
         }}
         className="h-full"
-        initial={{
-          //@ts-ignore
-          "--greyscale-progress": 1,
-        }}
         animate={{
-          //@ts-ignore
-          "--greyscale-progress": isExpanded ? 0 : 1,
           width: isExpanded ? itemWidth * 1.2 : itemWidth,
           transition: {
             duration: AnimationConfig.VERY_SLOW,

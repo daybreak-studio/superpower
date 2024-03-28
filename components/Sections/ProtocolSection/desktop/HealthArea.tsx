@@ -15,7 +15,8 @@ export const HealthArea = ({
   isExpanded: boolean;
 }) => (
   <motion.div
-    className={`font-sans-sm absolute 
+    className={`font-sans-sm pointer-events-none 
+    absolute
       flex flex-row
       ${left ? "left-0" : "right-0"} 
       -z-10 h-full w-full
