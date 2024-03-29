@@ -2,7 +2,7 @@ import React from "react";
 import LineElement from "@/components/LineElement/LineElement";
 import TestimonialsSelector from "./TestimonialsSelector";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Props = {};
 const quotes = [
@@ -39,39 +39,47 @@ const TestimonialsWrapper = (props: Props) => {
           <div className="flex w-full flex-row">
             <LineElement length={"auto"} color={"#bbb"} horizontal tail={16} />
           </div>
-          <motion.div
-            className="flex h-full w-full items-center justify-center overflow-hidden"
-            animate={{
-              minWidth: [624, 0, 624],
-              maxWidth: [624, 0, 624],
-              maxHeight: [500, 0, 500],
-            }}
-            transition={{
-              duration: 0.6,
-              repeat: Infinity,
-              repeatDelay: 1.4,
-              delay: 1.7,
-              times: [0, 0.5, 1],
-            }}
-          >
-            <div className="flex min-h-[250px] min-w-96 flex-col flex-wrap items-center justify-between p-4 text-center lg:min-h-[500px] lg:min-w-[624px]">
-              <div className="flex gap-3">
-                {quotes.map((quote, index) =>
-                  index === quoteIndex ? (
-                    <TestimonialsSelector key={index} active={true} />
-                  ) : (
-                    <TestimonialsSelector key={index} />
-                  ),
-                )}
+          <AnimatePresence>
+            <motion.div
+              className="flex h-full w-full items-center justify-center overflow-hidden"
+              initial={{
+                maxWidth: 624,
+                maxHeight: 500,
+              }}
+              animate={{
+                maxWidth: [624, 0, 624],
+                maxHeight: [500, 0, 500],
+              }}
+              exit={{
+                maxWidth: 624,
+                maxHeight: 500,
+              }}
+              transition={{
+                duration: 0.6,
+                repeat: Infinity,
+                repeatDelay: 1.4,
+                delay: 1.7,
+              }}
+            >
+              <div className="flex min-h-[250px] min-w-96 flex-col flex-wrap items-center justify-between p-4 text-center lg:min-h-[500px] lg:min-w-[624px]">
+                <div className="flex gap-3">
+                  {quotes.map((quote, index) =>
+                    index === quoteIndex ? (
+                      <TestimonialsSelector key={index} active={true} />
+                    ) : (
+                      <TestimonialsSelector key={index} />
+                    ),
+                  )}
+                </div>
+                <p className="font-sans-4xl mx-4 mb-6 max-w-[20ch] text-center">
+                  {quotes[quoteIndex].quote}
+                </p>
+                <p className="font-mono-sm text-center">
+                  {quotes[quoteIndex].author}
+                </p>
               </div>
-              <p className="font-sans-4xl mx-4 mb-6 max-w-[20ch] text-center">
-                {quotes[quoteIndex].quote}
-              </p>
-              <p className="font-mono-sm text-center">
-                {quotes[quoteIndex].author}
-              </p>
-            </div>
-          </motion.div>
+            </motion.div>
+          </AnimatePresence>
           <div className="flex w-full flex-row">
             <LineElement length={"auto"} color={"#bbb"} horizontal head={16} />
           </div>
