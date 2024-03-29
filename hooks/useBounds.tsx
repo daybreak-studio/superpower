@@ -74,7 +74,7 @@ export function useBounds<T extends HTMLElement>(
   return [containerRef, bounds];
 }
 
-export function useBoundsWithRef<T extends HTMLElement>(
+export function useContainerBounds<T extends HTMLElement>(
   containerRef: MutableRefObject<T>,
   dependency: any[] = [],
 ): BoundingBoxInfo {

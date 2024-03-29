@@ -2,6 +2,13 @@ import { useMotionValue, useTransform } from "framer-motion";
 import { useEffect } from "react";
 import { BoundingBoxInfo } from "./useBounds";
 
+/**
+ * Returns MotionValues that tracks the clientX, and clientY of the mouse position.
+ *
+ * @param shouldTrack
+ * @param boundingBox
+ * @returns
+ */
 export function usePointerOffset(
   shouldTrack: boolean,
   boundingBox: BoundingBoxInfo,
@@ -18,6 +25,12 @@ export function usePointerOffset(
   return { x, y };
 }
 
+/**
+ * Just like usePointerPosition, but you feed in the pointer bounding box.
+ * @param containerRef
+ * @param dependency
+ * @returns
+ */
 export function usePointerPosition(shouldTrack: boolean) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
