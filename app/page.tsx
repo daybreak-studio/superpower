@@ -1,10 +1,19 @@
-import { useBreakpoint } from "@/hooks/useBreakpoints";
-import { useWindowDimension } from "@/hooks/useWindowDimension";
+"use client";
+
+import ScrollVideo from "@/components/ScrollVideo/ScrollVideo";
+import HeroSection from "@/components/Sections/HeroSection/HeroSection";
+import ProtocolSection from "@/components/Sections/ProtocolSection/ProtocolSection";
+import SuperpowerBaselineSection from "@/components/Sections/SuperpowerBaselineSection/SuperpowerBaselineSection";
+import { ReactLenis } from "@studio-freight/react-lenis";
 
 export default function Home() {
   return (
-    <main className="">
-      <h1>Home</h1>
+    <main>
+      {/* <ReactLenis root> */}
+      {/* <HeroSection /> */}
+      <SuperpowerBaselineSection />
+      <ProtocolSection />
+      {/* </ReactLenis> */}
     </main>
   );
 }

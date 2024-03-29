@@ -1,0 +1,40 @@
+"use client";
+
+import React, { useState } from "react";
+import { SlideInfo } from "./SuperpowerBaselineSection";
+import Carousel, { useCarouselControls } from "../../Carousel/Carousel";
+import BaselineCarouselItem from "./BaselineCarouselItem";
+import { CarouselPageIndicator } from "./CarouselPageIndicator";
+
+type Props = {
+  slides: Array<SlideInfo>;
+};
+
+const BaselineCarousel = ({ slides }: Props) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const controls = useCarouselControls();
+  const handleNextClick = () => {
+    controls.next();
+  };
+  const handlePrevClick = () => {
+    controls.prev();
+  };
+
+  return (
+    <div className="flex w-full flex-col pt-12">
+      <Carousel controls={controls} onSlideChange={setCurrentSlide}>
+        {slides.map((slide, index) => (
+          <BaselineCarouselItem key={index} slide={slide} />
+        ))}
+      </Carousel>
+
+      <div className="pointer-events-none mx-auto -mt-24 flex h-24 flex-col items-center">
+        <div className="mb-4 h-8 w-[1px] bg-[#FC5F2B] opacity-40" />
+        <CarouselPageIndicator currentSlide={currentSlide} slides={slides} />
+      </div>
+    </div>
+  );
+};
+
+export default BaselineCarousel;
