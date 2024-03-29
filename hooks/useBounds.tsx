@@ -6,6 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { useWindowDimension } from "./useWindowDimension";
 
 export type BoundingBoxInfo = {
   x: number;
@@ -75,12 +76,13 @@ export function useBounds<T extends HTMLElement>(
 }
 
 /**
+ * Return bounds that relative to the document's top, left. (added scroll with client rect)
  * just like useBounds, but it allows you to feed in the container ref instead.
  * @param containerRef
  * @param dependency
  * @returns
  */
-export function useContainerBounds<T extends HTMLElement>(
+export function usePageBounds<T extends HTMLElement>(
   containerRef: MutableRefObject<T>,
   dependency: any[] = [],
 ): BoundingBoxInfo {
@@ -110,6 +112,52 @@ export function useContainerBounds<T extends HTMLElement>(
         right: bounds.right,
         top: bounds.top + scrollOffset,
         bottom: bounds.bottom + scrollOffset,
+      });
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, dependency);
+
+  return bounds;
+}
+
+/**
+ * Return bounds that relative to the viewport, no added scroll offset
+ * @param containerRef
+ * @param dependency
+ * @returns
+ */
+export function useViewportBounds<T extends HTMLElement>(
+  containerRef: MutableRefObject<T>,
+  dependency: any[] = [],
+): BoundingBoxInfo {
+  const [bounds, setBounds] = useState({
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0,
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+  });
+
+  useLayoutEffect(() => {
+    const handleResize = () => {
+      const bounds = containerRef.current.getBoundingClientRect();
+
+      setBounds({
+        x: bounds.x,
+        y: bounds.y,
+        width: bounds.width,
+        height: bounds.height,
+        left: bounds.left,
+        right: bounds.right,
+        top: bounds.top,
+        bottom: bounds.bottom,
       });
     };
     window.addEventListener("resize", handleResize);
