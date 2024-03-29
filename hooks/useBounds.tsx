@@ -74,6 +74,12 @@ export function useBounds<T extends HTMLElement>(
   return [containerRef, bounds];
 }
 
+/**
+ * just like useBounds, but it allows you to feed in the container ref instead.
+ * @param containerRef
+ * @param dependency
+ * @returns
+ */
 export function useContainerBounds<T extends HTMLElement>(
   containerRef: MutableRefObject<T>,
   dependency: any[] = [],
