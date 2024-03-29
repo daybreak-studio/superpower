@@ -12,17 +12,24 @@ import { BoundingBoxInfo } from "./useBounds";
 export function usePointerOffset(
   shouldTrack: boolean,
   boundingBox: BoundingBoxInfo,
+  anchor: "center" | "left" = "center",
 ) {
   const pointer = usePointerPosition(shouldTrack);
 
   const x = useTransform(pointer.x, (latest) => {
+    if (anchor === "center")
+      return latest - (boundingBox.left + boundingBox.width / 2);
+
     return latest - boundingBox.left;
   });
   const y = useTransform(pointer.y, (latest) => {
+    if (anchor === "center")
+      return latest - (boundingBox.top + boundingBox.height / 2);
+
     return latest - boundingBox.top;
   });
 
-  return { x, y };
+  return { x, y, boundingBox };
 }
 
 /**
