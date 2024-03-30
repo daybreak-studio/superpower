@@ -14,12 +14,16 @@ const quotes = [
     author: "Vinay hiremath, Co-founder of loom",
   },
   {
-    quote: "The best thing since sliced bread",
+    quote: "The best thing since sliced bread!",
     author: "Kiran Patel",
   },
   {
-    quote: "Hello there! This is a longer quote",
-    author: "discwdicnwis",
+    quote: "I can't live without it.",
+    author: "Sara Smith",
+  },
+  {
+    quote: "I can't believe I ever lived without it.",
+    author: "John Doe",
   },
 ];
 
@@ -34,7 +38,7 @@ const TestimonialsWrapper = (props: Props) => {
         </div>
 
         <div className="flex w-full flex-row items-center justify-center gap-12">
-          <div className="flex grow-0 flex-row">
+          <div className="flex w-full flex-row">
             <LineElement length={"auto"} color={"#bbb"} horizontal tail={16} />
           </div>
 
@@ -52,7 +56,7 @@ const TestimonialsWrapper = (props: Props) => {
               clapTime={clap}
             />
           )}
-          <div className="flex grow-0 flex-row">
+          <div className="flex w-full flex-row">
             <LineElement length={"auto"} color={"#bbb"} horizontal head={16} />
           </div>
         </div>

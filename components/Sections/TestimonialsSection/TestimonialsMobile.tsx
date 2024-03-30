@@ -43,16 +43,16 @@ const TestimonialsMobile = ({ quotesList, intervalTime, clapTime }: props) => {
           }}
         >
           <div className="absolute left-0 top-0">
-            <Corner topLeft size={20} />
+            <Corner topLeft size={12} />
           </div>
           <div className="absolute right-0 top-0">
-            <Corner topRight size={20} />
+            <Corner topRight size={12} />
           </div>
           <div className="absolute bottom-0 left-0">
-            <Corner bottomLeft size={20} />
+            <Corner bottomLeft size={12} />
           </div>
           <div className="absolute bottom-0 right-0">
-            <Corner bottomRight size={20} />
+            <Corner bottomRight size={12} />
           </div>
           <div className="flex min-h-[250px] min-w-96 flex-col flex-wrap items-center justify-between p-4 text-center">
             <div className="flex gap-3">
