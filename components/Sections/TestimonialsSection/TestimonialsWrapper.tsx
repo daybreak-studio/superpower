@@ -4,6 +4,8 @@ import TestimonialsDesktop from "./TestimonialsDesktop";
 import TestimonialsMobile from "./TestimonialsMobile";
 import LineElement from "@/components/LineElement/LineElement";
 
+type Props = {};
+
 const quotes = [
   {
     quote: "Changed my life forever.",
@@ -19,7 +21,7 @@ const quotes = [
   },
 ];
 
-const TestimonialsWrapper = () => {
+const TestimonialsWrapper = (props: Props) => {
   const isDesktop = useBreakpoint(breakpoints.desktop);
   const [quoteIndex, setQuoteIndex] = useState(0);
 
