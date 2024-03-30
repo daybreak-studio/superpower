@@ -30,8 +30,8 @@ const TestimonialsDesktop = ({ quotesList, intervalTime, clapTime }: props) => {
             height: 500,
           }}
           animate={{
-            maxWidth: [624, 0, 624],
-            height: [500, 0, 500],
+            maxWidth: [624, 0, 0, 624],
+            height: [500, 0, 0, 500],
           }}
           exit={{
             maxWidth: 624,
@@ -42,6 +42,7 @@ const TestimonialsDesktop = ({ quotesList, intervalTime, clapTime }: props) => {
             repeat: Infinity,
             repeatDelay: intervalTime / 1000 - clapTime / 1000,
             delay: intervalTime / 1000 - clapTime / 1000 / 2,
+            times: [0, 0.4, 0.6, 1],
           }}
         >
           <CornerBox cornerSize={20} cornerColor={"#000"} />

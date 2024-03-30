@@ -29,7 +29,7 @@ const TestimonialsMobile = ({ quotesList, intervalTime, clapTime }: props) => {
             height: 380,
           }}
           animate={{
-            height: [380, 0, 380],
+            height: [380, 0, 0, 380],
           }}
           exit={{
             height: 380,
@@ -39,6 +39,7 @@ const TestimonialsMobile = ({ quotesList, intervalTime, clapTime }: props) => {
             repeat: Infinity,
             repeatDelay: intervalTime / 1000 - clapTime / 1000,
             delay: intervalTime / 1000 - clapTime / 1000 / 2,
+            times: [0, 0.4, 0.6, 1],
           }}
         >
           <CornerBox cornerSize={20} cornerColor={"#000"} />

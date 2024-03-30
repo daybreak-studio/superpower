@@ -5,8 +5,8 @@ import TestimonialsMobile from "./TestimonialsMobile";
 import LineElement from "@/components/LineElement/LineElement";
 
 type Props = {};
-const interval = 2000; // interval between quotes
-const clap = 600; // clap animation time
+const interval = 2500; // interval between quotes
+const clap = 800; // clap animation time
 
 const quotes = [
   {
