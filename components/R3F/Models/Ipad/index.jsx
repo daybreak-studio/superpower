@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { useThree, useFrame } from "@react-three/fiber";
 
-const tiltLimit = 0.25;
+const tiltLimit = 0.4;
 const lerpFactor = 0.02;
 const screenImageUrls = [
   "/models/textures/home-min.jpg",
@@ -28,15 +28,7 @@ export default function Ipad(props) {
   const ipadRef = useRef();
   const textures = useScreenTextures(screenImageUrls);
   const [currentTextureIndex, setCurrentTextureIndex] = useState(0);
-
-  // Handle assigning textures to the screen. This effect runs whenever the current texture index changes
-  useEffect(() => {
-    const screenMaterial = materials["Screen_11-Inch"];
-    if (screenMaterial) {
-      screenMaterial.map = textures[currentTextureIndex];
-      screenMaterial.needsUpdate = true;
-    }
-  }, [currentTextureIndex, textures, materials]);
+  const [isHovered, setIsHovered] = useState(false);
 
   // Function to change the texture index, cycling through the textures
   const cycleTextures = () => {
@@ -51,17 +43,42 @@ export default function Ipad(props) {
     ipadRef.current.rotation.y += (y - ipadRef.current.rotation.y) * lerpFactor;
   };
 
+  // Event handlers for mouse enter and leave
+  const handlePointerOver = (event) => {
+    setIsHovered(true);
+    // Prevents the canvas from detecting this event as a canvas-wide event
+    event.stopPropagation();
+  };
+
+  const handlePointerOut = () => {
+    setIsHovered(false);
+  };
+
+  // Handle assigning textures to the screen. This effect runs whenever the current texture index changes
+  useEffect(() => {
+    const screenMaterial = materials["Screen_11-Inch"];
+    if (screenMaterial) {
+      screenMaterial.map = textures[currentTextureIndex];
+      screenMaterial.needsUpdate = true;
+    }
+  }, [currentTextureIndex, textures, materials]);
+
   useFrame(() => {
     // We are tracking mouse.y for X because moving the mouse along the Y axis should tilt the iPad through the X axis. Vice versa.
-    const targetTiltX = tiltLimit * mouse.y;
-    const targetTiltY = -tiltLimit * mouse.x;
+    const targetTiltX = isHovered ? tiltLimit * mouse.y : 0;
+    const targetTiltY = isHovered ? -tiltLimit * mouse.x : 0;
     // Interpolate the current rotation towards the target rotation
     updateRotation(targetTiltX, targetTiltY);
   });
 
   return (
     <group ref={ipadRef} {...props} dispose={null}>
-      <group rotation={[0, Math.PI, 0]} scale={viewport.width / 6}>
+      <group
+        rotation={[0, Math.PI, 0]}
+        scale={viewport.width / 6}
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
+      >
         <mesh
           castShadow
           receiveShadow
