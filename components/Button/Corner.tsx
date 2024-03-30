@@ -6,6 +6,7 @@ type Props = {
   bottomLeft?: boolean;
   bottomRight?: boolean;
   size?: number;
+  color: string;
 };
 
 const Corner = ({
@@ -14,6 +15,7 @@ const Corner = ({
   bottomLeft,
   bottomRight,
   size = 8,
+  color = "#000",
 }: Props) => {
   const topLeftCorner = `border-t border-l`;
   const topRightCorner = `border-r border-t`;
@@ -22,12 +24,12 @@ const Corner = ({
 
   return (
     <div
-      className={`border-zinc-900 
+      className={`
                 ${topLeft && topLeftCorner} 
                 ${topRight && topRightCorner} 
                 ${bottomLeft && bottomLeftCorner} 
                 ${bottomRight && bottomRightCorner}`}
-      style={{ width: size, height: size }}
+      style={{ width: size, height: size, borderColor: color }}
     ></div>
   );
 };

@@ -11,19 +11,23 @@ const clap = 600; // clap animation time
 const quotes = [
   {
     quote: "Changed my life forever.",
-    author: "Vinay hiremath, Co-founder of loom",
+    name: "Vinay hiremath",
+    title: "Co-founder of Loom",
   },
   {
     quote: "The best thing since sliced bread!",
-    author: "Kiran Patel",
+    name: "Kiran Patel",
+    title: "Developer at Daybreak",
   },
   {
     quote: "I can't live without it.",
-    author: "Sara Smith",
+    name: "Sara Smith",
+    title: "Designer at Meta",
   },
   {
     quote: "I can't believe I ever lived without it.",
-    author: "John Doe",
+    name: "John Doe",
+    title: "CEO of Apple",
   },
 ];
 
