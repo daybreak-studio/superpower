@@ -4,11 +4,22 @@ import TestimonialsSelector from "./TestimonialsSelector";
 import Corner from "@/components/Button/Corner";
 
 type props = {
-  quoteInfo: { quote: string; author: string }[];
-  quoteInfoIndex: number;
+  quotesList: { quote: string; author: string }[];
+  intervalTime: number;
+  clapTime: number;
 };
 
-const TestimonialsDesktop = ({ quoteInfo, quoteInfoIndex }: props) => {
+const TestimonialsDesktop = ({ quotesList, intervalTime, clapTime }: props) => {
+  const [quoteIndex, setQuoteIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setQuoteIndex((prevIndex) => (prevIndex + 1) % quotesList.length);
+    }, intervalTime);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div>
       <AnimatePresence>
@@ -27,10 +38,10 @@ const TestimonialsDesktop = ({ quoteInfo, quoteInfoIndex }: props) => {
             height: 500,
           }}
           transition={{
-            duration: 0.6,
+            duration: clapTime / 1000,
             repeat: Infinity,
-            repeatDelay: 1.4,
-            delay: 1.7,
+            repeatDelay: intervalTime / 1000 - clapTime / 1000,
+            delay: intervalTime / 1000 - clapTime / 1000 / 2,
           }}
         >
           <div className="absolute left-0 top-0">
@@ -47,18 +58,18 @@ const TestimonialsDesktop = ({ quoteInfo, quoteInfoIndex }: props) => {
           </div>
           <div className="flex min-h-[500px] min-w-[624px] flex-col flex-wrap items-center justify-between p-4 text-center">
             <div className="flex gap-3">
-              {quoteInfo.map((quote, index) => (
+              {quotesList.map((quote, index) => (
                 <TestimonialsSelector
                   key={index}
-                  active={index === quoteInfoIndex}
+                  active={index === quoteIndex}
                 />
               ))}
             </div>
             <p className="font-sans-4xl mx-4 mb-6 max-w-[20ch] text-center">
-              {quoteInfo[quoteInfoIndex].quote}
+              {quotesList[quoteIndex].quote}
             </p>
             <p className="font-mono-sm text-center">
-              {quoteInfo[quoteInfoIndex].author}
+              {quotesList[quoteIndex].author}
             </p>
           </div>
         </motion.div>

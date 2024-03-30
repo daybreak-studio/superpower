@@ -5,6 +5,8 @@ import TestimonialsMobile from "./TestimonialsMobile";
 import LineElement from "@/components/LineElement/LineElement";
 
 type Props = {};
+const interval = 2000; // interval between quotes
+const clap = 600; // clap animation time
 
 const quotes = [
   {
@@ -23,15 +25,6 @@ const quotes = [
 
 const TestimonialsWrapper = (props: Props) => {
   const isDesktop = useBreakpoint(breakpoints.lg);
-  const [quoteIndex, setQuoteIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setQuoteIndex((prevIndex) => (prevIndex + 1) % quotes.length);
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section>
@@ -47,14 +40,16 @@ const TestimonialsWrapper = (props: Props) => {
 
           {isDesktop && (
             <TestimonialsDesktop
-              quoteInfo={quotes}
-              quoteInfoIndex={quoteIndex}
+              quotesList={quotes}
+              intervalTime={interval}
+              clapTime={clap}
             />
           )}
           {!isDesktop && (
             <TestimonialsMobile
-              quoteInfo={quotes}
-              quoteInfoIndex={quoteIndex}
+              quotesList={quotes}
+              intervalTime={interval}
+              clapTime={clap}
             />
           )}
           <div className="flex grow-0 flex-row">
