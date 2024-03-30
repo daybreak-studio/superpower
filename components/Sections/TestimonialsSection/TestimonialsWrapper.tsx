@@ -38,23 +38,23 @@ const TestimonialsWrapper = () => {
         </div>
 
         <div className="flex w-full flex-row items-center justify-center gap-12">
-          <div className="flex w-full flex-row">
+          <div className="flex grow-0 flex-row">
             <LineElement length={"auto"} color={"#bbb"} horizontal tail={16} />
           </div>
           <AnimatePresence>
             <motion.div
-              className="relative flex h-full w-full items-center justify-center overflow-hidden"
+              className="relative flex items-center justify-center overflow-hidden"
               initial={{
                 maxWidth: 624,
-                maxHeight: 500,
+                height: 500,
               }}
               animate={{
                 maxWidth: [624, 0, 624],
-                maxHeight: [500, 0, 500],
+                height: [500, 0, 500],
               }}
               exit={{
                 maxWidth: 624,
-                maxHeight: 500,
+                height: 500,
               }}
               transition={{
                 duration: 0.6,
@@ -93,7 +93,7 @@ const TestimonialsWrapper = () => {
               </div>
             </motion.div>
           </AnimatePresence>
-          <div className="flex w-full flex-row">
+          <div className="flex grow-0 flex-row">
             <LineElement length={"auto"} color={"#bbb"} horizontal head={16} />
           </div>
         </div>
