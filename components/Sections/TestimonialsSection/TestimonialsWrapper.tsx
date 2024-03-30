@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import LineElement from "@/components/LineElement/LineElement";
 import TestimonialsSelector from "./TestimonialsSelector";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
-type Props = {};
 const quotes = [
   {
     quote: "Changed my life forever.",
-    author: "Vinay hiremath, Co-counder of loom",
+    author: "Vinay hiremath, Co-founder of loom",
   },
   {
     quote: "The best thing since sliced bread",
@@ -20,13 +18,16 @@ const quotes = [
   },
 ];
 
-const TestimonialsWrapper = (props: Props) => {
+const TestimonialsWrapper = () => {
   const [quoteIndex, setQuoteIndex] = useState(0);
-  const interval = 2000;
 
-  setTimeout(() => {
-    setQuoteIndex((quoteIndex + 1) % quotes.length);
-  }, interval);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setQuoteIndex((prevIndex) => (prevIndex + 1) % quotes.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div>
@@ -63,13 +64,12 @@ const TestimonialsWrapper = (props: Props) => {
             >
               <div className="flex min-h-[250px] min-w-96 flex-col flex-wrap items-center justify-between p-4 text-center lg:min-h-[500px] lg:min-w-[624px]">
                 <div className="flex gap-3">
-                  {quotes.map((quote, index) =>
-                    index === quoteIndex ? (
-                      <TestimonialsSelector key={index} active={true} />
-                    ) : (
-                      <TestimonialsSelector key={index} />
-                    ),
-                  )}
+                  {quotes.map((quote, index) => (
+                    <TestimonialsSelector
+                      key={index}
+                      active={index === quoteIndex}
+                    />
+                  ))}
                 </div>
                 <p className="font-sans-4xl mx-4 mb-6 max-w-[20ch] text-center">
                   {quotes[quoteIndex].quote}
