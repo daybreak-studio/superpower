@@ -22,7 +22,7 @@ const quotes = [
 ];
 
 const TestimonialsWrapper = (props: Props) => {
-  const isDesktop = useBreakpoint(breakpoints.desktop);
+  const isDesktop = useBreakpoint(breakpoints.lg);
   const [quoteIndex, setQuoteIndex] = useState(0);
 
   useEffect(() => {
