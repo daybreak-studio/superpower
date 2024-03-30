@@ -1,9 +1,6 @@
-import R3FCanvas from "@/components/R3FCanvas";
+import Container from "@/components/R3F/Container";
+import R3FCanvas from "@/components/R3F/Scene/Scene";
 
 export default function ipad() {
-  return (
-    <>
-      <R3FCanvas />
-    </>
-  );
+  return <Container />;
 }
