@@ -11,7 +11,7 @@ import {
 
 export default function Scene() {
   return (
-    <Canvas>
+    <Canvas linear flat>
       <PerspectiveCamera
         makeDefault
         fov={20}
@@ -20,7 +20,13 @@ export default function Scene() {
         far={100}
       />
       {/* <OrbitControls /> */}
-      <directionalLight intensity={0.5} position={[0, 0, 5]} />
+      <ambientLight intensity={10} />
+      <directionalLight intensity={0.3} position={[0, 0, 5]} />
+
+      {/* <ambientLight intensity={10} /> */}
+      {/* <directionalLight intensity={0.3} position={[0, 0, 5]} /> */}
+
+      {/* <pointLight intensity={15} sosition={[0, 0, 5]} /> */}
       {/* <Environment preset="studio" resolution={8} /> */}
       <Ipad />
     </Canvas>
