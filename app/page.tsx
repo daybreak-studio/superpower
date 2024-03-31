@@ -13,6 +13,7 @@ export default function Home() {
       {/* <HeroSection /> */}
       <SuperpowerBaselineSection />
       <ProtocolSection />
+      <SuperpowerBaselineSection />
       {/* </ReactLenis> */}
     </main>
   );

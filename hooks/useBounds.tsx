@@ -76,7 +76,7 @@ export function useBounds<T extends HTMLElement>(
 }
 
 /**
- * Return bounds that relative to the document's top, left. (added scroll with client rect)
+ * Return bounds that relative to the document's top, left. (including scroll offset)
  * just like useBounds, but it allows you to feed in the container ref instead.
  * @param containerRef
  * @param dependency

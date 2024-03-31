@@ -12,7 +12,6 @@ const ProtocolSectionDesktop = ({ protocols }: Props) => {
     <div className="my-12">
       <LineElement length={48} color={"#BBBBBB"} vertical />
       <ProtocolGrid protocols={protocols} />
-      <LineElement length={48} color={"#BBBBBB"} vertical />
     </div>
   );
 };

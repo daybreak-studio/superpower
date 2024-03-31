@@ -1,23 +1,28 @@
-import React from "react";
+import React, { MutableRefObject, useRef } from "react";
 import ProtocolSectionDesktop from "./desktop/ProtocolSectionDesktop";
 import { PROTOCOLS } from "./Protocols";
 import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
 import ProtocolSectionMobile from "./mobile/ProtocolSectionMobile";
 import Scrim from "@/components/Scrim/Scrim";
+import LineElement from "@/components/LineElement/LineElement";
+import CTAButton from "@/components/Button/CTAButton";
+import { useInView } from "framer-motion";
 
 type Props = {};
 
 const ProtocolSection = (props: Props) => {
   const isDesktop = useBreakpoint(breakpoints.md);
 
+  const buttonContainerRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const isButtonInView = useInView(buttonContainerRef);
+
   return (
-    <section>
+    <section className="relative">
       <div
-        className="flex flex-col items-center bg-white pt-16"
+        className="mb-16 flex h-fit flex-col items-center bg-white pt-16"
         style={{
           position: isDesktop ? "relative" : "sticky",
           top: 0,
-          height: "fit-content",
         }}
       >
         <div className="font-mono-sm mx-4 mb-4 text-center">
@@ -35,6 +40,15 @@ const ProtocolSection = (props: Props) => {
 
       {isDesktop && <ProtocolSectionDesktop protocols={PROTOCOLS} />}
       {!isDesktop && <ProtocolSectionMobile protocols={PROTOCOLS} />}
+
+      <div className="-mt-4 flex flex-col items-center justify-center gap-4">
+        <LineElement length={200} color={"#BBBBBB"} vertical />
+        <div ref={buttonContainerRef}>
+          <CTAButton outline isVisible={isButtonInView}>
+            Get Started
+          </CTAButton>
+        </div>
+      </div>
     </section>
   );
 };

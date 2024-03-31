@@ -6,6 +6,7 @@ import { useBounds } from "@/hooks/useBounds";
 import { useElementScrollProgress } from "@/hooks/useElementScrollProgress";
 import ProtocolListItem from "./ProtocolListItem";
 import { useMotionValueEvent } from "framer-motion";
+import CTAButton from "@/components/Button/CTAButton";
 
 type Props = {
   protocols: Protocol[];
@@ -22,7 +23,7 @@ const ProtocolSectionMobile = ({ protocols }: Props) => {
   });
 
   return (
-    <div className="mt-32 h-[200vh]">
+    <div className="mt-32">
       <div className="flex flex-col items-center" ref={containerRef}>
         {protocols.map((protocol, index) => {
           const isLastItem = index === protocols.length - 1;

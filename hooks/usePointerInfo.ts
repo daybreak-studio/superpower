@@ -1,6 +1,7 @@
-import { useMotionValue, useTransform } from "framer-motion";
-import { useEffect } from "react";
+import { MotionValue, useMotionValue, useTransform } from "framer-motion";
+import { MutableRefObject, createContext, useEffect } from "react";
 import { BoundingBoxInfo } from "./useBounds";
+import { usePointerContext } from "@/components/PointerContextProvider/PointerContextProvider";
 
 /**
  * Returns MotionValues that tracks the clientX, and clientY of the mouse position.
@@ -9,51 +10,99 @@ import { BoundingBoxInfo } from "./useBounds";
  * @param boundingBox
  * @returns
  */
-export function usePointerOffset(
+export function usePointerOffset<T extends HTMLElement>(
   shouldTrack: boolean,
-  boundingBox: BoundingBoxInfo,
+  containerRef: MutableRefObject<T>,
   anchor: "center" | "left" = "center",
 ) {
   const pointer = usePointerPosition(shouldTrack);
 
-  const x = useTransform(pointer.x, (latest) => {
-    if (anchor === "center")
-      return latest - (boundingBox.left + boundingBox.width / 2);
+  const bounds: MotionValue<BoundingBoxInfo> = useTransform(
+    [pointer.x, pointer.y],
+    () => {
+      const rect = containerRef.current?.getBoundingClientRect() || {};
+      return {
+        left: rect.left || 0,
+        top: rect.top || 0,
+        right: rect.right || 0,
+        bottom: rect.bottom || 0,
+        width: rect.width || 0,
+        height: rect.height || 0,
+        x: rect.x || 0,
+        y: rect.y || 0,
+      };
+    },
+  );
 
-    return latest - boundingBox.left;
+  const x = useTransform(pointer.x, (latest) => {
+    const container = bounds.get();
+
+    if (anchor === "center")
+      return latest - (container.left + container.width / 2);
+
+    return latest - container.left;
   });
   const y = useTransform(pointer.y, (latest) => {
-    if (anchor === "center")
-      return latest - (boundingBox.top + boundingBox.height / 2);
+    const container = bounds.get();
 
-    return latest - boundingBox.top;
+    if (anchor === "center")
+      return latest - (container.top + container.height / 2);
+
+    return latest - container.top;
   });
 
-  return { x, y, boundingBox };
+  return { x, y, bounds, anchor };
+}
+
+/**
+ *
+ * Convert the position of the offset into a value between -1 to -1,
+ * with it relationship to the container element's size.
+ *
+ * @param offset
+ * @returns
+ */
+export function usePointerOffsetNormalized(
+  offset: ReturnType<typeof usePointerOffset>,
+) {
+  const x = useTransform(offset.x, (latest) => {
+    return latest / offset.bounds.get().width;
+  });
+  const y = useTransform(offset.y, (latest) => {
+    return latest / offset.bounds.get().height;
+  });
+  return { x, y };
 }
 
 /**
  * Just like usePointerPosition, but you feed in the pointer bounding box.
+ * this impelmentation depends on the pointer context
+ *
  * @param containerRef
  * @param dependency
  * @returns
  */
 export function usePointerPosition(shouldTrack: boolean) {
+  const globalPointerContext = usePointerContext();
+
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
   useEffect(() => {
-    const handlePointerMove = (e: PointerEvent) => {
-      x.set(e.clientX);
-      y.set(e.clientY);
-    };
+    if (!shouldTrack) return;
 
-    window.addEventListener("pointermove", handlePointerMove);
+    const cleanupX = globalPointerContext.x.on("change", (latest) =>
+      x.set(latest),
+    );
+    const cleanupY = globalPointerContext.y.on("change", (latest) =>
+      y.set(latest),
+    );
 
     return () => {
-      window.removeEventListener("pointermove", handlePointerMove);
+      cleanupX();
+      cleanupY();
     };
-  }, [x, y, shouldTrack]);
+  }, [x, y, globalPointerContext, shouldTrack]);
 
   return { x, y };
 }
