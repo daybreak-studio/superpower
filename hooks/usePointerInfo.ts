@@ -4,10 +4,11 @@ import { BoundingBoxInfo } from "./useBounds";
 import { usePointerContext } from "@/components/PointerContextProvider/PointerContextProvider";
 
 /**
- * Returns MotionValues that tracks the clientX, and clientY of the mouse position.
+ * Just like usePointerPosition, but you feed in the pointer bounding box.
+ * this impelmentation depends on the pointer context
  *
- * @param shouldTrack
- * @param boundingBox
+ * @param containerRef
+ * @param dependency
  * @returns
  */
 export function usePointerOffset<T extends HTMLElement>(
@@ -75,11 +76,10 @@ export function usePointerOffsetNormalized(
 }
 
 /**
- * Just like usePointerPosition, but you feed in the pointer bounding box.
- * this impelmentation depends on the pointer context
+ * Returns MotionValues that tracks the clientX, and clientY of the mouse position.
  *
- * @param containerRef
- * @param dependency
+ * @param shouldTrack
+ * @param boundingBox
  * @returns
  */
 export function usePointerPosition(shouldTrack: boolean) {
