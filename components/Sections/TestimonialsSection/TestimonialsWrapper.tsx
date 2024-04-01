@@ -13,7 +13,7 @@ const quotes = [
   {
     quote: "Changed my life forever.",
     name: "Vinay hiremath",
-    title: "Co-founder of Loom",
+    title: "Co-founder of Microsoft",
   },
   {
     quote: "The best thing since sliced bread!",
