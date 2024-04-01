@@ -1,16 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useInView,
+  useMotionValueEvent,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import TestimonialsSelector from "./TestimonialsSelector";
 import CornerBox from "@/components/Button/CornerBox";
+import { AnimationConfig } from "@/components/AnimationConfig";
 
-type props = {
-  quotesList: { quote: string; name: string; title: string }[];
-  intervalTime: number;
+type Props = {
   clapTime: number;
+  intervalTime: number;
+  isVisible?: boolean;
+  quotesList: { quote: string; name: string; title: string }[];
 };
 
-const TestimonialsDesktop = ({ quotesList, intervalTime, clapTime }: props) => {
+const TestimonialsDesktop = ({
+  clapTime,
+  intervalTime,
+  isVisible = true,
+  quotesList,
+}: Props) => {
   const [quoteIndex, setQuoteIndex] = useState(0);
+  const inViewDelay = 0.3;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -21,20 +36,34 @@ const TestimonialsDesktop = ({ quotesList, intervalTime, clapTime }: props) => {
   }, []);
 
   return (
-    <div>
+    <motion.div
+      initial={{
+        width: 0,
+      }}
+      animate={{
+        width: isVisible ? "100%" : 0,
+        opacity: isVisible ? 1 : 0,
+        y: isVisible ? 0 : 20,
+        transition: {
+          duration: AnimationConfig.SLOW,
+          ease: AnimationConfig.EASING,
+          delay: isVisible ? inViewDelay : 0,
+        },
+      }}
+    >
       <AnimatePresence>
         <motion.div
           className="relative flex items-center justify-center overflow-hidden"
           initial={{
-            maxWidth: 624,
+            width: 624,
             height: 500,
           }}
           animate={{
-            maxWidth: [624, 0, 0, 624],
+            width: [624, 0, 0, 624],
             height: [500, 0, 0, 500],
           }}
           exit={{
-            maxWidth: 624,
+            width: 624,
             height: 500,
           }}
           transition={{
@@ -65,7 +94,7 @@ const TestimonialsDesktop = ({ quotesList, intervalTime, clapTime }: props) => {
           </div>
         </motion.div>
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 

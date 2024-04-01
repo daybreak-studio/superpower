@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useInView,
+  useMotionValueEvent,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import TestimonialsSelector from "./TestimonialsSelector";
 import CornerBox from "@/components/Button/CornerBox";
 
 type props = {
-  quotesList: { quote: string; name: string; title: string }[];
-  intervalTime: number;
   clapTime: number;
+  intervalTime: number;
+  isVisible?: boolean;
+  quotesList: { quote: string; name: string; title: string }[];
 };
 
-const TestimonialsMobile = ({ quotesList, intervalTime, clapTime }: props) => {
+const TestimonialsMobile = ({
+  clapTime,
+  intervalTime,
+  isVisible,
+  quotesList,
+}: props) => {
   const [quoteIndex, setQuoteIndex] = useState(0);
 
   useEffect(() => {

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, MutableRefObject, useRef } from "react";
 import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
 import TestimonialsDesktop from "./TestimonialsDesktop";
 import TestimonialsMobile from "./TestimonialsMobile";
 import LineElement from "@/components/LineElement/LineElement";
+import { useInView } from "framer-motion";
 
 type Props = {};
 const interval = 2500; // interval between quotes
@@ -33,6 +34,8 @@ const quotes = [
 
 const TestimonialsWrapper = (props: Props) => {
   const isDesktop = useBreakpoint(breakpoints.lg);
+  const quoteContainerRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const isButtonInView = useInView(quoteContainerRef);
 
   return (
     <section>
@@ -46,20 +49,24 @@ const TestimonialsWrapper = (props: Props) => {
             <LineElement length={"auto"} color={"#bbb"} horizontal tail={16} />
           </div>
 
-          {isDesktop && (
-            <TestimonialsDesktop
-              quotesList={quotes}
-              intervalTime={interval}
-              clapTime={clap}
-            />
-          )}
-          {!isDesktop && (
-            <TestimonialsMobile
-              quotesList={quotes}
-              intervalTime={interval}
-              clapTime={clap}
-            />
-          )}
+          <div ref={quoteContainerRef}>
+            {isDesktop && (
+              <TestimonialsDesktop
+                isVisible={isButtonInView}
+                quotesList={quotes}
+                intervalTime={interval}
+                clapTime={clap}
+              />
+            )}
+            {!isDesktop && (
+              <TestimonialsMobile
+                isVisible={isButtonInView}
+                quotesList={quotes}
+                intervalTime={interval}
+                clapTime={clap}
+              />
+            )}
+          </div>
           <div className="flex w-full flex-row">
             <LineElement length={"auto"} color={"#bbb"} horizontal head={16} />
           </div>
