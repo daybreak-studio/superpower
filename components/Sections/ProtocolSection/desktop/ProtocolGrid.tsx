@@ -17,7 +17,7 @@ const ProtocolGrid = ({ protocols }: ProtocolProps) => {
   const [expandedRow, setExpandedRow] = useState<number | null>(null);
 
   return (
-    <div className="my-8 flex w-screen max-w-[1550px] flex-col gap-[14px] px-8">
+    <div className="mx-auto my-8 flex w-screen max-w-[1550px] flex-col gap-[14px] px-8">
       <ProtocolGridRow
         protocols={protocols.slice(protocols.length / 2, protocols.length)}
         onExpand={setExpandedRow}
