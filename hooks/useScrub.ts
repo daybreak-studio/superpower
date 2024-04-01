@@ -4,7 +4,13 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion";
-import { MutableRefObject, useEffect, useRef, useState } from "react";
+import {
+  MutableRefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useFollowMotionValue } from "./useFollowMotionValue";
 import { useWindowDimension } from "./useWindowDimension";
 
@@ -48,7 +54,7 @@ export function useScrub({
     if (!isScrubbing) {
       target.set(clamp(-maxDistance, 0, current.get()));
     }
-  }, [isScrubbing, maxDistance]);
+  }, [current, isScrubbing, maxDistance, target]);
 
   useEffect(() => {
     if (!isMoving && !isUsingDrag) {
@@ -58,9 +64,12 @@ export function useScrub({
 
   const windowDim = useWindowDimension();
 
-  const getClampedNewValue = (delta: number) => {
-    return target.get() + delta;
-  };
+  const getClampedNewValue = useCallback(
+    (delta: number) => {
+      return target.get() + delta;
+    },
+    [target],
+  );
 
   useEffect(() => {
     const elm = containerRef.current;
@@ -104,10 +113,19 @@ export function useScrub({
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointercancel", handlePointerCancel);
     };
-  }, [containerRef, maxDistance, windowDim.width, windowDim.height]);
+  }, [
+    containerRef,
+    maxDistance,
+    windowDim,
+    direction,
+    getClampedNewValue,
+    target,
+  ]);
 
   useEffect(() => {
     if (!canUseMouseWheel) return;
+
+    const containerElm = containerRef.current;
 
     const handleContainerWheel = (e: WheelEvent) => {
       // delta value
@@ -117,11 +135,24 @@ export function useScrub({
       setIsScrubbing(true);
     };
 
-    window.addEventListener("wheel", handleContainerWheel, { passive: true });
+    containerElm.addEventListener("wheel", handleContainerWheel, {
+      passive: true,
+    });
+
     return () => {
-      window.removeEventListener("wheel", handleContainerWheel);
+      containerElm.removeEventListener("wheel", handleContainerWheel);
     };
-  }, [maxDistance, canUseMouseWheel, windowDim.width, windowDim.height]);
+  }, [
+    maxDistance,
+    canUseMouseWheel,
+    windowDim.width,
+    windowDim.height,
+    containerRef,
+    direction,
+    maxWheelDelta,
+    target,
+    getClampedNewValue,
+  ]);
 
   return [containerRef, current, target, isScrubbing];
 }

@@ -13,7 +13,7 @@ export function useIsLowPowerMode(
       }
     });
     requestAnimationFrame(() => videoRef.current.pause());
-  }, [videoRef.current]);
+  }, [videoRef]);
 
   return isLowPowerMode;
 }

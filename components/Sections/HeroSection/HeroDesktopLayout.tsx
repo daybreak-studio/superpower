@@ -17,7 +17,7 @@ const HeroDesktopLayout = (props: Props) => {
         <div className="ml-auto w-full max-w-[372px]">
           <div className="flex h-full max-w-[372px] flex-col border-l border-l-white px-4">
             <p className="font-sans-xl mb-3 leading-tight">
-              The world's most advanced digital clinic for prevention,
+              The world&apos;s most advanced digital clinic for prevention,
               performance and longevity.
             </p>
             <p className="font-sans-md mb-auto opacity-70">

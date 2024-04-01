@@ -34,12 +34,12 @@ const ScrollVideo = ({
 
   useEffect(() => {
     onVideoReady?.();
-  }, [isVideoReady]);
+  }, [isVideoReady, onVideoReady]);
 
   const isLowPowerMode = useIsLowPowerMode(videoRef);
   useEffect(() => {
     if (isLowPowerMode) onLowPowerModeDetected?.();
-  }, [isLowPowerMode]);
+  }, [isLowPowerMode, onLowPowerModeDetected]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (!isVideoReady) return;
@@ -59,7 +59,15 @@ const ScrollVideo = ({
     videoRef.current.pause();
     const scrolledOffset = scrollY.get() - bounds.top;
     seek(duration * (scrolledOffset / bounds.height));
-  }, [isVideoReady]);
+  }, [
+    bounds.height,
+    bounds.top,
+    duration,
+    isVideoReady,
+    scrollY,
+    seek,
+    videoRef,
+  ]);
 
   return (
     <motion.div
@@ -79,6 +87,7 @@ const ScrollVideo = ({
         className="sticky top-0 h-screen w-full bg-black object-cover"
         //@ts-ignore
         autobuffer="autobuffer"
+        disablePictureInPicture
         ref={videoRef}
         preload="preload"
         playsInline
