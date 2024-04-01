@@ -11,6 +11,8 @@ export default function Home() {
   return (
     <div>
       <TestimonialsSection /> {/* Use the imported component */}
+      <TestimonialsSection /> {/* Use the imported component */}
+      <TestimonialsSection /> {/* Use the imported component */}
     </div>
   );
 }

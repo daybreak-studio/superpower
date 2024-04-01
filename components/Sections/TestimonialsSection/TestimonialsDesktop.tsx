@@ -31,6 +31,7 @@ const TestimonialsDesktop = ({
   const inViewDelayContent = 1.2;
 
   useEffect(() => {
+    isVisible && setQuoteIndex(0);
     const interval = setInterval(() => {
       setQuoteIndex((prevIndex) => (prevIndex + 1) % quotesList.length);
     }, intervalTime);
