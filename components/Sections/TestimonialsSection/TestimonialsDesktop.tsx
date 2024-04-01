@@ -6,6 +6,8 @@ import {
   useMotionValueEvent,
   useSpring,
   useTransform,
+  easeIn,
+  easeOut,
 } from "framer-motion";
 import TestimonialsSelector from "./TestimonialsSelector";
 import CornerBox from "@/components/Button/CornerBox";
@@ -25,7 +27,7 @@ const TestimonialsDesktop = ({
   quotesList,
 }: Props) => {
   const [quoteIndex, setQuoteIndex] = useState(0);
-  const inViewDelay = 0.3;
+  const inViewDelay = 1;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -37,13 +39,14 @@ const TestimonialsDesktop = ({
 
   return (
     <motion.div
+      className="flex items-center justify-center"
       initial={{
         width: 0,
+        height: 0,
       }}
       animate={{
-        width: isVisible ? "100%" : 0,
-        opacity: isVisible ? 1 : 0,
-        y: isVisible ? 0 : 20,
+        width: isVisible ? "auto" : 0,
+        height: isVisible ? "auto" : 0,
         transition: {
           duration: AnimationConfig.SLOW,
           ease: AnimationConfig.EASING,
@@ -72,10 +75,24 @@ const TestimonialsDesktop = ({
             repeatDelay: intervalTime / 1000 - clapTime / 1000,
             delay: intervalTime / 1000 - clapTime / 1000 / 2,
             times: [0, 0.4, 0.6, 1],
+            ease: [easeIn, easeIn, easeOut, easeOut],
           }}
         >
           <CornerBox cornerSize={20} cornerColor={"#000"} />
-          <div className="flex min-h-[500px] min-w-[624px] flex-col flex-wrap items-center justify-between p-4 text-center">
+          <motion.div
+            className="flex min-h-[500px] min-w-[624px] flex-col flex-wrap items-center justify-between p-4 text-center"
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: isVisible ? [0, 1, 0, 1] : 0,
+              transition: {
+                duration: AnimationConfig.NORMAL,
+                ease: "linear",
+                delay: isVisible ? AnimationConfig.FAST + inViewDelay : 0,
+              },
+            }}
+          >
             <div className="flex gap-3">
               {quotesList.map((quote, index) => (
                 <TestimonialsSelector
@@ -91,7 +108,7 @@ const TestimonialsDesktop = ({
             <p className="font-mono-sm text-center">
               {quotesList[quoteIndex].name}, {quotesList[quoteIndex].title}
             </p>
-          </div>
+          </motion.div>
         </motion.div>
       </AnimatePresence>
     </motion.div>

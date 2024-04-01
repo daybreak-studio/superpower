@@ -6,9 +6,12 @@ import {
   useMotionValueEvent,
   useSpring,
   useTransform,
+  easeIn,
+  easeOut,
 } from "framer-motion";
 import TestimonialsSelector from "./TestimonialsSelector";
 import CornerBox from "@/components/Button/CornerBox";
+import { AnimationConfig } from "@/components/AnimationConfig";
 
 type props = {
   clapTime: number;
@@ -53,6 +56,7 @@ const TestimonialsMobile = ({
             repeatDelay: intervalTime / 1000 - clapTime / 1000,
             delay: intervalTime / 1000 - clapTime / 1000 / 2,
             times: [0, 0.4, 0.6, 1],
+            ease: [easeIn, easeIn, easeOut, easeOut],
           }}
         >
           <CornerBox cornerSize={20} cornerColor={"#000"} />
