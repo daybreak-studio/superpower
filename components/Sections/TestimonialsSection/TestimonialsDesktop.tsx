@@ -27,7 +27,8 @@ const TestimonialsDesktop = ({
   quotesList,
 }: Props) => {
   const [quoteIndex, setQuoteIndex] = useState(0);
-  const inViewDelay = 1;
+  const inViewDelayBox = 1;
+  const inViewDelayContent = 1.2;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -39,7 +40,7 @@ const TestimonialsDesktop = ({
 
   return (
     <motion.div
-      className="flex items-center justify-center"
+      className="flex items-center justify-center overflow-hidden"
       initial={{
         width: 0,
         height: 0,
@@ -48,9 +49,9 @@ const TestimonialsDesktop = ({
         width: isVisible ? "auto" : 0,
         height: isVisible ? "auto" : 0,
         transition: {
-          duration: AnimationConfig.SLOW,
-          ease: AnimationConfig.EASING,
-          delay: isVisible ? inViewDelay : 0,
+          duration: AnimationConfig.VERY_SLOW,
+          ease: AnimationConfig.EASING_IN_OUT,
+          delay: isVisible ? inViewDelayBox : 0,
         },
       }}
     >
@@ -89,7 +90,9 @@ const TestimonialsDesktop = ({
               transition: {
                 duration: AnimationConfig.NORMAL,
                 ease: "linear",
-                delay: isVisible ? AnimationConfig.FAST + inViewDelay : 0,
+                delay: isVisible
+                  ? AnimationConfig.FAST + inViewDelayContent
+                  : 0,
               },
             }}
           >
