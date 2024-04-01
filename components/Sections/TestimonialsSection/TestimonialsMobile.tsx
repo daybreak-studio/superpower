@@ -44,11 +44,12 @@ const TestimonialsMobile = ({ quotesList, intervalTime, clapTime }: props) => {
         >
           <CornerBox cornerSize={20} cornerColor={"#000"} />
           <div className="flex min-h-[380px] min-w-[330px] flex-col flex-wrap items-center justify-evenly p-4 text-center">
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               {quotesList.map((quote, index) => (
                 <TestimonialsSelector
                   key={index}
                   active={index === quoteIndex}
+                  size={8}
                 />
               ))}
             </div>

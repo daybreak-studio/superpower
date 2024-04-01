@@ -52,6 +52,7 @@ const TestimonialsDesktop = ({ quotesList, intervalTime, clapTime }: props) => {
                 <TestimonialsSelector
                   key={index}
                   active={index === quoteIndex}
+                  size={12}
                 />
               ))}
             </div>
