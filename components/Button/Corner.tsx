@@ -6,7 +6,7 @@ type Props = {
   bottomLeft?: boolean;
   bottomRight?: boolean;
   size?: number;
-  color: string;
+  color?: string;
 };
 
 const Corner = ({
