@@ -38,8 +38,8 @@ const TestimonialsWrapper = (props: Props) => {
   const isButtonInView = useInView(quoteContainerRef);
 
   return (
-    <section>
-      <div className="relative flex h-svh w-svw flex-col items-center justify-center gap-6">
+    <section className="relative h-svh">
+      <div className="absolute flex h-full w-full flex-col items-center justify-center gap-6">
         <div className="flex h-full">
           <LineElement length={"auto"} color={"#bbb"} vertical tail={16} />
         </div>
