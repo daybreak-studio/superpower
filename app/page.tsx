@@ -13,9 +13,9 @@ export default function Home() {
   return (
     <main>
       <ReactLenis root>
-        <section style={{ height: `500px` }} />
+        <section style={{ height: `1500px` }} />
         <ScrollingTextSection />
-        <section style={{ height: `500px` }} />
+        <section style={{ height: `1500px` }} />
       </ReactLenis>
     </main>
   );

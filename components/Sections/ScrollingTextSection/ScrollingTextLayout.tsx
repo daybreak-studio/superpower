@@ -12,22 +12,34 @@ const sentenceArray = sentence.split(" ");
 const ScrollingTextLayout = (props: Props) => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
+  const handleScroll = () => {
+    const section = document.querySelector(".relative.h-svh") as HTMLElement;
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    const sectionBottom = sectionTop + sectionHeight;
+
+    const scrollPosition = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const viewportCenter = windowHeight / 2;
+
+    if (
+      scrollPosition >= sectionTop - viewportCenter &&
+      scrollPosition <= sectionBottom - viewportCenter
+    ) {
+      const scrollProgress =
+        ((scrollPosition - (sectionTop - viewportCenter)) /
+          (sectionHeight - windowHeight)) *
+        100;
+      console.log(scrollProgress);
+      setScrollProgress(scrollProgress);
+    } else if (scrollPosition < sectionTop - viewportCenter) {
+      setScrollProgress(0);
+    } else if (scrollPosition > sectionBottom - windowHeight - viewportCenter) {
+      setScrollProgress(100);
+    }
+  };
+
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.body.clientHeight;
-
-      const totalScroll = documentHeight - windowHeight;
-      //const sectionLocation = ScrollingTextLayout.getBoundingClientRect();
-      const currentScrollProgress =
-        (scrollPosition - totalScroll / documentHeight) * 100;
-
-      console.log(currentScrollProgress);
-
-      setScrollProgress(currentScrollProgress);
-    };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -37,7 +49,7 @@ const ScrollingTextLayout = (props: Props) => {
       className="relative h-svh"
       style={{ height: `${sectionHeight}px` }}
     >
-      <div className="max-w-[1011px] py-[200px]">
+      <div className="max-w-[1011px] py-[300px]">
         <h2 className="font-sans-2xl text-center">
           {sentenceArray.map((word, index) =>
             word === "<br>" ? (
@@ -49,14 +61,12 @@ const ScrollingTextLayout = (props: Props) => {
                 key={index}
                 initial={{ opacity: 0.1 }}
                 animate={{
-                  //opacity: scrollProgress > 10 * index ? 1 : 0.1,
                   opacity:
-                    scrollProgress >
-                    (sectionHeight / sentenceArray.length) * index
+                    scrollProgress > (100 / sentenceArray.length) * index
                       ? 1
                       : 0.1,
                 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.1 }}
               >
                 {word}{" "}
               </motion.span>

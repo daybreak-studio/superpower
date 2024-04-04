@@ -36,7 +36,7 @@ const TestimonialsDesktop = ({
     }, intervalTime);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [intervalTime, quotesList.length]);
 
   return (
     <motion.div
