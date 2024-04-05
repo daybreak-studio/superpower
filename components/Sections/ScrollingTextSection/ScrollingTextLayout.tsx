@@ -4,7 +4,7 @@ import CTAButton from "@/components/Button/CTAButton";
 
 type Props = {};
 const sentence = // sentence to be displayed, use < to indicate a line break
-  "As the world demands more of us, we must command more for ourselves. Protect and prioritize health. < Existing institutions aren’t working and don’t have our backs";
+  "As the world demands more of us, we must command more for ourselves. Protect and prioritize health. < Existing institutions aren’t working and don’t have our backs.";
 const sentenceArray = sentence.split("");
 
 const ScrollingTextLayout = (props: Props) => {
@@ -21,11 +21,11 @@ const ScrollingTextLayout = (props: Props) => {
 
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
-    const viewportCenter = windowHeight / 2; // Change this line
+    const viewportCenter = windowHeight / 2;
 
     if (
       scrollPosition >= sectionTop - viewportCenter &&
-      scrollPosition <= sectionBottom - viewportCenter // Change this line
+      scrollPosition <= sectionBottom - viewportCenter
     ) {
       const scrollProgress =
         ((scrollPosition - (sectionTop - viewportCenter)) /
@@ -36,7 +36,6 @@ const ScrollingTextLayout = (props: Props) => {
     } else if (scrollPosition < sectionTop - viewportCenter) {
       setScrollProgress(0);
     } else if (scrollPosition > sectionBottom - viewportCenter) {
-      // Change this line
       setScrollProgress(100);
     }
   };
@@ -47,7 +46,7 @@ const ScrollingTextLayout = (props: Props) => {
   }, []);
 
   return (
-    <section className="relative h-svh" style={{}}>
+    <section className="relative h-svh">
       <div className="align-center flex justify-center px-6">
         <div className="flex w-full max-w-[600px] flex-col items-center justify-center gap-[30px] py-[200px] lg:max-w-[1011px] lg:py-[500px] ">
           <p className="font-mono-sm text-center text-[#7B7B7C]">
