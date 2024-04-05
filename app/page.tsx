@@ -5,17 +5,17 @@ import ScrollVideo from "@/components/ScrollVideo/ScrollVideo";
 import HeroSection from "@/components/Sections/HeroSection/HeroSection";
 import ProtocolSection from "@/components/Sections/ProtocolSection/ProtocolSection";
 import SuperpowerBaselineSection from "@/components/Sections/SuperpowerBaselineSection/SuperpowerBaselineSection";
+import TestimonialsWrapper from "@/components/Sections/TestimonialsSection/TestimonialsWrapper";
 import { ReactLenis } from "@studio-freight/react-lenis";
 
 export default function Home() {
   return (
     <main>
-      {/* <ReactLenis root> */}
       <HeroSection />
       <Container />
       <SuperpowerBaselineSection />
       <ProtocolSection />
-      {/* </ReactLenis> */}
+      <TestimonialsWrapper />
     </main>
   );
 }
