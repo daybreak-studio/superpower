@@ -48,8 +48,8 @@ const ScrollingTextLayout = (props: Props) => {
 
   return (
     <section className="relative h-svh" style={{}}>
-      <div className="align-center flex justify-center">
-        <div className="flex max-w-[1011px] flex-col items-center justify-center gap-[30px] py-[500px] ">
+      <div className="align-center flex justify-center px-6">
+        <div className="flex w-full max-w-[600px] flex-col items-center justify-center gap-[30px] py-[200px] lg:max-w-[1011px] lg:py-[500px] ">
           <p className="font-mono-sm text-center text-[#7B7B7C]">
             What we believe
           </p>
