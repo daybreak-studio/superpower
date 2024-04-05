@@ -20,21 +20,22 @@ const ScrollingTextLayout = (props: Props) => {
 
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
-    const viewportCenter = windowHeight / 2;
+    const viewportCenter = windowHeight / 2; // Change this line
 
     if (
       scrollPosition >= sectionTop - viewportCenter &&
-      scrollPosition <= sectionBottom - viewportCenter
+      scrollPosition <= sectionBottom - viewportCenter // Change this line
     ) {
       const scrollProgress =
         ((scrollPosition - (sectionTop - viewportCenter)) /
-          (sectionHeight - windowHeight)) *
+          (sectionHeight - windowHeight + viewportCenter)) *
         100;
       console.log(scrollProgress);
       setScrollProgress(scrollProgress);
     } else if (scrollPosition < sectionTop - viewportCenter) {
       setScrollProgress(0);
-    } else if (scrollPosition > sectionBottom - windowHeight - viewportCenter) {
+    } else if (scrollPosition > sectionBottom - viewportCenter) {
+      // Change this line
       setScrollProgress(100);
     }
   };
@@ -49,30 +50,35 @@ const ScrollingTextLayout = (props: Props) => {
       className="relative h-svh"
       style={{ height: `${sectionHeight}px` }}
     >
-      <div className="max-w-[1011px] py-[300px]">
-        <h2 className="font-sans-2xl text-center">
-          {sentenceArray.map((word, index) =>
-            word === "<br>" ? (
-              <div key={index}>
-                <br />
-              </div>
-            ) : (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0.1 }}
-                animate={{
-                  opacity:
-                    scrollProgress > (100 / sentenceArray.length) * index
-                      ? 1
-                      : 0.1,
-                }}
-                transition={{ duration: 0.1 }}
-              >
-                {word}{" "}
-              </motion.span>
-            ),
-          )}
-        </h2>
+      <div className="align-center flex justify-center">
+        <div className="align-center flex max-w-[1011px] flex-col justify-center gap-[30px] py-[500px] ">
+          <p className="font-mono-sm text-center text-[#7B7B7C]">
+            What we believe
+          </p>
+          <h2 className="font-sans-2xl text-center">
+            {sentenceArray.map((word, index) =>
+              word === "<br>" ? (
+                <div key={index}>
+                  <br />
+                </div>
+              ) : (
+                <motion.span
+                  key={index}
+                  initial={{ opacity: 0.1 }}
+                  animate={{
+                    opacity:
+                      scrollProgress > (100 / sentenceArray.length) * index
+                        ? 1
+                        : 0.1,
+                  }}
+                  transition={{ duration: 0.1 }}
+                >
+                  {word}{" "}
+                </motion.span>
+              ),
+            )}
+          </h2>
+        </div>
       </div>
     </section>
   );
