@@ -1,6 +1,4 @@
 import React, { useState, useEffect, MutableRefObject, useRef } from "react";
-import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
-import LineElement from "@/components/LineElement/LineElement";
 import { motion, useInView } from "framer-motion";
 
 type Props = {};
