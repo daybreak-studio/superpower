@@ -1,5 +1,6 @@
 import React, { useState, useEffect, MutableRefObject, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import CTAButton from "@/components/Button/CTAButton";
 
 type Props = {};
 const sectionHeight = window.innerHeight * 1.3;
@@ -9,6 +10,9 @@ const sentenceArray = sentence.split(" ");
 
 const ScrollingTextLayout = (props: Props) => {
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  const buttonContainerRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const isButtonInView = useInView(buttonContainerRef);
 
   const handleScroll = () => {
     const section = document.querySelector(".relative.h-svh") as HTMLElement;
@@ -49,7 +53,7 @@ const ScrollingTextLayout = (props: Props) => {
       style={{ height: `${sectionHeight}px` }}
     >
       <div className="align-center flex justify-center">
-        <div className="align-center flex max-w-[1011px] flex-col justify-center gap-[30px] py-[500px] ">
+        <div className="flex max-w-[1011px] flex-col items-center justify-center gap-[30px] py-[500px] ">
           <p className="font-mono-sm text-center text-[#7B7B7C]">
             What we believe
           </p>
@@ -62,20 +66,29 @@ const ScrollingTextLayout = (props: Props) => {
               ) : (
                 <motion.span
                   key={index}
-                  initial={{ opacity: 0.1 }}
+                  initial={{ opacity: 0.1, filter: "blur(10px)" }}
                   animate={{
                     opacity:
                       scrollProgress > (100 / sentenceArray.length) * index
                         ? 1
                         : 0.1,
+                    filter:
+                      scrollProgress > (100 / sentenceArray.length) * index
+                        ? "blur(0px)"
+                        : "blur(10px)",
                   }}
-                  transition={{ duration: 0.1 }}
+                  transition={{ duration: 0.4 }}
                 >
                   {word}{" "}
                 </motion.span>
               ),
             )}
           </h2>
+          <div className="pt-8" ref={buttonContainerRef}>
+            <CTAButton outline isVisible={isButtonInView}>
+              Get Started
+            </CTAButton>
+          </div>
         </div>
       </div>
     </section>
