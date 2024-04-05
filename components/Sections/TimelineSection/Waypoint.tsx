@@ -48,22 +48,37 @@ const Waypoint = ({
       <div
         className={`absolute ${inverted ? "right-0 flex-row-reverse text-right" : "flex-row"} flex w-fit justify-between gap-4 text-nowrap`}
       >
-        <motion.div
-          className={inverted ? "mr-6" : "ml-6"}
-          animate={{
-            opacity: isActive ? 1 : 0,
-            y: isActive ? 0 : 10,
-            transition: {
-              duration: isActive ? AnimationConfig.SLOW : AnimationConfig.FAST,
-              ease: AnimationConfig.EASING,
-              delay: isActive ? AnimationConfig.VERY_FAST : 0,
-            },
-          }}
-        >
-          <div className="text-vermilion-700 font-mono-sm mb-2">
+        <motion.div className={inverted ? "mr-6" : "ml-6"}>
+          <motion.div
+            animate={{
+              y: isActive ? 0 : 50,
+              transition: {
+                duration: isActive
+                  ? AnimationConfig.SLOW
+                  : AnimationConfig.FAST,
+                ease: AnimationConfig.EASING,
+              },
+            }}
+            className="text-vermilion-700 font-mono-sm mb-2"
+          >
             {waypoint.age}
-          </div>
-          <div className="font-sans-xl">{waypoint.action}</div>
+          </motion.div>
+          <motion.div
+            animate={{
+              opacity: isActive ? 1 : 0,
+              y: isActive ? 0 : 10,
+              transition: {
+                duration: isActive
+                  ? AnimationConfig.SLOW
+                  : AnimationConfig.FAST,
+                ease: AnimationConfig.EASING,
+                delay: isActive ? AnimationConfig.VERY_FAST : 0,
+              },
+            }}
+            className="font-sans-xl"
+          >
+            {waypoint.action}
+          </motion.div>
         </motion.div>
 
         <motion.div
@@ -103,7 +118,7 @@ const Waypoint = ({
       {/* marker */}
       <motion.div
         animate={{
-          opacity: isActive ? 1 : 0,
+          // opacity: isActive ? 1 : 0,
           // scale: isActive ? 1 : 0.8,
           y: isActive ? 0 : 50,
           transition: {
