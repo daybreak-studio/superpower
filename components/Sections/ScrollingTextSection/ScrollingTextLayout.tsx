@@ -4,9 +4,9 @@ import CTAButton from "@/components/Button/CTAButton";
 
 type Props = {};
 const sectionHeight = window.innerHeight * 1.3;
-const sentence =
-  "As the world demands more of us, we must command more for ourselves. Protect and prioritize health. <br> Existing institutions aren’t working and don’t have our backs";
-const sentenceArray = sentence.split(" ");
+const sentence = // sentence to be displayed, use < to indicate a line break
+  "As the world demands more of us, we must command more for ourselves. Protect and prioritize health. < Existing institutions aren’t working and don’t have our backs";
+const sentenceArray = sentence.split("");
 
 const ScrollingTextLayout = (props: Props) => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -59,10 +59,12 @@ const ScrollingTextLayout = (props: Props) => {
           </p>
           <h2 className="font-sans-2xl text-center">
             {sentenceArray.map((word, index) =>
-              word === "<br>" ? (
+              word === "<" ? (
                 <div key={index}>
                   <br />
                 </div>
+              ) : word === " " ? (
+                " "
               ) : (
                 <motion.span
                   key={index}
@@ -79,7 +81,8 @@ const ScrollingTextLayout = (props: Props) => {
                   }}
                   transition={{ duration: 0.4 }}
                 >
-                  {word}{" "}
+                  {word}
+                  {""}
                 </motion.span>
               ),
             )}
