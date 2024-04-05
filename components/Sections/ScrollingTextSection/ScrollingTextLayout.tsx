@@ -84,7 +84,7 @@ const ScrollingTextLayout = (props: Props) => {
           </h2>
           <div className="pt-8" ref={buttonContainerRef}>
             <CTAButton outline isVisible={isButtonInView}>
-              Get Started
+              Read Our Why
             </CTAButton>
           </div>
         </div>
