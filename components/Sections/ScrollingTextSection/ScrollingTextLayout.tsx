@@ -3,7 +3,6 @@ import { motion, useInView } from "framer-motion";
 import CTAButton from "@/components/Button/CTAButton";
 
 type Props = {};
-const sectionHeight = window.innerHeight * 1.3;
 const sentence = // sentence to be displayed, use < to indicate a line break
   "As the world demands more of us, we must command more for ourselves. Protect and prioritize health. < Existing institutions aren’t working and don’t have our backs";
 const sentenceArray = sentence.split("");
@@ -48,10 +47,7 @@ const ScrollingTextLayout = (props: Props) => {
   }, []);
 
   return (
-    <section
-      className="relative h-svh"
-      style={{ height: `${sectionHeight}px` }}
-    >
+    <section className="relative h-svh" style={{}}>
       <div className="align-center flex justify-center">
         <div className="flex max-w-[1011px] flex-col items-center justify-center gap-[30px] py-[500px] ">
           <p className="font-mono-sm text-center text-[#7B7B7C]">
