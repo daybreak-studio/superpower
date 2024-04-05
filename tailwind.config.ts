@@ -50,14 +50,21 @@ const config: Config = {
           "font-family": "var(--font-nb-international-mono)",
           "font-size": ".75rem",
           "letter-spacing": "-0.03rem",
-          "line-height": "85%",
+          "line-height": "130%",
           "text-transform": "uppercase",
         },
         "mono-sm": {
           "font-family": "var(--font-nb-international-mono)",
           "font-size": ".875rem",
           "letter-spacing": "-0.035rem",
-          "line-height": "85%",
+          "line-height": "130%",
+          "text-transform": "uppercase",
+        },
+        "mono-xl": {
+          "font-family": "var(--font-nb-international-mono)",
+          "font-size": "1rem",
+          "letter-spacing": "-0.01rem",
+          "line-height": "130%",
           "text-transform": "uppercase",
         },
         // sans
@@ -111,6 +118,9 @@ const config: Config = {
         },
         "mono-sm": {
           "letter-spacing": "-0.035rem",
+        },
+        "mono-xl": {
+          "font-size": "2.75rem",
         },
         "sans-xs": {
           "font-size": ".75rem",

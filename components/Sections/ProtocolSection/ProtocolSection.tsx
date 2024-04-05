@@ -7,7 +7,7 @@ import Scrim from "@/components/Scrim/Scrim";
 import LineElement from "@/components/LineElement/LineElement";
 import CTAButton from "@/components/Button/CTAButton";
 import { useInView } from "framer-motion";
-import ProtocolBanner from "./ProtocolBanner/ProtocolBanner";
+import BiomarkerBanner from "./Biomarkers/BiomarkerBanner";
 
 type Props = {};
 
@@ -16,6 +16,9 @@ const ProtocolSection = (props: Props) => {
 
   const buttonContainerRef = useRef() as MutableRefObject<HTMLDivElement>;
   const isButtonInView = useInView(buttonContainerRef);
+
+  const biomarkerContainerRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const isBiomarkerInView = useInView(biomarkerContainerRef);
 
   return (
     <section className="relative">
@@ -42,16 +45,21 @@ const ProtocolSection = (props: Props) => {
       {isDesktop && <ProtocolSectionDesktop protocols={PROTOCOLS} />}
       {!isDesktop && <ProtocolSectionMobile protocols={PROTOCOLS} />}
 
-      <div className="-mt-4 flex flex-col items-center justify-center gap-4">
-        <LineElement length={200} color={"#BBBBBB"} vertical />
+      <div className="-mt-4 flex flex-col items-center justify-center gap-8">
+        <LineElement length={48} color={"#BBBBBB"} vertical />
         <div ref={buttonContainerRef}>
           <CTAButton outline isVisible={isButtonInView}>
-            Get Started
+            Start Now
           </CTAButton>
         </div>
       </div>
 
-      <ProtocolBanner />
+      <div ref={biomarkerContainerRef}>
+        <BiomarkerBanner isVisible={isBiomarkerInView} />
+      </div>
+      <div className="mx-auto w-[80%]">
+        <LineElement length={"auto"} color={"#BBBBBB"} horizontal />
+      </div>
     </section>
   );
 };

@@ -27,8 +27,8 @@ const TestimonialsMobile = ({
   quotesList,
 }: Props) => {
   const [quoteIndex, setQuoteIndex] = useState(0);
-  const inViewDelayBox = 1;
-  const inViewDelayContent = 1.2;
+  const inViewDelayBox = 0.4;
+  const inViewDelayContent = 0.6;
 
   useEffect(() => {
     const interval = setInterval(() => {

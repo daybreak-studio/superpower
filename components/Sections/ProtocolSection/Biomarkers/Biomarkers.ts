@@ -1,4 +1,4 @@
-export const PROTOCOLBANNERLIST = [
+export const BIOMARKERS = [
     "Apolipoprotein B (Apo B)",
     "C-Reactive Protein (CRP)",
     "Thyroid-Stimulating Hormone (TSH)",

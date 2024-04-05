@@ -9,7 +9,7 @@ type Props = {
 
 const ProtocolSectionDesktop = ({ protocols }: Props) => {
   return (
-    <div className="my-12">
+    <div className="mb-12">
       <LineElement length={48} color={"#BBBBBB"} vertical />
       <ProtocolGrid protocols={protocols} />
     </div>
