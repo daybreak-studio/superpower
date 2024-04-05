@@ -7,6 +7,7 @@ import Scrim from "@/components/Scrim/Scrim";
 import LineElement from "@/components/LineElement/LineElement";
 import CTAButton from "@/components/Button/CTAButton";
 import { useInView } from "framer-motion";
+import ProtocolBanner from "./ProtocolBanner/ProtocolBanner";
 
 type Props = {};
 
@@ -49,6 +50,8 @@ const ProtocolSection = (props: Props) => {
           </CTAButton>
         </div>
       </div>
+
+      <ProtocolBanner />
     </section>
   );
 };
