@@ -4,6 +4,7 @@ import ScrollVideo from "@/components/ScrollVideo/ScrollVideo";
 import HeroSection from "@/components/Sections/HeroSection/HeroSection";
 import ProtocolSection from "@/components/Sections/ProtocolSection/ProtocolSection";
 import SuperpowerBaselineSection from "@/components/Sections/SuperpowerBaselineSection/SuperpowerBaselineSection";
+import TimelineSection from "@/components/Sections/TimelineSection/TimelineSection";
 import { ReactLenis } from "@studio-freight/react-lenis";
 
 export default function Home() {
@@ -11,9 +12,9 @@ export default function Home() {
     <main>
       {/* <ReactLenis root> */}
       {/* <HeroSection /> */}
-      <SuperpowerBaselineSection />
-      <ProtocolSection />
-      <SuperpowerBaselineSection />
+      {/* <SuperpowerBaselineSection />
+      <ProtocolSection /> */}
+      <TimelineSection />
       {/* </ReactLenis> */}
     </main>
   );
