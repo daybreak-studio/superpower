@@ -83,7 +83,7 @@ const Timeline = (props: Props) => {
           transformStyle: "preserve-3d",
           transformPerspective: "2000px",
           rotateX: 70,
-          transition: `all 1s cubic-bezier(0.16, 1, 0.3, 1)`,
+          // transition: `all 1s cubic-bezier(0.16, 1, 0.3, 1)`,
         }}
       >
         <TimelineGraphic
@@ -101,7 +101,7 @@ const Timeline = (props: Props) => {
           transformStyle: "preserve-3d",
           transformPerspective: "2000px",
           rotateX: 70,
-          transition: `all 1s cubic-bezier(0.16, 1, 0.3, 1)`,
+          // transition: `all 1s cubic-bezier(0.16, 1, 0.3, 1)`,
         }}
       >
         {allSegments.map(({ head, tail, waypoints }, index) => (

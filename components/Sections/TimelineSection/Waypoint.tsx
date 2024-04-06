@@ -18,7 +18,7 @@ type Props = {
   progress: MotionValue<number>;
 };
 
-const Waypoint = ({
+const WaypointTag = ({
   waypoint,
   isActive,
   inverted,
@@ -59,7 +59,7 @@ const Waypoint = ({
                 ease: AnimationConfig.EASING,
               },
             }}
-            className="text-vermilion-700 font-mono-sm mb-2"
+            className="font-mono-sm mb-2 text-vermilion-700"
           >
             {waypoint.age}
           </motion.div>
@@ -155,7 +155,7 @@ const Waypoint = ({
           },
         }}
         style={{ x: -6, y: 6 }}
-        className="bg-vermilion-700 absolute bottom-0 h-3 w-3 rounded-full"
+        className="absolute bottom-0 h-3 w-3 rounded-full bg-vermilion-700"
       />
     </motion.div>
   );
@@ -193,4 +193,4 @@ const MarkerSVG = () => (
   </svg>
 );
 
-export default Waypoint;
+export default WaypointTag;
