@@ -53,12 +53,14 @@ const Timeline = ({ isActive }: Props) => {
   });
 
   const cameraRotation = 70;
-  // const cameraRotation = 70;
+
+  const aspectRatio = windowDim.width / windowDim.height;
+  const heightOffsetFactor = windowDim.height * aspectRatio * 0.8;
 
   const cameraZOffset = useTransform(
     progress,
     [0, 1],
-    [-800, windowDim.width * -3],
+    [-800, windowDim.width * -3 - heightOffsetFactor * 0.8],
   );
 
   const z = useTransform(cameraZOffset, (latest) => {
@@ -87,7 +89,7 @@ const Timeline = ({ isActive }: Props) => {
   return (
     <div
       // mt 48 is for the timing between scroll text end and graph scroll begin
-      className="mt-48 flex h-[7000px] w-full overflow-hidden bg-black"
+      className="mt-96 flex h-[7000px] w-full overflow-hidden bg-black"
       ref={timelineContainerRef}
     >
       <motion.div
