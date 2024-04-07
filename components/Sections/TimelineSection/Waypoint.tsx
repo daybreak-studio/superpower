@@ -41,7 +41,7 @@ const WaypointTag = ({
     { clamp: false },
   );
   useMotionValueEvent(waypointProgress, "change", (latest) => {
-    if (latest < 3 && latest > -3) {
+    if (latest < 3 && latest > -2) {
       setIsVisible(true);
       return;
     }
@@ -59,7 +59,7 @@ const WaypointTag = ({
         // visibility: isVisible ? "visible" : "hidden",
       }}
       animate={{
-        opacity: isVisible ? 1 : 0.5,
+        opacity: isVisible ? 1 : 0.4,
       }}
     >
       <div
