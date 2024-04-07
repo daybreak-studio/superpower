@@ -2,7 +2,9 @@ import {
   MotionValue,
   cubicBezier,
   motion,
+  useAnimationFrame,
   useMotionTemplate,
+  useMotionValue,
   useMotionValueEvent,
   useScroll,
   useTransform,
@@ -36,15 +38,22 @@ const Timeline = (props: Props) => {
     offset: ["start start", "end end"],
   });
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+  const progress = useMotionValue(0);
+  useAnimationFrame(() => {
+    progress.set(scrollYProgress.get());
+  });
+  // const progress = scrollYProgress;
+
+  useMotionValueEvent(progress, "change", (latest) => {
     const segmentProgressLength = 1 / allSegments.length;
     const waypoint = Math.floor(latest / segmentProgressLength);
     setCurrentWaypoint(waypoint);
   });
 
-  const easedScrollProgress = useTransform(scrollYProgress, [0, 1], [0, 1], {
-    // ease: cubicBezier(0.76, 0, 0.24, 1),
-  });
+  // const easedScrollProgress = useTransform(progress, [0, 1], [0, 1], {
+  //   // ease: cubicBezier(0.76, 0, 0.24, 1),
+  // });
+  const easedScrollProgress = progress;
 
   const z = useTransform(
     easedScrollProgress,
@@ -83,27 +92,13 @@ const Timeline = (props: Props) => {
           transformStyle: "preserve-3d",
           transformPerspective: "2000px",
           rotateX: 70,
-          // transition: `all 1s cubic-bezier(0.16, 1, 0.3, 1)`,
+          transition: `all 1s cubic-bezier(0.16, 1, 0.3, 1)`,
         }}
       >
         <TimelineGraphic
           segmentsInfo={allSegments}
           progress={easedScrollProgress}
         />
-      </motion.div>
-      {/* same container with the one on top, just different rendering context */}
-      <motion.div
-        className="fixed top-48 w-screen"
-        style={{
-          z,
-          y,
-          transformOrigin: `center top`,
-          transformStyle: "preserve-3d",
-          transformPerspective: "2000px",
-          rotateX: 70,
-          // transition: `all 1s cubic-bezier(0.16, 1, 0.3, 1)`,
-        }}
-      >
         {allSegments.map(({ head, tail, waypoints }, index) => (
           <motion.div
             key={index}

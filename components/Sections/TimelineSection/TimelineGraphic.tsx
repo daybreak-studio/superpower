@@ -1,5 +1,16 @@
-import { MotionValue, motion, useTransform } from "framer-motion";
-import React, { MutableRefObject, RefObject, useMemo, useRef } from "react";
+import {
+  MotionValue,
+  motion,
+  useMotionValueEvent,
+  useTransform,
+} from "framer-motion";
+import React, {
+  MutableRefObject,
+  RefObject,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Command, parseSVG } from "svg-path-parser";
 import { segments } from "./TimelineData";
 import { TimlineSegment, TimlineSegmentInfo, getSegmentInfo } from "./Segments";
@@ -46,13 +57,24 @@ const JourneySegment = ({
 }: JourneySegmentProps) => {
   const { head, tail, length } = segmentInfo;
 
+  const [shouldRenderGlow, setShouldRenderGlow] = useState(false);
+
   const segmentBeginProgress = segmentIndex / segmentCount;
   const segmentEndProgress = (segmentIndex + 1) / segmentCount;
   const segmentProgress = useTransform(
     progress,
     [segmentBeginProgress, segmentEndProgress],
     [1, 0],
+    { clamp: false },
   );
+  useMotionValueEvent(segmentProgress, "change", (latest) => {
+    if (latest < 1 && latest > -3) {
+      setShouldRenderGlow(true);
+      return;
+    }
+    setShouldRenderGlow(false);
+  });
+
   const strokeDashoffset = useTransform(segmentProgress, [0, 1], [0, length]);
 
   return (
@@ -67,17 +89,19 @@ const JourneySegment = ({
           transition: `stroke-dashoffset .2s cubic-bezier(0.16, 1, 0.3, 1)`,
         }}
       />
-      <motion.path
-        d={segmentInfo.path}
-        stroke="#FE8000"
-        strokeWidth="16"
-        style={{
-          filter: "blur(64px)",
-          strokeDasharray: length,
-          strokeDashoffset,
-          transition: `stroke-dashoffset .2s cubic-bezier(0.16, 1, 0.3, 1)`,
-        }}
-      />
+      {shouldRenderGlow && (
+        <motion.path
+          d={segmentInfo.path}
+          stroke="#FE8000"
+          strokeWidth="16"
+          style={{
+            filter: `blur(64px)`,
+            strokeDasharray: length,
+            strokeDashoffset,
+            transition: `stroke-dashoffset .2s cubic-bezier(0.16, 1, 0.3, 1)`,
+          }}
+        />
+      )}
     </>
   );
 };

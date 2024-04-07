@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Waypoint } from "./Segments";
 import {
   MotionValue,
@@ -27,23 +27,40 @@ const WaypointTag = ({
   index,
 }: Props) => {
   const progressPosition = index / totalWaypointsCount;
+  const [isVisible, setIsVisible] = useState(false);
 
-  const dofBlur = useTransform(
+  const waypointProgress = useTransform(
     progress,
     [
       progressPosition - 0.1,
-      progressPosition,
+      progressPosition - 0.05,
       progressPosition + 0.06,
       progressPosition + 0.1,
     ],
-    [1.5, 0, 0, 1.5],
+    [-1, 0, 0, 1],
+    { clamp: false },
   );
+  useMotionValueEvent(waypointProgress, "change", (latest) => {
+    if (latest < 3 && latest > -3) {
+      setIsVisible(true);
+      return;
+    }
+    setIsVisible(false);
+  });
+
+  const dofBlur = useTransform(waypointProgress, [-1, 0, 1], [1.5, 0, 1.5]);
   const blurStr = useMotionTemplate`blur(${dofBlur}px)`;
 
   return (
     <motion.div
       className="relative flex h-full w-0 text-white"
-      style={{ filter: blurStr }}
+      style={{
+        filter: isVisible ? blurStr : "none",
+        // visibility: isVisible ? "visible" : "hidden",
+      }}
+      animate={{
+        opacity: isVisible ? 1 : 0.5,
+      }}
     >
       <div
         className={`absolute ${inverted ? "right-0 flex-row-reverse text-right" : "flex-row"} flex w-fit justify-between gap-4 text-nowrap`}
