@@ -12,8 +12,8 @@ export default function Home() {
     <main>
       {/* <ReactLenis root> */}
       {/* <HeroSection /> */}
-      {/* <SuperpowerBaselineSection />
-      <ProtocolSection /> */}
+      <SuperpowerBaselineSection />
+      <ProtocolSection />
       <TimelineSection />
       {/* </ReactLenis> */}
     </main>

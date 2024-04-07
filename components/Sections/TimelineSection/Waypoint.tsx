@@ -27,7 +27,7 @@ const WaypointTag = ({
   index,
 }: Props) => {
   const progressPosition = index / totalWaypointsCount;
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   const waypointProgress = useTransform(
     progress,

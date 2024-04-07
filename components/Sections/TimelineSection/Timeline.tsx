@@ -24,9 +24,11 @@ import { segments } from "./TimelineData";
 import { getSegmentInfo } from "./Segments";
 import Waypoint from "./Waypoint";
 
-type Props = {};
+type Props = {
+  isActive: boolean;
+};
 
-const Timeline = (props: Props) => {
+const Timeline = ({ isActive }: Props) => {
   const timelineContainerRef = useRef() as RefObject<HTMLDivElement>;
   const windowDim = useWindowDimension();
 
@@ -50,25 +52,29 @@ const Timeline = (props: Props) => {
     setCurrentWaypoint(waypoint);
   });
 
-  // const easedScrollProgress = useTransform(progress, [0, 1], [0, 1], {
-  //   // ease: cubicBezier(0.76, 0, 0.24, 1),
-  // });
-  const easedScrollProgress = progress;
+  const cameraRotation = 70;
+  // const cameraRotation = 70;
 
-  const z = useTransform(
-    easedScrollProgress,
+  const cameraZOffset = useTransform(
+    progress,
     [0, 1],
-    [-600, windowDim.width * -3],
+    [-800, windowDim.width * -3],
   );
 
+  const z = useTransform(cameraZOffset, (latest) => {
+    if (!isActive) {
+      return windowDim.height;
+    }
+    return latest;
+  });
+
   const y = useTransform(
-    easedScrollProgress,
+    progress,
     [0, 1],
     [windowDim.width * 0.4, windowDim.width * -0.7],
   );
-
   // const x = useTransform(
-  //   easedScrollProgress,
+  //   progress,
   //   [0, 0.25, 0.6, 0.8, 1],
   //   [0, -800, 0, -600, 0],
   // );
@@ -80,31 +86,30 @@ const Timeline = (props: Props) => {
 
   return (
     <div
-      className="flex h-[7000px] w-full overflow-hidden bg-black"
+      // mt 48 is for the timing between scroll text end and graph scroll begin
+      className="mt-48 flex h-[7000px] w-full overflow-hidden bg-black"
       ref={timelineContainerRef}
     >
       <motion.div
-        className="fixed top-48 w-screen"
+        className="fixed top-[20vh] w-screen"
         style={{
           z,
           y,
+          // x,
           transformOrigin: `center top`,
           transformStyle: "preserve-3d",
           transformPerspective: "2000px",
-          rotateX: 70,
+          rotateX: cameraRotation,
           transition: `all 1s cubic-bezier(0.16, 1, 0.3, 1)`,
         }}
       >
-        <TimelineGraphic
-          segmentsInfo={allSegments}
-          progress={easedScrollProgress}
-        />
+        <TimelineGraphic segmentsInfo={allSegments} progress={progress} />
         {allSegments.map(({ head, tail, waypoints }, index) => (
           <motion.div
             key={index}
             className="absolute left-0 top-0 z-20 "
             style={{
-              rotateX: -70,
+              rotateX: -cameraRotation,
               transformOrigin: "center bottom",
               height: 100,
               x: head.x * timelineScaleFactor,
@@ -117,7 +122,7 @@ const Timeline = (props: Props) => {
               isActive={currentWaypoint === index}
               index={index}
               totalWaypointsCount={allSegments.length + 1}
-              progress={easedScrollProgress}
+              progress={progress}
             />
           </motion.div>
         ))}
