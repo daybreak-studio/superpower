@@ -48,7 +48,7 @@ const TimelineSection = (props: Props) => {
       >
         <h3 className="font-sans-2xl mx-auto mb-4 max-w-[18ch]">
           <FadingText progress={fadingTextProgress}>
-            Personalized healthcare for every stage of your life
+            A proactive system in every stage of your life
           </FadingText>
         </h3>
         <Scrim height={"200px"} color="rgba(0,0,0,.8)" />

@@ -18,17 +18,14 @@ import { TimlineSegment, TimlineSegmentInfo, getSegmentInfo } from "./Segments";
 type Props = {
   progress: MotionValue<number>;
   segmentsInfo: TimlineSegmentInfo[];
+  graphScale: number;
 };
 
-const TimelineGraphic = ({ progress, segmentsInfo }: Props) => {
+const TimelineGraphic = ({ progress, segmentsInfo, graphScale }: Props) => {
   return (
-    <motion.svg
-      viewBox="0 0 1406 4639"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={"overflow-visible"}
-    >
-      <FullJourneyCurve />
+    // the whole graphic is 1406x4639
+    <div className={"overflow-visible"}>
+      {/* <FullJourneyCurve /> */}
       {segmentsInfo.map((info, index) => (
         <JourneySegment
           key={index}
@@ -36,9 +33,10 @@ const TimelineGraphic = ({ progress, segmentsInfo }: Props) => {
           progress={progress}
           segmentIndex={index}
           segmentCount={segments.length}
+          graphScale={graphScale}
         />
       ))}
-    </motion.svg>
+    </div>
   );
 };
 
@@ -47,6 +45,7 @@ type JourneySegmentProps = {
   progress: MotionValue<number>;
   segmentIndex: number;
   segmentCount: number;
+  graphScale: number;
 };
 
 const JourneySegment = ({
@@ -54,10 +53,12 @@ const JourneySegment = ({
   progress,
   segmentIndex,
   segmentCount,
+  graphScale,
 }: JourneySegmentProps) => {
   const { head, tail, length } = segmentInfo;
 
   const [shouldRenderGlow, setShouldRenderGlow] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false);
 
   const segmentBeginProgress = segmentIndex / segmentCount;
   const segmentEndProgress = (segmentIndex + 1) / segmentCount;
@@ -68,7 +69,13 @@ const JourneySegment = ({
     { clamp: false },
   );
   useMotionValueEvent(segmentProgress, "change", (latest) => {
-    if (latest < 1 && latest > -3) {
+    if (latest < 3 && latest > -4) {
+      setShouldRender(true);
+    } else {
+      setShouldRender(false);
+    }
+
+    if (latest < 1 && latest > -2) {
       setShouldRenderGlow(true);
       return;
     }
@@ -77,8 +84,39 @@ const JourneySegment = ({
 
   const strokeDashoffset = useTransform(segmentProgress, [0, 1], [0, length]);
 
+  const segmentWidth = useMemo(
+    () => Math.abs(segmentInfo.head.x - segmentInfo.tail.x),
+    [segmentInfo],
+  );
+  const segmentHeight = useMemo(
+    () => Math.abs(segmentInfo.head.y - segmentInfo.tail.y),
+    [segmentInfo],
+  );
+
   return (
-    <>
+    <svg
+      viewBox={`0 0 ${segmentWidth} ${segmentHeight}`}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="absolute overflow-visible"
+      style={{
+        visibility: shouldRender ? "visible" : "hidden",
+        width: segmentWidth * graphScale,
+        height: segmentHeight * graphScale,
+        left: head.x * graphScale,
+        top: head.y * graphScale,
+      }}
+    >
+      {/* the white background */}
+      <motion.path
+        d={segmentInfo.path}
+        stroke="#FFF"
+        strokeWidth="5"
+        style={{
+          x: -segmentInfo.head.x,
+          y: -segmentInfo.head.y,
+        }}
+      />
       <motion.path
         d={segmentInfo.path}
         stroke="#FE8000"
@@ -86,23 +124,25 @@ const JourneySegment = ({
         style={{
           strokeDasharray: length,
           strokeDashoffset,
+          x: -segmentInfo.head.x,
+          y: -segmentInfo.head.y,
           transition: `stroke-dashoffset .2s cubic-bezier(0.16, 1, 0.3, 1)`,
         }}
       />
-      {shouldRenderGlow && (
-        <motion.path
-          d={segmentInfo.path}
-          stroke="#FE8000"
-          strokeWidth="16"
-          style={{
-            filter: `blur(64px)`,
-            strokeDasharray: length,
-            strokeDashoffset,
-            transition: `stroke-dashoffset .2s cubic-bezier(0.16, 1, 0.3, 1)`,
-          }}
-        />
-      )}
-    </>
+
+      <motion.path
+        d={segmentInfo.path}
+        stroke="#FE8000"
+        strokeWidth="16"
+        style={{
+          visibility: shouldRenderGlow ? "visible" : "hidden",
+          filter: `blur(64px)`,
+          strokeDasharray: length,
+          strokeDashoffset,
+          transition: `stroke-dashoffset .2s cubic-bezier(0.16, 1, 0.3, 1)`,
+        }}
+      />
+    </svg>
   );
 };
 

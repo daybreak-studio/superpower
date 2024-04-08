@@ -23,6 +23,7 @@ import { useWindowDimension } from "@/hooks/useWindowDimension";
 import { segments } from "./TimelineData";
 import { getSegmentInfo } from "./Segments";
 import Waypoint from "./Waypoint";
+import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
 
 type Props = {
   isActive: boolean;
@@ -52,39 +53,67 @@ const Timeline = ({ isActive }: Props) => {
     setCurrentWaypoint(waypoint);
   });
 
-  const cameraRotation = 70;
+  const isDesktop = useBreakpoint(breakpoints.sm);
+
+  const cameraRotation = isDesktop ? 70 : 60;
 
   const aspectRatio = windowDim.width / windowDim.height;
-  const heightOffsetFactor = windowDim.height * aspectRatio * 0.8;
+  const heightOffsetFactor = aspectRatio * 0.8;
 
-  const cameraZOffset = useTransform(
+  const SVGWidth = 1406;
+  const minSVGWidth = 800;
+  // scale factor x would be 1 when browser width = svg width
+  const timelineScaleFactor =
+    windowDim.width < minSVGWidth
+      ? minSVGWidth / SVGWidth
+      : windowDim.width / SVGWidth;
+
+  const SVGHeightScaled = 4639 * timelineScaleFactor;
+  const heightRatio = SVGHeightScaled / windowDim.height;
+
+  // handle movement Z of the graph
+  const movementZ = useTransform(
     progress,
     [0, 1],
-    [-800, windowDim.width * -3 - heightOffsetFactor * 0.6],
+    [isDesktop ? -800 : -500, isDesktop ? windowDim.width * -3.3 : -2000],
   );
 
-  const z = useTransform(cameraZOffset, (latest) => {
+  const z = useTransform(movementZ, (latest) => {
     if (!isActive) {
       return windowDim.height;
+    }
+
+    return latest;
+  });
+
+  // handle movement Y of the graph
+  const movementY = useTransform(
+    progress,
+    [0, 1],
+    [
+      windowDim.width * 0.4,
+      isDesktop ? windowDim.width * -0.7 : windowDim.width * -1.5,
+    ],
+  );
+  const y = useTransform(movementY, (latest) => {
+    if (isDesktop) {
+      return latest;
     }
     return latest;
   });
 
-  const y = useTransform(
+  // handle movement X of the graph
+  const movementX = useTransform(
     progress,
-    [0, 1],
-    [windowDim.width * 0.4, windowDim.width * -0.7],
+    [0, 0.25, 0.6, 0.8, 1],
+    [0, -windowDim.width * 0.8, 0, -windowDim.width * 0.5, 0],
   );
-  // const x = useTransform(
-  //   progress,
-  //   [0, 0.25, 0.6, 0.8, 1],
-  //   [0, -800, 0, -600, 0],
-  // );
-  // const scale = useTransform(easedScrollProgress, [0, 1], [1, 2]);
-
-  const SVGWidth = 1406;
-  // scale factor x would be 1 when browser width = svg width
-  const timelineScaleFactor = windowDim.width / SVGWidth;
+  const x = useTransform(movementX, (latest) => {
+    if (isDesktop) {
+      return 0;
+    }
+    return latest;
+  });
 
   return (
     <div
@@ -93,23 +122,41 @@ const Timeline = ({ isActive }: Props) => {
       ref={timelineContainerRef}
     >
       <motion.div
-        className="fixed top-[20vh] w-screen"
+        className="fixed top-[30vh] w-screen sm:top-[20vh] "
         style={{
+          minWidth: minSVGWidth,
           z,
+          x,
           y,
-          // x,
+          scale: isDesktop ? 1 : 0.9,
           transformOrigin: `center top`,
           transformStyle: "preserve-3d",
           transformPerspective: "2000px",
           rotateX: cameraRotation,
-          transition: `all 1s cubic-bezier(0.16, 1, 0.3, 1)`,
+          // transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
+          // willChange: "transform",
         }}
       >
-        <TimelineGraphic segmentsInfo={allSegments} progress={progress} />
+        <motion.div
+          animate={{
+            opacity: isActive ? 1 : 0,
+            transition: { duration: "linear" },
+          }}
+        >
+          <TimelineGraphic
+            segmentsInfo={allSegments}
+            progress={progress}
+            graphScale={timelineScaleFactor}
+          />
+        </motion.div>
         {allSegments.map(({ head, tail, waypoints }, index) => (
           <motion.div
             key={index}
-            className="absolute left-0 top-0 z-20 "
+            className="absolute left-0 top-0  z-20 "
+            animate={{
+              opacity: isActive ? 1 : 0,
+              transition: { duration: "linear" },
+            }}
             style={{
               rotateX: -cameraRotation,
               transformOrigin: "center bottom",
