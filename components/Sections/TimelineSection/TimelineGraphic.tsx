@@ -19,13 +19,19 @@ type Props = {
   progress: MotionValue<number>;
   segmentsInfo: TimlineSegmentInfo[];
   graphScale: number;
+  isLowPerformanceMode: boolean;
 };
 
-const TimelineGraphic = ({ progress, segmentsInfo, graphScale }: Props) => {
+const TimelineGraphic = ({
+  progress,
+  segmentsInfo,
+  graphScale,
+  isLowPerformanceMode,
+}: Props) => {
   return (
     // the whole graphic is 1406x4639
-    <div className={"overflow-visible"}>
-      {/* <FullJourneyCurve /> */}
+    <>
+      <FullJourneyCurve />
       {segmentsInfo.map((info, index) => (
         <JourneySegment
           key={index}
@@ -34,9 +40,10 @@ const TimelineGraphic = ({ progress, segmentsInfo, graphScale }: Props) => {
           segmentIndex={index}
           segmentCount={segments.length}
           graphScale={graphScale}
+          isLowPerformanceMode={isLowPerformanceMode}
         />
       ))}
-    </div>
+    </>
   );
 };
 
@@ -46,6 +53,7 @@ type JourneySegmentProps = {
   segmentIndex: number;
   segmentCount: number;
   graphScale: number;
+  isLowPerformanceMode: boolean;
 };
 
 const JourneySegment = ({
@@ -54,6 +62,7 @@ const JourneySegment = ({
   segmentIndex,
   segmentCount,
   graphScale,
+  isLowPerformanceMode,
 }: JourneySegmentProps) => {
   const { head, tail, length } = segmentInfo;
 
@@ -69,17 +78,17 @@ const JourneySegment = ({
     { clamp: false },
   );
   useMotionValueEvent(segmentProgress, "change", (latest) => {
-    if (latest < 3 && latest > -4) {
+    if (latest < 6 && latest > -4) {
       setShouldRender(true);
     } else {
       setShouldRender(false);
     }
 
-    if (latest < 1 && latest > -2) {
+    if (latest < 2 && latest > -3 && !isLowPerformanceMode) {
       setShouldRenderGlow(true);
-      return;
+    } else {
+      setShouldRenderGlow(false);
     }
-    setShouldRenderGlow(false);
   });
 
   const strokeDashoffset = useTransform(segmentProgress, [0, 1], [0, length]);
@@ -103,8 +112,7 @@ const JourneySegment = ({
         visibility: shouldRender ? "visible" : "hidden",
         width: segmentWidth * graphScale,
         height: segmentHeight * graphScale,
-        left: head.x * graphScale,
-        top: head.y * graphScale,
+        transform: `translate3d(${head.x * graphScale}px,${head.y * graphScale}px,0px)`,
       }}
     >
       {/* the white background */}
@@ -126,22 +134,26 @@ const JourneySegment = ({
           strokeDashoffset,
           x: -segmentInfo.head.x,
           y: -segmentInfo.head.y,
-          transition: `stroke-dashoffset .2s cubic-bezier(0.16, 1, 0.3, 1)`,
+          // transition: `stroke-dashoffset .2s cubic-bezier(0.16, 1, 0.3, 1)`,
         }}
       />
 
-      <motion.path
-        d={segmentInfo.path}
-        stroke="#FE8000"
-        strokeWidth="16"
-        style={{
-          visibility: shouldRenderGlow ? "visible" : "hidden",
-          filter: `blur(64px)`,
-          strokeDasharray: length,
-          strokeDashoffset,
-          transition: `stroke-dashoffset .2s cubic-bezier(0.16, 1, 0.3, 1)`,
-        }}
-      />
+      {shouldRenderGlow && !isLowPerformanceMode && (
+        <motion.path
+          d={segmentInfo.path}
+          stroke="#FE8000"
+          strokeWidth="16"
+          style={{
+            // visibility: shouldRenderGlow ? "visible" : "hidden",
+            filter: `blur(64px)`,
+            x: -segmentInfo.head.x,
+            y: -segmentInfo.head.y,
+            strokeDasharray: length,
+            strokeDashoffset,
+            // transition: `stroke-dashoffset .2s cubic-bezier(0.16, 1, 0.3, 1)`,
+          }}
+        />
+      )}
     </svg>
   );
 };

@@ -24,6 +24,7 @@ import { segments } from "./TimelineData";
 import { getSegmentInfo } from "./Segments";
 import Waypoint from "./Waypoint";
 import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
+import { usePerformanceProfile } from "@/hooks/usePerformanceProfile";
 
 type Props = {
   isActive: boolean;
@@ -41,7 +42,10 @@ const Timeline = ({ isActive }: Props) => {
     offset: ["start start", "end end"],
   });
 
+  const { isLowPerformance } = usePerformanceProfile();
+
   const progress = useMotionValue(0);
+  const transitionProgress = useMotionValue(0);
   useAnimationFrame(() => {
     progress.set(scrollYProgress.get());
   });
@@ -57,11 +61,9 @@ const Timeline = ({ isActive }: Props) => {
 
   const cameraRotation = isDesktop ? 70 : 60;
 
-  const aspectRatio = windowDim.width / windowDim.height;
-  const heightOffsetFactor = aspectRatio * 0.8;
-
   const SVGWidth = 1406;
   const minSVGWidth = 800;
+
   // scale factor x would be 1 when browser width = svg width
   const timelineScaleFactor =
     windowDim.width < minSVGWidth
@@ -69,7 +71,6 @@ const Timeline = ({ isActive }: Props) => {
       : windowDim.width / SVGWidth;
 
   const SVGHeightScaled = 4639 * timelineScaleFactor;
-  const heightRatio = SVGHeightScaled / windowDim.height;
 
   // handle movement Z of the graph
   const movementZ = useTransform(
@@ -133,29 +134,23 @@ const Timeline = ({ isActive }: Props) => {
           transformStyle: "preserve-3d",
           transformPerspective: "2000px",
           rotateX: cameraRotation,
-          // transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
+          transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
           // willChange: "transform",
         }}
       >
-        <motion.div
-          animate={{
-            opacity: isActive ? 1 : 0,
-            transition: { duration: "linear" },
-          }}
-        >
-          <TimelineGraphic
-            segmentsInfo={allSegments}
-            progress={progress}
-            graphScale={timelineScaleFactor}
-          />
-        </motion.div>
+        <TimelineGraphic
+          segmentsInfo={allSegments}
+          progress={progress}
+          graphScale={timelineScaleFactor}
+          isLowPerformanceMode={isLowPerformance}
+        />
         {allSegments.map(({ head, tail, waypoints }, index) => (
           <motion.div
             key={index}
             className="absolute left-0 top-0  z-20 "
             animate={{
               opacity: isActive ? 1 : 0,
-              transition: { duration: "linear" },
+              transition: { duration: 1 },
             }}
             style={{
               rotateX: -cameraRotation,
@@ -172,6 +167,7 @@ const Timeline = ({ isActive }: Props) => {
               index={index}
               totalWaypointsCount={allSegments.length + 1}
               progress={progress}
+              isLowPerformanceMode={isLowPerformance}
             />
           </motion.div>
         ))}

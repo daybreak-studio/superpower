@@ -16,6 +16,7 @@ type Props = {
   index: number;
   totalWaypointsCount: number;
   progress: MotionValue<number>;
+  isLowPerformanceMode: boolean;
 };
 
 const WaypointTag = ({
@@ -25,6 +26,7 @@ const WaypointTag = ({
   progress,
   totalWaypointsCount,
   index,
+  isLowPerformanceMode,
 }: Props) => {
   const progressPosition = index / totalWaypointsCount;
   const [isVisible, setIsVisible] = useState(true);
@@ -49,13 +51,16 @@ const WaypointTag = ({
   });
 
   const dofBlur = useTransform(waypointProgress, [-1, 0, 1], [1.5, 0, 1.5]);
-  const blurStr = useMotionTemplate`blur(${dofBlur}px)`;
+  const blurStr = useTransform(dofBlur, (latest) => {
+    if (isVisible && !isLowPerformanceMode) return `blur(${latest}px)`;
+    return "none";
+  });
 
   return (
     <motion.div
       className="relative flex h-full w-0 text-white"
       style={{
-        filter: isVisible ? blurStr : "none",
+        filter: blurStr,
         // visibility: isVisible ? "visible" : "hidden",
       }}
       animate={{
