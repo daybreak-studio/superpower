@@ -46,7 +46,7 @@ const BiomarkerBanner = ({ isVisible = true }: Props) => {
             animate={{
               x: isVisible ? "0%" : index === 0 ? "200%" : "-200%", // Modify the animate x value based on the index
               transition: {
-                duration: AnimationConfig.VERY_SLOW,
+                duration: 1,
                 ease: AnimationConfig.EASING_IN_OUT,
                 delay: isVisible ? inViewDelay : 0,
               },
