@@ -67,7 +67,7 @@ const JourneySegment = ({
   const { head, tail, length } = segmentInfo;
 
   const [shouldRenderGlow, setShouldRenderGlow] = useState(false);
-  const [shouldRender, setShouldRender] = useState(false);
+  const [shouldRenderSegment, setShouldRenderSegement] = useState(false);
 
   const segmentBeginProgress = segmentIndex / segmentCount;
   const segmentEndProgress = (segmentIndex + 1) / segmentCount;
@@ -78,10 +78,10 @@ const JourneySegment = ({
     { clamp: false },
   );
   useMotionValueEvent(segmentProgress, "change", (latest) => {
-    if (latest < 6 && latest > -4) {
-      setShouldRender(true);
+    if (latest < 6 && (latest > -6 || (isLowPerformanceMode && latest > -4))) {
+      setShouldRenderSegement(true);
     } else {
-      setShouldRender(false);
+      setShouldRenderSegement(false);
     }
 
     if (latest < 2 && latest > -3 && !isLowPerformanceMode) {
@@ -109,7 +109,7 @@ const JourneySegment = ({
       xmlns="http://www.w3.org/2000/svg"
       className="absolute overflow-visible"
       style={{
-        visibility: shouldRender ? "visible" : "hidden",
+        visibility: shouldRenderSegment ? "visible" : "hidden",
         width: segmentWidth * graphScale,
         height: segmentHeight * graphScale,
         transform: `translate3d(${head.x * graphScale}px,${head.y * graphScale}px,0px)`,

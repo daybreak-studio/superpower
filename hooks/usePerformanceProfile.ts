@@ -15,11 +15,11 @@ export function usePerformanceProfile() {
     setIsLowPerformance(false);
 
     // let frameDropMillisec = 33; // 33ms per frame, 30 fps
-    let frameDropMillisec = 1000 / 12; // 24 fps
-    let frameDropProbationTime = 3000; // consecutive 3 secs frame drop
+    let frameDropMillisec = 1000 / 24; // 24 fps
+    let frameDropProbationTime = 2000; // consecutive 2 secs frame drop
     let lastFrameDropTime = 0;
 
-    let lowPerformanceThreshold = 20;
+    let lowPerformanceThreshold = 10; // 10 frames after frame drop
     let droppedFrameCount = 0;
 
     let start: any = null;

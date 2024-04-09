@@ -147,7 +147,7 @@ const Timeline = ({ isActive }: Props) => {
         {allSegments.map(({ head, tail, waypoints }, index) => (
           <motion.div
             key={index}
-            className="absolute left-0 top-0  z-20 "
+            className="absolute left-0 top-0  z-20"
             animate={{
               opacity: isActive ? 1 : 0,
               transition: { duration: 1 },
