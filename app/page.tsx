@@ -4,7 +4,8 @@ import ScrollVideo from "@/components/ScrollVideo/ScrollVideo";
 import HeroSection from "@/components/Sections/HeroSection/HeroSection";
 import ProtocolSection from "@/components/Sections/ProtocolSection/ProtocolSection";
 import SuperpowerBaselineSection from "@/components/Sections/SuperpowerBaselineSection/SuperpowerBaselineSection";
-import TestimonialsSection from "@/components/Sections/TestimonialsSection/TestimonialsWrapper"; // Import the missing component
+import TestimonialsSection from "@/components/Sections/TestimonialsSection/TestimonialsWrapper";
+import TransitionSection from "@/components/Sections/TransitionSection/TransitionSectionWrapper";
 
 import { ReactLenis } from "@studio-freight/react-lenis";
 
@@ -16,6 +17,7 @@ export default function Home() {
         {/* <SuperpowerBaselineSection /> */}
         <ProtocolSection />
         <TestimonialsSection />
+        <TransitionSection />
         <section style={{ height: "3000px", backgroundColor: "#000" }} />
       </ReactLenis>
     </main>
