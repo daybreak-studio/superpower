@@ -33,7 +33,7 @@ const TransitionSectionWrapper = (props: Props) => {
     } else if (scrollPosition < sectionTop - viewportCenter) {
       setScrollProgress(0);
     } else if (scrollPosition > sectionBottom - viewportCenter) {
-      setScrollProgress(200);
+      // setScrollProgress(200);
     }
   };
 
@@ -53,11 +53,33 @@ const TransitionSectionWrapper = (props: Props) => {
       <div className="pointer-events-none relative h-screen w-screen">
         <div className="absolute bottom-0 left-0 h-auto w-full">
           <Image
-            src="/transition-section/bottom.png"
+            src="/transition-section/top.png"
             width="0"
             height="0"
             sizes="100vw"
-            className="w-full"
+            className="absolute bottom-0 left-0 w-full mix-blend-hard-light"
+            style={{
+              height: `${(scrollProgress * window.innerHeight) / 200}px`,
+            }} // Adjust the height based on scrollProgress
+            alt="transition-bg"
+          />
+          <Image
+            src="/transition-section/mid.png"
+            width="0"
+            height="0"
+            sizes="100vw"
+            className="absolute bottom-0 left-0 w-full mix-blend-hard-light"
+            style={{
+              height: `${(scrollProgress * window.innerHeight) / 200}px`,
+            }} // Adjust the height based on scrollProgress
+            alt="transition-bg"
+          />
+          <Image
+            src="/transition-section/bot.png"
+            width="0"
+            height="0"
+            sizes="100vw"
+            className="absolute bottom-0 left-0 w-full mix-blend-soft-light"
             style={{
               height: `${(scrollProgress * window.innerHeight) / 200}px`,
             }} // Adjust the height based on scrollProgress
