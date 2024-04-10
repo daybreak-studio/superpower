@@ -41,34 +41,34 @@ const TestimonialsDesktop = ({
   return (
     <motion.div
       className="flex items-center justify-center overflow-hidden"
-      // initial={{
-      //   width: 0,
-      //   height: 0,
-      // }}
-      // animate={{
-      //   width: isVisible ? "auto" : 0,
-      //   height: isVisible ? "auto" : 0,
-      //   transition: {
-      //     duration: AnimationConfig.VERY_SLOW,
-      //     ease: AnimationConfig.EASING_IN_OUT,
-      //     delay: isVisible ? inViewDelayBox : 0,
-      //   },
-      // }}
+      initial={{
+        width: 0,
+        height: 0,
+      }}
+      animate={{
+        width: isVisible ? "auto" : 0,
+        height: isVisible ? "auto" : 0,
+        transition: {
+          duration: AnimationConfig.VERY_SLOW,
+          ease: AnimationConfig.EASING_IN_OUT,
+          delay: isVisible ? inViewDelayBox : 0,
+        },
+      }}
     >
       <AnimatePresence>
         <motion.div
           className="relative flex items-center justify-center overflow-hidden"
           initial={{
             width: 624,
-            height: 500,
+            // height: 500,
           }}
           animate={{
             width: [624, 0, 0, 624],
-            height: [500, 0, 0, 500],
+            // height: [500, 0, 0, 500],
           }}
           exit={{
             width: 624,
-            height: 500,
+            // height: 500,
           }}
           transition={{
             duration: clapTime / 1000,
@@ -82,19 +82,19 @@ const TestimonialsDesktop = ({
           <CornerBox cornerSize={20} cornerColor={"#000"} />
           <motion.div
             className="flex min-h-[500px] min-w-[624px] flex-col flex-wrap items-center justify-between p-4 text-center"
-            // initial={{
-            //   opacity: 0,
-            // }}
-            // animate={{
-            //   opacity: isVisible ? [0, 1, 0, 1] : 0,
-            //   transition: {
-            //     duration: AnimationConfig.NORMAL,
-            //     ease: "linear",
-            //     delay: isVisible
-            //       ? AnimationConfig.FAST + inViewDelayContent
-            //       : 0,
-            //   },
-            // }}
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: isVisible ? [0, 1, 0, 1] : 0,
+              transition: {
+                duration: AnimationConfig.NORMAL,
+                ease: "linear",
+                delay: isVisible
+                  ? AnimationConfig.FAST + inViewDelayContent
+                  : 0,
+              },
+            }}
           >
             <div className="flex gap-3">
               {quotesList.map((quote, index) => (
