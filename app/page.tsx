@@ -13,9 +13,10 @@ export default function Home() {
     <main>
       <ReactLenis root>
         {/* <HeroSection /> */}
-        <SuperpowerBaselineSection />
+        {/* <SuperpowerBaselineSection /> */}
         <ProtocolSection />
         <TestimonialsSection />
+        <section style={{ height: "3000px", backgroundColor: "#000" }} />
       </ReactLenis>
     </main>
   );
