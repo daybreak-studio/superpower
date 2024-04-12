@@ -142,10 +142,10 @@ const JourneySegment = ({
         <motion.path
           d={segmentInfo.path}
           stroke="#FE8000"
-          strokeWidth="16"
+          strokeWidth="24"
           style={{
             // visibility: shouldRenderGlow ? "visible" : "hidden",
-            filter: `blur(64px)`,
+            filter: `blur(48px)`,
             x: -segmentInfo.head.x,
             y: -segmentInfo.head.y,
             strokeDasharray: length,

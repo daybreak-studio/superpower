@@ -27,28 +27,20 @@ import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
 import { usePerformanceProfile } from "@/hooks/usePerformanceProfile";
 
 type Props = {
-  isActive: boolean;
+  timelineProgress: MotionValue<number>;
+  transitionProgress: MotionValue<number>;
 };
 
-const Timeline = ({ isActive }: Props) => {
+const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
   const timelineContainerRef = useRef() as RefObject<HTMLDivElement>;
   const windowDim = useWindowDimension();
 
   const allSegments = useMemo(() => segments.map((s) => getSegmentInfo(s)), []);
   const [currentWaypoint, setCurrentWaypoint] = useState(0);
 
-  const { scrollYProgress } = useScroll({
-    target: timelineContainerRef,
-    offset: ["start start", "end end"],
-  });
-
   const { isLowPerformance } = usePerformanceProfile();
 
-  const progress = useMotionValue(0);
-  const transitionProgress = useMotionValue(0);
-  useAnimationFrame(() => {
-    progress.set(scrollYProgress.get());
-  });
+  const progress = timelineProgress;
   // const progress = scrollYProgress;
 
   useMotionValueEvent(progress, "change", (latest) => {
@@ -79,13 +71,12 @@ const Timeline = ({ isActive }: Props) => {
     [isDesktop ? -800 : -500, isDesktop ? windowDim.width * -3.3 : -2000],
   );
 
-  const z = useTransform(movementZ, (latest) => {
-    if (!isActive) {
-      return windowDim.height;
-    }
-
-    return latest;
-  });
+  const z = useTransform(
+    [movementZ, transitionProgress],
+    ([movementZ, transitionProgress]: any) => {
+      return movementZ + (1 - transitionProgress) * windowDim.height * 3;
+    },
+  );
 
   // handle movement Y of the graph
   const movementY = useTransform(
@@ -148,10 +139,10 @@ const Timeline = ({ isActive }: Props) => {
           <motion.div
             key={index}
             className="absolute left-0 top-0  z-20"
-            animate={{
-              opacity: isActive ? 1 : 0,
-              transition: { duration: 1 },
-            }}
+            // animate={{
+            //   opacity: isActive ? 1 : 0,
+            //   transition: { duration: 1 },
+            // }}
             style={{
               rotateX: -cameraRotation,
               transformOrigin: "center bottom",
