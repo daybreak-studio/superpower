@@ -6,6 +6,7 @@ import ProtocolSection from "@/components/Sections/ProtocolSection/ProtocolSecti
 import SuperpowerBaselineSection from "@/components/Sections/SuperpowerBaselineSection/SuperpowerBaselineSection";
 import TestimonialsSection from "@/components/Sections/TestimonialsSection/TestimonialsWrapper";
 import TransitionSection from "@/components/Sections/TransitionSection/TransitionSectionWrapper";
+import EcosystemSection from "@/components/Sections/EcosystemSection/EcosystemLayout";
 
 import { ReactLenis } from "@studio-freight/react-lenis";
 
@@ -13,12 +14,7 @@ export default function Home() {
   return (
     <main>
       <ReactLenis root>
-        {/* <HeroSection /> */}
-        {/* <SuperpowerBaselineSection /> */}
-        <ProtocolSection />
-        <TestimonialsSection />
-        <TransitionSection />
-        <section style={{ height: "3000px", backgroundColor: "#000" }} />
+        <EcosystemSection />
       </ReactLenis>
     </main>
   );
