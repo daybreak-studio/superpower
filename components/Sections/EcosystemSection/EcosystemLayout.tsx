@@ -10,7 +10,7 @@ const EcosystemSection = (props: Props) => {
   }
 
   return (
-    <section>
+    <section className="relative h-screen w-full">
       <h1>Ecosystem Section</h1>
       <div className="flex w-[1000px] flex-row flex-wrap gap-24">
         <div
