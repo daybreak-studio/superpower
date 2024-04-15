@@ -25,7 +25,7 @@ const EcosystemPanels = ({
   const perspectiveTo = "1600px";
 
   const max = 500;
-  const min = 300;
+  const min = 200;
   const stiffness = useMemo(() => Math.random() * (max - min) + min, []);
 
   const offsetY = useTransform(pointerOffsetPercent.x, (latest) =>
