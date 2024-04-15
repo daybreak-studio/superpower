@@ -4,6 +4,7 @@ import React, {
   MutableRefObject,
   useRef,
   RefObject,
+  useMemo,
 } from "react";
 import {
   cubicBezier,
@@ -20,6 +21,7 @@ import {
 import { EcosystemItems } from "./EcosystemItems";
 import { AnimationConfig } from "@/components/AnimationConfig";
 import { easing } from "@/components/AnimationConfig";
+import EcosystemPanels from "./EcosystemPanels";
 
 type Props = {};
 
@@ -57,65 +59,14 @@ const EcosystemSection = (props: Props) => {
         }}
       >
         {EcosystemItems.map((item, index) => {
-          const offsetY = useTransform(pointerOffsetPercent.x, (latest) =>
-            isHovering ? item.angle.y + latest * 20 : item.angle.y,
-          );
-          const offsetX = useTransform(pointerOffsetPercent.y, (latest) =>
-            isHovering ? item.angle.x - latest * 7 : item.angle.x,
-          );
-          const opacity = useTransform(pointerOffsetPercent.x, (latest) =>
-            isHovering ? ((item.angle.y + 70) / 140) * (latest + 0.5) + 0.5 : 1,
-          );
-          const easedY = useSpring(offsetY, { stiffness: 400, damping: 100 });
-          const easedX = useSpring(offsetX, { stiffness: 400, damping: 100 });
-
           return (
             <React.Fragment key={index}>
-              <motion.div
-                className="relative"
-                initial={{
-                  perspective: perspectiveFrom,
-                }}
-                animate={{
-                  perspective: isVisible ? perspectiveTo : perspectiveFrom,
-                  transition: {
-                    duration: 2,
-                    ease: [0, 1, 0, 1],
-                  },
-                }}
-                style={{
-                  transformStyle: `preserve-3d`,
-                  perspectiveOrigin: "50% 50%",
-                  rotateY: easedY,
-                  // transform: `rotateY(${offsetY.get()}deg) rotateX(${offsetX.get()}deg) translateZ(-50vw)`,
-                }}
-              >
-                <motion.div
-                  style={{
-                    transformStyle: `preserve-3d`,
-                    perspectiveOrigin: "50% 50%",
-                    rotateX: easedX,
-                  }}
-                >
-                  <motion.div
-                    style={{
-                      z: "-60vw",
-                    }}
-                  >
-                    <div className="absolute flex translate-x-[-50%] translate-y-[-50%] flex-col items-center gap-4">
-                      <motion.img
-                        src={item.image}
-                        alt={item.name}
-                        style={{
-                          minWidth: `${item.width / 10}vw`,
-                          // opacity: opacity,
-                        }}
-                      ></motion.img>
-                      <div className="font-sans-lg text-black">{item.name}</div>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              </motion.div>
+              <EcosystemPanels
+                isMouseInSection={isHovering}
+                isSectionInView={isVisible}
+                pointerOffsetPercent={pointerOffsetPercent}
+                item={item}
+              />
             </React.Fragment>
           );
         })}
