@@ -24,7 +24,7 @@ const EcosystemPanels = ({
   const perspectiveFrom = "10000px";
   const perspectiveTo = "1600px";
 
-  const max = 500;
+  const max = 400;
   const min = 200;
   const stiffness = useMemo(() => Math.random() * (max - min) + min, []);
 
