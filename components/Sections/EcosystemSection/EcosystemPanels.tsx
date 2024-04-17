@@ -67,7 +67,6 @@ const EcosystemPanels = ({
         transformStyle: `preserve-3d`,
         perspectiveOrigin: "50% 50%",
         rotateY: easedY,
-        // transform: `rotateY(${offsetY.get()}deg) rotateX(${offsetX.get()}deg) translateZ(-50vw)`,
       }}
     >
       <motion.div
