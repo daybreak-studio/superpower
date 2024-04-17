@@ -38,14 +38,16 @@ const EcosystemPanels = ({
     isMouseInSection ? ((item.angle.y + 70) / 140) * (latest + 0.5) + 0.5 : 1,
   );
   const easedY = useSpring(offsetY, {
-    stiffness: stiffness,
+    // stiffness: stiffness,
+    stiffness: 400,
     damping: 100,
-    mass: item.width * 0.05,
+    // mass: item.width * 0.05,
   });
   const easedX = useSpring(offsetX, {
-    stiffness: stiffness,
+    // stiffness: stiffness,
+    stiffness: 400,
     damping: 100,
-    mass: item.width * 0.05,
+    // mass: item.width * 0.05,
   });
 
   return (
