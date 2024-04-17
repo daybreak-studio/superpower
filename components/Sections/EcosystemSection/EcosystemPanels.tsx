@@ -29,10 +29,10 @@ const EcosystemPanels = ({
   const stiffness = useMemo(() => Math.random() * (max - min) + min, []);
 
   const offsetY = useTransform(pointerOffsetPercent.x, (latest) =>
-    isMouseInSection ? item.angle.y + latest * 20 : item.angle.y,
+    isMouseInSection ? item.angle.y + latest * 30 : item.angle.y,
   );
   const offsetX = useTransform(pointerOffsetPercent.y, (latest) =>
-    isMouseInSection ? item.angle.x - latest * 7 : item.angle.x,
+    isMouseInSection ? item.angle.x - latest * 10 : item.angle.x,
   );
   const opacity = useTransform(pointerOffsetPercent.x, (latest) =>
     isMouseInSection ? ((item.angle.y + 70) / 140) * (latest + 0.5) + 0.5 : 1,
