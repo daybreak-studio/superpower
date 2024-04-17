@@ -1,6 +1,5 @@
 "use client";
 
-import Container from "@/components/R3F/Container";
 import ScrollVideo from "@/components/ScrollVideo/ScrollVideo";
 import HeroSection from "@/components/Sections/HeroSection/HeroSection";
 import ProtocolSection from "@/components/Sections/ProtocolSection/ProtocolSection";
@@ -12,7 +11,6 @@ export default function Home() {
     <main>
       {/* <ReactLenis root> */}
       <HeroSection />
-      <Container />
       <SuperpowerBaselineSection />
       <ProtocolSection />
       {/* </ReactLenis> */}

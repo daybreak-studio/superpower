@@ -27,7 +27,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "components/R3F/Scene/index.jsx",
-    "components/R3F/Models/Ipad/index.jsx"
+    "components/R3F/Models/Ipad/index.jsx",
+    "components/R3F/Lighting/index.jsx"
   ],
   "exclude": ["node_modules"]
 }
