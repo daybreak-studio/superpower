@@ -2,6 +2,7 @@
 
 import React, { MutableRefObject, useRef } from "react";
 
+import Image from "next/image";
 import { MotionValue, motion, useInView, useTransform } from "framer-motion";
 import TabletSVG from "./TabletSVG";
 import {
@@ -29,8 +30,8 @@ const FeatureOverviewSection = (props: Props) => {
     rotHor,
     [-rotRange, rotRange],
     [
-      -highlightRange - windowDim.width * 0.3,
       highlightRange - windowDim.width * 0.3,
+      -highlightRange - windowDim.width * 0.3,
     ],
   );
 
@@ -53,7 +54,7 @@ const FeatureOverviewSection = (props: Props) => {
         style={{
           rotateY: rotHor,
           rotateX: rotVert,
-          rotateZ: 90,
+          // rotateZ: 90,
           x: 0,
           transformStyle: "preserve-3d",
           transformPerspective: "2000px",
@@ -63,14 +64,22 @@ const FeatureOverviewSection = (props: Props) => {
       >
         <motion.div
           style={{
-            y: highlightX,
-            x: highlightY,
+            y: highlightY,
+            x: highlightX,
             background:
               "radial-gradient(circle closest-side, rgba(255,255,255,.4), rgba(255,255,255,0))",
             transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
           }}
-          className="absolute inset-0 h-[200%] w-[200%] mix-blend-hard-light"
+          className="absolute inset-0 z-10 h-[200%] w-[200%] mix-blend-hard-light"
         />
+        <div className="absolute inset-0 p-[3.5%] pr-[3.8%]">
+          <Image
+            src={"/ipad-section/screen-1.png"}
+            alt={""}
+            width={1569}
+            height={986}
+          />
+        </div>
         <TabletSVG />
       </motion.div>
     </section>
