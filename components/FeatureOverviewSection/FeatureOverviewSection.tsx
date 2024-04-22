@@ -2,12 +2,13 @@
 
 import React, { MutableRefObject, useRef } from "react";
 
-import { motion, useInView, useTransform } from "framer-motion";
+import { MotionValue, motion, useInView, useTransform } from "framer-motion";
 import TabletSVG from "./TabletSVG";
 import {
   usePointerOffset,
   usePointerOffsetNormalized,
 } from "@/hooks/usePointerInfo";
+import { useWindowDimension } from "@/hooks/useWindowDimension";
 
 type Props = {};
 
@@ -17,14 +18,38 @@ const FeatureOverviewSection = (props: Props) => {
   const mouse = usePointerOffset(isSectionInView, containerRef);
   const offsetNorm = usePointerOffsetNormalized(mouse);
 
+  const windowDim = useWindowDimension();
+
   const rotRange = 10;
   const rotHor = useTransform(offsetNorm.x, [-1, 1], [-rotRange, rotRange]);
   const rotVert = useTransform(offsetNorm.y, [-1, 1], [rotRange, -rotRange]);
 
+  const highlightRange = windowDim.width * 0.3;
+  const highlightX = useTransform(
+    rotHor,
+    [-rotRange, rotRange],
+    [
+      -highlightRange - windowDim.width * 0.3,
+      highlightRange - windowDim.width * 0.3,
+    ],
+  );
+
+  const highlightY = useTransform(
+    rotVert,
+    [-rotRange, rotRange],
+    [
+      -highlightRange - windowDim.height * 0.3,
+      highlightRange - windowDim.height * 0.3,
+    ],
+  );
+
   return (
-    <section className="flex h-screen w-full" ref={containerRef}>
+    <section
+      className="flex h-screen w-full overflow-hidden"
+      ref={containerRef}
+    >
       <motion.div
-        className="m-auto h-fit w-fit"
+        className="relative z-10 m-auto h-fit w-fit"
         style={{
           rotateY: rotHor,
           rotateX: rotVert,
@@ -36,6 +61,16 @@ const FeatureOverviewSection = (props: Props) => {
           transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
         }}
       >
+        <motion.div
+          style={{
+            y: highlightX,
+            x: highlightY,
+            background:
+              "radial-gradient(circle closest-side, rgba(255,255,255,.4), rgba(255,255,255,0))",
+            transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
+          }}
+          className="absolute inset-0 h-[200%] w-[200%] mix-blend-hard-light"
+        />
         <TabletSVG />
       </motion.div>
     </section>

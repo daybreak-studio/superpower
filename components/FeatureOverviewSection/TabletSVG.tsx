@@ -23,8 +23,8 @@ const TabletSVG = (props: Props) => {
       <path
         d="M1416 11.5H106C51.0477 11.5 6.5 56.0477 6.5 111V2011C6.5 2065.95 51.0476 2110.5 106 2110.5H1416C1470.95 2110.5 1515.5 2065.95 1515.5 2011V111C1515.5 56.0477 1470.95 11.5 1416 11.5Z"
         stroke="#475B64"
-        stroke-opacity="0.4"
-        stroke-width="3"
+        strokeOpacity="0.4"
+        strokeWidth="3"
       />
       <rect
         x="72"
@@ -34,7 +34,7 @@ const TabletSVG = (props: Props) => {
         rx="32"
         fill="#C4C4C4"
         stroke="#121212"
-        stroke-width="4"
+        strokeWidth="4"
       />
       <mask
         id="mask0_1612_371"
@@ -54,7 +54,7 @@ const TabletSVG = (props: Props) => {
           cy="45.5"
           r="12.5"
           fill="#1A1D22"
-          fill-opacity="0.5"
+          fillOpacity="0.5"
         />
       </g>
       <circle cx="762" cy="46" r="8" fill="url(#paint1_angular_1612_371)" />
@@ -115,9 +115,9 @@ const TabletSVG = (props: Props) => {
           width="27"
           height="27"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -150,9 +150,9 @@ const TabletSVG = (props: Props) => {
           width="105"
           height="5"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -202,18 +202,18 @@ const TabletSVG = (props: Props) => {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(761 1061) rotate(90) scale(1056 761)"
         >
-          <stop stop-color="#BEBFC0" />
-          <stop offset="0.0982781" stop-color="#9E9FA5" />
-          <stop offset="0.127907" stop-color="#B1B1B6" />
-          <stop offset="0.251954" stop-color="#9D9DA1" />
-          <stop offset="0.370813" stop-color="#B6B8BD" />
-          <stop offset="0.409623" stop-color="#C2C3C7" />
-          <stop offset="0.500156" stop-color="#C0C1C6" />
-          <stop offset="0.624414" stop-color="#B4B5BA" />
-          <stop offset="0.75138" stop-color="#8A8B90" />
-          <stop offset="0.884339" stop-color="#6A6B71" />
-          <stop offset="0.959452" stop-color="#B8B9BB" />
-          <stop offset="1" stop-color="#C4C5C6" />
+          <stop stopColor="#BEBFC0" />
+          <stop offset="0.0982781" stopColor="#9E9FA5" />
+          <stop offset="0.127907" stopColor="#B1B1B6" />
+          <stop offset="0.251954" stopColor="#9D9DA1" />
+          <stop offset="0.370813" stopColor="#B6B8BD" />
+          <stop offset="0.409623" stopColor="#C2C3C7" />
+          <stop offset="0.500156" stopColor="#C0C1C6" />
+          <stop offset="0.624414" stopColor="#B4B5BA" />
+          <stop offset="0.75138" stopColor="#8A8B90" />
+          <stop offset="0.884339" stopColor="#6A6B71" />
+          <stop offset="0.959452" stopColor="#B8B9BB" />
+          <stop offset="1" stopColor="#C4C5C6" />
         </radialGradient>
         <radialGradient
           id="paint1_angular_1612_371"
@@ -224,16 +224,16 @@ const TabletSVG = (props: Props) => {
           gradientTransform="translate(762 46) rotate(90) scale(8)"
         >
           <stop offset="0.00395168" />
-          <stop offset="0.0907548" stop-color="#101215" />
-          <stop offset="0.159421" stop-color="#75899E" />
-          <stop offset="0.249667" stop-color="#1D4672" />
-          <stop offset="0.326618" stop-color="#252F8B" />
-          <stop offset="0.364065" stop-color="#2C18A3" stop-opacity="0.66" />
-          <stop offset="0.402347" stop-color="#0A0625" />
+          <stop offset="0.0907548" stopColor="#101215" />
+          <stop offset="0.159421" stopColor="#75899E" />
+          <stop offset="0.249667" stopColor="#1D4672" />
+          <stop offset="0.326618" stopColor="#252F8B" />
+          <stop offset="0.364065" stopColor="#2C18A3" stopOpacity="0.66" />
+          <stop offset="0.402347" stopColor="#0A0625" />
           <stop offset="0.513289" />
-          <stop offset="0.649389" stop-color="#0D103D" />
-          <stop offset="0.816604" stop-color="#0B1B34" />
-          <stop offset="0.895453" stop-color="#345D7B" />
+          <stop offset="0.649389" stopColor="#0D103D" />
+          <stop offset="0.816604" stopColor="#0B1B34" />
+          <stop offset="0.895453" stopColor="#345D7B" />
         </radialGradient>
         <radialGradient
           id="paint2_radial_1612_371"
@@ -244,8 +244,8 @@ const TabletSVG = (props: Props) => {
           gradientTransform="translate(762 46) rotate(90) scale(8)"
         >
           <stop offset="0.21875" />
-          <stop offset="0.458333" stop-opacity="0" />
-          <stop offset="0.791667" stop-opacity="0" />
+          <stop offset="0.458333" stopOpacity="0" />
+          <stop offset="0.791667" stopOpacity="0" />
           <stop offset="1" />
         </radialGradient>
         <linearGradient
@@ -256,11 +256,11 @@ const TabletSVG = (props: Props) => {
           y2="354"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#747679" />
-          <stop offset="0.101279" stop-color="#B1B3B6" />
-          <stop offset="0.494792" stop-color="#BFC0C3" />
-          <stop offset="0.912797" stop-color="#B1B3B6" />
-          <stop offset="1" stop-color="#747679" />
+          <stop stopColor="#747679" />
+          <stop offset="0.101279" stopColor="#B1B3B6" />
+          <stop offset="0.494792" stopColor="#BFC0C3" />
+          <stop offset="0.912797" stopColor="#B1B3B6" />
+          <stop offset="1" stopColor="#747679" />
         </linearGradient>
         <linearGradient
           id="paint4_linear_1612_371"
@@ -270,11 +270,11 @@ const TabletSVG = (props: Props) => {
           y2="254"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#747679" />
-          <stop offset="0.101279" stop-color="#B1B3B6" />
-          <stop offset="0.494792" stop-color="#BFC0C3" />
-          <stop offset="0.912797" stop-color="#B1B3B6" />
-          <stop offset="1" stop-color="#747679" />
+          <stop stopColor="#747679" />
+          <stop offset="0.101279" stopColor="#B1B3B6" />
+          <stop offset="0.494792" stopColor="#BFC0C3" />
+          <stop offset="0.912797" stopColor="#B1B3B6" />
+          <stop offset="1" stopColor="#747679" />
         </linearGradient>
         <linearGradient
           id="paint5_linear_1612_371"
@@ -284,11 +284,11 @@ const TabletSVG = (props: Props) => {
           y2="-3.48993"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#747679" />
-          <stop offset="0.140625" stop-color="#B1B3B6" />
-          <stop offset="0.463542" stop-color="#BFC0C3" />
-          <stop offset="0.875" stop-color="#B1B3B6" />
-          <stop offset="1" stop-color="#747679" />
+          <stop stopColor="#747679" />
+          <stop offset="0.140625" stopColor="#B1B3B6" />
+          <stop offset="0.463542" stopColor="#BFC0C3" />
+          <stop offset="0.875" stopColor="#B1B3B6" />
+          <stop offset="1" stopColor="#747679" />
         </linearGradient>
       </defs>
     </svg>

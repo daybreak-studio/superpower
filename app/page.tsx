@@ -11,11 +11,11 @@ import { ReactLenis } from "@studio-freight/react-lenis";
 export default function Home() {
   return (
     <main>
+      <HeroSection />
       <FeatureOverviewSection />
-      {/* <HeroSection />
       <SuperpowerBaselineSection />
       <ProtocolSection />
-      <TestimonialsWrapper /> */}
+      <TestimonialsWrapper />
     </main>
   );
 }
