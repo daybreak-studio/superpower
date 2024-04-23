@@ -156,3 +156,19 @@ export function useScrub({
 
   return [containerRef, current, target, isScrubbing];
 }
+/**
+ * A hook that allows you to scrub a container element: 
+ * - by dragging the container element
+ * - by scrolling the mouse wheel over the container element
+ * 
+ * @param maxDistance - the maximum distance the container can be scrubbed
+ * @param canUseMouseWheel - whether to enable scrubbing by mouse wheel
+ * @param direction - the direction of scrubbing
+ * @param maxWheelDelta - the maximum delta value of the mouse wheel
+ * @param responsiveness - the responsiveness of the scrubbing
+ * @param dampingConst - the damping constant of the scrubbing
+ * @param dampingMargin - the damping margin of the scrubbing
+ * 
+ * @returns a tuple of [containerRef, current, target, isScrubbing]
+ */ 
+export default useScrub;

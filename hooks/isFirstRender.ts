@@ -12,4 +12,9 @@ function useIsFirstRender(): boolean {
   return isFirst.current;
 }
 
+/**
+ * A hook that returns true if the component is rendered for the first time.
+ *  
+ *  
+ **/  
 export default useIsFirstRender;

@@ -31,11 +31,13 @@ export const WindowDimensionContextProvider = ({ children }: Props) => {
 
 /**
  *
- * A state the capture the window size (width, height)
+ * A state the captures the window size (width, height)
  *
  * Usage:
  * const {width, height} = useWindowDimension();
  *
  * @returns
+ * {width, height}
+ * 
  */
 export const useWindowDimension = () => useContext(WindowDimensionContext);
