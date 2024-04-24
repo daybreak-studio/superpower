@@ -7,7 +7,7 @@ const Scene = dynamic(() => import("@/components/R3F/Scene"), {
 
 export default function Container() {
   return (
-    <div className="relative h-screen w-screen">
+    <div className="relative h-screen w-screen bg-black">
       <Scene />
     </div>
   );

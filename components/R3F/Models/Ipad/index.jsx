@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { useThree, useFrame } from "@react-three/fiber";
 
-const tiltLimit = 0.4;
+const tiltLimit = 0.8;
 const lerpFactor = 0.02;
 const screenImageUrls = [
   "/models/textures/home-min.jpg",
@@ -100,10 +100,10 @@ export default function Ipad(props) {
       </group>
 
       {/* An example button to cycle textures - this can be replaced with your own UI */}
-      <mesh onClick={cycleTextures} position={[0, -0.6, 0]}>
+      {/* <mesh onClick={cycleTextures} position={[0, -0.6, 0]}>
         <boxGeometry attach="geometry" args={[0.1, 0.1, 0.1]} />
         <meshStandardMaterial attach="material" color="red" />
-      </mesh>
+      </mesh> */}
     </group>
   );
 }

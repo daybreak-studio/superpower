@@ -14,9 +14,10 @@ import { Leva, folder, useControls } from "leva";
 export default function Scene() {
   const settings = useControls({
     "Post Processing": folder({
-      postProcessing: false,
+      postProcessing: true,
       Bloom: folder(
         {
+          bloomIntensity: 1,
           bloomLuminanceThreshold: 0.7,
           bloomLuminanceSmoothing: 0.4,
         },
@@ -35,18 +36,24 @@ export default function Scene() {
     Lighting: folder({
       "Ambient Light": folder(
         {
-          ambientIntensity: 1,
+          ambientColor: "#c4c3bd",
+          ambientIntensity: 50,
         },
         { collapsed: true },
       ),
       "Directional Light": folder(
         {
           directionalColor: "#ffffff",
-          directionalIntensity: 0.5,
+          directionalIntensity: 10,
           directionalPosition: {
             x: 0,
+            y: -1,
+            z: -1,
+          },
+          directionalRotation: {
+            x: 0,
             y: 0,
-            z: 5,
+            z: 0,
           },
         },
         { collapsed: true },
