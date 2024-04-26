@@ -6,7 +6,8 @@ import ProtocolSectionMobile from "./mobile/ProtocolSectionMobile";
 import Scrim from "@/components/Scrim/Scrim";
 import LineElement from "@/components/LineElement/LineElement";
 import CTAButton from "@/components/Button/CTAButton";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import BiomarkerBanner from "./Biomarkers/BiomarkerBanner";
 
 type Props = {};
 
@@ -16,9 +17,12 @@ const ProtocolSection = (props: Props) => {
   const buttonContainerRef = useRef() as MutableRefObject<HTMLDivElement>;
   const isButtonInView = useInView(buttonContainerRef);
 
+  const biomarkerContainerRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const isBiomarkerInView = useInView(biomarkerContainerRef);
+
   return (
     <section className="relative">
-      <div
+      <motion.div
         className="mb-16 flex h-fit flex-col items-center bg-white pt-16"
         style={{
           position: isDesktop ? "relative" : "sticky",
@@ -36,18 +40,25 @@ const ProtocolSection = (props: Props) => {
           tests and a custom action plan.
         </p>
         <Scrim height={"64px"} />
-      </div>
+      </motion.div>
 
       {isDesktop && <ProtocolSectionDesktop protocols={PROTOCOLS} />}
       {!isDesktop && <ProtocolSectionMobile protocols={PROTOCOLS} />}
 
-      <div className="-mt-4 flex flex-col items-center justify-center gap-4">
-        <LineElement length={200} color={"#BBBBBB"} vertical />
+      <div className="-mt-4 flex flex-col items-center justify-center gap-8">
+        <LineElement length={48} color={"#BBBBBB"} vertical />
         <div ref={buttonContainerRef}>
           <CTAButton outline isVisible={isButtonInView}>
-            Get Started
+            Start Now
           </CTAButton>
         </div>
+      </div>
+
+      <div ref={biomarkerContainerRef}>
+        <BiomarkerBanner isVisible={isBiomarkerInView} />
+      </div>
+      <div className="mx-auto w-[80%]">
+        <LineElement length={"auto"} color={"#BBBBBB"} horizontal />
       </div>
     </section>
   );
