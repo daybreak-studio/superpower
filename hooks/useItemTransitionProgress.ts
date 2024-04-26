@@ -5,7 +5,8 @@ export interface ItemTransitionProgressInfo {
   index: number;
   total: number;
   progress: MotionValue<number>; // the global progress
-  durationProgress?: number;
+  transitionRange?: number;
+  activeRange?: number;
   clamp?: boolean;
 }
 
@@ -22,16 +23,17 @@ export function useItemTransitionProgress({
   total,
   progress,
   clamp = false,
-  durationProgress = 1 / total,
+  transitionRange = 1 / total, // when performing transition
+  activeRange = transitionRange / 2, // the stable range in which the item is active
 }: ItemTransitionProgressInfo) {
   const progressPosition = index / total;
   const itemProgress = useTransform(
     progress,
     [
-      progressPosition - durationProgress,
-      progressPosition - 0.05,
-      progressPosition + 0.06,
-      progressPosition + durationProgress,
+      progressPosition - transitionRange,
+      progressPosition - activeRange,
+      progressPosition + activeRange,
+      progressPosition + transitionRange,
     ],
     [-1, 0, 0, 1],
     { clamp: clamp },
