@@ -7,6 +7,7 @@ import ScrollingTextLayout from "@/components/Sections/ScrollingTextSection/Scro
 import SuperpowerBaselineSection from "@/components/Sections/SuperpowerBaselineSection/SuperpowerBaselineSection";
 import TestimonialsSection from "@/components/Sections/TestimonialsSection/TestimonialsWrapper";
 import TransitionSection from "@/components/Sections/TransitionSection/TransitionSectionWrapper";
+import EcosystemSection from "@/components/Sections/EcosystemSection/EcosystemLayout";
 import TimelineSection from "@/components/Sections/TimelineSection/TimelineSection";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
         <TransitionSection />
         <TimelineSection />
         <ScrollingTextLayout/>
+        <EcosystemSection />
     </main>
   );
 }
