@@ -26,8 +26,6 @@ const sentence = // sentence to be displayed, use < to indicate a line break
 const sentenceArray = sentence.split(" ");
 
 const ScrollingTextLayout = (props: Props) => {
-  // const [scrollProgress, setScrollProgress] = useState(0);
-
   const buttonContainerRef = useRef() as MutableRefObject<HTMLDivElement>;
 
   const paragraphRef = useRef() as MutableRefObject<HTMLHeadingElement>;
@@ -51,8 +49,6 @@ const ScrollingTextLayout = (props: Props) => {
     (latest) => latest >= 1,
   );
 
-  useLogMotionValue(scrollYProgress, "scrollYProgress");
-
   return (
     <section className="relative h-svh">
       <div className="align-center flex justify-center px-6">
@@ -66,10 +62,12 @@ const ScrollingTextLayout = (props: Props) => {
                 <div key={index}>
                   <br />
                 </div>
-              ) : word === " " ? (
-                " "
               ) : (
-                <FadingText word={`${word} `} isVisible={currentWord > index} />
+                <FadingText
+                  word={`${word} `}
+                  isVisible={currentWord > index}
+                  key={index}
+                />
               ),
             )}
           </h2>
@@ -83,26 +81,25 @@ const ScrollingTextLayout = (props: Props) => {
     </section>
   );
 };
+
 const FadingText = ({
   word,
   isVisible,
 }: {
   word: string;
   isVisible: boolean;
-}) => {
-  return (
-    <motion.span
-      initial={{ opacity: 0.1, filter: "blur(10px)" }}
-      animate={{
-        opacity: isVisible ? 1 : 0,
-        filter: isVisible ? `blur(0px)` : `blur(10px)`,
-      }}
-      transition={{ duration: 0.4 }}
-    >
-      {word}
-      {""}
-    </motion.span>
-  );
-};
+}) => (
+  <motion.span
+    initial={{ opacity: 0.1, filter: "blur(10px)" }}
+    animate={{
+      opacity: isVisible ? 1 : 0,
+      filter: isVisible ? `blur(0px)` : `blur(10px)`,
+    }}
+    transition={{ duration: 0.4 }}
+  >
+    {word}
+    {""}
+  </motion.span>
+);
 
 export default ScrollingTextLayout;
