@@ -1,6 +1,7 @@
 "use client";
 
-import React, { MutableRefObject, useRef } from "react";
+import ScrollVideo from "@/components/ScrollVideo/ScrollVideo";
+import React, { MutableRefObject, useRef, useState } from "react";
 
 import Image from "next/image";
 import { MotionValue, motion, useInView, useTransform } from "framer-motion";
@@ -18,6 +19,7 @@ const FeatureOverviewSection = (props: Props) => {
   const isSectionInView = useInView(containerRef);
   const mouse = usePointerOffset(isSectionInView, containerRef);
   const offsetNorm = usePointerOffsetNormalized(mouse);
+  const [isLowPowerMode, setIsLowPowerMode] = useState(false);
 
   const windowDim = useWindowDimension();
 
@@ -72,15 +74,33 @@ const FeatureOverviewSection = (props: Props) => {
           }}
           className="absolute inset-0 z-10 h-[200%] w-[200%] mix-blend-hard-light"
         />
-        <div className="absolute inset-0 p-[3.5%] pr-[3.8%]">
+        <div className="absolute inset-0 p-[3%] pr-[3%] opacity-0">
           <Image
-            src={"/ipad-section/screen-1.png"}
+            src={"/ipad-section/screen-1-new.png"}
             alt={""}
             width={1569}
             height={986}
           />
         </div>
-        <TabletSVG />
+        <div className="absolute bottom-[18%] left-[50%] h-fit w-[15vw] translate-x-[-50%]">
+          <ScrollVideo
+            playbackConst={400}
+            onLowPowerModeDetected={() => setIsLowPowerMode(true)}
+          >
+            <source
+              type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+              src="/ipad-section/test-transition.mp4"
+            />
+          </ScrollVideo>
+        </div>
+        <Image
+          src={"/ipad-section/new-ipad.png"}
+          className="h-fit w-[65vw]"
+          alt={""}
+          width={1000}
+          height={1000}
+        />
+        {/* <TabletSVG /> */}
       </motion.div>
     </section>
   );
