@@ -197,7 +197,7 @@ const ArrowMarkerSVG = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M1.5 1L5.5 5L1.5 9" stroke="#FE8000" stroke-width="2" />
+    <path d="M1.5 1L5.5 5L1.5 9" stroke="#FE8000" strokeWidth="2" />
   </svg>
 );
 const MarkerSVG = () => (
