@@ -6,7 +6,7 @@ import ProtocolSectionMobile from "./mobile/ProtocolSectionMobile";
 import Scrim from "@/components/Scrim/Scrim";
 import LineElement from "@/components/LineElement/LineElement";
 import CTAButton from "@/components/Button/CTAButton";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import BiomarkerBanner from "./Biomarkers/BiomarkerBanner";
 
 type Props = {};
@@ -22,7 +22,7 @@ const ProtocolSection = (props: Props) => {
 
   return (
     <section className="relative">
-      <div
+      <motion.div
         className="mb-16 flex h-fit flex-col items-center bg-white pt-16"
         style={{
           position: isDesktop ? "relative" : "sticky",
@@ -40,7 +40,7 @@ const ProtocolSection = (props: Props) => {
           tests and a custom action plan.
         </p>
         <Scrim height={"64px"} />
-      </div>
+      </motion.div>
 
       {isDesktop && <ProtocolSectionDesktop protocols={PROTOCOLS} />}
       {!isDesktop && <ProtocolSectionMobile protocols={PROTOCOLS} />}

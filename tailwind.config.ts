@@ -14,6 +14,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        vermilion: {
+          900: "#FC5F2B",
+          700: "#F7861E",
+          500: "#FDBA74",
+          300: "#FED7AA",
+          100: "#FFEDD5",
+        },
+      },
       backgroundColor: {
         blur: `rgba(255,255,255,.05)`,
       },
