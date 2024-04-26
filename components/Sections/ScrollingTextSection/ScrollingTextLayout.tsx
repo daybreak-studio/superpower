@@ -1,23 +1,14 @@
 import React, {
   useState,
-  useEffect,
   MutableRefObject,
   useRef,
-  RefObject,
 } from "react";
 import {
-  MotionValue,
   motion,
-  useInView,
-  useMotionTemplate,
-  useMotionValue,
   useMotionValueEvent,
   useScroll,
-  useSpring,
-  useTransform,
 } from "framer-motion";
 import CTAButton from "@/components/Button/CTAButton";
-import { useLogMotionValue } from "@/hooks/useLogMotionValue";
 import { useMotionValueSwitch } from "@/hooks/useMotionValueSwitch";
 
 type Props = {};
