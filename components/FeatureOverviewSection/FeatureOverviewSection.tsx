@@ -17,7 +17,7 @@ const FeatureOverviewSection = (props: Props) => {
         >
           <source
             type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
-            src="/ipad-section/test-transition.mp4"
+            src="/ipad-section/transition.mp4"
           />
         </FeatureScrollVideo>
       )}
