@@ -118,19 +118,13 @@ const FeatureScrollVideo = ({
   const highlightX = useTransform(
     rotHor,
     [-rotRange, rotRange],
-    [
-      highlightRange - windowDim.width * 0.3,
-      -highlightRange - windowDim.width * 0.3,
-    ],
+    [highlightRange - windowDim.width, -highlightRange - windowDim.width],
   );
 
   const highlightY = useTransform(
     rotVert,
     [-rotRange, rotRange],
-    [
-      -highlightRange - windowDim.height * 0.3,
-      highlightRange - windowDim.height * 0.3,
-    ],
+    [-highlightRange - windowDim.height, highlightRange - windowDim.height],
   );
 
   return (
@@ -167,16 +161,27 @@ const FeatureScrollVideo = ({
               className="relative overflow-hidden"
               style={{ borderRadius: "4.5%" }}
             >
-              <motion.div
+              {/* <motion.div
                 style={{
                   opacity: glareOpacity,
                   y: highlightY,
                   x: highlightX,
                   background:
-                    "radial-gradient(circle closest-side, rgba(255,104,0,.4), rgba(255,104,0,0))",
+                    "radial-gradient(circle closest-side, rgba(255,104,0,.2), rgba(255,104,0,0))",
                   transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
                 }}
                 className="absolute inset-0 z-10 h-[200%] w-[200%]"
+              /> */}
+              <motion.img
+                src={"/ipad-section/glare-coloured.png"}
+                style={{
+                  minWidth: "300%",
+                  opacity: glareOpacity,
+                  y: highlightY,
+                  x: highlightX,
+                  transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
+                }}
+                className="relative inset-0 left-[50%] top-[50%] z-10"
               />
             </div>
           </div>
