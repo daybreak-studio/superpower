@@ -12,7 +12,9 @@ export default function Home() {
   return (
     <main>
       {/* <HeroSection /> */}
+      <section style={{ height: 1000 }} />
       <FeatureOverviewSection />
+      <section style={{ height: 1000 }} />
       {/* <SuperpowerBaselineSection /> */}
       {/* <ProtocolSection /> */}
       {/* <TestimonialsWrapper /> */}
