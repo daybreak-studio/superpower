@@ -1,12 +1,9 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { SlideInfo } from "./SuperpowerBaselineSection";
-import Carousel, { useCarouselControls } from "../Carousel/Carousel";
+import Carousel, { useCarouselControls } from "../../Carousel/Carousel";
 import BaselineCarouselItem from "./BaselineCarouselItem";
-import { motion } from "framer-motion";
-import { useBoundingClientRect } from "@/hooks/useBoundingClientRect";
-import { AnimationConfig } from "../AnimationConfig";
 import { CarouselPageIndicator } from "./CarouselPageIndicator";
 
 type Props = {
@@ -32,7 +29,7 @@ const BaselineCarousel = ({ slides }: Props) => {
         ))}
       </Carousel>
 
-      <div className="mx-auto -mt-24 flex flex-col items-center">
+      <div className="pointer-events-none mx-auto -mt-24 flex h-24 flex-col items-center">
         <div className="mb-4 h-8 w-[1px] bg-[#FC5F2B] opacity-40" />
         <CarouselPageIndicator currentSlide={currentSlide} slides={slides} />
       </div>

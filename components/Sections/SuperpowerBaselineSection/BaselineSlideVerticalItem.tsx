@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { AnimationConfig } from "../AnimationConfig";
+import { AnimationConfig } from "../../AnimationConfig";
 
 type Props = {
   previewSrc: string;
@@ -77,7 +77,7 @@ const BaselineSlideVerticalItem = ({
         <div className="text-left">
           <div className="font-mono-xs my-4 text-nowrap">{header}</div>
           <motion.div
-            className="font-sans-xs xl:font-sans-sm h-0 xl:min-w-56"
+            className="font-sans-xs h-0 xl:font-sans-sm xl:min-w-56"
             animate={{
               opacity: isExpanded ? 1 : 0,
               y: isExpanded ? 0 : -10,

@@ -14,6 +14,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        vermilion: {
+          900: "#FC5F2B",
+          700: "#F7861E",
+          500: "#FDBA74",
+          300: "#FED7AA",
+          100: "#FFEDD5",
+        },
+      },
       backgroundColor: {
         blur: `rgba(255,255,255,.05)`,
       },
@@ -50,14 +59,21 @@ const config: Config = {
           "font-family": "var(--font-nb-international-mono)",
           "font-size": ".75rem",
           "letter-spacing": "-0.03rem",
-          "line-height": "85%",
+          "line-height": "130%",
           "text-transform": "uppercase",
         },
         "mono-sm": {
           "font-family": "var(--font-nb-international-mono)",
           "font-size": ".875rem",
           "letter-spacing": "-0.035rem",
-          "line-height": "85%",
+          "line-height": "130%",
+          "text-transform": "uppercase",
+        },
+        "mono-xl": {
+          "font-family": "var(--font-nb-international-mono)",
+          "font-size": "1rem",
+          "letter-spacing": "-0.01rem",
+          "line-height": "130%",
           "text-transform": "uppercase",
         },
         // sans
@@ -111,6 +127,9 @@ const config: Config = {
         },
         "mono-sm": {
           "letter-spacing": "-0.035rem",
+        },
+        "mono-xl": {
+          "font-size": "2.75rem",
         },
         "sans-xs": {
           "font-size": ".75rem",

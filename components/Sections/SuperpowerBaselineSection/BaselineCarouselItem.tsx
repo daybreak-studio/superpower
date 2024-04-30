@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import { motion, useTransform } from "framer-motion";
-import { AnimationConfig } from "../AnimationConfig";
-import { useCarouselItemContext } from "../Carousel/Carousel";
+import { AnimationConfig } from "../../AnimationConfig";
+import { useCarouselItemContext } from "../../Carousel/Carousel";
 import { SlideInfo } from "./SuperpowerBaselineSection";
-import TracyShadow from "../TracyShadow";
+import TracyShadow from "../../TracyShadow";
 
 type Props = {
   slide: SlideInfo;
