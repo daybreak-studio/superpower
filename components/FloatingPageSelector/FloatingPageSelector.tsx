@@ -32,6 +32,7 @@ const PageSelectorContext = createContext({
     width: number;
     height: number;
   }) => {},
+  setCurrentColor: (color: string) => {},
 });
 
 const FloatingPageSelector = ({ children }: Props) => {
@@ -44,10 +45,13 @@ const FloatingPageSelector = ({ children }: Props) => {
     height: 0,
   });
 
+  const [currentColor, setCurrentColor] = useState("#000");
+
   const xOffset = useSpring(0, { stiffness: 1500, damping: 100 });
   const xOffsetRound = useTransform(xOffset, (latest) => Math.round(latest));
 
   const highlightAnim = useAnimation();
+  const highlightAnimWithColor = useAnimation();
   useEffect(() => {
     const anim = {
       width: Math.round(currentBottonBounds.width),
@@ -63,7 +67,23 @@ const FloatingPageSelector = ({ children }: Props) => {
         ease: AnimationConfig.EASING,
       },
     });
-  }, [containerBounds, currentBottonBounds, highlightAnim, xOffset]);
+
+    highlightAnimWithColor.start({
+      width: anim.width,
+      backgroundColor: currentColor,
+      transition: {
+        duration: AnimationConfig.NORMAL,
+        ease: AnimationConfig.EASING,
+      },
+    });
+  }, [
+    highlightAnimWithColor,
+    containerBounds,
+    currentBottonBounds,
+    highlightAnim,
+    xOffset,
+    currentColor,
+  ]);
 
   // const x = useTransform((highlightAnim) => Math.round);
 
@@ -74,6 +94,7 @@ const FloatingPageSelector = ({ children }: Props) => {
         setCurrentPage,
         currentBottonBounds,
         setCurrentButtonBounds,
+        setCurrentColor,
       }}
     >
       <div
@@ -83,14 +104,14 @@ const FloatingPageSelector = ({ children }: Props) => {
         <motion.div className="absolute left-0 top-6 -z-20 h-full w-full rounded-full bg-zinc-500 opacity-10 blur-xl" />
         <motion.div
           className="mix-blend-invert absolute left-0 top-2 -z-10 h-full rounded-full bg-vermilion-900 opacity-30 blur-lg"
-          animate={highlightAnim}
+          animate={highlightAnimWithColor}
           style={{
             x: xOffsetRound,
           }}
         />
         <motion.div
           className="absolute bottom-1 left-0 top-1 z-0 rounded-full bg-vermilion-900"
-          animate={highlightAnim}
+          animate={highlightAnimWithColor}
           style={{
             x: xOffsetRound,
           }}
@@ -120,20 +141,27 @@ const FloatingPageSelector = ({ children }: Props) => {
 type FloatingPageSelectorItemProps = {
   children: React.ReactNode;
   pageIndex: number;
+  color: string;
 };
 
 const FloatingPageSelectorItem = ({
   children,
   pageIndex,
+  color = "#000",
 }: FloatingPageSelectorItemProps) => {
-  const { currentPage, setCurrentPage, setCurrentButtonBounds } =
-    useContext(PageSelectorContext);
+  const {
+    currentPage,
+    setCurrentPage,
+    setCurrentColor,
+    setCurrentButtonBounds,
+  } = useContext(PageSelectorContext);
   const [buttonRef, bounds] = useBounds<HTMLButtonElement>([]);
   const isCurrent = currentPage === pageIndex;
 
   useEffect(() => {
     if (pageIndex === 1) {
       setCurrentPage(1);
+      setCurrentColor(color);
       setCurrentButtonBounds({
         offsetX: bounds.x,
         offsetY: bounds.y,
@@ -145,6 +173,7 @@ const FloatingPageSelectorItem = ({
 
   useEffect(() => {
     if (isCurrent) {
+      setCurrentColor(color);
       setCurrentButtonBounds({
         offsetX: bounds.x,
         offsetY: bounds.y,
@@ -159,6 +188,8 @@ const FloatingPageSelectorItem = ({
     bounds.y,
     isCurrent,
     setCurrentButtonBounds,
+    color,
+    setCurrentColor,
   ]);
 
   return (
