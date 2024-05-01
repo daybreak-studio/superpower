@@ -27,6 +27,7 @@ import { useIsLowPowerMode } from "@/hooks/useIsLowPowerMode";
 type Props = {
   playbackConst: number; // higher it is, the slower it plays
   children: React.ReactNode;
+  headline: string;
   onVideoReady?: () => void;
   onLowPowerModeDetected?: () => void;
 };
@@ -34,6 +35,7 @@ type Props = {
 const FeatureScrollVideo = ({
   playbackConst,
   children,
+  headline,
   onVideoReady,
   onLowPowerModeDetected,
 }: Props) => {
@@ -58,7 +60,7 @@ const FeatureScrollVideo = ({
     if (!isVideoReady) return;
 
     const scrolledOffset = latest - bounds.top;
-    seek(duration * (scrolledOffset / bounds.height) * 1.5);
+    seek(duration * 1.5 * (scrolledOffset / bounds.height));
   });
 
   // This useEffect stops the video instantaneously after
@@ -71,7 +73,7 @@ const FeatureScrollVideo = ({
     if (!isVideoReady) return;
     videoRef.current.pause();
     const scrolledOffset = scrollY.get() - bounds.top;
-    seek(duration * (scrolledOffset / bounds.height) * 1.5);
+    seek(duration * 1.5 * (scrolledOffset / bounds.height));
   }, [
     bounds.height,
     bounds.top,
@@ -98,7 +100,7 @@ const FeatureScrollVideo = ({
   const screenOpacity = useTransform(scrollYProgress, [0.7, 1], [0, 1], {
     ease: cubicBezier(0.16, 1, 0.3, 1),
   });
-  const glareOpacity = useTransform(scrollYProgress, [0.9, 1], [0, 1], {
+  const glareOpacity = useTransform(scrollYProgress, [0.8, 1], [0, 1], {
     ease: cubicBezier(0.16, 1, 0.3, 1),
   });
 
@@ -129,7 +131,7 @@ const FeatureScrollVideo = ({
 
   return (
     <motion.div
-      className={"relative flex w-full items-start"}
+      className={"relative flex w-full items-start bg-[#F5F5F7]"}
       initial={{
         opacity: 0,
       }}
@@ -141,9 +143,12 @@ const FeatureScrollVideo = ({
       }}
       ref={containerRef}
     >
-      <div className="sticky top-0 flex h-screen w-full items-center justify-center">
+      <div className="sticky top-0 flex h-screen w-full flex-col items-center justify-center">
+        <h2 className="font-sans-4xl absolute top-0 mx-4 max-w-[20ch] text-center">
+          {headline}
+        </h2>
         <motion.div
-          className="z-10 w-fit"
+          className="relative z-10 w-fit"
           style={{
             rotateY: rotHor,
             rotateX: rotVert,
@@ -156,24 +161,13 @@ const FeatureScrollVideo = ({
           }}
           ref={mouseContainerRef}
         >
-          <div className="absolute inset-0 grid grid-cols-1 grid-rows-1 p-[0.25%] pl-[0.5%] pt-[0.5%]">
-            <div
+          <div className="absolute inset-0 grid grid-cols-1 grid-rows-1 px-[0.3%] py-[0.4%]">
+            <motion.div
               className="relative overflow-hidden"
-              style={{ borderRadius: "4.5%" }}
+              style={{ borderRadius: "2.3vw" }}
             >
-              {/* <motion.div
-                style={{
-                  opacity: glareOpacity,
-                  y: highlightY,
-                  x: highlightX,
-                  background:
-                    "radial-gradient(circle closest-side, rgba(255,104,0,.2), rgba(255,104,0,0))",
-                  transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
-                }}
-                className="absolute inset-0 z-10 h-[200%] w-[200%]"
-              /> */}
               <motion.img
-                src={"/ipad-section/glare-coloured.png"}
+                src={"/ipad-section/glare-edges.png"}
                 style={{
                   minWidth: "300%",
                   opacity: glareOpacity,
@@ -181,9 +175,15 @@ const FeatureScrollVideo = ({
                   x: highlightX,
                   transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
                 }}
-                className="relative inset-0 left-[50%] top-[50%] z-10"
+                className="relative inset-0 left-[50%] top-[50%]"
               />
-            </div>
+            </motion.div>
+          </div>
+          <div className="absolute inset-0 grid grid-cols-1 grid-rows-1 px-[0.6%] py-[0.7%]">
+            <div
+              className="relative overflow-hidden bg-black"
+              style={{ borderRadius: "2.2vw" }}
+            ></div>
           </div>
           <motion.div
             className="absolute inset-0 p-[3%] pr-[3%]"
@@ -197,12 +197,11 @@ const FeatureScrollVideo = ({
             />
           </motion.div>
           <motion.div
-            className="absolute left-[50%] top-[50%] h-fit w-[19vw]"
+            className="absolute left-[50%] top-[50%] h-fit w-[17.5vw]"
             style={{
               x: "-50%",
               y: videoY,
               scale: videoScale,
-              // mixBlendMode: scrollYProgress.get() === 1 ? "screen" : undefined,
             }}
           >
             <video
@@ -220,8 +219,40 @@ const FeatureScrollVideo = ({
               {children}
             </video>
           </motion.div>
+
+          <div className="absolute inset-0 grid grid-cols-1 grid-rows-1 p-[0.3%] pl-[0.5%] pt-[0.5%]">
+            <div
+              className="relative overflow-hidden"
+              style={{ borderRadius: "2.4vw" }}
+            >
+              <motion.img
+                src={"/ipad-section/glare-test.png"}
+                style={{
+                  minWidth: "300%",
+                  opacity: glareOpacity,
+                  y: highlightY,
+                  x: highlightX,
+                  transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
+                }}
+                className="relative inset-0 left-[50%] top-[50%]"
+              />
+            </div>
+          </div>
+
+          {/* <motion.img
+            src={"/ipad-section/glare-bloom.png"}
+            style={{
+              minWidth: "50%",
+              opacity: glareOpacity,
+              x: highlightX,
+              y: "50%",
+              transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
+            }}
+            className="absolute bottom-0 left-[150%]"
+          /> */}
+
           <motion.div
-            className="relative h-fit w-[65vw]"
+            className="relative h-fit w-[60vw]"
             style={{
               zIndex: -1,
               scale: videoScale,
