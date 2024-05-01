@@ -13,16 +13,14 @@ import TimelineSection from "@/components/Sections/TimelineSection/TimelineSecti
 export default function Home() {
   return (
     <main>
-        <HeroSection />
-        <SuperpowerBaselineSection />
-        <ProtocolSection />
-        <TestimonialsSection />
-        <TransitionSection />
-        <TimelineSection />
-        <ScrollingTextLayout/>
-        <EcosystemSection />
+      <HeroSection />
+      <SuperpowerBaselineSection />
+      <ProtocolSection />
+      <TestimonialsSection />
+      <TransitionSection />
+      <TimelineSection />
+      <ScrollingTextLayout />
+      <EcosystemSection />
     </main>
   );
 }
-
-export default App;
