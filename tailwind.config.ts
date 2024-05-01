@@ -8,6 +8,14 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+      '3xl': '2400px',
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -25,6 +33,14 @@ const config: Config = {
           "SFMono-Regular",
         ],
       },
+      borderRadius: {
+        'ipad-inner': '2.5vw',
+        'ipad-inner-md': '3.3vh',
+        'ipad-inner-3xl': '54px',
+        'ipad-outer': '2.6vw',
+        'ipad-outer-md': '3.4vh',
+        'ipad-outer-3xl': '57px',
+      }
     },
   },
   plugins: [

@@ -60,7 +60,7 @@ const FeatureScrollVideo = ({
     if (!isVideoReady) return;
 
     const scrolledOffset = latest - bounds.top;
-    seek(duration * 1.5 * (scrolledOffset / bounds.height));
+    seek(duration * 3 * (scrolledOffset / bounds.height));
   });
 
   // This useEffect stops the video instantaneously after
@@ -73,7 +73,7 @@ const FeatureScrollVideo = ({
     if (!isVideoReady) return;
     videoRef.current.pause();
     const scrolledOffset = scrollY.get() - bounds.top;
-    seek(duration * 1.5 * (scrolledOffset / bounds.height));
+    seek(duration * 3 * (scrolledOffset / bounds.height));
   }, [
     bounds.height,
     bounds.top,
@@ -94,7 +94,7 @@ const FeatureScrollVideo = ({
   const videoScale = useTransform(scrollYProgress, [0.5, 1], [10, 1], {
     ease: cubicBezier(0.16, 1, 0.3, 1),
   });
-  const videoY = useTransform(scrollYProgress, [0.5, 0.7], ["-50%", "0%"], {
+  const videoY = useTransform(scrollYProgress, [0.5, 0.7], ["-50%", "-20%"], {
     ease: cubicBezier(0.16, 1, 0.3, 1),
   });
   const screenOpacity = useTransform(scrollYProgress, [0.7, 1], [0, 1], {
@@ -144,7 +144,7 @@ const FeatureScrollVideo = ({
       ref={containerRef}
     >
       <div className="sticky top-0 flex h-screen w-full flex-col items-center justify-center">
-        <h2 className="font-sans-4xl absolute top-0 mx-4 max-w-[20ch] text-center">
+        <h2 className="3xl:font-sans-3xl 3xl:translate-y-[-600px] font-sans-2xl absolute mx-4 max-w-[20ch] translate-y-[-30vw] text-center md:translate-y-[-40vh]">
           {headline}
         </h2>
         <motion.div
@@ -163,8 +163,8 @@ const FeatureScrollVideo = ({
         >
           <div className="absolute inset-0 grid grid-cols-1 grid-rows-1 px-[0.3%] py-[0.4%]">
             <motion.div
-              className="relative overflow-hidden"
-              style={{ borderRadius: "2.3vw" }}
+              className="rounded-ipad-outer md:rounded-ipad-outer-md 3xl:rounded-ipad-outer-3xl relative overflow-hidden"
+              style={{ scale: videoScale }}
             >
               <motion.img
                 src={"/ipad-section/glare-edges.png"}
@@ -175,29 +175,32 @@ const FeatureScrollVideo = ({
                   x: highlightX,
                   transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
                 }}
-                className="relative inset-0 left-[50%] top-[50%]"
+                className="relative inset-0 left-[100%] top-[50vw]"
               />
             </motion.div>
           </div>
+          <div className="absolute inset-0 z-10 overflow-hidden rounded-full p-[5%]">
+            <div className="h-full w-full bg-black" />
+          </div>
           <div className="absolute inset-0 grid grid-cols-1 grid-rows-1 px-[0.6%] py-[0.7%]">
-            <div
-              className="relative overflow-hidden bg-black"
-              style={{ borderRadius: "2.2vw" }}
-            ></div>
+            <motion.div
+              className="rounded-ipad-inner md:rounded-ipad-inner-md 3xl:rounded-ipad-inner-3xl relative overflow-hidden bg-black"
+              style={{ scale: videoScale }}
+            ></motion.div>
           </div>
           <motion.div
-            className="absolute inset-0 p-[3%] pr-[3%]"
+            className="absolute inset-0 z-20 p-[3%] pr-[3%]"
             style={{ opacity: screenOpacity, scale: videoScale }}
           >
             <Image
-              src={"/ipad-section/screen-1-new.png"} //change for each screen selection
+              src={"/ipad-section/screen-1.png"} //change for each screen selection
               alt={""}
               width={3000}
               height={0}
             />
           </motion.div>
           <motion.div
-            className="absolute left-[50%] top-[50%] h-fit w-[17.5vw]"
+            className="absolute left-[50%] top-[50%] z-10 h-fit w-[50%]"
             style={{
               x: "-50%",
               y: videoY,
@@ -221,12 +224,14 @@ const FeatureScrollVideo = ({
           </motion.div>
 
           <div className="absolute inset-0 grid grid-cols-1 grid-rows-1 p-[0.3%] pl-[0.5%] pt-[0.5%]">
-            <div
-              className="relative overflow-hidden"
-              style={{ borderRadius: "2.4vw" }}
+            <motion.div
+              className="rounded-ipad-inner md:rounded-ipad-inner-md 3xl:rounded-ipad-inner-3xl relative overflow-hidden"
+              style={{
+                scale: videoScale,
+              }}
             >
               <motion.img
-                src={"/ipad-section/glare-test.png"}
+                src={"/ipad-section/glare.png"}
                 style={{
                   minWidth: "300%",
                   opacity: glareOpacity,
@@ -234,32 +239,20 @@ const FeatureScrollVideo = ({
                   x: highlightX,
                   transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
                 }}
-                className="relative inset-0 left-[50%] top-[50%]"
+                className="relative inset-0 left-[100%] top-[50vw]"
               />
-            </div>
+            </motion.div>
           </div>
 
-          {/* <motion.img
-            src={"/ipad-section/glare-bloom.png"}
-            style={{
-              minWidth: "50%",
-              opacity: glareOpacity,
-              x: highlightX,
-              y: "50%",
-              transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
-            }}
-            className="absolute bottom-0 left-[150%]"
-          /> */}
-
           <motion.div
-            className="relative h-fit w-[60vw]"
+            className="3xl:w-[1450px] relative h-fit w-[70vw] md:w-[90vh]"
             style={{
               zIndex: -1,
               scale: videoScale,
             }}
           >
             <Image
-              src={"/ipad-section/new-ipad.png"}
+              src={"/ipad-section/ipad.png"}
               className=""
               alt={""}
               width={3000}
