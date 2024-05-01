@@ -41,8 +41,6 @@ const BiomarkerBanner = ({ isVisible = true }: Props) => {
     () => shuffledList.slice(6, shuffledList.length),
     [shuffledList],
   );
-  console.log(random);
-  console.log(list1);
   const listCombined = [list1, list2];
   const inViewDelay = 0.6;
 
@@ -73,8 +71,6 @@ const BiomarkerBanner = ({ isVisible = true }: Props) => {
                   simplex.noise(random * index * innerIndex, 0) * colors.length,
                 ),
               );
-
-              console.log(randomValue);
 
               const randomColor =
                 innerIndex % 2 === 0 ? colors[randomValue] : "#000000";

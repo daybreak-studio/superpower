@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useScrollVideoInfo } from "./ScrollVideo";
-import { timeStringToMilliseconds } from "./timeStringToMilliseconds";
+import { timeStringToSeconds } from "./timeStringToSeconds";
 import { useTransform } from "framer-motion";
 import ProgressProvider from "../ProgressProvider/ProgressProvider";
 
@@ -12,10 +12,12 @@ type Props = {
   exit: TimecodeOrProgressUnit;
 };
 
-const parseMillisec = (t: TimecodeOrProgressUnit, duration: number) => {
+const parseSeconds = (t: TimecodeOrProgressUnit, duration: number) => {
   if (typeof t === "string") {
-    const result = timeStringToMilliseconds(t);
-    if (!result) throw "Cannot convert to milliseconds from time string";
+    const result = timeStringToSeconds(t);
+    if (result === undefined || result === null)
+      throw "Cannot convert to seconds from time string";
+
     return result;
   }
   if (typeof t === "number") {
@@ -27,11 +29,12 @@ const parseMillisec = (t: TimecodeOrProgressUnit, duration: number) => {
 const ScrollVideoAnnotation = ({ children, enter, exit }: Props) => {
   const { currentTime, duration } = useScrollVideoInfo();
   const beginAtMillisec = useMemo(
-    () => parseMillisec(enter, duration),
+    () => parseSeconds(enter, duration),
     [enter, duration],
   );
+
   const endAtMillisec = useMemo(
-    () => parseMillisec(exit, duration),
+    () => parseSeconds(exit, duration),
     [exit, duration],
   );
 

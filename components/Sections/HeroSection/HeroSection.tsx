@@ -37,8 +37,10 @@ const HeroSection = (props: Props) => {
               },
             ]}
           >
-            <ScrollVideoAnnotation enter={0.1} exit={0.2}>
-              <SlideInText>This is literally so crazy omg</SlideInText>
+            <ScrollVideoAnnotation enter={"0"} exit={"0:20"}>
+              <SlideInText>
+                This is literally so crazy omg hahhahaha
+              </SlideInText>
             </ScrollVideoAnnotation>
             <ScrollVideoAnnotation enter={0.2} exit={0.3}>
               <SlideInText>This is literally so crazy omg</SlideInText>

@@ -64,6 +64,10 @@ const ScrollVideo = ({
     onVideoReady?.();
   }, [isVideoReady, onVideoReady]);
 
+  useEffect(() => {
+    console.log(videoRef.current.buffered);
+  }, [videoRef]);
+
   const isLowPowerMode = useIsLowPowerMode(videoRef);
   useEffect(() => {
     if (isLowPowerMode) onLowPowerModeDetected?.();
