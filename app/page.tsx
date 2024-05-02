@@ -8,20 +8,20 @@ import TestimonialsSection from "@/components/Sections/TestimonialsSection/Testi
 import TransitionSection from "@/components/Sections/TransitionSection/TransitionSectionWrapper";
 import EcosystemSection from "@/components/Sections/EcosystemSection/EcosystemLayout";
 import TimelineSection from "@/components/Sections/TimelineSection/TimelineSection";
-
+import ScrollingTextLayout from "@/components/Sections/ScrollingTextSection/ScrollingTextLayout";
 
 export default function Home() {
   return (
     <main>
-        <HeroSection />
-        <FeatureOverviewSection />
-        <SuperpowerBaselineSection />
-        <ProtocolSection />
-        <TestimonialsSection />
-        <TransitionSection />
-        <TimelineSection />
-        <ScrollingTextLayout/>
-        <EcosystemSection />
+      <HeroSection />
+      <FeatureOverviewSection />
+      <SuperpowerBaselineSection />
+      <ProtocolSection />
+      <TestimonialsSection />
+      <TransitionSection />
+      <TimelineSection />
+      <ScrollingTextLayout />
+      <EcosystemSection />
     </main>
   );
 }
