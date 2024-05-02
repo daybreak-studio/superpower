@@ -20,6 +20,8 @@ import { AnimationConfig } from "../AnimationConfig";
 
 type Props = {
   children: React.ReactNode;
+  onChange?: (currentPage: number) => void;
+  currentPage: number;
 };
 
 const PageSelectorContext = createContext({
@@ -35,8 +37,12 @@ const PageSelectorContext = createContext({
   setCurrentColor: (color: string) => {},
 });
 
-const FloatingPageSelector = ({ children }: Props) => {
-  const [currentPage, setCurrentPage] = useState(0);
+const FloatingPageSelector = ({
+  children,
+  onChange,
+  currentPage: suggestedCurrentPage = 0,
+}: Props) => {
+  const [currentPage, setCurrentPage] = useState(suggestedCurrentPage);
   const [containerRef, containerBounds] = useBounds<HTMLDivElement>([]);
   const [currentBottonBounds, setCurrentButtonBounds] = useState({
     offsetX: 0,
@@ -44,6 +50,10 @@ const FloatingPageSelector = ({ children }: Props) => {
     width: 0,
     height: 0,
   });
+
+  useEffect(() => {
+    setCurrentPage(suggestedCurrentPage);
+  }, [suggestedCurrentPage]);
 
   const [currentColor, setCurrentColor] = useState("#000");
 
@@ -84,6 +94,10 @@ const FloatingPageSelector = ({ children }: Props) => {
     xOffset,
     currentColor,
   ]);
+
+  useEffect(() => {
+    onChange?.(currentPage);
+  }, [currentPage, onChange]);
 
   // const x = useTransform((highlightAnim) => Math.round);
 
@@ -159,8 +173,8 @@ const FloatingPageSelectorItem = ({
   const isCurrent = currentPage === pageIndex;
 
   useEffect(() => {
-    if (pageIndex === 1) {
-      setCurrentPage(1);
+    if (pageIndex === 0) {
+      setCurrentPage(0);
       setCurrentColor(color);
       setCurrentButtonBounds({
         offsetX: bounds.x,

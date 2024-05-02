@@ -8,28 +8,31 @@ import {
 } from "../../FloatingPageSelector/FloatingPageSelector";
 import { motion } from "framer-motion";
 
-type Props = {};
+type Props = {
+  onChange: (currentPage: number) => void;
+  currentPage: number;
+};
 
-const FeatureOverviewNav = (props: Props) => {
+const FeatureOverviewNav = ({ onChange, currentPage }: Props) => {
   return (
-    <FloatingPageSelector>
-      <FloatingPageSelectorItem pageIndex={1} color={"#FF68DE"}>
+    <FloatingPageSelector onChange={onChange} currentPage={currentPage}>
+      <FloatingPageSelectorItem pageIndex={0} color={"#FF68DE"}>
         <IconHome />
         <div className="hidden md:block">Home</div>
       </FloatingPageSelectorItem>
-      <FloatingPageSelectorItem pageIndex={2} color={"#FC5F2B"}>
+      <FloatingPageSelectorItem pageIndex={1} color={"#FC5F2B"}>
         <IconService />
         <div className="hidden md:block">Services</div>
       </FloatingPageSelectorItem>
-      <FloatingPageSelectorItem pageIndex={3} color={"#11C182"}>
+      <FloatingPageSelectorItem pageIndex={2} color={"#11C182"}>
         <IconActionPlan />
         <div className="hidden md:block">Action Plan</div>
       </FloatingPageSelectorItem>
-      <FloatingPageSelectorItem pageIndex={4} color={"#F7861E"}>
+      <FloatingPageSelectorItem pageIndex={3} color={"#F7861E"}>
         <IconData />
         <div className="hidden md:block">Data</div>
       </FloatingPageSelectorItem>
-      <FloatingPageSelectorItem pageIndex={5} color={"#3F3F46"}>
+      <FloatingPageSelectorItem pageIndex={4} color={"#3F3F46"}>
         <motion.div
           className="flex flex-row"
           animate={{ filter: "invert(var(--invert-color))" }}
