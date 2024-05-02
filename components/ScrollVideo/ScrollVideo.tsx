@@ -1,17 +1,8 @@
-import React, {
-  MutableRefObject,
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { createContext, useContext, useEffect } from "react";
 import { useVideoInfo } from "./useVideoInfo";
 import {
   MotionValue,
   motion,
-  useAnimationFrame,
   useMotionValue,
   useMotionValueEvent,
   useScroll,
@@ -19,8 +10,6 @@ import {
 } from "framer-motion";
 import { useVideoSeeker } from "./useVideoSeeker";
 import { useBounds } from "@/hooks/useBounds";
-import { AnimationClip } from "three";
-import { AnimationConfig } from "../AnimationConfig";
 import { useIsLowPowerMode } from "@/hooks/useIsLowPowerMode";
 
 type Props = {
@@ -63,10 +52,6 @@ const ScrollVideo = ({
   useEffect(() => {
     onVideoReady?.();
   }, [isVideoReady, onVideoReady]);
-
-  useEffect(() => {
-    console.log(videoRef.current.buffered);
-  }, [videoRef]);
 
   const isLowPowerMode = useIsLowPowerMode(videoRef);
   useEffect(() => {
