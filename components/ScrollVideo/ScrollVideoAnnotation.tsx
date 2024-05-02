@@ -45,7 +45,7 @@ const ScrollVideoAnnotation = ({ children, enter, exit }: Props) => {
   );
 
   return (
-    <div className="fixed inset-0 cursor-none">
+    <div className="pointer-events-none fixed inset-0">
       <ProgressProvider progress={progress}>{children}</ProgressProvider>
     </div>
   );
