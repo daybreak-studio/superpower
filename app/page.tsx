@@ -21,7 +21,7 @@ export default function Home() {
       <TransitionSection />
       <TimelineSection />
       <ScrollingTextLayout />
-      <EcosystemSection />
+      {/* <EcosystemSection /> */}
     </main>
   );
 }

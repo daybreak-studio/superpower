@@ -12,6 +12,8 @@ import { useIsLowPowerMode } from "@/hooks/useIsLowPowerMode";
 import FeatureOverviewNav from "./FeatureOverviewNav";
 import RotatingTablet from "./RotatingTablet";
 import { useVideoScrubber } from "@/components/ScrollVideo/useVideoScrubber";
+import { useMotionValueSwitch } from "@/hooks/useMotionValueSwitch";
+import { AnimationConfig } from "@/components/AnimationConfig";
 
 type Props = {
   playbackConst: number; // higher it is, the slower it plays
@@ -19,6 +21,14 @@ type Props = {
   headline: string;
   onLowPowerModeDetected?: () => void;
 };
+
+const SCREENS = [
+  { src: "/ipad-section/screen-1.png" },
+  { src: "/ipad-section/screen-2.png" },
+  { src: "/ipad-section/screen-3.png" },
+  { src: "/ipad-section/screen-4.png" },
+  { src: "/ipad-section/screen-5.png" },
+];
 
 const FeatureScrollVideo = ({
   playbackConst,
@@ -60,6 +70,19 @@ const FeatureScrollVideo = ({
     ease: cubicBezier(0.16, 1, 0.3, 1),
   });
 
+  const canInteractWithTablet = useMotionValueSwitch(
+    screenOpacity,
+    (latest) => latest >= 0.8,
+  );
+
+  const [currentPage, setCurrentPage] = useState(0);
+
+  useEffect(() => {
+    if (!canInteractWithTablet) {
+      setCurrentPage(0);
+    }
+  }, [canInteractWithTablet]);
+
   return (
     <motion.div
       className={"relative flex w-full items-start bg-[#F5F5F7]"}
@@ -75,23 +98,58 @@ const FeatureScrollVideo = ({
       ref={containerRef}
     >
       <div className="sticky top-0 flex h-screen w-full flex-col items-center justify-center">
-        <h2 className="3xl:font-sans-3xl 3xl:translate-y-[-600px] font-sans-2xl absolute mx-4 max-w-[20ch] translate-y-[-30vw] text-center md:translate-y-[-40vh]">
+        <motion.h2
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: canInteractWithTablet ? 1 : 0,
+            transition: {
+              duration: canInteractWithTablet
+                ? AnimationConfig.VERY_SLOW
+                : AnimationConfig.NORMAL,
+              ease: "linear",
+            },
+          }}
+          className="] font-sans-2xl absolute mx-4 my-12 max-w-[20ch] translate-y-[-30vw] text-center md:translate-y-[-40vh]"
+        >
           {headline}
-        </h2>
-        <RotatingTablet scale={videoScale} glareOpacity={glareOpacity}>
+        </motion.h2>
+        <RotatingTablet
+          scale={videoScale}
+          glareOpacity={glareOpacity}
+          canInteract={canInteractWithTablet}
+        >
           <motion.div
-            className="absolute inset-0 z-20 p-[3%] pr-[3%]"
+            className="absolute inset-0 z-20 overflow-hidden p-[3%] pr-[3%]"
             style={{ opacity: screenOpacity, scale: videoScale }}
           >
-            <Image
-              src={"/ipad-section/screen-1.png"} //change for each screen selection
-              alt={""}
-              width={3000}
-              height={0}
-            />
+            <div className="relative">
+              {SCREENS.map(({ src }, index) => {
+                return (
+                  <motion.div key={index} className="absolute inset-0">
+                    <motion.div
+                      animate={{
+                        opacity: currentPage === index ? 1 : 0,
+                      }}
+                    >
+                      <Image
+                        className=""
+                        src={src} //change for each screen selection
+                        alt={""}
+                        width={3000}
+                        height={0}
+                      />
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </motion.div>
           <motion.div
             className="absolute left-[50%] top-[50%] z-10 h-fit w-[50%]"
+            animate={{
+              // only exist on home page
+              opacity: currentPage === 0 ? 1 : 0,
+            }}
             style={{
               x: "-50%",
               y: videoY,
@@ -114,9 +172,26 @@ const FeatureScrollVideo = ({
             </video>
           </motion.div>
         </RotatingTablet>
-        <div className="mt-12">
-          <FeatureOverviewNav />
-        </div>
+        <motion.div
+          className="absolute bottom-16"
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: canInteractWithTablet ? 1 : 0,
+            y: canInteractWithTablet ? 0 : 30,
+            transition: {
+              duration: canInteractWithTablet
+                ? AnimationConfig.VERY_SLOW
+                : AnimationConfig.NORMAL,
+              ease: AnimationConfig.EASING,
+              delay: canInteractWithTablet ? AnimationConfig.NORMAL : 0,
+            },
+          }}
+        >
+          <FeatureOverviewNav
+            currentPage={currentPage}
+            onChange={setCurrentPage}
+          />
+        </motion.div>
       </div>
     </motion.div>
   );

@@ -6,14 +6,21 @@ import { useWindowDimension } from "@/hooks/useWindowDimension";
 import { MotionValue, motion, useInView, useTransform } from "framer-motion";
 import React, { MutableRefObject, useRef } from "react";
 import Image from "next/image";
+import { useInactiveMotionValue } from "@/hooks/useInactiveMotionValue";
 
 type Props = {
   children: React.ReactNode;
   scale: MotionValue;
   glareOpacity: MotionValue;
+  canInteract: boolean;
 };
 
-const RotatingTablet = ({ children, scale, glareOpacity }: Props) => {
+const RotatingTablet = ({
+  children,
+  scale,
+  glareOpacity,
+  canInteract,
+}: Props) => {
   //mouse interaction
   const mouseContainerRef = useRef() as MutableRefObject<HTMLDivElement>;
   const isSectionInView = useInView(mouseContainerRef);
@@ -22,9 +29,12 @@ const RotatingTablet = ({ children, scale, glareOpacity }: Props) => {
 
   const windowDim = useWindowDimension();
 
+  const offsetNormX = useInactiveMotionValue(offsetNorm.x, canInteract, 0);
+  const offsetNormY = useInactiveMotionValue(offsetNorm.y, canInteract, 0);
+
   const rotRange = 10;
-  const rotHor = useTransform(offsetNorm.x, [-1, 1], [-rotRange, rotRange]);
-  const rotVert = useTransform(offsetNorm.y, [-1, 1], [rotRange, -rotRange]);
+  const rotHor = useTransform(offsetNormX, [-1, 1], [-rotRange, rotRange]);
+  const rotVert = useTransform(offsetNormY, [-1, 1], [rotRange, -rotRange]);
 
   const highlightRange = windowDim.width * 0.3;
   const highlightX = useTransform(
@@ -56,7 +66,7 @@ const RotatingTablet = ({ children, scale, glareOpacity }: Props) => {
     >
       <div className="absolute inset-0 grid grid-cols-1 grid-rows-1 px-[0.3%] py-[0.4%]">
         <motion.div
-          className="rounded-ipad-outer md:rounded-ipad-outer-md 3xl:rounded-ipad-outer-3xl relative overflow-hidden"
+          className="relative overflow-hidden rounded-ipad-outer md:rounded-ipad-outer-md 3xl:rounded-ipad-outer-3xl"
           style={{ scale: scale }}
         >
           <motion.img
@@ -78,14 +88,14 @@ const RotatingTablet = ({ children, scale, glareOpacity }: Props) => {
       </div>
       <div className="absolute inset-0 grid grid-cols-1 grid-rows-1 px-[0.6%] py-[0.7%]">
         <motion.div
-          className="rounded-ipad-inner md:rounded-ipad-inner-md 3xl:rounded-ipad-inner-3xl relative overflow-hidden bg-black"
+          className="relative overflow-hidden rounded-ipad-inner bg-black md:rounded-ipad-inner-md 3xl:rounded-ipad-inner-3xl"
           style={{ scale: scale }}
         ></motion.div>
       </div>
       {children}
       <div className="absolute inset-0 grid grid-cols-1 grid-rows-1 p-[0.3%] pl-[0.5%] pt-[0.5%]">
         <motion.div
-          className="rounded-ipad-inner md:rounded-ipad-inner-md 3xl:rounded-ipad-inner-3xl relative overflow-hidden"
+          className="relative overflow-hidden rounded-ipad-inner md:rounded-ipad-inner-md 3xl:rounded-ipad-inner-3xl"
           style={{
             scale: scale,
           }}
@@ -105,7 +115,7 @@ const RotatingTablet = ({ children, scale, glareOpacity }: Props) => {
       </div>
 
       <motion.div
-        className="3xl:w-[1450px] relative h-fit w-[70vw] md:w-[90vh]"
+        className="relative h-fit w-[70vw] max-w-[calc(90vw-4em)] md:w-[90vh]"
         style={{
           zIndex: -1,
           scale: scale,
