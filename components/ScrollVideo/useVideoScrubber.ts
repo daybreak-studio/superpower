@@ -8,6 +8,10 @@ import { useVideoInfo } from "./useVideoInfo";
 import { useVideoSeeker } from "./useVideoSeeker";
 import { useEffect } from "react";
 
+/**
+ * This hook allows scrubbing a video based on a motion value;
+ * @returns
+ */
 export function useVideoScrubber() {
   //scroll video
   const videoProgress = useMotionValue(0);

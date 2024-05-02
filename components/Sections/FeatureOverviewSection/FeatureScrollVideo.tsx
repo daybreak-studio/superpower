@@ -2,28 +2,13 @@ import React, { MutableRefObject, useEffect, useRef, useState } from "react";
 
 import Image from "next/image";
 import {
-  usePointerOffset,
-  usePointerOffsetNormalized,
-} from "@/hooks/usePointerInfo";
-import { useWindowDimension } from "@/hooks/useWindowDimension";
-
-import { useVideoInfo } from "../../ScrollVideo/useVideoInfo";
-import {
   motion,
-  useAnimationFrame,
   useMotionValueEvent,
   useScroll,
-  MotionValue,
-  useInView,
   useTransform,
   cubicBezier,
 } from "framer-motion";
-import { useVideoSeeker } from "../../ScrollVideo/useVideoSeeker";
-import { useBounds } from "@/hooks/useBounds";
-import { AnimationClip } from "three";
-import { AnimationConfig } from "../../AnimationConfig";
 import { useIsLowPowerMode } from "@/hooks/useIsLowPowerMode";
-import { clamp } from "three/src/math/MathUtils.js";
 import FeatureOverviewNav from "./FeatureOverviewNav";
 import RotatingTablet from "./RotatingTablet";
 import { useVideoScrubber } from "@/components/ScrollVideo/useVideoScrubber";
@@ -54,10 +39,8 @@ const FeatureScrollVideo = ({
   }, [isLowPowerMode, onLowPowerModeDetected]);
 
   //scroll transforms
-
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    // offset: ["start end", "end end"],
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
