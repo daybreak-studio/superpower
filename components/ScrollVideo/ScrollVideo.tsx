@@ -1,16 +1,19 @@
-import React, { createContext, useContext, useEffect } from "react";
-import { useVideoInfo } from "./useVideoInfo";
+import React, {
+  MutableRefObject,
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+} from "react";
 import {
   MotionValue,
   motion,
   useMotionValue,
   useMotionValueEvent,
   useScroll,
-  useTransform,
 } from "framer-motion";
-import { useVideoSeeker } from "./useVideoSeeker";
-import { useBounds } from "@/hooks/useBounds";
 import { useIsLowPowerMode } from "@/hooks/useIsLowPowerMode";
+import { useVideoScrubber } from "./useVideoScrubber";
 
 type Props = {
   playbackConst: number; // higher it is, the slower it plays
@@ -35,19 +38,19 @@ const ScrollVideo = ({
   onVideoReady,
   onLowPowerModeDetected,
 }: Props) => {
-  const { videoRef, duration, isVideoReady } = useVideoInfo();
-  const seek = useVideoSeeker({ videoRef, isVideoReady });
+  const { videoRef, duration, isVideoReady, videoProgress } =
+    useVideoScrubber();
 
   const videoScrollHeight = playbackConst * duration;
   const currentTime = useMotionValue(0);
-  const videoProgress = useTransform(
-    currentTime,
-    (latest) => latest / duration,
-  );
+  const containerRef = useRef() as MutableRefObject<HTMLDivElement>;
 
-  const [containerRef, bounds] = useBounds<HTMLDivElement>([duration]);
+  const { scrollYProgress } = useScroll({ target: containerRef });
 
-  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    videoProgress.set(latest);
+    currentTime.set(latest * duration);
+  });
 
   useEffect(() => {
     onVideoReady?.();
@@ -57,36 +60,6 @@ const ScrollVideo = ({
   useEffect(() => {
     if (isLowPowerMode) onLowPowerModeDetected?.();
   }, [isLowPowerMode, onLowPowerModeDetected]);
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (!isVideoReady) return;
-
-    const scrolledOffset = latest - bounds.top;
-    const targetTimecode = duration * (scrolledOffset / bounds.height);
-    seek(targetTimecode);
-    currentTime.set(targetTimecode);
-  });
-
-  // This useEffect stops the video instantaneously after
-  // the page is loaded. This is done to counteract the
-  // necessary "autoPlay" setting on the video play.
-  //
-  // Autoplay is turned on to trick the browser loading
-  // the video without the user interacting with the video.
-  useEffect(() => {
-    if (!isVideoReady) return;
-    videoRef.current.pause();
-    const scrolledOffset = scrollY.get() - bounds.top;
-    seek(duration * (scrolledOffset / bounds.height));
-  }, [
-    bounds.height,
-    bounds.top,
-    duration,
-    isVideoReady,
-    scrollY,
-    seek,
-    videoRef,
-  ]);
 
   return (
     <motion.div
@@ -119,7 +92,7 @@ const ScrollVideo = ({
         ))}
       </video>
       <ScrollVideoContext.Provider
-        value={{ duration, progress: videoProgress, currentTime }}
+        value={{ duration, progress: scrollYProgress, currentTime }}
       >
         {children}
       </ScrollVideoContext.Provider>

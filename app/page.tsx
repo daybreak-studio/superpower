@@ -4,7 +4,7 @@ import Footer from "@/components/Sections/FooterSection/Footer";
 import HeroSection from "@/components/Sections/HeroSection/HeroSection";
 import ProtocolSection from "@/components/Sections/ProtocolSection/ProtocolSection";
 import SuperpowerBaselineSection from "@/components/Sections/SuperpowerBaselineSection/SuperpowerBaselineSection";
-import FeatureOverviewSection from "@/components/FeatureOverviewSection/FeatureOverviewSection";
+import FeatureOverviewSection from "@/components/Sections/FeatureOverviewSection/FeatureOverviewSection";
 import TestimonialsSection from "@/components/Sections/TestimonialsSection/TestimonialsWrapper";
 import TransitionSection from "@/components/Sections/TransitionSection/TransitionSectionWrapper";
 import EcosystemSection from "@/components/Sections/EcosystemSection/EcosystemLayout";
