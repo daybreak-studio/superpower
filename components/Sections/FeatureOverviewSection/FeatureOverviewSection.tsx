@@ -1,7 +1,8 @@
 "use client";
 
-import FeatureScrollVideo from "@/components/ScrollVideo/FeatureScrollVideo";
+import FeatureScrollVideo from "@/components/Sections/FeatureOverviewSection/FeatureScrollVideo";
 import React, { MutableRefObject, useRef, useState } from "react";
+import FeatureOverviewNav from "./FeatureOverviewNav";
 
 type Props = {};
 
@@ -22,6 +23,7 @@ const FeatureOverviewSection = (props: Props) => {
           />
         </FeatureScrollVideo>
       )}
+
       {isLowPowerMode && <div></div>}
     </section>
   );
