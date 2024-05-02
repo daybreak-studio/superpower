@@ -23,6 +23,7 @@ import { useBounds } from "@/hooks/useBounds";
 import { AnimationClip } from "three";
 import { AnimationConfig } from "../AnimationConfig";
 import { useIsLowPowerMode } from "@/hooks/useIsLowPowerMode";
+import { clamp } from "three/src/math/MathUtils.js";
 
 type Props = {
   playbackConst: number; // higher it is, the slower it plays
@@ -60,7 +61,9 @@ const FeatureScrollVideo = ({
     if (!isVideoReady) return;
 
     const scrolledOffset = latest - bounds.top;
-    seek(duration * 3 * (scrolledOffset / bounds.height));
+    const targetTime = duration * 3 * (scrolledOffset / bounds.height);
+    const clampedTargetTime = clamp(targetTime, 0, duration - 1);
+    seek(clampedTargetTime);
   });
 
   // This useEffect stops the video instantaneously after
@@ -91,10 +94,10 @@ const FeatureScrollVideo = ({
     // offset: ["start end", "end end"],
   });
 
-  const videoScale = useTransform(scrollYProgress, [0.5, 1], [10, 1], {
+  const videoScale = useTransform(scrollYProgress, [0.4, 1], [10, 1], {
     ease: cubicBezier(0.16, 1, 0.3, 1),
   });
-  const videoY = useTransform(scrollYProgress, [0.5, 0.7], ["-50%", "-20%"], {
+  const videoY = useTransform(scrollYProgress, [0.4, 0.7], ["-50%", "-20%"], {
     ease: cubicBezier(0.16, 1, 0.3, 1),
   });
   const screenOpacity = useTransform(scrollYProgress, [0.7, 1], [0, 1], {
