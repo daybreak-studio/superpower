@@ -5,3 +5,7 @@
 html {
   @apply text-zinc-900;
 }
+
+body {
+  overscroll-behavior: none;
+}
