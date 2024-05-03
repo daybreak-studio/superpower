@@ -32,10 +32,11 @@ const HeroMobileLayout = (props: Props) => {
   return (
     <motion.div
       initial={{
-        opacity: 1,
+        opacity: 0,
       }}
       style={{
         // opacity: sectionOpacity,
+        opacity: 1,
         filter: blurString,
       }}
       ref={containerRef}

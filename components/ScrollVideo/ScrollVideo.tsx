@@ -8,6 +8,7 @@ import React, {
 import {
   MotionValue,
   motion,
+  useAnimationFrame,
   useMotionValue,
   useMotionValueEvent,
   useScroll,
@@ -21,6 +22,7 @@ type Props = {
   onVideoReady?: () => void;
   onLowPowerModeDetected?: () => void;
   sources: { type: string; src: string }[];
+  offset?: number;
 };
 
 const ScrollVideoContext = createContext({
@@ -37,9 +39,10 @@ const ScrollVideo = ({
   sources,
   onVideoReady,
   onLowPowerModeDetected,
+  offset = 0,
 }: Props) => {
   const { videoRef, duration, isVideoReady, videoProgress } =
-    useVideoScrubber();
+    useVideoScrubber(offset);
 
   const videoScrollHeight = playbackConst * duration;
   const currentTime = useMotionValue(0);

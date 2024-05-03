@@ -6,23 +6,29 @@ import {
 } from "framer-motion";
 import { useVideoInfo } from "./useVideoInfo";
 import { useVideoSeeker } from "./useVideoSeeker";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 /**
  * This hook allows scrubbing a video based on a motion value;
+ * startAt determines the frames when beginning of the video is.
  * @returns
  */
-export function useVideoScrubber() {
+export function useVideoScrubber(startAt: number = 0) {
   //scroll video
   const videoProgress = useMotionValue(0);
 
   const { videoRef, duration, isVideoReady } = useVideoInfo();
 
+  const durationClamped = useMemo(
+    () => duration - startAt,
+    [duration, startAt],
+  );
+
   const seek = useVideoSeeker({ videoRef, isVideoReady });
   useMotionValueEvent(videoProgress, "change", (latest) => {
     if (!isVideoReady) return;
-    const targetTime = duration * latest;
-    const clampedTargetTime = clamp(0, duration - 1, targetTime);
+    const targetTime = (durationClamped - startAt) * latest + startAt;
+    const clampedTargetTime = clamp(0, durationClamped - 1, targetTime);
     seek(clampedTargetTime);
   });
 
@@ -35,10 +41,10 @@ export function useVideoScrubber() {
   useEffect(() => {
     if (!isVideoReady) return;
     videoRef.current.pause();
-    const targetTime = duration * videoProgress.get();
-    const clampedTargetTime = clamp(0, duration - 1, targetTime);
+    const targetTime = durationClamped * videoProgress.get() + startAt;
+    const clampedTargetTime = clamp(0, durationClamped - 1, targetTime);
     seek(clampedTargetTime);
-  }, [duration, isVideoReady, videoProgress, seek, videoRef]);
+  }, [durationClamped, isVideoReady, videoProgress, seek, videoRef, startAt]);
 
   return { videoRef, duration, isVideoReady, videoProgress };
 }
