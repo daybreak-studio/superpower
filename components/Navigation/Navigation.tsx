@@ -47,12 +47,13 @@ const Navigation = (props: Props) => {
     <nav
       className="fixed left-0 top-0 z-[99] flex h-auto w-full items-center justify-center sm:px-12"
       style={{
-        opacity: scrollDir === "scrolling down" ? 0 : 1,
+        // opacity: scrollDir === "scrolling down" ? 0 : 1,
+        opacity: 1,
         transition: "opacity 0.3s ease-in-out",
       }}
     >
       <div
-        className="relative top-0 flex h-14 w-full max-w-[1600px] items-center justify-center bg-[rgba(0,0,0,0.4)] p-2 pl-3 backdrop-blur sm:top-5 sm:p-3 sm:pl-5"
+        className="relative flex h-14 w-full max-w-[1600px] items-center justify-center p-2 pl-3 sm:p-3 sm:pl-5"
         style={{
           opacity: scrolledPast1000 == true ? 1 : 0,
           pointerEvents: scrolledPast1000 == true ? "auto" : "none",
@@ -63,11 +64,11 @@ const Navigation = (props: Props) => {
           <img src="/logo.svg" alt="logo" />
         </div>
         <div className="font-mono-xs flex h-full w-full items-center justify-end gap-4 text-[10px] tracking-tighter sm:gap-8">
-          <ul className="flex items-center justify-between gap-4 text-[rgba(255,255,255,0.5)] sm:gap-8">
+          <ul className="flex items-center justify-between gap-4 text-[rgba(134,134,134,1)] sm:gap-8">
             <li>Manifesto</li>
             <li>Log in</li>
           </ul>
-          <button className="h-full w-auto bg-white px-2 uppercase text-black sm:px-4">
+          <button className="h-full w-auto bg-neutral-300 px-2 uppercase text-black sm:px-4">
             Join Waitlist
           </button>
         </div>
