@@ -142,7 +142,10 @@ const HeroSection = (props: Props) => {
         <ScrollVideo
           offset={timeStringToSeconds("0:0")}
           playbackConst={400}
-          onVideoReady={() => setIsVideoLoaded(true)}
+          onCanPlayThough={() => {
+            console.log("video can be played");
+            setIsVideoLoaded(true);
+          }}
           onLowPowerModeDetected={() => setIsLowPowerMode(true)}
           sources={[
             // {
