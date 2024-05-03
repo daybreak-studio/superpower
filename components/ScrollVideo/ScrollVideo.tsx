@@ -4,6 +4,7 @@ import React, {
   useContext,
   useEffect,
   useRef,
+  useState,
 } from "react";
 import {
   MotionValue,
@@ -15,6 +16,7 @@ import {
 } from "framer-motion";
 import { useIsLowPowerMode } from "@/hooks/useIsLowPowerMode";
 import { useVideoScrubber } from "./useVideoScrubber";
+import { secondsToTimeString } from "./secondsToTimestring";
 
 type Props = {
   playbackConst: number; // higher it is, the slower it plays
@@ -23,6 +25,7 @@ type Props = {
   onLowPowerModeDetected?: () => void;
   sources: { type: string; src: string }[];
   offset?: number;
+  showDebugTimestamp?: boolean;
 };
 
 const ScrollVideoContext = createContext({
@@ -40,6 +43,7 @@ const ScrollVideo = ({
   onVideoReady,
   onLowPowerModeDetected,
   offset = 0,
+  showDebugTimestamp,
 }: Props) => {
   const { videoRef, duration, isVideoReady, videoProgress } =
     useVideoScrubber(offset);
@@ -50,9 +54,14 @@ const ScrollVideo = ({
 
   const { scrollYProgress } = useScroll({ target: containerRef });
 
+  const [debugSeconds, setDebugSeconds] = useState(0);
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     videoProgress.set(latest);
     currentTime.set(latest * duration);
+
+    if (showDebugTimestamp) {
+      setDebugSeconds(latest * duration);
+    }
   });
 
   useEffect(() => {
@@ -99,6 +108,14 @@ const ScrollVideo = ({
       >
         {children}
       </ScrollVideoContext.Provider>
+      {showDebugTimestamp && (
+        <div className="fixed bottom-0 left-0 z-50">
+          <span className="ml-r">{secondsToTimeString(debugSeconds)}</span>:
+          <span className="ml-1 opacity-50">
+            {secondsToTimeString(duration)}
+          </span>
+        </div>
+      )}
     </motion.div>
   );
 };

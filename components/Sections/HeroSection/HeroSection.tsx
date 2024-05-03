@@ -1,5 +1,5 @@
 import ScrollVideo from "@/components/ScrollVideo/ScrollVideo";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import HeroDesktopLayout from "./HeroDesktopLayout";
 import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
 import HeroMobileLayout from "./HeroMobileLayout";
@@ -13,24 +13,120 @@ import FadingText from "@/components/FadingText/FadingText";
 import ScrollVideoAnnotation from "@/components/ScrollVideo/ScrollVideoAnnotation";
 import { useProgress } from "@/components/ProgressProvider/ProgressProvider";
 import { timeStringToSeconds } from "@/components/ScrollVideo/timeStringToSeconds";
-import IntroVideo from "./IntroVideo";
+import IntroVideo from "./IntroVideoDeprecated";
+import {
+  useAnimationFrame,
+  useMotionValue,
+  useMotionValueEvent,
+  useScroll,
+} from "framer-motion";
+import { useFollowMotionValue } from "@/hooks/useFollowMotionValue";
+import { debounce } from "@/app/utils/debounce";
+import { useMotionValueSwitch } from "@/hooks/useMotionValueSwitch";
 
 type Props = {};
+
+const secondsToScrollPosition = (second: number, playbackConst: number) => {
+  return second * playbackConst;
+};
 
 const HeroSection = (props: Props) => {
   const windowDim = useWindowDimension();
   const isDesktop = useBreakpoint(breakpoints.md);
   const [isLowPowerMode, setIsLowPowerMode] = useState(false);
-  const [hasVideoFinished, setHasVideoFinished] = useState(false);
+
+  const introLastFrame = timeStringToSeconds("0:06");
+  const introLastFrameScrollPos = useMemo(
+    () => secondsToScrollPosition(introLastFrame, 400),
+    [introLastFrame],
+  );
+
+  const { scrollY } = useScroll();
+
+  const targetScroll = useMotionValue(0);
+  const [shouldAutoScroll, setShouldAutoScroll] = useState(false);
+  const [isUserScrolling, setIsUserScrolling] = useState(false);
+  const autoScrollSpeed = 5;
+  const [followingScroll, isMoving] = useFollowMotionValue(targetScroll, {
+    responsiveness: 0.03,
+  });
+
+  useMotionValueEvent(followingScroll, "change", (latest) => {
+    if (isUserScrolling) {
+      // give the agency back to the user, match the scroll to the target scroll
+      followingScroll.set(scrollY.get());
+      targetScroll.set(scrollY.get());
+      return;
+    }
+    window.scrollTo(0, followingScroll.get());
+  });
+
+  useMotionValueEvent(scrollY, "change", (latest) =>
+    followingScroll.set(latest),
+  );
+
+  useAnimationFrame(() => {
+    if (!shouldAutoScroll) return;
+    // targetScroll.set(targetScroll.get() + autoScrollSpeed);
+  });
+
+  useEffect(() => {
+    const resetScrollingStateDebounced = debounce(() => {
+      setIsUserScrolling(false);
+    }, 30);
+    const handleWheel = (e: WheelEvent) => {
+      // wheel event
+      setIsUserScrolling(true);
+      resetScrollingStateDebounced();
+    };
+
+    window.addEventListener("wheel", handleWheel);
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+      resetScrollingStateDebounced.abort();
+    };
+  }, []);
+
+  // always start the site at scroll 0
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const scrollYPos = scrollY.get();
+    if (!isMoving && scrollYPos < introLastFrameScrollPos) {
+      setShouldAutoScroll(true);
+    }
+  }, [isMoving, scrollY, introLastFrameScrollPos]);
+
+  // reset scroll once user scroll to zero
+  useEffect(() => {
+    const scrollYPos = scrollY.get();
+    if (!isUserScrolling && scrollYPos < introLastFrameScrollPos) {
+      targetScroll.set(introLastFrameScrollPos);
+      return;
+    }
+
+    // start auto scrolling
+    if (!isUserScrolling) {
+      setShouldAutoScroll(true);
+      return;
+    }
+    setShouldAutoScroll(false);
+  }, [
+    introLastFrameScrollPos,
+    scrollY,
+    isUserScrolling,
+    targetScroll,
+    followingScroll,
+  ]);
 
   return (
     <section className="relative min-h-screen bg-zinc-900 text-white">
-      {isDesktop && <HeroDesktopLayout />}
-      {!isDesktop && <HeroMobileLayout />}
       {/* playbackConst: higher it is, the slower it plays */}
       {!isLowPowerMode && (
         <ScrollVideo
-          offset={timeStringToSeconds("0:05")}
+          offset={timeStringToSeconds("0:0")}
           playbackConst={400}
           onLowPowerModeDetected={() => setIsLowPowerMode(true)}
           sources={[
@@ -43,9 +139,10 @@ const HeroSection = (props: Props) => {
               src: "/hero-section/sp-wormhole-v1-720.mp4",
             },
           ]}
+          showDebugTimestamp
         >
-          <ScrollVideoAnnotation enter={"0:26"} exit={"0:28"}>
-            <SlideInText>Feel energized</SlideInText>
+          <ScrollVideoAnnotation enter={"0:00"} exit={"0:18"}>
+            {isDesktop && <HeroDesktopLayout shouldShowContent={true} />}
           </ScrollVideoAnnotation>
           <ScrollVideoAnnotation enter={"0:26"} exit={"0:28"}>
             <SlideInText>Feel energized</SlideInText>
@@ -60,14 +157,6 @@ const HeroSection = (props: Props) => {
             <SlideInText>Sleep better</SlideInText>
           </ScrollVideoAnnotation>
         </ScrollVideo>
-      )}
-      {!isLowPowerMode && !hasVideoFinished && (
-        <IntroVideo
-          src={"/hero-section/sp-wormhole-v1-720.mp4"}
-          type={'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'}
-          endTime={timeStringToSeconds("0:05")}
-          onIntroFinished={() => setHasVideoFinished(true)}
-        />
       )}
       {isLowPowerMode && (
         <StickySlide>
@@ -114,6 +203,9 @@ const HeroSection = (props: Props) => {
             <SlideInText>This is literally so crazy omg</SlideInText>
           </StickySlideItem>
         </StickySlide>
+      )}
+      {!isDesktop && (
+        <HeroMobileLayout scrollTopOffset={introLastFrameScrollPos} />
       )}
     </section>
   );
