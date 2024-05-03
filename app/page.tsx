@@ -23,6 +23,7 @@ export default function Home() {
       <TestimonialsSection />
       <TransitionSection />
       <TimelineSection />
+      <EcosystemSection />
       <ScrollingTextLayout />
       <Footer />
     </main>
