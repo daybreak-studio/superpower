@@ -54,7 +54,7 @@ const FeatureScrollVideo = ({
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    videoProgress.set(latest * 3);
+    videoProgress.set(latest * 2.3);
   });
 
   const videoScale = useTransform(scrollYProgress, [0.4, 1], [10, 1], {
@@ -69,6 +69,8 @@ const FeatureScrollVideo = ({
   const glareOpacity = useTransform(scrollYProgress, [0.8, 1], [0, 1], {
     ease: cubicBezier(0.16, 1, 0.3, 1),
   });
+
+  const sectionOpacity = useTransform(scrollYProgress, [0.1, 0.2], [0, 1]);
 
   const canInteractWithTablet = useMotionValueSwitch(
     screenOpacity,
@@ -85,14 +87,15 @@ const FeatureScrollVideo = ({
 
   return (
     <motion.div
-      className={"relative flex w-full items-start bg-[#F5F5F7]"}
+      className={"relative mt-[-200vh] flex w-full items-start bg-[#F5F5F7]"}
       initial={{
         opacity: 0,
       }}
-      animate={{
-        opacity: isVideoReady ? 1 : 0,
-      }}
+      // animate={{
+      //   opacity: isVideoReady ? 1 : 0,
+      // }}
       style={{
+        opacity: sectionOpacity,
         height: playbackConst * duration * 1,
       }}
       ref={containerRef}
