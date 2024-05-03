@@ -139,7 +139,6 @@ const HeroSection = (props: Props) => {
               src: "/hero-section/sp-wormhole-v1-720.mp4",
             },
           ]}
-          showDebugTimestamp
         >
           <ScrollVideoAnnotation enter={"0:00"} exit={"0:18"}>
             {isDesktop && <HeroDesktopLayout shouldShowContent={true} />}
