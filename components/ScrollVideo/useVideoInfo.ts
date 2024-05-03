@@ -1,10 +1,12 @@
 import { debounce } from "@/app/utils/debounce";
+import useStateRef from "@/hooks/useStateRef";
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 
 export function useVideoInfo() {
   const [duration, setDuration] = useState(0);
   const [isVideoReady, setIsVideoReady] = useState(false);
-  const [canPlayThrough, setCanPlayThrough] = useState(false);
+  const [canPlayThrough, setCanPlayThrough, canPlayThroughRef] =
+    useStateRef(false);
 
   const videoRef = useRef() as MutableRefObject<HTMLVideoElement>;
 
@@ -31,11 +33,11 @@ export function useVideoInfo() {
       console.log(`The video is ${video.duration} seconds long.`);
     };
 
-    const setCanPlayThroughDebounced = debounce(
-      (canPlayThrough: boolean, isComponentRemoved: boolean = false) => {
-        if (!isComponentRemoved) setCanPlayThrough(canPlayThrough);
-      },
-    );
+    const setCanPlayThroughDebounced = debounce((canPlayThrough: boolean) => {
+      if (canPlayThroughRef.current !== canPlayThrough) {
+        setCanPlayThrough(canPlayThrough);
+      }
+    }, 500);
 
     const handleCanPlay = () => {
       setCanPlayThroughDebounced(true);
@@ -57,7 +59,7 @@ export function useVideoInfo() {
       videoRef.current.removeEventListener("seeking", handleSeeking);
       videoRef.current.removeEventListener("canplaythrough", handleCanPlay);
 
-      setCanPlayThroughDebounced(false, true);
+      setCanPlayThroughDebounced.abort();
     };
   }, []);
 

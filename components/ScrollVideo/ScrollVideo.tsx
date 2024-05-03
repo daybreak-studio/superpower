@@ -67,17 +67,17 @@ const ScrollVideo = ({
   });
 
   useEffect(() => {
-    onVideoReady?.();
-  }, [isVideoReady, onVideoReady]);
+    isVideoReady && onVideoReady?.();
+  }, [isVideoReady]);
 
   useEffect(() => {
     canPlayThrough && onCanPlayThough?.();
-  }, [canPlayThrough, onCanPlayThough]);
+  }, [canPlayThrough]);
 
   const isLowPowerMode = useIsLowPowerMode(videoRef);
   useEffect(() => {
     if (isLowPowerMode) onLowPowerModeDetected?.();
-  }, [isLowPowerMode, onLowPowerModeDetected]);
+  }, [isLowPowerMode]);
 
   return (
     <motion.div
