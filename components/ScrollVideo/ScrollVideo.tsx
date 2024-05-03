@@ -22,6 +22,7 @@ type Props = {
   playbackConst: number; // higher it is, the slower it plays
   children?: React.ReactNode;
   onVideoReady?: () => void;
+  onCanPlayThough?: () => void;
   onLowPowerModeDetected?: () => void;
   sources: { type: string; src: string }[];
   offset?: number;
@@ -41,11 +42,12 @@ const ScrollVideo = ({
   children,
   sources,
   onVideoReady,
+  onCanPlayThough,
   onLowPowerModeDetected,
   offset = 0,
   showDebugTimestamp,
 }: Props) => {
-  const { videoRef, duration, isVideoReady, videoProgress } =
+  const { videoRef, duration, isVideoReady, videoProgress, canPlayThrough } =
     useVideoScrubber(offset);
 
   const videoScrollHeight = playbackConst * duration;
@@ -67,6 +69,10 @@ const ScrollVideo = ({
   useEffect(() => {
     onVideoReady?.();
   }, [isVideoReady, onVideoReady]);
+
+  useEffect(() => {
+    canPlayThrough && onCanPlayThough?.();
+  }, [canPlayThrough, onCanPlayThough]);
 
   const isLowPowerMode = useIsLowPowerMode(videoRef);
   useEffect(() => {
