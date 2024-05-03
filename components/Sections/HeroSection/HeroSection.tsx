@@ -12,6 +12,8 @@ import Image from "next/image";
 import FadingText from "@/components/FadingText/FadingText";
 import ScrollVideoAnnotation from "@/components/ScrollVideo/ScrollVideoAnnotation";
 import { useProgress } from "@/components/ProgressProvider/ProgressProvider";
+import { timeStringToSeconds } from "@/components/ScrollVideo/timeStringToSeconds";
+import IntroVideo from "./IntroVideo";
 
 type Props = {};
 
@@ -19,6 +21,7 @@ const HeroSection = (props: Props) => {
   const windowDim = useWindowDimension();
   const isDesktop = useBreakpoint(breakpoints.md);
   const [isLowPowerMode, setIsLowPowerMode] = useState(false);
+  const [hasVideoFinished, setHasVideoFinished] = useState(false);
 
   return (
     <section className="relative min-h-screen bg-zinc-900 text-white">
@@ -27,6 +30,7 @@ const HeroSection = (props: Props) => {
       {/* playbackConst: higher it is, the slower it plays */}
       {!isLowPowerMode && (
         <ScrollVideo
+          offset={timeStringToSeconds("0:05")}
           playbackConst={400}
           onLowPowerModeDetected={() => setIsLowPowerMode(true)}
           sources={[
@@ -56,6 +60,14 @@ const HeroSection = (props: Props) => {
             <SlideInText>Sleep better</SlideInText>
           </ScrollVideoAnnotation>
         </ScrollVideo>
+      )}
+      {!isLowPowerMode && !hasVideoFinished && (
+        <IntroVideo
+          src={"/hero-section/sp-wormhole-v1-720.mp4"}
+          type={'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'}
+          endTime={timeStringToSeconds("0:05")}
+          onIntroFinished={() => setHasVideoFinished(true)}
+        />
       )}
       {isLowPowerMode && (
         <StickySlide>
@@ -116,16 +128,6 @@ const SlideInText = ({ children }: { children: string }) => {
       <FadingText progress={progress}>
         <div className="leading-normal">{children}</div>
       </FadingText>
-    </div>
-  );
-};
-
-const CenterGradient = () => {
-  const progress = useProgress();
-
-  return (
-    <div className="font-sans-3xl fixed inset-0 flex h-full w-full items-center justify-center">
-      {/* <FadingText progress={progress}></FadingText> */}
     </div>
   );
 };
