@@ -155,7 +155,7 @@ class AnimatedValue {
       return;
     }
 
-    // udpate the value
+    // update the value
     this.actualValue = this.actualValue + this.delta;
     this.changeHandler(this.actualValue);
 
@@ -163,3 +163,7 @@ class AnimatedValue {
     requestAnimationFrame(this.nextFrame.bind(this));
   }
 }
+/** 
+ * A hook that enables smooth scrolling on the page.
+ * 
+ */

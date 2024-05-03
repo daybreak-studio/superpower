@@ -35,4 +35,8 @@ const useStateRef: UseStateRef = <S>(initialState?: S | (() => S)) => {
   return [state, dispatch, ref];
 };
 
+/**
+ * A hook that returns a state and a ref that always points to the latest state. 
+ */
+
 export default useStateRef;

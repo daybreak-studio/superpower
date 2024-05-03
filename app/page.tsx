@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "@/components/Sections/FooterSection/Footer";
 import HeroSection from "@/components/Sections/HeroSection/HeroSection";
 import ProtocolSection from "@/components/Sections/ProtocolSection/ProtocolSection";
 import SuperpowerBaselineSection from "@/components/Sections/SuperpowerBaselineSection/SuperpowerBaselineSection";
