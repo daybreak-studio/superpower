@@ -1,32 +1,49 @@
-import React, { MutableRefObject, useEffect, useRef, useState } from "react";
+import React, { createContext, useContext, useEffect } from "react";
 import { useVideoInfo } from "./useVideoInfo";
 import {
+  MotionValue,
   motion,
-  useAnimationFrame,
+  useMotionValue,
   useMotionValueEvent,
   useScroll,
+  useTransform,
 } from "framer-motion";
 import { useVideoSeeker } from "./useVideoSeeker";
 import { useBounds } from "@/hooks/useBounds";
-import { AnimationClip } from "three";
-import { AnimationConfig } from "../AnimationConfig";
 import { useIsLowPowerMode } from "@/hooks/useIsLowPowerMode";
 
 type Props = {
   playbackConst: number; // higher it is, the slower it plays
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onVideoReady?: () => void;
   onLowPowerModeDetected?: () => void;
+  sources: { type: string; src: string }[];
 };
+
+const ScrollVideoContext = createContext({
+  duration: 0,
+  progress: new MotionValue(),
+  currentTime: new MotionValue(),
+});
+
+export const useScrollVideoInfo = () => useContext(ScrollVideoContext);
 
 const ScrollVideo = ({
   playbackConst,
   children,
+  sources,
   onVideoReady,
   onLowPowerModeDetected,
 }: Props) => {
   const { videoRef, duration, isVideoReady } = useVideoInfo();
   const seek = useVideoSeeker({ videoRef, isVideoReady });
+
+  const videoScrollHeight = playbackConst * duration;
+  const currentTime = useMotionValue(0);
+  const videoProgress = useTransform(
+    currentTime,
+    (latest) => latest / duration,
+  );
 
   const [containerRef, bounds] = useBounds<HTMLDivElement>([duration]);
 
@@ -45,7 +62,9 @@ const ScrollVideo = ({
     if (!isVideoReady) return;
 
     const scrolledOffset = latest - bounds.top;
-    seek(duration * (scrolledOffset / bounds.height));
+    const targetTimecode = duration * (scrolledOffset / bounds.height);
+    seek(targetTimecode);
+    currentTime.set(targetTimecode);
   });
 
   // This useEffect stops the video instantaneously after
@@ -79,7 +98,7 @@ const ScrollVideo = ({
         opacity: isVideoReady ? 1 : 0,
       }}
       style={{
-        height: playbackConst * duration,
+        height: videoScrollHeight,
       }}
       ref={containerRef}
     >
@@ -95,8 +114,15 @@ const ScrollVideo = ({
         muted
         autoPlay
       >
-        {children}
+        {sources.map(({ type, src }, index) => (
+          <source type={type} src={src} key={index} />
+        ))}
       </video>
+      <ScrollVideoContext.Provider
+        value={{ duration, progress: videoProgress, currentTime }}
+      >
+        {children}
+      </ScrollVideoContext.Provider>
     </motion.div>
   );
 };

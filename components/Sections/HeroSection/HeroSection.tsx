@@ -6,11 +6,12 @@ import HeroMobileLayout from "./HeroMobileLayout";
 import {
   StickySlide,
   StickySlideItem,
-  useSlideProgress,
 } from "@/components/StickySlide/StickySlide";
 import { useWindowDimension } from "@/hooks/useWindowDimension";
 import Image from "next/image";
 import FadingText from "@/components/FadingText/FadingText";
+import ScrollVideoAnnotation from "@/components/ScrollVideo/ScrollVideoAnnotation";
+import { useProgress } from "@/components/ProgressProvider/ProgressProvider";
 
 type Props = {};
 
@@ -28,11 +29,19 @@ const HeroSection = (props: Props) => {
         <ScrollVideo
           playbackConst={400}
           onLowPowerModeDetected={() => setIsLowPowerMode(true)}
+          sources={[
+            {
+              type: 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"',
+              src: "https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4",
+            },
+          ]}
         >
-          <source
-            type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
-            src="https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4"
-          />
+          <ScrollVideoAnnotation enter={"0"} exit={"0:20"}>
+            <SlideInText>This is literally so crazy omg hahhahaha</SlideInText>
+          </ScrollVideoAnnotation>
+          <ScrollVideoAnnotation enter={0.2} exit={0.3}>
+            <SlideInText>This is literally so crazy omg</SlideInText>
+          </ScrollVideoAnnotation>
         </ScrollVideo>
       )}
       {isLowPowerMode && (
@@ -77,7 +86,7 @@ const HeroSection = (props: Props) => {
               className="fixed inset-0 h-screen w-full object-cover"
             />
             {/* example for adding not only image to a slide */}
-            <SlideInText />
+            <SlideInText>This is literally so crazy omg</SlideInText>
           </StickySlideItem>
         </StickySlide>
       )}
@@ -85,15 +94,14 @@ const HeroSection = (props: Props) => {
   );
 };
 
-const SlideInText = () => {
-  // useSlideProgress is a hook to access the scroll progress of the slide.
-  // The context is provided by StickySlide.
-  const progress = useSlideProgress();
+const SlideInText = ({ children }: { children: string }) => {
+  // useProgress is a hook to access transition progress provided by the parent element;
+  const progress = useProgress();
 
   return (
     <div className="font-sans-3xl fixed inset-0 flex h-full w-full items-center justify-center">
       <FadingText progress={progress}>
-        This is literally so crazy omg
+        <div className="leading-normal">{children}</div>
       </FadingText>
     </div>
   );

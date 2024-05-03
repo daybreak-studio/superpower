@@ -8,11 +8,28 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+      '3xl': '2400px',
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      colors: {
+        vermilion: {
+          900: "#FC5F2B",
+          700: "#F7861E",
+          500: "#FDBA74",
+          300: "#FED7AA",
+          100: "#FFEDD5",
+        },
       },
       backgroundColor: {
         blur: `rgba(255,255,255,.05)`,
@@ -25,6 +42,14 @@ const config: Config = {
           "SFMono-Regular",
         ],
       },
+      borderRadius: {
+        'ipad-inner': '2.5vw',
+        'ipad-inner-md': '3.3vh',
+        'ipad-inner-3xl': '54px',
+        'ipad-outer': '2.6vw',
+        'ipad-outer-md': '3.4vh',
+        'ipad-outer-3xl': '57px',
+      }
     },
   },
   plugins: [
@@ -50,14 +75,21 @@ const config: Config = {
           "font-family": "var(--font-nb-international-mono)",
           "font-size": ".75rem",
           "letter-spacing": "-0.03rem",
-          "line-height": "85%",
+          "line-height": "130%",
           "text-transform": "uppercase",
         },
         "mono-sm": {
           "font-family": "var(--font-nb-international-mono)",
           "font-size": ".875rem",
           "letter-spacing": "-0.035rem",
-          "line-height": "85%",
+          "line-height": "130%",
+          "text-transform": "uppercase",
+        },
+        "mono-xl": {
+          "font-family": "var(--font-nb-international-mono)",
+          "font-size": "1rem",
+          "letter-spacing": "-0.01rem",
+          "line-height": "130%",
           "text-transform": "uppercase",
         },
         // sans
@@ -111,6 +143,9 @@ const config: Config = {
         },
         "mono-sm": {
           "letter-spacing": "-0.035rem",
+        },
+        "mono-xl": {
+          "font-size": "2.75rem",
         },
         "sans-xs": {
           "font-size": ".75rem",

@@ -3,23 +3,12 @@ import Image from "next/image";
 import { MotionValue, motion, useMotionValue, useScroll } from "framer-motion";
 import { useBounds } from "@/hooks/useBounds";
 import { AnimationConfig } from "../AnimationConfig";
+import ProgressProvider from "../ProgressProvider/ProgressProvider";
 
 type ItemProps = {
   children: React.ReactNode;
   scrollHeight: number;
 };
-
-const StickySlideItemContext = createContext({
-  progress: new MotionValue<number>(),
-});
-
-/**
- * Sub components inside a StickySlideItem could use this
- * hook to access the scroll progress of the slide.
- * @returns
- */
-export const useSlideProgress = () =>
-  useContext(StickySlideItemContext).progress;
 
 export const StickySlideItem = ({ children, scrollHeight }: ItemProps) => {
   const { scrollY } = useScroll();
@@ -75,16 +64,7 @@ export const StickySlideItem = ({ children, scrollHeight }: ItemProps) => {
           },
         }}
       >
-        <StickySlideItemContext.Provider value={{ progress }}>
-          {/* <Image
-            className="fixed inset-0 h-screen w-full object-cover"
-            src={src}
-            alt={alt}
-            width={width}
-            height={height}
-          /> */}
-          {children}
-        </StickySlideItemContext.Provider>
+        <ProgressProvider progress={progress}>{children}</ProgressProvider>
       </motion.div>
     </motion.div>
   );
