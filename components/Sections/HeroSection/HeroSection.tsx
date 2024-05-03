@@ -84,7 +84,7 @@ const HeroSection = (props: Props) => {
     };
 
     const handleTouchEnd = () => {
-      setIsUserScrolling(false);
+      // setIsUserScrolling(false);
     };
     const handleTouchStart = () => {
       setIsUserScrolling(true);
