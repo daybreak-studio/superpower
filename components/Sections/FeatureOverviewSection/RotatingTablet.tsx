@@ -115,7 +115,7 @@ const RotatingTablet = ({
       </div>
 
       <motion.div
-        className="relative h-fit w-[70vw] max-w-[calc(90vw-4em)] md:w-[90vh]"
+        className="relative h-fit w-[70vw] max-w-[calc(90vw-5em)] md:w-[90vh]"
         style={{
           zIndex: -1,
           scale: scale,
