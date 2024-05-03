@@ -47,8 +47,7 @@ const Navigation = (props: Props) => {
     <nav
       className="fixed left-0 top-0 z-[99] flex h-auto w-full items-center justify-center sm:px-12"
       style={{
-        // opacity: scrollDir === "scrolling down" ? 0 : 1,
-        opacity: 1,
+        opacity: scrollDir === "scrolling down" ? 0 : 1,
         transition: "opacity 0.3s ease-in-out",
       }}
     >
