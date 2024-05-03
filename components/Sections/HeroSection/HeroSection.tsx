@@ -90,11 +90,6 @@ const HeroSection = (props: Props) => {
     };
   }, []);
 
-  // always start the site at scroll 0
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   // useEffect(() => {
   //   const scrollYPos = scrollY.get();
   //   if (!isMoving && scrollYPos < introLastFrameScrollPos) {
@@ -131,6 +126,8 @@ const HeroSection = (props: Props) => {
 
   useEffect(() => {
     if (!isVideoLoaded) return;
+
+    window.scrollTo(0, 0);
     console.log("video is now loaded");
   }, [isVideoLoaded]);
 
