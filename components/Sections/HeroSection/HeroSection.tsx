@@ -73,7 +73,7 @@ const HeroSection = (props: Props) => {
   useEffect(() => {
     const resetScrollingStateDebounced = debounce(() => {
       setIsUserScrolling(false);
-    }, 30);
+    }, 100);
     const handleWheel = (e: WheelEvent) => {
       // wheel event
       setIsUserScrolling(true);
