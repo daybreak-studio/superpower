@@ -36,6 +36,8 @@ const HeroSection = (props: Props) => {
   const isDesktop = useBreakpoint(breakpoints.md);
   const [isLowPowerMode, setIsLowPowerMode] = useState(false);
 
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
   const introLastFrame = timeStringToSeconds("0:06");
   const introLastFrameScrollPos = useMemo(
     () => secondsToScrollPosition(introLastFrame, 400),
@@ -93,36 +95,39 @@ const HeroSection = (props: Props) => {
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    const scrollYPos = scrollY.get();
-    if (!isMoving && scrollYPos < introLastFrameScrollPos) {
-      setShouldAutoScroll(true);
-    }
-  }, [isMoving, scrollY, introLastFrameScrollPos]);
+  // useEffect(() => {
+  //   const scrollYPos = scrollY.get();
+  //   if (!isMoving && scrollYPos < introLastFrameScrollPos) {
+  //     setShouldAutoScroll(true);
+  //   }
+  // }, [isMoving, scrollY, introLastFrameScrollPos]);
 
   // reset scroll once user scroll to zero
   useEffect(() => {
     const scrollYPos = scrollY.get();
-    if (!isUserScrolling && scrollYPos < introLastFrameScrollPos) {
+    if (
+      !isUserScrolling &&
+      isVideoLoaded &&
+      scrollYPos < introLastFrameScrollPos
+    ) {
       targetScroll.set(introLastFrameScrollPos);
       return;
     }
 
     // start auto scrolling
-    if (!isUserScrolling) {
-      setShouldAutoScroll(true);
-      return;
-    }
-    setShouldAutoScroll(false);
+    // if (!isUserScrolling) {
+    //   setShouldAutoScroll(true);
+    //   return;
+    // }
+    // setShouldAutoScroll(false);
   }, [
     introLastFrameScrollPos,
     scrollY,
     isUserScrolling,
     targetScroll,
     followingScroll,
+    isVideoLoaded,
   ]);
-
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   return (
     <section className="relative min-h-screen bg-zinc-900 text-white">
