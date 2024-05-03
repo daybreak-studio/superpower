@@ -20,9 +20,10 @@ export default function Home() {
       <ProtocolSection />
       <TestimonialsSection />
       <TransitionSection />
-      {/* <TimelineSection /> */}
+      <TimelineSection />
       <ScrollingTextLayout />
-      {/* <EcosystemSection /> */}
+      <EcosystemSection />
+      <Footer />
     </main>
   );
 }

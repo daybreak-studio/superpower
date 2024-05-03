@@ -29,7 +29,9 @@ const EcosystemSection = (props: Props) => {
   const containerRef = useRef() as MutableRefObject<HTMLAnchorElement>;
   const perspectiveFrom = "10000px";
   const perspectiveTo = "1600px";
-  const isVisible = useInView(containerRef);
+  const isVisible = useInView(containerRef, {
+    margin: "0% 0% -50% 0%",
+  });
 
   const [isHovering, setIsHovering] = useState(false);
 
@@ -38,7 +40,7 @@ const EcosystemSection = (props: Props) => {
 
   return (
     <section
-      className="relative h-screen w-screen"
+      className="relative h-screen min-h-[80vw] w-full"
       onPointerEnter={() => setIsHovering(true)}
       onPointerLeave={() => setIsHovering(false)}
       ref={containerRef as unknown as MutableRefObject<HTMLDivElement>}
@@ -50,8 +52,10 @@ const EcosystemSection = (props: Props) => {
           perspective: perspectiveFrom,
         }}
         animate={{
-          opacity: isVisible ? 1 : 0,
-          perspective: isVisible ? perspectiveTo : perspectiveFrom,
+          opacity: 1,
+          perspective: perspectiveTo,
+          // opacity: isVisible ? 1 : 0,
+          // perspective: isVisible ? perspectiveTo : perspectiveFrom,
           transition: {
             duration: 2,
             ease: [0, 0.7, 0, 1],
