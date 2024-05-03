@@ -47,9 +47,7 @@ const HeroSection = (props: Props) => {
   const { scrollY } = useScroll();
 
   const targetScroll = useMotionValue(0);
-  const [shouldAutoScroll, setShouldAutoScroll] = useState(false);
   const [isUserScrolling, setIsUserScrolling] = useState(false);
-  const autoScrollSpeed = 5;
   const [followingScroll, isMoving] = useFollowMotionValue(targetScroll, {
     responsiveness: 0.03,
   });
@@ -61,6 +59,7 @@ const HeroSection = (props: Props) => {
       targetScroll.set(scrollY.get());
       return;
     }
+
     window.scrollTo(0, followingScroll.get());
   });
 
@@ -68,15 +67,10 @@ const HeroSection = (props: Props) => {
     followingScroll.set(latest),
   );
 
-  useAnimationFrame(() => {
-    if (!shouldAutoScroll) return;
-    // targetScroll.set(targetScroll.get() + autoScrollSpeed);
-  });
-
   useEffect(() => {
     const resetScrollingStateDebounced = debounce(() => {
       setIsUserScrolling(false);
-    });
+    }, 500);
     const handleWheel = (e: WheelEvent) => {
       // wheel event
       setIsUserScrolling(true);
@@ -151,7 +145,6 @@ const HeroSection = (props: Props) => {
           offset={timeStringToSeconds("0:0")}
           playbackConst={400}
           onCanPlayThough={() => {
-            console.log("video can be played");
             setIsVideoLoaded(true);
           }}
           onLowPowerModeDetected={() => setIsLowPowerMode(true)}
@@ -162,7 +155,7 @@ const HeroSection = (props: Props) => {
             // },
             {
               type: 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"',
-              src: "/hero-section/sp-wormhole-v1-720.mp4",
+              src: "/hero-section/sp-wormhole-v1-360.mp4",
             },
           ]}
         >
