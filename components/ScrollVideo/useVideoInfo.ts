@@ -35,7 +35,6 @@ export function useVideoInfo() {
       (canPlayThrough: boolean, isComponentRemoved: boolean = false) => {
         if (!isComponentRemoved) setCanPlayThrough(canPlayThrough);
       },
-      300,
     );
 
     const handleCanPlay = () => {
