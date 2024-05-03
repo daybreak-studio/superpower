@@ -1,5 +1,6 @@
 "use client";
 
+import Navigation from "@/components/Navigation/Navigation";
 import HeroSection from "@/components/Sections/HeroSection/HeroSection";
 import ProtocolSection from "@/components/Sections/ProtocolSection/ProtocolSection";
 import SuperpowerBaselineSection from "@/components/Sections/SuperpowerBaselineSection/SuperpowerBaselineSection";
@@ -13,6 +14,7 @@ import ScrollingTextLayout from "@/components/Sections/ScrollingTextSection/Scro
 export default function Home() {
   return (
     <main>
+      <Navigation />
       <HeroSection />
       <FeatureOverviewSection />
       <SuperpowerBaselineSection />
