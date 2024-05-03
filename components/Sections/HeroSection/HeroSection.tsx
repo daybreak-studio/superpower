@@ -59,7 +59,6 @@ const HeroSection = (props: Props) => {
       targetScroll.set(scrollY.get());
       return;
     }
-    if (latest === targetScroll.get()) return;
 
     window.scrollTo(0, followingScroll.get());
   });
@@ -71,7 +70,7 @@ const HeroSection = (props: Props) => {
   useEffect(() => {
     const resetScrollingStateDebounced = debounce(() => {
       setIsUserScrolling(false);
-    });
+    }, 500);
     const handleWheel = (e: WheelEvent) => {
       // wheel event
       setIsUserScrolling(true);
@@ -146,7 +145,6 @@ const HeroSection = (props: Props) => {
           offset={timeStringToSeconds("0:0")}
           playbackConst={400}
           onCanPlayThough={() => {
-            console.log("video can be played");
             setIsVideoLoaded(true);
           }}
           onLowPowerModeDetected={() => setIsLowPowerMode(true)}
