@@ -83,9 +83,20 @@ const HeroSection = (props: Props) => {
       resetScrollingStateDebounced();
     };
 
+    const handleTouchEnd = () => {
+      setIsUserScrolling(false);
+    };
+    const handleTouchStart = () => {
+      setIsUserScrolling(true);
+    };
+
     window.addEventListener("wheel", handleWheel);
+    window.addEventListener("touchend", handleTouchEnd);
+    window.addEventListener("touchstart", handleTouchStart);
     return () => {
       window.removeEventListener("wheel", handleWheel);
+      window.addEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
       resetScrollingStateDebounced.abort();
     };
   }, []);
