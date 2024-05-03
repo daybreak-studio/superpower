@@ -162,17 +162,23 @@ const HeroSection = (props: Props) => {
           <ScrollVideoAnnotation enter={"0:00"} exit={"0:18"}>
             {isDesktop && <HeroDesktopLayout shouldShowContent={true} />}
           </ScrollVideoAnnotation>
-          <ScrollVideoAnnotation enter={"0:26"} exit={"0:28"}>
+          <ScrollVideoAnnotation enter={"0:20"} exit={"0:22"}>
+            <SlideInText>Slow aging</SlideInText>
+          </ScrollVideoAnnotation>
+          <ScrollVideoAnnotation enter={"0:22"} exit={"0:24"}>
             <SlideInText>Feel energized</SlideInText>
           </ScrollVideoAnnotation>
-          <ScrollVideoAnnotation enter={"0:28"} exit={"0:30"}>
+          <ScrollVideoAnnotation enter={"0:24"} exit={"0:26"}>
             <SlideInText>Heal your gut</SlideInText>
           </ScrollVideoAnnotation>
-          <ScrollVideoAnnotation enter={"0:30"} exit={"0:32"}>
+          <ScrollVideoAnnotation enter={"0:26"} exit={"0:28"}>
             <SlideInText>Gain muscle</SlideInText>
           </ScrollVideoAnnotation>
-          <ScrollVideoAnnotation enter={"0:32"} exit={"0:34"}>
+          <ScrollVideoAnnotation enter={"0:28"} exit={"0:30"}>
             <SlideInText>Sleep better</SlideInText>
+          </ScrollVideoAnnotation>
+          <ScrollVideoAnnotation enter={"0:30"} exit={"0:32"}>
+            <SlideInText>Live longer</SlideInText>
           </ScrollVideoAnnotation>
         </ScrollVideo>
       )}
