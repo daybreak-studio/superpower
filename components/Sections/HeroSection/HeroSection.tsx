@@ -30,20 +30,30 @@ const HeroSection = (props: Props) => {
           playbackConst={400}
           onLowPowerModeDetected={() => setIsLowPowerMode(true)}
           sources={[
+            // {
+            //   type: 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"',
+            //   src: "https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4",
+            // },
             {
               type: 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"',
-              src: "https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4",
+              src: "/hero-section/sp-wormhole-v1-720.mp4",
             },
           ]}
         >
-          <ScrollVideoAnnotation enter={0} exit={1}>
-            <SlideInText>This is literally so crazy omg hahhahaha</SlideInText>
+          <ScrollVideoAnnotation enter={"0:26"} exit={"0:28"}>
+            <SlideInText>Feel energized</SlideInText>
           </ScrollVideoAnnotation>
-          <ScrollVideoAnnotation enter={"0"} exit={"0:20"}>
-            <SlideInText>This is literally so crazy omg hahhahaha</SlideInText>
+          <ScrollVideoAnnotation enter={"0:26"} exit={"0:28"}>
+            <SlideInText>Feel energized</SlideInText>
           </ScrollVideoAnnotation>
-          <ScrollVideoAnnotation enter={0.2} exit={0.3}>
-            <SlideInText>This is literally so crazy omg</SlideInText>
+          <ScrollVideoAnnotation enter={"0:28"} exit={"0:30"}>
+            <SlideInText>Heal your gut</SlideInText>
+          </ScrollVideoAnnotation>
+          <ScrollVideoAnnotation enter={"0:30"} exit={"0:32"}>
+            <SlideInText>Gain muscle</SlideInText>
+          </ScrollVideoAnnotation>
+          <ScrollVideoAnnotation enter={"0:32"} exit={"0:34"}>
+            <SlideInText>Sleep better</SlideInText>
           </ScrollVideoAnnotation>
         </ScrollVideo>
       )}
@@ -106,6 +116,16 @@ const SlideInText = ({ children }: { children: string }) => {
       <FadingText progress={progress}>
         <div className="leading-normal">{children}</div>
       </FadingText>
+    </div>
+  );
+};
+
+const CenterGradient = () => {
+  const progress = useProgress();
+
+  return (
+    <div className="font-sans-3xl fixed inset-0 flex h-full w-full items-center justify-center">
+      {/* <FadingText progress={progress}></FadingText> */}
     </div>
   );
 };
