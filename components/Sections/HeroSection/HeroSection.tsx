@@ -47,9 +47,7 @@ const HeroSection = (props: Props) => {
   const { scrollY } = useScroll();
 
   const targetScroll = useMotionValue(0);
-  const [shouldAutoScroll, setShouldAutoScroll] = useState(false);
   const [isUserScrolling, setIsUserScrolling] = useState(false);
-  const autoScrollSpeed = 5;
   const [followingScroll, isMoving] = useFollowMotionValue(targetScroll, {
     responsiveness: 0.03,
   });
@@ -61,17 +59,14 @@ const HeroSection = (props: Props) => {
       targetScroll.set(scrollY.get());
       return;
     }
+    if (latest === targetScroll.get()) return;
+
     window.scrollTo(0, followingScroll.get());
   });
 
   useMotionValueEvent(scrollY, "change", (latest) =>
     followingScroll.set(latest),
   );
-
-  useAnimationFrame(() => {
-    if (!shouldAutoScroll) return;
-    // targetScroll.set(targetScroll.get() + autoScrollSpeed);
-  });
 
   useEffect(() => {
     const resetScrollingStateDebounced = debounce(() => {
