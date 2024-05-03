@@ -155,7 +155,7 @@ const HeroSection = (props: Props) => {
             // },
             {
               type: 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"',
-              src: "/hero-section/sp-wormhole-v1-720.mp4",
+              src: "/hero-section/sp-wormhole-v1-360.mp4",
             },
           ]}
         >
