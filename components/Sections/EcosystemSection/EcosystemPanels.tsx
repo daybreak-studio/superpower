@@ -1,10 +1,14 @@
 import { MotionValue, motion, useSpring, useTransform } from "framer-motion";
 import React, { useMemo } from "react";
+import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
+import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
 type EcosystemItem = {
-  angle: { x: number; y: number };
+  desktopAngle: { x: number; y: number };
+  mobileAngle: { x: number; y: number };
   image: string;
-  width: number;
+  desktopWidth: number;
+  mobileWidth: number;
   name: string;
 };
 
@@ -21,6 +25,7 @@ const EcosystemPanels = ({
   pointerOffsetPercent,
   item,
 }: Props) => {
+  const isDesktop = useBreakpoint(breakpoints.md);
   const perspectiveFrom = "10000px";
   const perspectiveTo = "1600px";
 
@@ -28,26 +33,36 @@ const EcosystemPanels = ({
   const min = 200;
   const stiffness = useMemo(() => Math.random() * (max - min) + min, []);
 
-  const offsetY = useTransform(pointerOffsetPercent.x, (latest) =>
-    isMouseInSection ? item.angle.y + latest * 30 : item.angle.y,
+  const offsetY = useTransform(pointerOffsetPercent.x, (latest: number) =>
+    isDesktop
+      ? isMouseInSection
+        ? item.desktopAngle.y + latest * 30
+        : item.desktopAngle.y
+      : item.mobileAngle.y,
   );
-  const offsetX = useTransform(pointerOffsetPercent.y, (latest) =>
-    isMouseInSection ? item.angle.x - latest * 10 : item.angle.x,
+  const offsetX = useTransform(pointerOffsetPercent.y, (latest: number) =>
+    isDesktop
+      ? isMouseInSection
+        ? item.desktopAngle.x + latest * 30
+        : item.desktopAngle.x
+      : item.mobileAngle.x,
   );
-  const opacity = useTransform(pointerOffsetPercent.x, (latest) =>
-    isMouseInSection ? ((item.angle.y + 70) / 140) * (latest + 0.5) + 0.5 : 1,
+  const opacity = useTransform(pointerOffsetPercent.x, (latest: number) =>
+    isMouseInSection
+      ? ((item.desktopAngle.y + 70) / 140) * (latest + 0.5) + 0.5
+      : 1,
   );
   const easedY = useSpring(offsetY, {
     // stiffness: stiffness,
     stiffness: 400,
     damping: 100,
-    // mass: item.width * 0.05,
+    // mass: item.desktopWidth * 0.05,
   });
   const easedX = useSpring(offsetX, {
     // stiffness: stiffness,
     stiffness: 400,
     damping: 100,
-    // mass: item.width * 0.05,
+    // mass: item.desktopWidth * 0.05,
   });
 
   return (
@@ -78,7 +93,7 @@ const EcosystemPanels = ({
       >
         <motion.div
           style={{
-            z: "-60vw",
+            z: isDesktop ? "-60vw" : "-200vw",
           }}
         >
           <div className="absolute flex translate-x-[-50%] translate-y-[-50%] flex-col items-center gap-4">
@@ -86,11 +101,15 @@ const EcosystemPanels = ({
               src={item.image}
               alt={item.name}
               style={{
-                minWidth: `${item.width / 10}vw`,
+                minWidth: isDesktop
+                  ? `${item.desktopWidth / 10}vw`
+                  : `${item.mobileWidth / 10}vw`,
                 // opacity: opacity,
               }}
             ></motion.img>
-            <div className="font-sans-lg text-black">{item.name}</div>
+            <div className="font-sans-lg text-center text-black">
+              {item.name}
+            </div>
           </div>
         </motion.div>
       </motion.div>

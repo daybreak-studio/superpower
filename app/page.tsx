@@ -10,10 +10,12 @@ import TransitionSection from "@/components/Sections/TransitionSection/Transitio
 import EcosystemSection from "@/components/Sections/EcosystemSection/EcosystemLayout";
 import TimelineSection from "@/components/Sections/TimelineSection/TimelineSection";
 import ScrollingTextLayout from "@/components/Sections/ScrollingTextSection/ScrollingTextLayout";
+import Navigation from "@/components/Navigation/Navigation";
 
 export default function Home() {
   return (
     <main>
+      <Navigation />
       <HeroSection />
       <FeatureOverviewSection />
       <SuperpowerBaselineSection />

@@ -29,9 +29,7 @@ const EcosystemSection = (props: Props) => {
   const containerRef = useRef() as MutableRefObject<HTMLAnchorElement>;
   const perspectiveFrom = "10000px";
   const perspectiveTo = "1600px";
-  const isVisible = useInView(containerRef, {
-    margin: "0% 0% -50% 0%",
-  });
+  const isVisible = useInView(containerRef);
 
   const [isHovering, setIsHovering] = useState(false);
 
@@ -40,7 +38,7 @@ const EcosystemSection = (props: Props) => {
 
   return (
     <section
-      className="relative h-screen min-h-[80vw] w-full"
+      className="relative z-[-1] my-[20vw] h-screen w-screen"
       onPointerEnter={() => setIsHovering(true)}
       onPointerLeave={() => setIsHovering(false)}
       ref={containerRef as unknown as MutableRefObject<HTMLDivElement>}
@@ -52,12 +50,11 @@ const EcosystemSection = (props: Props) => {
           perspective: perspectiveFrom,
         }}
         animate={{
-          opacity: 1,
-          perspective: perspectiveTo,
-          // opacity: isVisible ? 1 : 0,
-          // perspective: isVisible ? perspectiveTo : perspectiveFrom,
+          opacity: isVisible ? 1 : 0,
+          perspective: isVisible ? perspectiveTo : perspectiveFrom,
           transition: {
             duration: 2,
+            delay: 0.5,
             ease: [0, 0.7, 0, 1],
           },
         }}
@@ -76,7 +73,7 @@ const EcosystemSection = (props: Props) => {
         })}
       </motion.div>
       <div className="z-1 absolute flex h-full w-full flex-col items-center justify-center">
-        <div className="flex w-full max-w-[585px] flex-col items-center gap-6">
+        <div className="flex w-full max-w-[585px] flex-col items-center gap-6 px-4">
           <div className="font-sans-2xl text-center text-black">
             <h1>Get Exclusive Access to Our Ecosystem</h1>
           </div>
