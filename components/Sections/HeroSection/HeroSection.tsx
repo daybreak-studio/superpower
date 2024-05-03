@@ -129,6 +129,11 @@ const HeroSection = (props: Props) => {
     isVideoLoaded,
   ]);
 
+  useEffect(() => {
+    if (!isVideoLoaded) return;
+    console.log("video is now loaded");
+  }, [isVideoLoaded]);
+
   return (
     <section className="relative min-h-screen bg-zinc-900 text-white">
       <LoadingScreen isLoaded={isVideoLoaded} />
