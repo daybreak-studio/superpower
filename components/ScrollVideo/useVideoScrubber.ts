@@ -17,7 +17,7 @@ export function useVideoScrubber(startAt: number = 0) {
   //scroll video
   const videoProgress = useMotionValue(0);
 
-  const { videoRef, duration, isVideoReady } = useVideoInfo();
+  const { videoRef, duration, isVideoReady, canPlayThrough } = useVideoInfo();
 
   const durationClamped = useMemo(
     () => duration - startAt,
@@ -46,5 +46,5 @@ export function useVideoScrubber(startAt: number = 0) {
     seek(clampedTargetTime);
   }, [durationClamped, isVideoReady, videoProgress, seek, videoRef, startAt]);
 
-  return { videoRef, duration, isVideoReady, videoProgress };
+  return { videoRef, duration, isVideoReady, videoProgress, canPlayThrough };
 }

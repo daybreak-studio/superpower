@@ -23,6 +23,7 @@ import {
 import { useFollowMotionValue } from "@/hooks/useFollowMotionValue";
 import { debounce } from "@/app/utils/debounce";
 import { useMotionValueSwitch } from "@/hooks/useMotionValueSwitch";
+import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 
 type Props = {};
 
@@ -73,7 +74,7 @@ const HeroSection = (props: Props) => {
   useEffect(() => {
     const resetScrollingStateDebounced = debounce(() => {
       setIsUserScrolling(false);
-    }, 100);
+    });
     const handleWheel = (e: WheelEvent) => {
       // wheel event
       setIsUserScrolling(true);
@@ -121,13 +122,17 @@ const HeroSection = (props: Props) => {
     followingScroll,
   ]);
 
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
   return (
     <section className="relative min-h-screen bg-zinc-900 text-white">
+      <LoadingScreen isLoaded={isVideoLoaded} />
       {/* playbackConst: higher it is, the slower it plays */}
       {!isLowPowerMode && (
         <ScrollVideo
           offset={timeStringToSeconds("0:0")}
           playbackConst={400}
+          onVideoReady={() => setIsVideoLoaded(true)}
           onLowPowerModeDetected={() => setIsLowPowerMode(true)}
           sources={[
             // {
