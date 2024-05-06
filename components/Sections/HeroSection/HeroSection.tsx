@@ -1,5 +1,5 @@
 import ScrollVideo from "@/components/ScrollVideo/ScrollVideo";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import HeroDesktopLayout from "./HeroDesktopLayout";
 import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
 import HeroMobileLayout from "./HeroMobileLayout";
@@ -24,6 +24,7 @@ import { useFollowMotionValue } from "@/hooks/useFollowMotionValue";
 import { debounce } from "@/app/utils/debounce";
 import { useMotionValueSwitch } from "@/hooks/useMotionValueSwitch";
 import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
+import { secondsToTimeString } from "@/components/ScrollVideo/secondsToTimestring";
 
 type Props = {};
 
@@ -95,13 +96,6 @@ const HeroSection = (props: Props) => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const scrollYPos = scrollY.get();
-  //   if (!isMoving && scrollYPos < introLastFrameScrollPos) {
-  //     setShouldAutoScroll(true);
-  //   }
-  // }, [isMoving, scrollY, introLastFrameScrollPos]);
-
   // reset scroll once user scroll to zero
   useEffect(() => {
     const scrollYPos = scrollY.get();
@@ -113,13 +107,6 @@ const HeroSection = (props: Props) => {
       targetScroll.set(introLastFrameScrollPos);
       return;
     }
-
-    // start auto scrolling
-    // if (!isUserScrolling) {
-    //   setShouldAutoScroll(true);
-    //   return;
-    // }
-    // setShouldAutoScroll(false);
   }, [
     introLastFrameScrollPos,
     scrollY,
@@ -129,11 +116,13 @@ const HeroSection = (props: Props) => {
     isVideoLoaded,
   ]);
 
+  const pageLoadTime = useRef(Date.now());
   useEffect(() => {
     if (!isVideoLoaded) return;
 
+    const loadedVideoIn = Date.now() - pageLoadTime.current;
+    console.log(`Video loaded in ${secondsToTimeString(loadedVideoIn / 1000)}`);
     window.scrollTo(0, 0);
-    console.log("video is now loaded");
   }, [isVideoLoaded]);
 
   return (
