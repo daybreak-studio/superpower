@@ -66,7 +66,7 @@ const Footer = () => {
             ©2024 Superpower Health, <br />
             Inc. All Rights Reserved
           </small>
-          <video
+          {/* <video
             src="footer-section/bg-vid.mp4"
             className="h-[16vw] w-full bg-cover object-cover lg:h-[14vw]"
             style={{
@@ -80,7 +80,7 @@ const Footer = () => {
             muted
             loop
             playsInline
-          ></video>
+          ></video> */}
         </div>
       </section>
     </>
