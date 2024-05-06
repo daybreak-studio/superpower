@@ -1,7 +1,7 @@
 import { MotionValue, motion, useSpring, useTransform } from "framer-motion";
 import React, { useMemo } from "react";
 import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
-import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
+import Image from "next/image";
 
 type EcosystemItem = {
   desktopAngle: { x: number; y: number };
@@ -97,7 +97,7 @@ const EcosystemPanels = ({
           }}
         >
           <div className="absolute flex translate-x-[-50%] translate-y-[-50%] flex-col items-center gap-4">
-            <motion.img
+            <Image
               src={item.image}
               alt={item.name}
               style={{
@@ -106,7 +106,9 @@ const EcosystemPanels = ({
                   : `${item.mobileWidth / 10}vw`,
                 // opacity: opacity,
               }}
-            ></motion.img>
+              width={500}
+              height={500}
+            />
             <div className="font-sans-lg text-center text-black">
               {item.name}
             </div>

@@ -69,8 +69,7 @@ const RotatingTablet = ({
           className="relative overflow-hidden rounded-ipad-outer md:rounded-ipad-outer-md 3xl:rounded-ipad-outer-3xl"
           style={{ scale: scale }}
         >
-          <motion.img
-            src={"/ipad-section/glare-edges.png"}
+          <motion.div
             style={{
               minWidth: "300%",
               opacity: glareOpacity,
@@ -79,7 +78,15 @@ const RotatingTablet = ({
               transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
             }}
             className="relative inset-0 left-[100%] top-[50vw]"
-          />
+          >
+            <Image
+              className="w-full"
+              src={"/ipad-section/glare.png"}
+              width={4000}
+              height={3000}
+              alt={""}
+            />
+          </motion.div>
         </motion.div>
       </div>
 
@@ -100,8 +107,7 @@ const RotatingTablet = ({
             scale: scale,
           }}
         >
-          <motion.img
-            src={"/ipad-section/glare.png"}
+          <motion.div
             style={{
               minWidth: "300%",
               opacity: glareOpacity,
@@ -110,7 +116,15 @@ const RotatingTablet = ({
               transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
             }}
             className="relative inset-0 left-[100%] top-[50vw]"
-          />
+          >
+            <Image
+              alt={""}
+              className="w-full"
+              src={"/ipad-section/glare.png"}
+              width={4000}
+              height={3000}
+            />
+          </motion.div>
         </motion.div>
       </div>
 
