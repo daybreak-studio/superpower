@@ -60,15 +60,15 @@ const TestimonialsDesktop = ({
           className="relative flex items-center justify-center overflow-hidden"
           initial={{
             width: 624,
-            height: 500,
+            // height: 500,
           }}
           animate={{
             width: [624, 0, 0, 624],
-            height: [500, 0, 0, 500],
+            // height: [500, 0, 0, 500],
           }}
           exit={{
             width: 624,
-            height: 500,
+            // height: 500,
           }}
           transition={{
             duration: clapTime / 1000,
