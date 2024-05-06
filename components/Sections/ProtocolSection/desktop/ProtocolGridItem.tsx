@@ -74,7 +74,7 @@ export const ProtocolGridItem = ({
         style={{
           filter: "grayscale(var(--greyscale-progress))",
         }}
-        className="h-full"
+        className="h-full overflow-hidden rounded-2xl"
         animate={{
           width: isExpanded ? itemWidth * 1.2 : itemWidth,
           transition: {
@@ -83,8 +83,16 @@ export const ProtocolGridItem = ({
           },
         }}
       >
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(0, 0, 0, 0) 67%, rgba(0, 0, 0, 0.587121) 80.5%, rgba(0, 0, 0, 0.757576) 87%, #000000 100%)",
+            opacity: "0.5",
+          }}
+        />
         <Image
-          className="h-full w-full rounded-2xl object-cover"
+          className="h-full w-full object-cover"
           src={image}
           alt={""}
           width={256}
