@@ -90,7 +90,7 @@ const TransitionSectionWrapper = (props: Props) => {
           <div className="absolute bottom-0 left-0 h-auto w-full">
             <motion.div
               className="flex origin-bottom flex-row"
-              // style={{ scaleY: easedScroll }}
+              style={{ scaleY: easedScroll }}
             >
               <motion.img
                 src="/transition-section/left.png"
@@ -101,7 +101,7 @@ const TransitionSectionWrapper = (props: Props) => {
                 alt="transition-bg"
                 style={{
                   scaleX: easedX1,
-                  // scaleY: easedY,
+                  scaleY: easedY,
                 }}
               />
               <motion.img
@@ -113,7 +113,7 @@ const TransitionSectionWrapper = (props: Props) => {
                 alt="transition-bg"
                 style={{
                   scaleX: easedX2,
-                  // scaleY: easedY,
+                  scaleY: easedY,
                 }}
               />
             </motion.div>
