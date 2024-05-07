@@ -14,11 +14,29 @@ import {
   useSpring,
 } from "framer-motion";
 import {
+  usePointerPosition,
   usePointerOffset,
   usePointerOffsetNormalized,
 } from "@/hooks/usePointerInfo";
 import Image from "next/image";
 import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
+import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
+
+import { MotionValue } from "framer-motion";
+
+type BoundingBoxInfo = {
+  top: number;
+  left: number;
+  right: number;
+  bottom: number;
+};
+
+type PointerOffsetNormalizedArgs = {
+  x: MotionValue<number>;
+  y: MotionValue<number>;
+  bounds: MotionValue<BoundingBoxInfo>;
+  anchor: "center" | "left";
+};
 
 type Props = {};
 
@@ -29,16 +47,17 @@ const TransitionSectionWrapper = (props: Props) => {
 
   const [isHovering, setIsHovering] = useState(false);
 
-  const pointerOffset = usePointerOffset(isHovering, containerRef, "center");
-  const pointerOffsetPercent = usePointerOffsetNormalized(pointerOffset);
+  const pointerPosition = usePointerPosition(isHovering);
+  // const pointerOffset = usePointerOffset(isHovering, containerRef, "center");
+  // const pointerOffsetPercent = usePointerOffsetNormalized(pointerOffset);
 
-  const offsetX1 = useTransform(pointerOffsetPercent.x, (latest) =>
+  const offsetX1 = useTransform(pointerPosition.x, (latest) =>
     isHovering ? 1 + latest : 1,
   );
-  const offsetX2 = useTransform(pointerOffsetPercent.x, (latest) =>
+  const offsetX2 = useTransform(pointerPosition.x, (latest) =>
     isHovering ? 1 - latest : 1,
   );
-  const offsetY = useTransform(pointerOffsetPercent.y, (latest) =>
+  const offsetY = useTransform(pointerPosition.y, (latest) =>
     isHovering ? 1 - 0.75 * latest : 1,
   );
 
