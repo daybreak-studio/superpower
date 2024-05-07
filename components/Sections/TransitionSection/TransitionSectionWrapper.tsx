@@ -87,7 +87,7 @@ const TransitionSectionWrapper = (props: Props) => {
         className="relative h-[225vh] w-screen"
       >
         <div className="sticky top-0 flex h-screen w-full items-end mix-blend-hard-light">
-          <div className="absolute bottom-0 left-0 h-auto w-full">
+          <div className="absolute bottom-[-1px] left-0 h-auto w-full">
             <motion.div
               className="flex origin-bottom flex-row"
               style={{ scaleY: easedScroll }}
