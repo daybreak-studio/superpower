@@ -47,17 +47,17 @@ const TransitionSectionWrapper = (props: Props) => {
 
   const [isHovering, setIsHovering] = useState(false);
 
-  const pointerPosition = usePointerPosition(isHovering);
-  // const pointerOffset = usePointerOffset(isHovering, containerRef, "center");
-  // const pointerOffsetPercent = usePointerOffsetNormalized(pointerOffset);
+  // const pointerPosition = usePointerPosition(isHovering);
+  const pointerOffset = usePointerOffset(isHovering, containerRef, "center");
+  const pointerOffsetPercent = usePointerOffsetNormalized(pointerOffset);
 
-  const offsetX1 = useTransform(pointerPosition.x, (latest) =>
+  const offsetX1 = useTransform(pointerOffsetPercent.x, (latest) =>
     isHovering ? 1 + latest : 1,
   );
-  const offsetX2 = useTransform(pointerPosition.x, (latest) =>
+  const offsetX2 = useTransform(pointerOffsetPercent.x, (latest) =>
     isHovering ? 1 - latest : 1,
   );
-  const offsetY = useTransform(pointerPosition.y, (latest) =>
+  const offsetY = useTransform(pointerOffsetPercent.y, (latest) =>
     isHovering ? 1 - 0.75 * latest : 1,
   );
 
@@ -90,7 +90,7 @@ const TransitionSectionWrapper = (props: Props) => {
           <div className="absolute bottom-0 left-0 h-auto w-full">
             <motion.div
               className="flex origin-bottom flex-row"
-              style={{ scaleY: easedScroll }}
+              // style={{ scaleY: easedScroll }}
             >
               <motion.img
                 src="/transition-section/left.png"
@@ -101,7 +101,7 @@ const TransitionSectionWrapper = (props: Props) => {
                 alt="transition-bg"
                 style={{
                   scaleX: easedX1,
-                  scaleY: easedY,
+                  // scaleY: easedY,
                 }}
               />
               <motion.img
@@ -113,7 +113,7 @@ const TransitionSectionWrapper = (props: Props) => {
                 alt="transition-bg"
                 style={{
                   scaleX: easedX2,
-                  scaleY: easedY,
+                  // scaleY: easedY,
                 }}
               />
             </motion.div>
