@@ -86,7 +86,7 @@ export const segments: TimlineSegment[] = [
     waypoints: [
       {
         age: "Age 41",
-        action: "Hormone OPtimization protocol",
+        action: "Hormone Optimization protocol",
         details: [""],
       },
     ],
@@ -117,7 +117,7 @@ export const segments: TimlineSegment[] = [
       {
         age: "Age 50",
         action: "Full body MRI",
-        details: ["item #1", "item #2", "item #3"],
+        details: ["started taking Metformin and Vitamin B12"],
       },
     ],
   },

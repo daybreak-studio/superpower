@@ -70,12 +70,12 @@ const WaypointTag = ({
       }}
     >
       <div
-        className={`absolute ${inverted ? "right-0 flex-row-reverse text-right" : "flex-row"} flex w-fit justify-between gap-4 text-nowrap`}
+        className={`absolute ${inverted ? "right-0 flex-col text-right" : "flex-col"} flex w-fit justify-between gap-4 text-nowrap`}
       >
         <motion.div className={inverted ? "mr-6" : "ml-6"}>
           <motion.div
             animate={{
-              y: isActive ? 0 : 50,
+              y: isActive ? 0 : 130,
               transition: {
                 duration: isActive
                   ? AnimationConfig.SLOW
@@ -144,7 +144,7 @@ const WaypointTag = ({
         animate={{
           // opacity: isActive ? 1 : 0,
           // scale: isActive ? 1 : 0.8,
-          y: isActive ? 0 : 50,
+          y: isActive ? 0 : 130,
           transition: {
             duration: AnimationConfig.NORMAL,
             ease: AnimationConfig.EASING,

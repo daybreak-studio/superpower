@@ -146,9 +146,9 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
             style={{
               rotateX: -cameraRotation,
               transformOrigin: "center bottom",
-              height: 100,
+              height: 180,
               x: head.x * timelineScaleFactor,
-              y: head.y * timelineScaleFactor - 100,
+              y: head.y * timelineScaleFactor - 180,
             }}
           >
             <Waypoint
