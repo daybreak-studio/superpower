@@ -70,14 +70,14 @@ const TransitionSectionWrapper = (props: Props) => {
   // });
 
   return (
-    <section className="pointer-events-none flex h-[75vh] w-full items-end">
+    <section className="pointer-events-none flex h-[75vh] w-full items-end bg-white">
       <div
         onPointerEnter={() => setIsHovering(true)}
         onPointerLeave={() => setIsHovering(false)}
         ref={containerRef as unknown as MutableRefObject<HTMLDivElement>}
         className=" relative h-[225vh] w-screen"
       >
-        <div className="sticky top-0 flex h-screen w-full items-end mix-blend-hard-light">
+        <div className="sticky top-0 flex h-screen w-full items-end">
           <div className="absolute bottom-[-1px] left-0 h-auto w-full">
             <motion.div
               className=" flex origin-bottom flex-row"

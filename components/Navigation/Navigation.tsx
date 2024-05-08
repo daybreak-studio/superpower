@@ -45,7 +45,7 @@ const Navigation = (props: Props) => {
 
   return (
     <nav
-      className="fixed left-0 top-0 z-[99] flex h-auto w-full items-center justify-center sm:px-12"
+      className="fixed left-0 top-0 z-[99] flex h-auto w-full items-center justify-center mix-blend-difference sm:px-12"
       style={{
         opacity: scrollDir === "scrolling down" ? 0 : 1,
         transition: "opacity 0.3s ease-in-out",
@@ -67,7 +67,7 @@ const Navigation = (props: Props) => {
             <li>Manifesto</li>
             <li>Log in</li>
           </ul>
-          <button className="h-full w-auto bg-neutral-300 px-2 uppercase text-black sm:px-4">
+          <button className="h-full w-auto bg-white px-2 uppercase text-black sm:px-4">
             Join Waitlist
           </button>
         </div>

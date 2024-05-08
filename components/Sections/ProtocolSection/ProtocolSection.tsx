@@ -21,7 +21,7 @@ const ProtocolSection = (props: Props) => {
   const isBiomarkerInView = useInView(biomarkerContainerRef);
 
   return (
-    <section className="relative">
+    <section className="relative bg-white">
       <motion.div
         className="mb-16 flex h-fit flex-col items-center bg-white pt-16"
         style={{

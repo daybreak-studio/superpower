@@ -63,7 +63,7 @@ function SuperpowerBaselineSection({}: Props) {
   const isDesktop = useBreakpoint(breakpoints.lg);
 
   return (
-    <section className="my-24 flex flex-col items-center">
+    <section className="my-24 flex flex-col items-center bg-white">
       <div className="font-mono-sm mx-4 mb-4 text-center">How it works</div>
       <h2 className="font-sans-4xl mx-4 mb-6 max-w-[20ch] text-center">
         Our cornerstone is the superpower baseline
