@@ -59,10 +59,12 @@ const WaypointTag = ({
   return (
     <motion.div
       className="relative flex h-full w-0 text-white"
-      style={{
-        filter: blurStr,
-        // visibility: isVisible ? "visible" : "hidden",
-      }}
+      style={
+        {
+          // filter: blurStr,
+          // visibility: isVisible ? "visible" : "hidden",
+        }
+      }
       animate={{
         opacity: isVisible ? 1 : 0.4,
       }}
@@ -81,7 +83,7 @@ const WaypointTag = ({
                 ease: AnimationConfig.EASING,
               },
             }}
-            className="font-mono-sm mb-2 text-vermilion-700"
+            className="font-mono-md mb-2 text-vermilion-700"
           >
             {waypoint.age}
           </motion.div>
@@ -112,7 +114,7 @@ const WaypointTag = ({
               ease: AnimationConfig.EASING,
             },
           }}
-          className={`flex h-fit flex-col gap-1 ${inverted ? "border-r pr-4" : "border-l pl-4"} border-[rgba(255,255,255,.2)] `}
+          className={`flex h-fit flex-col gap-2 ${inverted ? "border-r pr-4" : "border-l pl-4"} border-[rgba(255,255,255,.2)] `}
         >
           {waypoint.details.map((detail, index) => (
             <motion.div
@@ -128,7 +130,7 @@ const WaypointTag = ({
                 },
               }}
               key={index}
-              className="flex items-center gap-2 leading-none"
+              className="font-sans-md flex items-center gap-2 leading-none"
             >
               <ArrowMarkerSVG />
               {detail}

@@ -78,7 +78,7 @@ const JourneySegment = ({
     { clamp: false },
   );
   useMotionValueEvent(segmentProgress, "change", (latest) => {
-    if (latest < 6 && (latest > -6 || (isLowPerformanceMode && latest > -4))) {
+    if (latest < 8 && (latest > -8 || (isLowPerformanceMode && latest > -4))) {
       setShouldRenderSegement(true);
     } else {
       setShouldRenderSegement(false);

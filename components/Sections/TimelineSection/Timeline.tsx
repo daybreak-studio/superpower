@@ -152,7 +152,7 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
             }}
           >
             <Waypoint
-              inverted={head.x > SVGWidth * 0.7}
+              inverted={head.x > SVGWidth * 0.5}
               waypoint={waypoints[0]}
               isActive={currentWaypoint === index}
               index={index}

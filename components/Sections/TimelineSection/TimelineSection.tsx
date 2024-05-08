@@ -8,6 +8,7 @@ import {
 } from "framer-motion";
 import React, { MutableRefObject, RefObject, useRef, useState } from "react";
 import Timeline from "./Timeline";
+import ProgressBar from "./ProgressBar";
 import FadingText from "@/components/FadingText/FadingText";
 import Scrim from "@/components/Scrim/Scrim";
 
@@ -61,13 +62,16 @@ const TimelineSection = (props: Props) => {
         }}
         className="sticky top-0 z-10 h-fit w-full bg-[rgba(0,0,0,.8)] pt-12 text-center text-white"
       >
-        <h3 className="font-sans-2xl mx-auto mb-4 max-w-[18ch]">
-          <FadingText progress={fadingTextProgress}>
-            <div className="h-fit py-1">
-              A proactive system in every stage of your life
-            </div>
-          </FadingText>
-        </h3>
+        <div className="flex flex-col items-center justify-center gap-2">
+          <h3 className="font-sans-2xl mx-auto mb-4 max-w-[18ch]">
+            <FadingText progress={fadingTextProgress}>
+              <div className="h-fit py-1">
+                A proactive system in every stage of your life
+              </div>
+            </FadingText>
+          </h3>
+          <ProgressBar progress={progress} />
+        </div>
         <div style={{ visibility: shouldScrimVisible ? "visible" : "hidden" }}>
           <Scrim height={"200px"} color="rgba(0,0,0,.8)" />
         </div>

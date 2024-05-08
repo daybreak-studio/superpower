@@ -91,6 +91,13 @@ const config: Config = {
           "line-height": "130%",
           "text-transform": "uppercase",
         },
+        "mono-md": {
+          "font-family": "var(--font-nb-international-mono)",
+          "font-size": "1rem",
+          "letter-spacing": "-0.035rem",
+          "line-height": "130%",
+          "text-transform": "uppercase",
+        },
         "mono-xl": {
           "font-family": "var(--font-nb-international-mono)",
           "font-size": "1rem",
@@ -149,6 +156,9 @@ const config: Config = {
         },
         "mono-sm": {
           "letter-spacing": "-0.035rem",
+        },
+        "mono-md": {
+          "font-size": "1.25rem",
         },
         "mono-xl": {
           "font-size": "2.75rem",
