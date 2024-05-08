@@ -47,23 +47,14 @@ const TransitionSectionWrapper = (props: Props) => {
 
   const [isHovering, setIsHovering] = useState(false);
 
-  // const pointerPosition = usePointerPosition(isHovering);
   const pointerOffset = usePointerOffset(isHovering, containerRef, "center");
   const pointerOffsetPercent = usePointerOffsetNormalized(pointerOffset);
 
   const offsetX1 = useTransform(pointerOffsetPercent.x, (latest) =>
     isHovering ? 1 + latest : 1,
   );
-  const offsetX2 = useTransform(pointerOffsetPercent.x, (latest) =>
-    isHovering ? 1 - latest : 1,
-  );
-  const offsetY = useTransform(pointerOffsetPercent.y, (latest) =>
-    isHovering ? 1 - 0.75 * latest : 1,
-  );
 
   const easedX1 = useSpring(offsetX1, { stiffness: 400, damping: 100 });
-  const easedX2 = useSpring(offsetX2, { stiffness: 400, damping: 100 });
-  const easedY = useSpring(offsetY, { stiffness: 400, damping: 100 });
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -79,42 +70,26 @@ const TransitionSectionWrapper = (props: Props) => {
   // });
 
   return (
-    <section className="flex h-[75vh] w-full items-end">
+    <section className="pointer-events-none flex h-[75vh] w-full items-end">
       <div
         onPointerEnter={() => setIsHovering(true)}
         onPointerLeave={() => setIsHovering(false)}
         ref={containerRef as unknown as MutableRefObject<HTMLDivElement>}
-        className="relative h-[225vh] w-screen"
+        className=" relative h-[225vh] w-screen"
       >
         <div className="sticky top-0 flex h-screen w-full items-end mix-blend-hard-light">
           <div className="absolute bottom-[-1px] left-0 h-auto w-full">
             <motion.div
-              className="flex origin-bottom flex-row"
+              className=" flex origin-bottom flex-row"
               style={{ scaleY: easedScroll }}
             >
-              <motion.img
-                src="/transition-section/left.png"
+              <Image
+                src="/transition-section/transition.png"
                 width="0"
                 height="0"
                 sizes="100vw"
-                className="grow origin-bottom-left"
+                className="pointer-events-none h-full grow origin-bottom-left"
                 alt="transition-bg"
-                style={{
-                  scaleX: easedX1,
-                  scaleY: easedY,
-                }}
-              />
-              <motion.img
-                src="/transition-section/right.png"
-                width="0"
-                height="0"
-                sizes="100vw"
-                className="grow origin-bottom-right"
-                alt="transition-bg"
-                style={{
-                  scaleX: easedX2,
-                  scaleY: easedY,
-                }}
               />
             </motion.div>
           </div>
