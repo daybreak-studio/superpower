@@ -112,7 +112,7 @@ const FloatingPageSelector = ({
       }}
     >
       <div
-        className="relative w-fit rounded-full border border-[rgba(0,0,0,.05)] bg-[#F9F8F8] px-1 py-1"
+        className="relative w-fit rounded-full border border-[rgba(0,0,0,.05)] bg-[#fff] px-1 py-1"
         ref={containerRef}
       >
         <motion.div className="absolute left-0 top-6 -z-20 h-full w-full rounded-full bg-zinc-500 opacity-10 blur-xl" />
