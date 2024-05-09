@@ -19,7 +19,7 @@ export const HealthArea = ({
     absolute
       flex flex-row
       ${left ? "left-0" : "right-0"} 
-      -z-10 h-full w-full
+       h-full w-full
       ${left ? "border-l border-l-zinc-300" : "border-r border-r-zinc-300"}`}
     style={{
       width: width * 1.2,

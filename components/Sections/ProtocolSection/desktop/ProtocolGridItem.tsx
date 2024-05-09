@@ -74,7 +74,7 @@ export const ProtocolGridItem = ({
         style={{
           filter: "grayscale(var(--greyscale-progress))",
         }}
-        className="h-full overflow-hidden rounded-2xl"
+        className="z-10 h-full overflow-hidden rounded-2xl"
         animate={{
           width: isExpanded ? itemWidth * 1.2 : itemWidth,
           transition: {
