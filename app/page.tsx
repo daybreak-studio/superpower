@@ -14,7 +14,7 @@ import Navigation from "@/components/Navigation/Navigation";
 
 export default function Home() {
   return (
-    <main>
+    <main className="bg-white">
       <Navigation />
       <HeroSection />
       <FeatureOverviewSection />
