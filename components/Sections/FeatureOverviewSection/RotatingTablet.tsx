@@ -100,7 +100,10 @@ const RotatingTablet = ({
         ></motion.div>
       </div>
       {children}
-      <div className="absolute inset-0 z-20 grid grid-cols-1 grid-rows-1 p-[0.3%] pl-[0.5%] pt-[0.5%]">
+      <div
+        className="absolute inset-0 z-20 grid grid-cols-1 grid-rows-1 p-[0.3%] pl-[0.5%] pt-[0.5%]"
+        style={{ transform: "translate3d(0, 0, 0)" }}
+      >
         <motion.div
           className="relative overflow-hidden rounded-ipad-inner md:rounded-ipad-inner-md 3xl:rounded-ipad-inner-3xl"
           style={{

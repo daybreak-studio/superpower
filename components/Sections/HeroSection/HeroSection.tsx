@@ -127,7 +127,7 @@ const HeroSection = (props: Props) => {
 
   return (
     <section className="relative min-h-screen bg-zinc-900 text-white">
-      <LoadingScreen isLoaded={isVideoLoaded} />
+      {/* <LoadingScreen isLoaded={isVideoLoaded} /> */}
       {/* playbackConst: higher it is, the slower it plays */}
       {!isLowPowerMode && (
         <ScrollVideo

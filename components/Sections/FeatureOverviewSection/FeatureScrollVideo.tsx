@@ -160,7 +160,7 @@ const FeatureScrollVideo = ({
             }}
           >
             <video
-              className="w-fullobject-cover"
+              className="w-full object-cover"
               //@ts-ignore
               autobuffer="autobuffer"
               disablePictureInPicture
