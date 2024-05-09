@@ -57,7 +57,7 @@ const HeroDesktopLayout = ({ shouldShowContent }: Props) => {
       <div className="mt-[30vh] flex w-full lg:flex-row">
         <h1 className="font-sans-3xl max-w-[8ch]">
           <FadingText progress={fadingAnimProgress}>
-            <span className="block">A new era of personal health</span>
+            <span>A new era of personal health</span>
           </FadingText>
         </h1>
         <div className="ml-auto flex w-full max-w-[372px] flex-row">
