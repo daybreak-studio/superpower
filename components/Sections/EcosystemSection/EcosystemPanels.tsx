@@ -108,6 +108,7 @@ const EcosystemPanels = ({
               }}
               width={500}
               height={500}
+              priority
             />
             <div className="font-sans-lg text-center text-black">
               {item.name}
