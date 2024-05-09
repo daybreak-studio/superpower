@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import NavLink from "./NavLink";
 
 type Props = {};
 
@@ -64,11 +65,11 @@ const Navigation = (props: Props) => {
         </div>
         <div className="font-mono-xs flex h-full w-full items-center justify-end gap-4 text-[10px] tracking-tighter sm:gap-8">
           <ul className="flex items-center justify-between gap-4 text-[rgba(134,134,134,1)] sm:gap-8">
-            <li>Manifesto</li>
-            <li>Log in</li>
+            <NavLink href="/#">Manifesto</NavLink>
+            <NavLink href="/#">Log in</NavLink>
           </ul>
           <button className="h-full w-auto bg-white px-2 uppercase text-black sm:px-4">
-            Join Waitlist
+            Get Started
           </button>
         </div>
       </div>
