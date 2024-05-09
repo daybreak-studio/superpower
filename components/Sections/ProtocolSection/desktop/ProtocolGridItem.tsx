@@ -74,7 +74,7 @@ export const ProtocolGridItem = ({
         style={{
           filter: "grayscale(var(--greyscale-progress))",
         }}
-        className="z-10 h-full overflow-hidden rounded-2xl"
+        className="relative z-10 h-full overflow-hidden rounded-2xl"
         animate={{
           width: isExpanded ? itemWidth * 1.2 : itemWidth,
           transition: {
@@ -84,7 +84,7 @@ export const ProtocolGridItem = ({
         }}
       >
         <div
-          className="absolute inset-0"
+          className="absolute bottom-0 left-0 h-full w-full overflow-hidden rounded-bl-2xl rounded-br-2xl"
           style={{
             background:
               "linear-gradient(180deg, rgba(0, 0, 0, 0) 67%, rgba(0, 0, 0, 0.587121) 80.5%, rgba(0, 0, 0, 0.757576) 87%, #000000 100%)",
@@ -108,7 +108,7 @@ export const ProtocolGridItem = ({
       />
 
       {/* overlay label text */}
-      <div className="absolute inset-0 flex flex-col items-center justify-between p-3 text-white">
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-between p-3 text-white">
         <motion.div
           animate={{
             scale: isCollapsed ? 0.6 : 1,
