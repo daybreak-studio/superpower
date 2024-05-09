@@ -81,7 +81,7 @@ const RotatingTablet = ({
           >
             <Image
               className="w-full"
-              src={"/ipad-section/glare-edges.png"}
+              src={"/ipad-section/glare.png"}
               width={4000}
               height={3000}
               alt={""}
@@ -100,10 +100,7 @@ const RotatingTablet = ({
         ></motion.div>
       </div>
       {children}
-      <div
-        className="absolute inset-0 z-20 grid grid-cols-1 grid-rows-1 p-[0.3%] pl-[0.5%] pt-[0.5%]"
-        style={{ transform: "translate3d(0, 0, 0)" }}
-      >
+      <div className="absolute inset-0 grid grid-cols-1 grid-rows-1 p-[0.3%] pl-[0.5%] pt-[0.5%]">
         <motion.div
           className="relative overflow-hidden rounded-ipad-inner md:rounded-ipad-inner-md 3xl:rounded-ipad-inner-3xl"
           style={{
