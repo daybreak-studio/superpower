@@ -38,7 +38,7 @@ const EcosystemSection = (props: Props) => {
 
   return (
     <section
-      className="relative z-[-1] my-[20vw] h-screen w-screen"
+      className="relative my-[20vw] h-screen w-screen bg-white"
       onPointerEnter={() => setIsHovering(true)}
       onPointerLeave={() => setIsHovering(false)}
       ref={containerRef as unknown as MutableRefObject<HTMLDivElement>}
