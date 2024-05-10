@@ -176,7 +176,7 @@ const FeatureScrollVideo = ({
           </motion.div>
         </RotatingTablet>
         <motion.div
-          className="absolute bottom-16 z-[50]"
+          className="absolute top-[50%] z-[50] lg:bottom-16 lg:top-auto lg:translate-y-0"
           initial={{ opacity: 0 }}
           animate={{
             opacity: canInteractWithTablet ? 1 : 0,
