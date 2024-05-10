@@ -28,59 +28,66 @@ const Footer = () => {
         className="mx-4 flex flex-col gap-20 lg:mx-14 lg:gap-10 lg:pb-12"
         style={{ textRendering: "geometricPrecision" }}
       >
-        <nav className="grid grid-cols-1 gap-4 sm:w-[500px] sm:grid-cols-3 sm:grid-rows-1">
-          <motion.div className="flex flex-col border-l-2 border-zinc-300 pl-2 lg:pl-4">
-            <FooterLink href="https://twitter.com/superpower">
-              Twitter
-            </FooterLink>
-            <FooterLink href="https://instagram.com/superpower">
-              Instagram
-            </FooterLink>
-            <FooterLink href="https://tiktok.com/superpower">Tiktok</FooterLink>
-          </motion.div>
+        <div className="relative">
+          <div className="relative flex w-full flex-col gap-6 self-center object-center">
+            {/* <SuperpowerLogo className="w-11/12 p-6" /> */}
 
-          <motion.div className="flex flex-col border-l-2 border-zinc-300 pl-2 lg:pl-4">
-            <FooterLink href="https://superpower.com/careers">
-              Careers
-            </FooterLink>
-            <FooterLink href="https://superpower.com/contact">
-              Contact
-            </FooterLink>
-            <FooterLink href="https://superpower.com/support">
-              Support
-            </FooterLink>
-          </motion.div>
-          <motion.div className="flex flex-col border-l-2 border-zinc-300 pl-2 lg:pl-4">
-            <FooterLink href="https://superpower.com/tos">
-              Terms of service
-            </FooterLink>
-            <FooterLink href="https://superpower.com/privacy">
-              Privacy Policy
-            </FooterLink>
-          </motion.div>
-        </nav>
+            <video
+              src="footer-section/bg-vid.webm"
+              className="h-[16vw] w-full bg-cover object-cover lg:h-[14vw]"
+              style={{
+                maskRepeat: "no-repeat",
+                maskImage: "url(../footer-section/logo.svg)",
+                maskOrigin: "left",
+                maskSize: "100%",
+                maskPosition: "top left",
+              }}
+              autoPlay
+              muted
+              loop
+              playsInline
+            ></video>
+          </div>
+          <nav className="grid grid-cols-1 gap-4 sm:w-[500px] sm:grid-cols-3 sm:grid-rows-1">
+            <motion.div className="flex gap-4 border-l-2 border-zinc-300 pl-2 sm:flex-col sm:gap-0 lg:pl-4">
+              <FooterLink href="https://twitter.com/superpower">
+                Twitter
+              </FooterLink>
+              <FooterLink href="https://instagram.com/superpower">
+                Instagram
+              </FooterLink>
+              <FooterLink href="https://tiktok.com/superpower">
+                Tiktok
+              </FooterLink>
+            </motion.div>
 
-        <div className="relative flex w-full flex-col gap-6 self-center object-center">
-          {/* <SuperpowerLogo className="w-11/12 p-6" /> */}
-          <small className="font-mono-xs relative bottom-0 left-0 leading-4 lg:absolute">
-            ©2024 Superpower Health, <br />
-            Inc. All Rights Reserved
-          </small>
-          <video
-            src="footer-section/bg-vid.webm"
-            className="h-[16vw] w-full bg-cover object-cover lg:h-[14vw]"
-            style={{
-              maskRepeat: "no-repeat",
-              maskImage: "url(../footer-section/logo.svg)",
-              maskOrigin: "left",
-              maskSize: "100%",
-              maskPosition: "top left",
-            }}
-            autoPlay
-            muted
-            loop
-            playsInline
-          ></video>
+            <motion.div className="flex gap-4 border-l-2 border-zinc-300 pl-2 sm:flex-col sm:gap-0 lg:pl-4">
+              <FooterLink href="https://superpower.com/careers">
+                Careers
+              </FooterLink>
+              <FooterLink href="https://superpower.com/contact">
+                Contact
+              </FooterLink>
+              <FooterLink href="https://superpower.com/support">
+                Support
+              </FooterLink>
+            </motion.div>
+            <motion.div className="flex gap-4 border-l-2 border-zinc-300 pl-2 sm:flex-col sm:gap-0 lg:pl-4">
+              <FooterLink href="https://superpower.com/tos">
+                Terms of service
+              </FooterLink>
+              <FooterLink href="https://superpower.com/privacy">
+                Privacy Policy
+              </FooterLink>
+            </motion.div>
+          </nav>
+          <div className="mt-8 lg:absolute lg:bottom-0 lg:right-0 lg:text-right">
+            <small className="font-mono-xs leading-4 ">
+              2024 Superpower Health, Inc.
+              <br />
+              All Rights Reserved
+            </small>
+          </div>
         </div>
       </section>
     </>

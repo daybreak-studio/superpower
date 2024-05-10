@@ -6,7 +6,7 @@ import LineElement from "@/components/LineElement/LineElement";
 import { useInView } from "framer-motion";
 
 type Props = {};
-const interval = 2500; // interval between quotes
+const interval = 3500; // interval between quotes
 const clap = 800; // clap animation time
 
 const quotes = [

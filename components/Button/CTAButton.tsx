@@ -120,8 +120,8 @@ const CTAButtonOutline = ({ href, children, isVisible = true }: Props) => {
             },
           }}
         >
-          <Corner topLeft />
-          <Corner topRight />
+          <Corner topLeft color={isHovering ? "#F7791E" : "#000"} />
+          <Corner topRight color={isHovering ? "#F7791E" : "#000"} />
         </motion.div>
       </div>
       <motion.div
@@ -140,6 +140,7 @@ const CTAButtonOutline = ({ href, children, isVisible = true }: Props) => {
       >
         <motion.div
           animate={{
+            color: isHovering ? "#F7791E" : "#18181b",
             scale: isHovering ? 0.95 : 1,
             transition: {
               duration: AnimationConfig.NORMAL,
@@ -170,8 +171,8 @@ const CTAButtonOutline = ({ href, children, isVisible = true }: Props) => {
           }}
           className="flex justify-between"
         >
-          <Corner bottomLeft />
-          <Corner bottomRight />
+          <Corner bottomLeft color={isHovering ? "#F7791E" : "#000"} />
+          <Corner bottomRight color={isHovering ? "#F7791E" : "#000"} />
         </motion.div>
       </div>
       <motion.div
@@ -181,7 +182,7 @@ const CTAButtonOutline = ({ href, children, isVisible = true }: Props) => {
         }}
         animate={{
           scale: isHovering ? 1 : 0.8,
-          opacity: isHovering ? 1 : 0,
+          opacity: isHovering ? 0.5 : 0,
           transition: {
             duration: AnimationConfig.SLOW,
             ease: "linear",

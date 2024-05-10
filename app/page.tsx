@@ -12,22 +12,26 @@ import EcosystemSection from "@/components/Sections/EcosystemSection/EcosystemLa
 import TimelineSection from "@/components/Sections/TimelineSection/TimelineSection";
 import ScrollingTextLayout from "@/components/Sections/ScrollingTextSection/ScrollingTextLayout";
 import Navigation from "@/components/Navigation/Navigation";
+import { Lenis } from "@studio-freight/react-lenis";
+import { ReactLenis } from "@studio-freight/react-lenis";
 
 export default function Home() {
   return (
-    <main className="bg-white">
-      <Navigation />
-      <HeroSection />
-      <FeatureOverviewSection />
-      <SuperpowerBaselineSection />
-      <ProtocolSection />
-      <TestimonialsSection />
-      <TransitionSectionUp />
-      <TimelineSection />
-      <TransitionSectionDown />
-      <EcosystemSection />
-      <ScrollingTextLayout />
-      <Footer />
-    </main>
+    <ReactLenis root options={{ lerp: 0.1, duration: 1.5 }}>
+      <main className="bg-white">
+        <Navigation />
+        <HeroSection />
+        <FeatureOverviewSection />
+        <SuperpowerBaselineSection />
+        <ProtocolSection />
+        <TestimonialsSection />
+        <TransitionSectionUp />
+        <TimelineSection />
+        <TransitionSectionDown />
+        <EcosystemSection />
+        <ScrollingTextLayout />
+        <Footer />
+      </main>
+    </ReactLenis>
   );
 }
