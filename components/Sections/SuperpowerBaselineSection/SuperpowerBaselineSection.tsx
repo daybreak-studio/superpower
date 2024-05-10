@@ -65,7 +65,7 @@ function SuperpowerBaselineSection({}: Props) {
   return (
     <section className="relative z-10 my-24 flex flex-col items-center bg-white">
       <div className="font-mono-sm mx-4 mb-4 text-center">How it works</div>
-      <h2 className="font-sans-4xl mx-4 mb-6 max-w-[20ch] text-center">
+      <h2 className="font-sans-2xl mx-4 mb-6 max-w-[20ch] text-center">
         Our cornerstone is the Superpower baseline
       </h2>
       <p className="font-sans-lg mx-4 max-w-[50ch] text-center opacity-50">

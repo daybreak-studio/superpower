@@ -80,7 +80,7 @@ const TestimonialsDesktop = ({
             ease: [easeIn, easeIn, easeOut, easeOut],
           }}
         >
-          <CornerBox cornerSize={20} cornerColor={"#c40"} />
+          <CornerBox cornerSize={20} cornerColor={"#000"} />
           <motion.div
             className="flex min-h-[500px] min-w-[700px] flex-col flex-wrap items-center justify-between p-4 text-center"
             // initial={{

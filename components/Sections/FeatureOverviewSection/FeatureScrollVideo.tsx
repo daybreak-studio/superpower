@@ -14,6 +14,7 @@ import RotatingTablet from "./RotatingTablet";
 import { useVideoScrubber } from "@/components/ScrollVideo/useVideoScrubber";
 import { useMotionValueSwitch } from "@/hooks/useMotionValueSwitch";
 import { AnimationConfig } from "@/components/AnimationConfig";
+import { isSafari } from "react-device-detect";
 
 type Props = {
   playbackConst: number; // higher it is, the slower it plays
@@ -112,11 +113,12 @@ const FeatureScrollVideo = ({
               ease: "linear",
             },
           }}
-          className="] font-sans-2xl absolute mx-4 my-12 max-w-[20ch] translate-y-[-30vw] text-center md:translate-y-[-40vh]"
+          className="font-sans-2xl absolute mx-4 my-12 max-w-[20ch] translate-y-[-35vw] text-center md:translate-y-[-40vh]"
         >
           {headline}
         </motion.h2>
         <RotatingTablet
+          isSafari={isSafari}
           scale={videoScale}
           glareOpacity={glareOpacity}
           canInteract={canInteractWithTablet}
@@ -175,26 +177,27 @@ const FeatureScrollVideo = ({
             </video>
           </motion.div>
         </RotatingTablet>
-        <motion.div
-          className="absolute top-[50%] z-[50] lg:bottom-16 lg:top-auto lg:translate-y-0"
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: canInteractWithTablet ? 1 : 0,
-            y: canInteractWithTablet ? 0 : 30,
-            transition: {
-              duration: canInteractWithTablet
-                ? AnimationConfig.VERY_SLOW
-                : AnimationConfig.NORMAL,
-              ease: AnimationConfig.EASING,
-              delay: canInteractWithTablet ? AnimationConfig.NORMAL : 0,
-            },
-          }}
-        >
-          <FeatureOverviewNav
-            currentPage={currentPage}
-            onChange={setCurrentPage}
-          />
-        </motion.div>
+        <div className="absolute top-[50%] z-[50] translate-y-[30vw] lg:bottom-16 lg:top-auto lg:translate-y-0">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: canInteractWithTablet ? 1 : 0,
+              y: canInteractWithTablet ? 0 : 30,
+              transition: {
+                duration: canInteractWithTablet
+                  ? AnimationConfig.VERY_SLOW
+                  : AnimationConfig.NORMAL,
+                ease: AnimationConfig.EASING,
+                delay: canInteractWithTablet ? AnimationConfig.NORMAL : 0,
+              },
+            }}
+          >
+            <FeatureOverviewNav
+              currentPage={currentPage}
+              onChange={setCurrentPage}
+            />
+          </motion.div>
+        </div>
       </div>
     </motion.div>
   );

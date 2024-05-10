@@ -115,9 +115,9 @@ const FloatingPageSelector = ({
         className="relative w-fit rounded-full border border-[rgba(0,0,0,.05)] bg-[#fff] px-1 py-1"
         ref={containerRef}
       >
-        <motion.div className="absolute left-0 top-6 -z-20 h-full w-full rounded-full bg-zinc-500 opacity-10 blur-xl" />
+        <motion.div className="absolute left-0 top-6 -z-20 h-full w-full rounded-full bg-zinc-700 opacity-10 blur-lg" />
         <motion.div
-          className="mix-blend-invert absolute left-0 top-2 -z-10 h-full rounded-full bg-vermilion-900 opacity-30 blur-lg"
+          className="mix-blend-invert absolute left-0 top-2 -z-10 h-full rounded-full bg-vermilion-900 opacity-50 blur-xl"
           animate={highlightAnimWithColor}
           style={{
             x: xOffsetRound,

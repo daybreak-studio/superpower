@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useInactiveMotionValue } from "@/hooks/useInactiveMotionValue";
 
 type Props = {
+  isSafari: boolean;
   children: React.ReactNode;
   scale: MotionValue;
   glareOpacity: MotionValue;
@@ -16,6 +17,7 @@ type Props = {
 };
 
 const RotatingTablet = ({
+  isSafari,
   children,
   scale,
   glareOpacity,
@@ -64,7 +66,10 @@ const RotatingTablet = ({
       }}
       ref={mouseContainerRef}
     >
-      <div className="absolute inset-0 grid grid-cols-1 grid-rows-1 px-[0.3%] py-[0.4%]">
+      <div
+        className="absolute inset-0 grid grid-cols-1 grid-rows-1 px-[0.3%] py-[0.4%]"
+        style={{ visibility: isSafari ? "hidden" : "visible" }}
+      >
         <motion.div
           className="relative overflow-hidden rounded-ipad-outer md:rounded-ipad-outer-md 3xl:rounded-ipad-outer-3xl"
           style={{ scale: scale }}
