@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavLink from "./NavLink";
+import Image from "next/image";
 
 type Props = {};
 
@@ -61,7 +62,7 @@ const Navigation = (props: Props) => {
         }}
       >
         <div className="w-24">
-          <img src="/logo.svg" alt="logo" />
+          <Image src="/logo.svg" alt="logo" width={96} height={24} />
         </div>
         <div className="font-mono-xs flex h-full w-full items-center justify-end gap-4 text-[10px] tracking-tighter sm:gap-8">
           <ul className="flex items-center justify-between gap-4 text-[rgba(134,134,134,1)] sm:gap-8">

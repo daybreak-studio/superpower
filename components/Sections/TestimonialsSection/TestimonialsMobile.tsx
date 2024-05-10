@@ -37,7 +37,7 @@ const TestimonialsMobile = ({
     }, intervalTime);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [intervalTime, quotesList.length]);
 
   return (
     <motion.div
