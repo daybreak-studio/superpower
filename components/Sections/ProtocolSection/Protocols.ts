@@ -41,7 +41,7 @@ export const PROTOCOLS = [
     icon: "/protocol-section/icon-1.svg",
     image: "/protocol-section/disease-risk.png",
     areas: [
-      "Detecting early indicators of heart problems",
+      "Early heart issue detection",
       "Cancer",
       "and 100s of diseases",
     ],

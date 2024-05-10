@@ -38,9 +38,11 @@ type PointerOffsetNormalizedArgs = {
   anchor: "center" | "left";
 };
 
-type Props = {};
+type Props = {
+  direction: "up" | "down";
+};
 
-const TransitionSectionWrapper = (props: Props) => {
+const TransitionItem = ({ direction }: Props) => {
   const isDesktop = useBreakpoint(breakpoints.lg);
 
   const containerRef = useRef() as MutableRefObject<HTMLAnchorElement>;
@@ -61,27 +63,50 @@ const TransitionSectionWrapper = (props: Props) => {
     // offset: ["start end", "end end"],
   });
 
-  const easedScroll = useTransform(scrollYProgress, (t) => {
+  const easedScrollUp = useTransform(scrollYProgress, (t) => {
     var ts = Math.pow(0.75 * t, 3);
     return ts * 18;
+  });
+  const easedScrollDown = useTransform(scrollYProgress, (t) => {
+    var ts = Math.pow(0.75 * (1 - t), 3);
+    return ts * -18;
   });
   // const easedScroll = useTransform(scrollYProgress, [0, 1], [0.5, 1], {
   //   ease: cubicBezier(0.16, 1, 0.3, 1),
   // });
 
   return (
-    <section className="pointer-events-none relative z-10 flex h-[75vh] w-full items-end bg-white">
+    <div
+      className=" flex h-full w-full"
+      style={{
+        alignItems: direction == "up" ? "flex-end" : "flex-start",
+      }}
+    >
       <div
         onPointerEnter={() => setIsHovering(true)}
         onPointerLeave={() => setIsHovering(false)}
         ref={containerRef as unknown as MutableRefObject<HTMLDivElement>}
         className=" relative h-[225vh] w-screen"
       >
-        <div className="sticky top-0 flex h-screen w-full items-end">
-          <div className="absolute bottom-[-5px] left-0 h-auto w-full">
+        <div
+          className="sticky top-0 flex h-screen w-full"
+          style={{
+            alignItems: direction == "up" ? "flex-end" : "flex-start",
+          }}
+        >
+          <div
+            className="absolute left-0 h-auto w-full"
+            style={{
+              bottom: direction == "up" ? "-5px" : "auto",
+              top: direction == "down" ? "-5px" : "auto",
+            }}
+          >
             <motion.div
-              className=" flex origin-bottom flex-row"
-              style={{ scaleY: easedScroll }}
+              className="flex origin-bottom flex-row"
+              style={{
+                scaleY: direction == "up" ? easedScrollUp : easedScrollDown,
+                y: direction == "up" ? "0" : "-32vw",
+              }}
             >
               <Image
                 src="/transition-section/transition.png"
@@ -95,8 +120,8 @@ const TransitionSectionWrapper = (props: Props) => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default TransitionSectionWrapper;
+export default TransitionItem;

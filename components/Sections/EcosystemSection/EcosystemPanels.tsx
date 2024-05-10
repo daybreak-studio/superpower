@@ -93,7 +93,7 @@ const EcosystemPanels = ({
       >
         <motion.div
           style={{
-            z: isDesktop ? "-80vw" : "-200vw",
+            z: isDesktop ? "-80vw" : "-110vw",
           }}
         >
           <div className="absolute flex translate-x-[-50%] translate-y-[-50%] flex-col items-center gap-4">
