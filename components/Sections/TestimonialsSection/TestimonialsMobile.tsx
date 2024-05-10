@@ -12,12 +12,13 @@ import {
 import TestimonialsSelector from "./TestimonialsSelector";
 import CornerBox from "@/components/Button/CornerBox";
 import { AnimationConfig } from "@/components/AnimationConfig";
+import Image from "next/image";
 
 type Props = {
   clapTime: number;
   intervalTime: number;
   isVisible?: boolean;
-  quotesList: { quote: string; name: string; title: string }[];
+  quotesList: { quote: string; name: string; title: string; photo: string }[];
 };
 
 const TestimonialsMobile = ({
@@ -58,13 +59,13 @@ const TestimonialsMobile = ({
           <motion.div
             className="relative flex w-full items-center justify-center overflow-hidden"
             initial={{
-              height: 380,
+              height: 500,
             }}
             animate={{
-              height: [380, 0, 0, 380],
+              height: [500, 0, 0, 500],
             }}
             exit={{
-              height: 380,
+              height: 500,
             }}
             transition={{
               duration: clapTime / 1000,
@@ -77,7 +78,7 @@ const TestimonialsMobile = ({
           >
             <CornerBox cornerSize={12} cornerColor={"#000"} />
             <motion.div
-              className="flex min-h-[380px] min-w-[330px] flex-col flex-wrap items-center justify-evenly p-4 text-center"
+              className="flex min-h-[500px] min-w-[330px] flex-col flex-wrap items-center justify-evenly p-4 text-center"
               initial={{
                 opacity: 0,
               }}
@@ -104,11 +105,21 @@ const TestimonialsMobile = ({
               <p className="font-sans-4xl mx-4 mb-6 max-w-[20ch] text-center">
                 {quotesList[quoteIndex].quote}
               </p>
-              <p className="font-mono-sm text-center">
-                {quotesList[quoteIndex].name},
-                <br />
-                {quotesList[quoteIndex].title}
-              </p>
+              <div className="flex flex-col items-center justify-center gap-4">
+                <div className="relative h-8 w-8 overflow-hidden rounded-full">
+                  <Image
+                    src={quotesList[quoteIndex].photo}
+                    alt={quotesList[quoteIndex].name}
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+                <p className="font-mono-sm text-center">
+                  {quotesList[quoteIndex].name},
+                  <br />
+                  {quotesList[quoteIndex].title}
+                </p>
+              </div>
             </motion.div>
           </motion.div>
         </AnimatePresence>

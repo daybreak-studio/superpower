@@ -12,12 +12,13 @@ import {
 import TestimonialsSelector from "./TestimonialsSelector";
 import CornerBox from "@/components/Button/CornerBox";
 import { AnimationConfig } from "@/components/AnimationConfig";
+import Image from "next/image";
 
 type Props = {
   clapTime: number;
   intervalTime: number;
   isVisible?: boolean;
-  quotesList: { quote: string; name: string; title: string }[];
+  quotesList: { quote: string; name: string; title: string; photo: string }[];
 };
 
 const TestimonialsDesktop = ({
@@ -108,9 +109,19 @@ const TestimonialsDesktop = ({
             <p className="font-sans-2xl mx-4 mb-6 max-w-[20ch] text-center">
               {quotesList[quoteIndex].quote}
             </p>
-            <p className="font-mono-sm text-center">
-              {quotesList[quoteIndex].name}, {quotesList[quoteIndex].title}
-            </p>
+            <div className="flex items-center justify-center gap-4">
+              <div className="relative h-8 w-8 overflow-hidden rounded-full">
+                <Image
+                  src={quotesList[quoteIndex].photo}
+                  alt={quotesList[quoteIndex].name}
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+              <p className="font-mono-sm text-center">
+                {quotesList[quoteIndex].name}, {quotesList[quoteIndex].title}
+              </p>
+            </div>
           </motion.div>
         </motion.div>
       </AnimatePresence>

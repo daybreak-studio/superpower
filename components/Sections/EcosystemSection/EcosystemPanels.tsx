@@ -43,7 +43,7 @@ const EcosystemPanels = ({
   const offsetX = useTransform(pointerOffsetPercent.y, (latest: number) =>
     isDesktop
       ? isMouseInSection
-        ? item.desktopAngle.x + latest * 30
+        ? item.desktopAngle.x + latest * -15
         : item.desktopAngle.x
       : item.mobileAngle.x,
   );
@@ -93,7 +93,7 @@ const EcosystemPanels = ({
       >
         <motion.div
           style={{
-            z: isDesktop ? "-60vw" : "-200vw",
+            z: isDesktop ? "-80vw" : "-200vw",
           }}
         >
           <div className="absolute flex translate-x-[-50%] translate-y-[-50%] flex-col items-center gap-4">
