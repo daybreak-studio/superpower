@@ -11,24 +11,21 @@ const clap = 800; // clap animation time
 
 const quotes = [
   {
-    quote: "Changed my life forever.",
-    name: "Vinay hiremath",
-    title: "Co-founder of Microsoft",
+    quote:
+      "Testing with Superpower is exactly what I think medicine and health should be.",
+    name: "Erin Sharoni",
+    title: "Harvard Medical School",
   },
   {
-    quote: "The best thing since sliced bread!",
-    name: "Kiran Patel",
-    title: "Developer at Daybreak",
+    quote: "Went from in the dark on my health to fully in control",
+    name: "Brett Goldstein",
+    title: "Founder Micro",
   },
   {
-    quote: "I can't live without it.",
-    name: "Sara Smith",
-    title: "Designer at Meta",
-  },
-  {
-    quote: "I can't believe I ever lived without it.",
-    name: "John Doe",
-    title: "CEO of Apple",
+    quote:
+      "I discovered I had extremely high levels of inflammation. After my protocol there’s no signs whatsoever of those high levels.",
+    name: "Marc Baghadjan",
+    title: "CEO Hypercard",
   },
 ];
 
@@ -38,7 +35,7 @@ const TestimonialsWrapper = (props: Props) => {
   const isButtonInView = useInView(quoteContainerRef);
 
   return (
-    <section className="relative h-svh overflow-hidden bg-white">
+    <section className="relative z-10 h-svh overflow-hidden bg-white">
       <div className="absolute flex h-full w-full flex-col items-center justify-center gap-6">
         <div className="flex h-full">
           <LineElement length={"auto"} color={"#bbb"} vertical tail={16} />

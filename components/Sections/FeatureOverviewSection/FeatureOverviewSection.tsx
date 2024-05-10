@@ -10,7 +10,7 @@ const FeatureOverviewSection = (props: Props) => {
   const [isLowPowerMode, setIsLowPowerMode] = useState(false);
 
   return (
-    <section className="relative flex w-full">
+    <section className="relative z-10 flex w-full">
       {!isLowPowerMode && (
         <FeatureScrollVideo
           playbackConst={400}

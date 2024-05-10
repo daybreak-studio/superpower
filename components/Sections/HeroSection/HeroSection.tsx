@@ -39,7 +39,7 @@ const HeroSection = (props: Props) => {
 
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
-  const introLastFrame = timeStringToSeconds("0:06");
+  const introLastFrame = timeStringToSeconds("0:03");
   const introLastFrameScrollPos = useMemo(
     () => secondsToScrollPosition(introLastFrame, 400),
     [introLastFrame],
@@ -126,7 +126,7 @@ const HeroSection = (props: Props) => {
   }, [isVideoLoaded]);
 
   return (
-    <section className="relative min-h-screen bg-zinc-900 text-white">
+    <section className="relative z-10 min-h-screen bg-zinc-900 text-white">
       {/* <LoadingScreen isLoaded={isVideoLoaded} /> */}
       {/* playbackConst: higher it is, the slower it plays */}
       {!isLowPowerMode && (
@@ -144,7 +144,7 @@ const HeroSection = (props: Props) => {
             // },
             {
               type: 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"',
-              src: "/hero-section/sp-wormhole-v1-360.mp4",
+              src: "/hero-section/sp-wormhole-v2-360.mp4",
             },
           ]}
         >

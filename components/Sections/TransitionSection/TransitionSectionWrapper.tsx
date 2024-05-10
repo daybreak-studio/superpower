@@ -70,7 +70,7 @@ const TransitionSectionWrapper = (props: Props) => {
   // });
 
   return (
-    <section className="pointer-events-none flex h-[75vh] w-full items-end bg-white">
+    <section className="pointer-events-none relative z-10 flex h-[75vh] w-full items-end bg-white">
       <div
         onPointerEnter={() => setIsHovering(true)}
         onPointerLeave={() => setIsHovering(false)}

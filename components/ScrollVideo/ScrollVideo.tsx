@@ -81,7 +81,7 @@ const ScrollVideo = ({
 
   return (
     <motion.div
-      className={"relative flex items-start"}
+      className={"pointer-events-none relative flex items-start"}
       initial={{
         opacity: 0,
       }}

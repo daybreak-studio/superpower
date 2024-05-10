@@ -81,7 +81,7 @@ const RotatingTablet = ({
           >
             <Image
               className="w-full"
-              src={"/ipad-section/glare.png"}
+              src={"/ipad-section/glare-edges.png"}
               width={4000}
               height={3000}
               alt={""}

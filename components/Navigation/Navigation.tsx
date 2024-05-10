@@ -30,7 +30,7 @@ const Navigation = (props: Props) => {
         ticking = true;
       }
       const scrollY = window.pageYOffset;
-      if (scrollY > 8000) {
+      if (scrollY > 4000) {
         setScrolledPast1000(true);
       } else {
         setScrolledPast1000(false);
@@ -46,7 +46,7 @@ const Navigation = (props: Props) => {
 
   return (
     <nav
-      className="fixed left-0 top-0 z-[99] flex h-auto w-full items-center justify-center mix-blend-difference sm:px-12"
+      className="fixed left-0 top-0 z-[100] flex h-auto w-full items-center justify-center mix-blend-difference sm:px-12"
       style={{
         opacity: scrollDir === "scrolling down" ? 0 : 1,
         transition: "opacity 0.3s ease-in-out",
@@ -68,9 +68,11 @@ const Navigation = (props: Props) => {
             <NavLink href="/#">Manifesto</NavLink>
             <NavLink href="/#">Log in</NavLink>
           </ul>
-          <button className="h-full w-auto bg-white px-2 uppercase text-black sm:px-4">
-            Get Started
-          </button>
+          <a className="h-full" href="https://app.superpower.com/signin">
+            <button className="h-full w-auto bg-white px-2 uppercase text-black sm:px-4">
+              Get Started
+            </button>
+          </a>
         </div>
       </div>
     </nav>

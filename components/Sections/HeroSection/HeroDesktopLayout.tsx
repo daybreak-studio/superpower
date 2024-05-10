@@ -22,18 +22,18 @@ const HeroDesktopLayout = ({ shouldShowContent }: Props) => {
   );
   const isCTAVisible = useMotionValueSwitch(
     progress,
-    (latest) => latest > 0.3 && latest < 0.92,
+    (latest) => latest > 0.18 && latest < 0.52,
   );
   const fadingAnimProgress = useTransform(
     progress,
-    [0.1, 0.4, 0.9, 1],
+    [0.05, 0.2, 0.4, 0.5],
     [0, 0.6, 0.6, 1],
   );
 
-  const fadeDelay = 0.07;
+  const fadeDelay = 0.05;
   const fadingAnimDelayed = useTransform(
     progress,
-    [0.1 + fadeDelay, 0.4 + fadeDelay, 0.9 + fadeDelay, 1],
+    [0.05 + fadeDelay, 0.2 + fadeDelay, 0.43 + fadeDelay, 0.53],
     [0, 0.6, 0.6, 1],
   );
 
@@ -57,7 +57,7 @@ const HeroDesktopLayout = ({ shouldShowContent }: Props) => {
       <div className="mt-[30vh] flex w-full lg:flex-row">
         <h1 className="font-sans-3xl max-w-[8ch]">
           <FadingText progress={fadingAnimProgress}>
-            <span>A new era of personal health</span>
+            <span className="block">A new era of personal health</span>
           </FadingText>
         </h1>
         <div className="ml-auto flex w-full max-w-[372px] flex-row">
@@ -68,7 +68,7 @@ const HeroDesktopLayout = ({ shouldShowContent }: Props) => {
               color={"rgba(255,255,255,.5)"}
             />
           </FadeVertical>
-          <div className="flex h-full max-w-[372px] flex-col px-4">
+          <div className="pointer-events-auto z-50 flex h-full max-w-[372px] flex-col px-4">
             <FadingText progress={fadingAnimDelayed}>
               <p className="font-sans-xl mb-3 leading-tight">
                 The world&apos;s most advanced digital clinic for prevention,
@@ -94,7 +94,9 @@ const HeroDesktopLayout = ({ shouldShowContent }: Props) => {
                 },
               }}
             >
-              <CTAButton href={"https://www.google.com"}>Get started</CTAButton>
+              <CTAButton href={"https://app.superpower.com/signin"}>
+                Get started
+              </CTAButton>
             </motion.div>
           </div>
         </div>

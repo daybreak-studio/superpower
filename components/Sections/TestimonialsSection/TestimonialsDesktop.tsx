@@ -81,7 +81,7 @@ const TestimonialsDesktop = ({
         >
           <CornerBox cornerSize={20} cornerColor={"#000"} />
           <motion.div
-            className="flex min-h-[500px] min-w-[624px] flex-col flex-wrap items-center justify-between p-4 text-center"
+            className="flex min-h-[500px] min-w-[700px] flex-col flex-wrap items-center justify-between p-4 text-center"
             // initial={{
             //   opacity: 0,
             // }}
@@ -105,7 +105,7 @@ const TestimonialsDesktop = ({
                 />
               ))}
             </div>
-            <p className="font-sans-4xl mx-4 mb-6 max-w-[20ch] text-center">
+            <p className="font-sans-2xl mx-4 mb-6 max-w-[20ch] text-center">
               {quotesList[quoteIndex].quote}
             </p>
             <p className="font-mono-sm text-center">
