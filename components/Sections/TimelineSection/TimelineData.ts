@@ -2,7 +2,7 @@ import { TimlineSegment } from "./Segments";
 
 export const segments: TimlineSegment[] = [
   {
-    path: "M1 2C137.919 2 273.992 11.9427 404.5 31.6796",
+    path: "M1 2C299.481 2 593.937 49.2507 835.5 142.213",
     waypoints: [
       {
         age: "Born",
@@ -12,157 +12,67 @@ export const segments: TimlineSegment[] = [
     ],
   },
   {
-    path: "M404.5 31.6797C552.051 53.9939 692.49 88.8272 819 135.965",
-    waypoints: [
-      {
-        age: "Age 12",
-        action: "Superpower kids",
-        details: ["Diet optimization", "Allergy test"],
-      },
-    ],
-  },
-  {
-    path: "M819 135.965C950.642 185.015 1067.2 247.387 1161 322.84",
+    path: "M835.5 142.213C1143.67 260.81 1365.77 453.804 1400.3 718",
     waypoints: [
       {
         age: "Age 22",
-        action: "Annual superpower baseline",
-        details: ["Start takng vitamin D"],
+        action: "Annual Superpower Baseline",
+        details: ["60 biomarker blood test", "DEXA scan", "Performance program"],
       },
     ],
   },
   {
-    path: "M1161 322.84C1275.18 414.688 1355.63 525.919 1388.5 656.097",
-    waypoints: [
-      {
-        age: "Age 23",
-        action: "Annual superpower baseline",
-        details: [""],
-      },
-    ],
-  },
-  {
-    path: "M1388.5 656.097C1399.33 699.002 1405 743.966 1405 790.972C1405 883.927 1370.93 966.22 1314.28 1042.5",
+    path: "M1400.3 718C1403.41 741.749 1405 766.074 1405 790.972C1405 1015.35 1206.5 1177.61 971 1343.12",
     waypoints: [
       {
         age: "Age 26",
-        action: "DEXA scan",
-        details: ["Performance program"],
-      },
-    ],
-  },
-  {
-    path: "M1314.28 1042.5C1248.39 1131.22 1151.94 1211.81 1043 1291.58",
-    waypoints: [
-      {
-        age: "Age 29",
         action: "Gut health protocol",
-        details: ["Begin probiotics", "Heal gut lining"],
+        details: ["Microbiome test", "Personalized probiotic", "Gut lining peptide"],
       },
     ],
   },
   {
-    path: "M1043 1291.58C944.863 1363.44 836.592 1434.63 731.398 1510.5",
+    path: "M971 1343.12C752.77 1496.48 502.766 1652.64 349.5 1863.6",
     waypoints: [
       {
         age: "Age 31",
         action: "Fertility protocol",
-        details: ["Pre-natal vitamin stack", "Post-partum nutrients"],
+        details: ["Pre-natal vitamin stack","Post-partum nutrients"],
       },
     ],
   },
   {
-    path: "M731.398 1510.5C623.502 1588.32 518.844 1671.06 431.679 1764.5",
-    waypoints: [
-      {
-        age: "Age 36",
-        action: "VO2 max test",
-        details: [""],
-      },
-    ],
-  },
-  {
-    path: "M431.679 1764.5C342.032 1860.6 270.889 1968 233.758 2093",
+    path: "M349.5 1863.6C261.584 1984.61 205.499 2123.65 205.499 2290.54C205.499 2453.35 257.153 2581.89 336.864 2690.5",
     waypoints: [
       {
         age: "Age 41",
-        action: "Hormone Optimization protocol",
-        details: [""],
+        action: "Hormone optimization protocol",
+        details: ["Testosterone","Estrogren"],
       },
     ],
   },
   {
-    path: "M233.758 2093C215.53 2154.36 205.499 2219.96 205.499 2290.54C205.499 2376.97 220.055 2453.74 245.639 2523",
+    path: "M336.864 2690.5C493.17 2903.47 757.359 3039.79 951.5 3207.49",
     waypoints: [
       {
         age: "Age 45",
-        action: "Coronary calcium scan",
-        details: ["Left ventricle score: 0", "Right ventricle score: .1%"],
+        action: "Disease prevention program",
+        details: ["Coronary calcium scan", "Full body MRI", "Grail cancer screening"],
       },
     ],
   },
   {
-    path: "M245.639 2523C295.284 2657.4 386.453 2763.51 493.347 2857",
-    waypoints: [
-      {
-        age: "Age 47",
-        action: "Annual Superpower baseline",
-        details: [""],
-      },
-    ],
-  },
-  {
-    path: "M493.347 2857C595.854 2946.65 712.822 3024.69 821.5 3104.94",
-    waypoints: [
-      {
-        age: "Age 50",
-        action: "Full body MRI",
-        details: ["started taking Metformin and Vitamin B12"],
-      },
-    ],
-  },
-  {
-    path: "M821.5 3104.94C934.75 3188.56 1039 3274.58 1108.5 3378.62",
-    waypoints: [
-      {
-        age: "Age 55",
-        action: "Weight loss protocol",
-        details: [""],
-      },
-    ],
-  },
-  {
-    path: "M1108.5 3378.62C1162.48 3459.42 1195.5 3551.1 1195.5 3660.98C1195.5 3687.52 1193.28 3712.11 1189.11 3735",
+    path: "M951.5 3207.49C1091.79 3328.68 1195.5 3466.25 1195.5 3660.98C1195.5 3836.03 1099.14 3925.77 980.477 4006.5",
     waypoints: [
       {
         age: "Age 60",
         action: "Longevity protocol",
-        details: ["Targets senescent calls", "Reduce epigenetic biological age"],
+        details: ["Prevent Alzheimer’s, heart disease, cancer", "Reduce biological age", "Reduce skin age"],
       },
     ],
   },
   {
-    path: "M1189.11 3735C1164.19 3871.64 1069.5 3947.84 960 4020.22",
-    waypoints: [
-      {
-        age: "Age 66",
-        action: "Annual Superpower Baseline",
-        details: [""],
-      },
-    ],
-  },
-  {
-    path: "M960 4020.22C855.389 4089.37 737.253 4155.02 653.5 4266.55",
-    waypoints: [
-      {
-        age: "Age 70",
-        action: "Cancer prevention protocol",
-        details: [""],
-      },
-    ],
-  },
-  {
-    path: "M653.5,4266.55C587.609,4354.3 542.999,4470.44 542.999,4639",
+    path: "M980.478,4006.5C790.36,4135.85 542.999,4242.07 542.999,4639",
     waypoints: [
       {
         age: "Age 120",

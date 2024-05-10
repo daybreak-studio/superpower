@@ -73,9 +73,8 @@ function SuperpowerBaselineSection({}: Props) {
         comprehensive annual assessment with 80 advanced lab tests, and a custom
         action plan to improve your health and transform your life.
       </p>
-      <BaselineCarousel slides={SLIDES} />
-      {/* {isDesktop && <BaselineSlideVertical slides={SLIDES} />}
-      {!isDesktop && <BaselineCarousel slides={SLIDES} />} */}
+      {isDesktop && <BaselineSlideVertical slides={SLIDES} />}
+      {!isDesktop && <BaselineCarousel slides={SLIDES} />}
     </section>
   );
 }

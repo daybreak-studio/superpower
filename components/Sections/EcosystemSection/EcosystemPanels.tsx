@@ -110,7 +110,7 @@ const EcosystemPanels = ({
               height={500}
               priority
             />
-            <div className="font-sans-lg text-center text-black">
+            <div className="font-sans-lg text-center text-black 2xl:font-sans-xl">
               {item.name}
             </div>
           </div>
