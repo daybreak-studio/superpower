@@ -129,6 +129,14 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
           // willChange: "transform",
         }}
       >
+        <motion.div
+          className="absolute -left-1 -top-3 h-0 w-0"
+          style={{
+            rotateX: -cameraRotation,
+          }}
+        >
+          <div className="relative z-30 h-[100vw] w-[1px] bg-white" />
+        </motion.div>
         <TimelineGraphic
           segmentsInfo={allSegments}
           progress={progress}
