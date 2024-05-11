@@ -7,9 +7,9 @@ import { MotionValue, motion, useInView, useTransform } from "framer-motion";
 import React, { MutableRefObject, useRef } from "react";
 import Image from "next/image";
 import { useInactiveMotionValue } from "@/hooks/useInactiveMotionValue";
+import { isSafari } from "react-device-detect";
 
 type Props = {
-  isSafari: boolean;
   children: React.ReactNode;
   scale: MotionValue;
   glareOpacity: MotionValue;
@@ -17,7 +17,6 @@ type Props = {
 };
 
 const RotatingTablet = ({
-  isSafari,
   children,
   scale,
   glareOpacity,
@@ -55,21 +54,18 @@ const RotatingTablet = ({
     <motion.div
       className="relative z-10 w-fit"
       style={{
-        rotateY: rotHor,
-        rotateX: rotVert,
+        rotateY: isSafari ? "0" : rotHor,
+        rotateX: isSafari ? "0" : rotVert,
         // rotateZ: 90,
         x: 0,
-        transformStyle: "preserve-3d",
-        transformPerspective: "2000px",
+        transformStyle: isSafari ? "flat" : "preserve-3d",
+        transformPerspective: isSafari ? 0 : "2000px",
         transformOrigin: "center center",
         transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
       }}
       ref={mouseContainerRef}
     >
-      <div
-        className="absolute inset-0 grid grid-cols-1 grid-rows-1 px-[0.3%] py-[0.4%]"
-        style={{ visibility: isSafari ? "hidden" : "visible" }}
-      >
+      <div className="absolute inset-0 grid grid-cols-1 grid-rows-1 px-[0.3%] py-[0.4%]">
         <motion.div
           className="relative overflow-hidden rounded-ipad-outer md:rounded-ipad-outer-md 3xl:rounded-ipad-outer-3xl"
           style={{ scale: scale }}
@@ -78,8 +74,8 @@ const RotatingTablet = ({
             style={{
               minWidth: "300%",
               opacity: glareOpacity,
-              y: highlightY,
-              x: highlightX,
+              y: isSafari ? "0" : highlightY,
+              x: isSafari ? "0" : highlightX,
               transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
             }}
             className="relative inset-0 left-[100%] top-[50vw]"
@@ -116,8 +112,8 @@ const RotatingTablet = ({
             style={{
               minWidth: "300%",
               opacity: glareOpacity,
-              y: highlightY,
-              x: highlightX,
+              y: isSafari ? "0" : highlightY,
+              x: isSafari ? "0" : highlightX,
               transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
             }}
             className="relative inset-0 left-[100%] top-[50vw]"

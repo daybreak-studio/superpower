@@ -118,7 +118,6 @@ const FeatureScrollVideo = ({
           {headline}
         </motion.h2>
         <RotatingTablet
-          isSafari={isSafari}
           scale={videoScale}
           glareOpacity={glareOpacity}
           canInteract={canInteractWithTablet}
