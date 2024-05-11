@@ -27,7 +27,7 @@ type Props = {};
 
 const EcosystemSection = (props: Props) => {
   const containerRef = useRef() as MutableRefObject<HTMLAnchorElement>;
-  const perspectiveFrom = "10000px";
+  const perspectiveFrom = "0px";
   const perspectiveTo = "1600px";
   const isVisible = useInView(containerRef);
 
@@ -55,7 +55,7 @@ const EcosystemSection = (props: Props) => {
           transition: {
             duration: 2,
             delay: 0.5,
-            ease: [0, 0.7, 0, 1],
+            ease: [0, 0.7, 0.5, 1],
           },
         }}
       >

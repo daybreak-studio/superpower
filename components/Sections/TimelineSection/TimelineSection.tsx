@@ -53,7 +53,7 @@ const TimelineSection = (props: Props) => {
   });
 
   return (
-    <section className="w-full bg-black pt-24" ref={containerRef}>
+    <section className="relative w-full bg-black pt-24" ref={containerRef}>
       <motion.div
         style={{
           scale: headerScale,
@@ -70,7 +70,7 @@ const TimelineSection = (props: Props) => {
               </div>
             </FadingText>
           </h3>
-          <ProgressBar progress={progress} />
+          {/* <ProgressBar progress={progress} /> */}
         </div>
         <div style={{ visibility: shouldScrimVisible ? "visible" : "hidden" }}>
           <Scrim height={"200px"} color="rgba(0,0,0,.8)" />
@@ -86,6 +86,17 @@ const TimelineSection = (props: Props) => {
           transitionProgress={timelineTransitionProgress}
         />
       </motion.div>
+      <div className="absolute bottom-0 z-20 h-auto w-full">
+        <div className="pointer-events-none relative h-auto w-full overflow-visible">
+          <div
+            className="w-full"
+            style={{
+              height: "100vw",
+              backgroundImage: `linear-gradient(to top, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%)`,
+            }}
+          />
+        </div>
+      </div>
     </section>
   );
 };

@@ -135,7 +135,65 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
             rotateX: -cameraRotation,
           }}
         >
-          <div className="relative z-30 h-[100vw] w-[1px] bg-white" />
+          <div
+            className="absolute z-30 h-[100vw] w-[1px] bg-white"
+            style={{
+              background:
+                "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 50%)",
+              transformOrigin: "top right",
+              rotate: "-9deg",
+            }}
+          />
+          <div
+            className="absolute z-30 h-[100vw] w-[1px] bg-white"
+            style={{
+              background:
+                "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 50%)",
+              transformOrigin: "top left",
+              rotate: "3deg",
+            }}
+          />
+        </motion.div>
+        <motion.div
+          className="absolute right-[0.5%] top-[60vw] h-0 w-0"
+          style={{
+            rotateX: -cameraRotation,
+          }}
+        >
+          <div
+            className="absolute z-30 h-[100vw] w-[1px] bg-white"
+            style={{
+              background:
+                "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 50%)",
+              transformOrigin: "top left",
+              rotate: "30deg",
+            }}
+          />
+          <div
+            className="absolute z-30 h-[100vw] w-[1px] bg-white"
+            style={{
+              background:
+                "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 50%)",
+              transformOrigin: "top left",
+              rotate: "6deg",
+            }}
+          />
+        </motion.div>
+        <motion.div
+          className="absolute left-[15%] top-[171vw] h-0 w-0"
+          style={{
+            rotateX: -cameraRotation,
+          }}
+        >
+          <div
+            className="absolute z-30 h-[100vw] w-[1px] bg-white"
+            style={{
+              background:
+                "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 50%)",
+              transformOrigin: "top right",
+              rotate: "-20deg",
+            }}
+          />
         </motion.div>
         <TimelineGraphic
           segmentsInfo={allSegments}

@@ -18,14 +18,14 @@ const quotes = [
     photo: "/testimonials-section/erin-sharoni.png",
   },
   {
-    quote: "Went from in the dark on my health to fully in control",
+    quote: "Went from in the dark on my health to fully in control.",
     name: "Brett Goldstein",
     title: "Founder Micro",
     photo: "/testimonials-section/brett-goldstein.png",
   },
   {
     quote:
-      "I discovered I had extremely high levels of inflammation. After my protocol there’s no signs whatsoever of those high levels.",
+      "I found high levels of inflammation, and after my protocol there’s no more signs of them.",
     name: "Marc Baghadjan",
     title: "CEO Hypercard",
     photo: "/testimonials-section/marc-baghadjan.png",
