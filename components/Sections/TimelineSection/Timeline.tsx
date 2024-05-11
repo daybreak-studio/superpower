@@ -130,7 +130,7 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
         }}
       >
         <motion.div
-          className="absolute -left-1 -top-3 h-0 w-0"
+          className="absolute left-0 top-0 h-0 w-0"
           style={{
             rotateX: -cameraRotation,
           }}

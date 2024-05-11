@@ -39,7 +39,7 @@ const HeroSection = (props: Props) => {
 
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
-  const introLastFrame = timeStringToSeconds("0:03");
+  const introLastFrame = timeStringToSeconds("0:01");
   const introLastFrameScrollPos = useMemo(
     () => secondsToScrollPosition(introLastFrame, 400),
     [introLastFrame],
@@ -144,14 +144,14 @@ const HeroSection = (props: Props) => {
             // },
             {
               type: 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"',
-              src: "/hero-section/sp-wormhole-v2-360.mp4",
+              src: "/hero-section/sp-wormhole-v2-1080.mp4",
             },
           ]}
         >
-          <ScrollVideoAnnotation enter={"0:00"} exit={"0:18"}>
+          <ScrollVideoAnnotation enter={"0:00"} exit={"0:06"}>
             {isDesktop && <HeroDesktopLayout shouldShowContent={true} />}
           </ScrollVideoAnnotation>
-          <ScrollVideoAnnotation enter={"0:20"} exit={"0:22"}>
+          {/* <ScrollVideoAnnotation enter={"0:20"} exit={"0:22"}>
             <SlideInText>Slow aging</SlideInText>
           </ScrollVideoAnnotation>
           <ScrollVideoAnnotation enter={"0:22"} exit={"0:24"}>
@@ -168,7 +168,7 @@ const HeroSection = (props: Props) => {
           </ScrollVideoAnnotation>
           <ScrollVideoAnnotation enter={"0:30"} exit={"0:32"}>
             <SlideInText>Live longer</SlideInText>
-          </ScrollVideoAnnotation>
+          </ScrollVideoAnnotation> */}
         </ScrollVideo>
       )}
       {isLowPowerMode && (
