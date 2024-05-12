@@ -102,6 +102,32 @@ const JourneySegment = ({
     [segmentInfo],
   );
 
+  const isLastSegment = segmentIndex === segmentCount - 1;
+  const gradientBlack = (
+    <linearGradient
+      id="linear-gradient-black"
+      x1="0%"
+      y1="0%"
+      x2="100%"
+      y2="0%"
+    >
+      <stop offset="0%" stopColor="#000" />
+      <stop offset="100%" stopColor="#FFF" />
+    </linearGradient>
+  );
+  const gradientVermillion = (
+    <linearGradient
+      id="linear-gradient-vermillion"
+      x1="0%"
+      y1="0%"
+      x2="100%"
+      y2="0%"
+    >
+      <stop offset="0%" stopColor="#000" />
+      <stop offset="100%" stopColor="#FE8000" />
+    </linearGradient>
+  );
+
   return (
     <svg
       viewBox={`0 0 ${segmentWidth} ${segmentHeight}`}
@@ -115,10 +141,12 @@ const JourneySegment = ({
         transform: `translate3d(${head.x * graphScale}px,${head.y * graphScale}px,0px)`,
       }}
     >
+      {isLastSegment && gradientBlack}
+      {isLastSegment && gradientVermillion}
       {/* the white background */}
       <motion.path
         d={segmentInfo.path}
-        stroke="#FFF"
+        stroke={isLastSegment ? "url(#linear-gradient-black)" : "#FFF"}
         strokeWidth="5"
         style={{
           x: -segmentInfo.head.x,
@@ -127,7 +155,7 @@ const JourneySegment = ({
       />
       <motion.path
         d={segmentInfo.path}
-        stroke="#FE8000"
+        stroke={isLastSegment ? "url(#linear-gradient-vermillion)" : "#FE8000"}
         strokeWidth="5"
         style={{
           strokeDasharray: length,
@@ -141,7 +169,9 @@ const JourneySegment = ({
       {shouldRenderGlow && !isLowPerformanceMode && (
         <motion.path
           d={segmentInfo.path}
-          stroke="#FE8000"
+          stroke={
+            isLastSegment ? "url(#linear-gradient-vermillion)" : "#FE8000"
+          }
           strokeWidth="24"
           style={{
             // visibility: shouldRenderGlow ? "visible" : "hidden",
