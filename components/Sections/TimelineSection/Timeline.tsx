@@ -184,19 +184,20 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
           willChange: "transform",
         }}
       >
-        <motion.div
+        {/* <motion.div
           className="absolute left-0 top-0 h-0 w-0"
           style={{
             rotateX: -cameraRotation,
           }}
         >
           <div className="relative z-30 h-[100vw] w-[1px] bg-white" />
-        </motion.div>
+        </motion.div> */}
         <TimelineGraphic
           segmentsInfo={allSegments}
           progress={progress}
           graphScale={timelineScaleFactor}
           isLowPerformanceMode={isLowPerformance}
+          cameraRotation={cameraRotation}
         />
 
         {/* graph-anchored waypoints */}
