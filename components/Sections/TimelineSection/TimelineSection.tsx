@@ -11,6 +11,7 @@ import Timeline from "./Timeline";
 import ProgressBar from "./ProgressBar";
 import FadingText from "@/components/FadingText/FadingText";
 import Scrim from "@/components/Scrim/Scrim";
+import { useMotionValueSwitch } from "@/hooks/useMotionValueSwitch";
 
 type Props = {};
 
@@ -52,6 +53,11 @@ const TimelineSection = (props: Props) => {
     setShouldScrimVisible(true);
   });
 
+  const shouldTimelineVisible = useMotionValueSwitch(
+    progress,
+    (progress) => progress > 0 && progress < 1,
+  );
+
   return (
     <section className="w-full bg-black pt-24" ref={containerRef}>
       <motion.div
@@ -70,7 +76,6 @@ const TimelineSection = (props: Props) => {
               </div>
             </FadingText>
           </h3>
-          <ProgressBar progress={progress} />
         </div>
         <div style={{ visibility: shouldScrimVisible ? "visible" : "hidden" }}>
           <Scrim height={"200px"} color="rgba(0,0,0,.8)" />
@@ -85,6 +90,14 @@ const TimelineSection = (props: Props) => {
           timelineProgress={timelineProgress}
           transitionProgress={timelineTransitionProgress}
         />
+      </motion.div>
+      <motion.div
+        className="fixed bottom-8 left-4 z-50 h-24 md:bottom-16 md:left-16"
+        animate={{
+          opacity: shouldTimelineVisible ? 1 : 0,
+        }}
+      >
+        <ProgressBar progress={progress} />
       </motion.div>
     </section>
   );

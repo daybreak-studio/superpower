@@ -22,9 +22,12 @@ import TimelineGraphic from "./TimelineGraphic";
 import { useWindowDimension } from "@/hooks/useWindowDimension";
 import { segments } from "./TimelineData";
 import { getSegmentInfo } from "./Segments";
-import Waypoint from "./Waypoint";
+import Waypoint, { ArrowMarkerSVG } from "./Waypoint";
 import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
 import { usePerformanceProfile } from "@/hooks/usePerformanceProfile";
+import { AnimationConfig } from "@/components/AnimationConfig";
+import { useMotionValueSwitch } from "@/hooks/useMotionValueSwitch";
+import WaypointInfoMobile from "./WaypointInfoMobile";
 
 type Props = {
   timelineProgress: MotionValue<number>;
@@ -61,8 +64,6 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
     windowDim.width < minSVGWidth
       ? minSVGWidth / SVGWidth
       : windowDim.width / SVGWidth;
-
-  const SVGHeightScaled = 4639 * timelineScaleFactor;
 
   // handle movement Z of the graph
   const movementZ = useTransform(
@@ -107,6 +108,11 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
     return latest;
   });
 
+  const isTimelineActive = useMotionValueSwitch(
+    timelineProgress,
+    (latest) => latest > 0 && latest < 1,
+  );
+
   return (
     <div
       // mt-40vh is for the timing between scroll text end and graph scroll begin
@@ -125,7 +131,7 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
           transformStyle: "preserve-3d",
           transformPerspective: "2000px",
           rotateX: cameraRotation,
-          transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
+          // transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
           // willChange: "transform",
         }}
       >
@@ -143,34 +149,59 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
           graphScale={timelineScaleFactor}
           isLowPerformanceMode={isLowPerformance}
         />
-        {allSegments.map(({ head, tail, waypoints }, index) => (
-          <motion.div
-            key={index}
-            className="absolute left-0 top-0  z-20"
-            // animate={{
-            //   opacity: isActive ? 1 : 0,
-            //   transition: { duration: 1 },
-            // }}
-            style={{
-              rotateX: -cameraRotation,
-              transformOrigin: "center bottom",
-              height: 180,
-              x: head.x * timelineScaleFactor,
-              y: head.y * timelineScaleFactor - 180,
-            }}
-          >
-            <Waypoint
-              inverted={head.x > SVGWidth * 0.5}
-              waypoint={waypoints[0]}
-              isActive={currentWaypoint === index}
-              index={index}
-              totalWaypointsCount={allSegments.length + 1}
-              progress={progress}
-              isLowPerformanceMode={isLowPerformance}
-            />
-          </motion.div>
-        ))}
+
+        {/* graph-anchored waypoints */}
+        {allSegments.map(({ head, tail, waypoints }, index) => {
+          const offsetHeight = isDesktop ? 180 : 70;
+          return (
+            <>
+              <motion.div
+                key={index}
+                className="absolute left-0 top-0 z-20"
+                style={{
+                  rotateX: -cameraRotation,
+                  transformOrigin: "center bottom",
+                  height: offsetHeight,
+                  x: head.x * timelineScaleFactor,
+                  y: head.y * timelineScaleFactor - offsetHeight,
+                }}
+              >
+                <Waypoint
+                  inverted={head.x > SVGWidth * 0.5}
+                  waypoint={waypoints[0]}
+                  isActive={currentWaypoint === index}
+                  index={index}
+                  totalWaypointsCount={allSegments.length + 1}
+                  progress={progress}
+                  isLowPerformanceMode={isLowPerformance}
+                  withDetails={isDesktop}
+                  offsetHeight={offsetHeight}
+                />
+              </motion.div>
+            </>
+          );
+        })}
       </motion.div>
+
+      {/* fixed mobile waypoint info */}
+      {!isDesktop && (
+        <motion.div
+          animate={{
+            opacity: isTimelineActive ? 1 : 0,
+          }}
+          className="pointer-events-none fixed bottom-0 left-0 right-0 z-50 h-80 bg-gradient-to-t from-black to-transparent text-white"
+        >
+          {allSegments.map(({ head, tail, waypoints }, index) => {
+            return (
+              <WaypointInfoMobile
+                key={index}
+                isActive={currentWaypoint === index}
+                waypoint={waypoints[0]}
+              />
+            );
+          })}
+        </motion.div>
+      )}
     </div>
   );
 };
