@@ -36,12 +36,16 @@ const TimelineSection = (props: Props) => {
   );
 
   const timelineProgress = useTransform(progress, [0.1, 0.9], [0, 1]);
-  const timelineTransitionProgress = useTransform(progress, [0, 0.1], [0, 1]);
+  const timelineTransitionProgress = useTransform(
+    progress,
+    [0, 0.1, 0.8, 1],
+    [0, 0.5, 0.5, 1],
+  );
 
   const headerScale = useTransform(fadingTextProgress, [0, 0.5], [1, 1]);
   const headerY = useTransform(fadingTextProgress, [0, 0.5], [200, 0]);
 
-  const opacity = useTransform(progress, [0.85, 0.92], [1, 0]);
+  const opacity = useTransform(progress, [0.95, 1], [1, 0]);
 
   const [shouldScrimVisible, setShouldScrimVisible] = useState(true);
 
@@ -66,7 +70,7 @@ const TimelineSection = (props: Props) => {
           y: headerY,
           // transition: `transform .4s cubic-bezier(0.16, 1, 0.3, 1)`,
         }}
-        className="sticky top-0 z-10 h-fit w-full bg-[rgba(0,0,0,.8)] pt-12 text-center text-white"
+        className="sticky top-0 z-20 h-fit w-full bg-[rgba(0,0,0,.8)] pt-12 text-center text-white"
       >
         <div className="flex flex-col items-center justify-center gap-2">
           <h3 className="font-sans-2xl mx-auto mb-4 max-w-[18ch]">
@@ -92,7 +96,7 @@ const TimelineSection = (props: Props) => {
         />
       </motion.div>
       <motion.div
-        className="fixed bottom-8 left-4 z-50 h-24 md:bottom-16 md:left-16"
+        className="fixed bottom-6 right-4 z-50 h-24 md:bottom-16 md:left-16"
         animate={{
           opacity: shouldTimelineVisible ? 1 : 0,
         }}

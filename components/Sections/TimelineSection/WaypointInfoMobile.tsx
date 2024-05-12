@@ -12,7 +12,7 @@ type Props = {
 const AgeInfoMobile = ({ isActive, waypoint }: Props) => {
   return (
     <motion.div
-      className="gap-auto absolute bottom-0 px-8 py-8"
+      className="gap-auto absolute bottom-0 px-4 py-6"
       style={{
         opacity: isActive ? 1 : 0,
       }}
