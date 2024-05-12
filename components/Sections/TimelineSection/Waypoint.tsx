@@ -177,7 +177,7 @@ const WaypointTag = ({
             ease: AnimationConfig.EASING,
           },
         }}
-        className="absolute bottom-0 left-0 top-6 w-[2px] bg-gradient-to-b from-white to-transparent"
+        className="absolute bottom-0 left-0 top-6 w-[2px] bg-gradient-to-b from-vermilion-700 to-transparent"
       />
 
       {/* anchor */}
