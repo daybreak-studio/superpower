@@ -54,7 +54,7 @@ const EcosystemSection = (props: Props) => {
           perspective: isVisible ? perspectiveTo : perspectiveFrom,
           transition: {
             duration: 2,
-            delay: 0.5,
+            delay: 0,
             ease: [0, 0.7, 0.5, 1],
           },
         }}
