@@ -38,14 +38,13 @@ const TimelineSection = (props: Props) => {
   const timelineProgress = useTransform(progress, [0.1, 0.9], [0, 1]);
   const timelineTransitionProgress = useTransform(
     progress,
-    [0, 0.1, 0.8, 1],
+    [0, 0.1, 0.5, 1],
     [0, 0.5, 0.5, 1],
   );
 
   const headerScale = useTransform(fadingTextProgress, [0, 0.5], [1, 1]);
   const headerY = useTransform(fadingTextProgress, [0, 0.5], [200, 0]);
-
-  const opacity = useTransform(progress, [0.95, 1], [1, 0]);
+  const opacity = useTransform(progress, [0.925, 1], [1, 0]);
 
   const [shouldScrimVisible, setShouldScrimVisible] = useState(true);
 

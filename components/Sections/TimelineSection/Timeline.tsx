@@ -95,11 +95,6 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
       : windowDim.width / SVGWidth;
 
   // handle movement Z of the graph
-  // const movementZ = useTransform(
-  //   progress,
-  //   [0, 1],
-  //   [isDesktop ? -800 : -500, isDesktop ? windowDim.width * -3.3 : -2000],
-  // );
   const movementZ = useTransform(
     progress,
     movementTimlineProgres,
@@ -109,7 +104,8 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
   const transitionZoomOffset = useTransform(
     transitionProgress,
     [0, 0.5, 0.5, 1],
-    [windowDim.height * 3, 0, 0, -windowDim.height * 4],
+    [windowDim.height * 3, 0, 0, -windowDim.height * 6],
+    { ease: cubicBezier(0.7, 0, 0.84, 0) },
   );
 
   const z = useTransform(
@@ -120,19 +116,11 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
   );
 
   // handle movement Y of the graph
-  // const movementY = useTransform(
-  //   movementZ,
-  //   [0, movementYPoints[movementYPoints.length - 1]],
-  //   [
-  //     windowDim.width * 0.4,
-  //     isDesktop ? windowDim.width * -0.7 : windowDim.width * -1.5,
-  //   ],
-  // );
-
   const transitionVerticalOffset = useTransform(
     transitionProgress,
     [0, 0.5, 0.5, 1],
-    [0, 0, 0, windowDim.height * 1],
+    [0, 0, 0, windowDim.height * 2],
+    { ease: cubicBezier(0.7, 0, 0.84, 0) },
   );
 
   const movementY = useTransform(
