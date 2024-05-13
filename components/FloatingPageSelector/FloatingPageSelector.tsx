@@ -130,20 +130,29 @@ const FloatingPageSelector = ({
             x: xOffsetRound,
           }}
         />
-        <div className="flex">
+        <div className="relative flex">
           <motion.div
-            className="bg-zinc-0 absolute left-0 top-0 z-0 h-full backdrop-invert"
+            className="absolute inset-0  h-full backdrop-invert"
             animate={highlightAnim}
             style={{
               x: xOffsetRound,
+              zIndex: 0,
             }}
           />
-          {children}
+          <div
+            className="flex"
+            style={{
+              zIndex: 1,
+            }}
+          >
+            {children}
+          </div>
           <motion.div
-            className="bg-zinc-0 absolute left-0 top-0 z-0 h-full backdrop-invert"
+            className="absolute inset-0 h-full backdrop-invert"
             animate={highlightAnim}
             style={{
               x: xOffsetRound,
+              zIndex: 3,
             }}
           />
         </div>
