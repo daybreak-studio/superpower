@@ -11,9 +11,9 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { Command, parseSVG } from "svg-path-parser";
 import { segments } from "./TimelineData";
 import { TimlineSegment, TimlineSegmentInfo, getSegmentInfo } from "./Segments";
+import { isSafari } from "react-device-detect";
 
 type Props = {
   progress: MotionValue<number>;
@@ -185,12 +185,13 @@ const JourneySegment = ({
           }}
         />
 
-        {shouldRenderGlow && !isLowPerformanceMode && (
+        {shouldRenderGlow && !isLowPerformanceMode && !isSafari && (
           <motion.path
             d={segmentInfo.path}
             stroke={
               isLastSegment ? "url(#linear-gradient-vermillion)" : "#FE8000"
             }
+            filter={"url(#blurMe)"}
             strokeWidth="24"
             style={{
               // visibility: shouldRenderGlow ? "visible" : "hidden",
