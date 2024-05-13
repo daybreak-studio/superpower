@@ -20,6 +20,7 @@ type Props = {
   segmentsInfo: TimlineSegmentInfo[];
   graphScale: number;
   isLowPerformanceMode: boolean;
+  cameraRotation: number;
 };
 
 const TimelineGraphic = ({
@@ -27,6 +28,7 @@ const TimelineGraphic = ({
   segmentsInfo,
   graphScale,
   isLowPerformanceMode,
+  cameraRotation,
 }: Props) => {
   return (
     // the whole graphic is 1406x4639
@@ -41,6 +43,7 @@ const TimelineGraphic = ({
           segmentCount={segments.length}
           graphScale={graphScale}
           isLowPerformanceMode={isLowPerformanceMode}
+          cameraRotation={cameraRotation}
         />
       ))}
     </>
@@ -54,6 +57,7 @@ type JourneySegmentProps = {
   segmentCount: number;
   graphScale: number;
   isLowPerformanceMode: boolean;
+  cameraRotation: number;
 };
 
 const JourneySegment = ({
@@ -63,6 +67,7 @@ const JourneySegment = ({
   segmentCount,
   graphScale,
   isLowPerformanceMode,
+  cameraRotation,
 }: JourneySegmentProps) => {
   const { head, tail, length } = segmentInfo;
 
@@ -102,59 +107,104 @@ const JourneySegment = ({
     [segmentInfo],
   );
 
-  return (
-    <svg
-      viewBox={`0 0 ${segmentWidth} ${segmentHeight}`}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="absolute overflow-visible"
-      style={{
-        visibility: shouldRenderSegment ? "visible" : "hidden",
-        width: segmentWidth * graphScale,
-        height: segmentHeight * graphScale,
-        transform: `translate3d(${head.x * graphScale}px,${head.y * graphScale}px,0px)`,
-      }}
+  const isLastSegment = segmentIndex === segmentCount - 1;
+  const gradientBlack = (
+    <linearGradient
+      id="linear-gradient-black"
+      x1="0%"
+      y1="0%"
+      x2="100%"
+      y2="0%"
     >
-      {/* the white background */}
-      <motion.path
-        d={segmentInfo.path}
-        stroke="#FFF"
-        strokeWidth="5"
-        style={{
-          x: -segmentInfo.head.x,
-          y: -segmentInfo.head.y,
-        }}
-      />
-      <motion.path
-        d={segmentInfo.path}
-        stroke="#FE8000"
-        strokeWidth="5"
-        style={{
-          strokeDasharray: length,
-          strokeDashoffset,
-          x: -segmentInfo.head.x,
-          y: -segmentInfo.head.y,
-          // transition: `stroke-dashoffset .2s cubic-bezier(0.16, 1, 0.3, 1)`,
-        }}
-      />
+      <stop offset="0%" stopColor="#000" />
+      <stop offset="100%" stopColor="#FFF" />
+    </linearGradient>
+  );
+  const gradientVermillion = (
+    <linearGradient
+      id="linear-gradient-vermillion"
+      x1="0%"
+      y1="0%"
+      x2="100%"
+      y2="0%"
+    >
+      <stop offset="0%" stopColor="#000" />
+      <stop offset="100%" stopColor="#FE8000" />
+    </linearGradient>
+  );
 
-      {shouldRenderGlow && !isLowPerformanceMode && (
+  return (
+    <>
+      <motion.div
+        className="absolute left-0 top-0 h-0 w-0"
+        style={{
+          left: head.x * graphScale,
+          top: head.y * graphScale,
+          rotateX: -cameraRotation,
+          display: shouldRenderSegment ? "block" : "hidden",
+        }}
+      >
+        <div className="relative -z-10 h-[30vw] w-[2px] bg-gradient-to-b from-white to-transparent opacity-30" />
+      </motion.div>
+      <svg
+        viewBox={`0 0 ${segmentWidth} ${segmentHeight}`}
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="absolute overflow-visible"
+        style={{
+          visibility: shouldRenderSegment ? "visible" : "hidden",
+          width: segmentWidth * graphScale,
+          height: segmentHeight * graphScale,
+          transform: `translate3d(${head.x * graphScale}px,${head.y * graphScale}px,0px)`,
+        }}
+      >
+        {isLastSegment && gradientBlack}
+        {isLastSegment && gradientVermillion}
+        {/* the white background */}
         <motion.path
           d={segmentInfo.path}
-          stroke="#FE8000"
-          strokeWidth="24"
+          stroke={isLastSegment ? "url(#linear-gradient-black)" : "#FFF"}
+          strokeWidth="5"
           style={{
-            // visibility: shouldRenderGlow ? "visible" : "hidden",
-            filter: `blur(48px)`,
             x: -segmentInfo.head.x,
             y: -segmentInfo.head.y,
+          }}
+        />
+        <motion.path
+          d={segmentInfo.path}
+          stroke={
+            isLastSegment ? "url(#linear-gradient-vermillion)" : "#FE8000"
+          }
+          strokeWidth="5"
+          style={{
             strokeDasharray: length,
             strokeDashoffset,
+            x: -segmentInfo.head.x,
+            y: -segmentInfo.head.y,
             // transition: `stroke-dashoffset .2s cubic-bezier(0.16, 1, 0.3, 1)`,
           }}
         />
-      )}
-    </svg>
+
+        {shouldRenderGlow && !isLowPerformanceMode && (
+          <motion.path
+            d={segmentInfo.path}
+            stroke={
+              isLastSegment ? "url(#linear-gradient-vermillion)" : "#FE8000"
+            }
+            strokeWidth="24"
+            style={{
+              // visibility: shouldRenderGlow ? "visible" : "hidden",
+              filter: `blur(48px)`,
+              x: -segmentInfo.head.x,
+              y: -segmentInfo.head.y,
+              strokeDasharray: length,
+              strokeDashoffset,
+              // transition: `stroke-dashoffset .2s cubic-bezier(0.16, 1, 0.3, 1)`,
+            }}
+          />
+        )}
+      </svg>
+    </>
   );
 };
 

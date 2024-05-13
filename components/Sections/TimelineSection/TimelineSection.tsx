@@ -11,6 +11,7 @@ import Timeline from "./Timeline";
 import ProgressBar from "./ProgressBar";
 import FadingText from "@/components/FadingText/FadingText";
 import Scrim from "@/components/Scrim/Scrim";
+import { useMotionValueSwitch } from "@/hooks/useMotionValueSwitch";
 
 type Props = {};
 
@@ -35,12 +36,15 @@ const TimelineSection = (props: Props) => {
   );
 
   const timelineProgress = useTransform(progress, [0.1, 0.9], [0, 1]);
-  const timelineTransitionProgress = useTransform(progress, [0, 0.1], [0, 1]);
+  const timelineTransitionProgress = useTransform(
+    progress,
+    [0, 0.1, 0.5, 1],
+    [0, 0.5, 0.5, 1],
+  );
 
   const headerScale = useTransform(fadingTextProgress, [0, 0.5], [1, 1]);
   const headerY = useTransform(fadingTextProgress, [0, 0.5], [200, 0]);
-
-  const opacity = useTransform(progress, [0.85, 0.92], [1, 0]);
+  const opacity = useTransform(progress, [0.925, 1], [1, 0]);
 
   const [shouldScrimVisible, setShouldScrimVisible] = useState(true);
 
@@ -52,15 +56,20 @@ const TimelineSection = (props: Props) => {
     setShouldScrimVisible(true);
   });
 
+  const shouldTimelineVisible = useMotionValueSwitch(
+    progress,
+    (progress) => progress > 0 && progress < 1,
+  );
+
   return (
-    <section className="relative w-full bg-black pt-24" ref={containerRef}>
+    <section className="w-full bg-black pt-24" ref={containerRef}>
       <motion.div
         style={{
           scale: headerScale,
           y: headerY,
           // transition: `transform .4s cubic-bezier(0.16, 1, 0.3, 1)`,
         }}
-        className="sticky top-0 z-10 h-fit w-full bg-[rgba(0,0,0,.8)] pt-12 text-center text-white"
+        className="sticky top-0 z-20 h-fit w-full bg-[rgba(0,0,0,.8)] pt-12 text-center text-white"
       >
         <div className="flex flex-col items-center justify-center gap-2">
           <h3 className="font-sans-2xl mx-auto mb-4 max-w-[18ch]">
@@ -70,7 +79,6 @@ const TimelineSection = (props: Props) => {
               </div>
             </FadingText>
           </h3>
-          {/* <ProgressBar progress={progress} /> */}
         </div>
         <div style={{ visibility: shouldScrimVisible ? "visible" : "hidden" }}>
           <Scrim height={"200px"} color="rgba(0,0,0,.8)" />
@@ -86,17 +94,14 @@ const TimelineSection = (props: Props) => {
           transitionProgress={timelineTransitionProgress}
         />
       </motion.div>
-      <div className="absolute bottom-0 z-20 h-auto w-full">
-        <div className="pointer-events-none relative h-auto w-full overflow-visible">
-          <div
-            className="w-full"
-            style={{
-              height: "100vw",
-              backgroundImage: `linear-gradient(to top, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%)`,
-            }}
-          />
-        </div>
-      </div>
+      <motion.div
+        className="fixed bottom-6 right-4 z-50 h-24 md:bottom-16 md:left-16"
+        animate={{
+          opacity: shouldTimelineVisible ? 1 : 0,
+        }}
+      >
+        <ProgressBar progress={progress} />
+      </motion.div>
     </section>
   );
 };

@@ -22,9 +22,12 @@ import TimelineGraphic from "./TimelineGraphic";
 import { useWindowDimension } from "@/hooks/useWindowDimension";
 import { segments } from "./TimelineData";
 import { getSegmentInfo } from "./Segments";
-import Waypoint from "./Waypoint";
+import Waypoint, { ArrowMarkerSVG } from "./Waypoint";
 import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
 import { usePerformanceProfile } from "@/hooks/usePerformanceProfile";
+import { AnimationConfig } from "@/components/AnimationConfig";
+import { useMotionValueSwitch } from "@/hooks/useMotionValueSwitch";
+import WaypointInfoMobile from "./WaypointInfoMobile";
 
 type Props = {
   timelineProgress: MotionValue<number>;
@@ -34,8 +37,39 @@ type Props = {
 const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
   const timelineContainerRef = useRef() as RefObject<HTMLDivElement>;
   const windowDim = useWindowDimension();
+  const isDesktop = useBreakpoint(breakpoints.sm);
 
   const allSegments = useMemo(() => segments.map((s) => getSegmentInfo(s)), []);
+  const allWaypointPositions = useMemo(() => {
+    return allSegments.map((info) => {
+      return info.head;
+    });
+  }, [allSegments]);
+
+  const movementXPoints = useMemo(() => {
+    return allWaypointPositions.map(({ x }) => -x * 0.25);
+  }, [allWaypointPositions]);
+
+  const movementTimlineProgres = useMemo(() => {
+    return allWaypointPositions.map((_, index) => {
+      return index / (allWaypointPositions.length - 1);
+    });
+  }, [allWaypointPositions]);
+
+  const movementZPoints = useMemo(() => {
+    return allWaypointPositions.map(({ y }) => {
+      const speed = isDesktop ? 0.0008 : 0.0009;
+
+      return -y * (windowDim.width * speed) + -700;
+    });
+  }, [allWaypointPositions, windowDim.width, isDesktop]);
+  const movementYPoints = useMemo(() => {
+    const offsetFactor = isDesktop ? 0 : 0;
+    const speed = isDesktop ? 0.35 : 0.7;
+
+    return movementZPoints.map((z) => z * speed + 800 - offsetFactor);
+  }, [movementZPoints, isDesktop]);
+
   const [currentWaypoint, setCurrentWaypoint] = useState(0);
 
   const { isLowPerformance } = usePerformanceProfile();
@@ -49,8 +83,6 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
     setCurrentWaypoint(waypoint);
   });
 
-  const isDesktop = useBreakpoint(breakpoints.sm);
-
   const cameraRotation = isDesktop ? 70 : 60;
 
   const SVGWidth = 1406;
@@ -62,50 +94,73 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
       ? minSVGWidth / SVGWidth
       : windowDim.width / SVGWidth;
 
-  const SVGHeightScaled = 4639 * timelineScaleFactor;
-
   // handle movement Z of the graph
   const movementZ = useTransform(
     progress,
-    [0, 1],
-    [isDesktop ? -800 : -500, isDesktop ? windowDim.width * -3.3 : -2000],
+    movementTimlineProgres,
+    movementZPoints,
+  );
+
+  const transitionZoomOffset = useTransform(
+    transitionProgress,
+    [0, 0.5, 0.5, 1],
+    [windowDim.height * 3, 0, 0, -windowDim.height * 6],
+    { ease: cubicBezier(0.7, 0, 0.84, 0) },
   );
 
   const z = useTransform(
-    [movementZ, transitionProgress],
-    ([movementZ, transitionProgress]: any) => {
-      return movementZ + (1 - transitionProgress) * windowDim.height * 3;
+    [movementZ, transitionZoomOffset],
+    ([movementZ, transitionZoomOffset]: any) => {
+      return movementZ + transitionZoomOffset;
     },
   );
 
   // handle movement Y of the graph
+  const transitionVerticalOffset = useTransform(
+    transitionProgress,
+    [0, 0.5, 0.5, 1],
+    [0, 0, 0, windowDim.height * 2],
+    { ease: cubicBezier(0.7, 0, 0.84, 0) },
+  );
+
   const movementY = useTransform(
     progress,
-    [0, 1],
-    [
-      windowDim.width * 0.4,
-      isDesktop ? windowDim.width * -0.7 : windowDim.width * -1.5,
-    ],
+    movementTimlineProgres,
+    movementYPoints,
   );
-  const y = useTransform(movementY, (latest) => {
-    if (isDesktop) {
-      return latest;
-    }
-    return latest;
-  });
+
+  const y = useTransform(
+    [movementY, transitionVerticalOffset],
+    ([movmentY, transitionVerticalOffset]: any) => {
+      if (isDesktop) {
+        return movmentY + transitionVerticalOffset;
+      }
+      return movmentY + transitionVerticalOffset;
+    },
+  );
 
   // handle movement X of the graph
   const movementX = useTransform(
     progress,
-    [0, 0.25, 0.6, 0.8, 1],
-    [0, -windowDim.width * 0.8, 0, -windowDim.width * 0.5, 0],
+    movementTimlineProgres,
+    movementXPoints,
   );
+  // const movementX = useTransform(
+  //   progress,
+  //   [0, 0.25, 0.6, 0.8, 1],
+  //   [0, -windowDim.width * 0.8, 0, -windowDim.width * 0.5, 0],
+  // );
   const x = useTransform(movementX, (latest) => {
     if (isDesktop) {
       return 0;
     }
     return latest;
   });
+
+  const isTimelineActive = useMotionValueSwitch(
+    timelineProgress,
+    (latest) => latest > 0 && latest < 1,
+  );
 
   return (
     <div
@@ -125,110 +180,78 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
           transformStyle: "preserve-3d",
           transformPerspective: "2000px",
           rotateX: cameraRotation,
-          transition: `transform 1s cubic-bezier(0.16, 1, 0.3, 1)`,
-          // willChange: "transform",
+          transition: `transform .8s cubic-bezier(0.16, 1, 0.3, 1)`,
+          willChange: "transform",
         }}
       >
-        <motion.div
+        {/* <motion.div
           className="absolute left-0 top-0 h-0 w-0"
           style={{
             rotateX: -cameraRotation,
           }}
         >
-          <div
-            className="absolute z-30 h-[100vw] w-[1px] bg-white"
-            style={{
-              background:
-                "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 50%)",
-              transformOrigin: "top right",
-              rotate: "-9deg",
-            }}
-          />
-          <div
-            className="absolute z-30 h-[100vw] w-[1px] bg-white"
-            style={{
-              background:
-                "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 50%)",
-              transformOrigin: "top left",
-              rotate: "3deg",
-            }}
-          />
-        </motion.div>
-        <motion.div
-          className="absolute right-[0.5%] top-[60vw] h-0 w-0"
-          style={{
-            rotateX: -cameraRotation,
-          }}
-        >
-          <div
-            className="absolute z-30 h-[100vw] w-[1px] bg-white"
-            style={{
-              background:
-                "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 50%)",
-              transformOrigin: "top left",
-              rotate: "30deg",
-            }}
-          />
-          <div
-            className="absolute z-30 h-[100vw] w-[1px] bg-white"
-            style={{
-              background:
-                "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 50%)",
-              transformOrigin: "top left",
-              rotate: "6deg",
-            }}
-          />
-        </motion.div>
-        <motion.div
-          className="absolute left-[15%] top-[171vw] h-0 w-0"
-          style={{
-            rotateX: -cameraRotation,
-          }}
-        >
-          <div
-            className="absolute z-30 h-[100vw] w-[1px] bg-white"
-            style={{
-              background:
-                "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 50%)",
-              transformOrigin: "top right",
-              rotate: "-20deg",
-            }}
-          />
-        </motion.div>
+          <div className="relative z-30 h-[100vw] w-[1px] bg-white" />
+        </motion.div> */}
         <TimelineGraphic
           segmentsInfo={allSegments}
           progress={progress}
           graphScale={timelineScaleFactor}
           isLowPerformanceMode={isLowPerformance}
+          cameraRotation={cameraRotation}
         />
-        {allSegments.map(({ head, tail, waypoints }, index) => (
-          <motion.div
-            key={index}
-            className="absolute left-0 top-0  z-20"
-            // animate={{
-            //   opacity: isActive ? 1 : 0,
-            //   transition: { duration: 1 },
-            // }}
-            style={{
-              rotateX: -cameraRotation,
-              transformOrigin: "center bottom",
-              height: 180,
-              x: head.x * timelineScaleFactor,
-              y: head.y * timelineScaleFactor - 180,
-            }}
-          >
-            <Waypoint
-              inverted={head.x > SVGWidth * 0.5}
-              waypoint={waypoints[0]}
-              isActive={currentWaypoint === index}
-              index={index}
-              totalWaypointsCount={allSegments.length + 1}
-              progress={progress}
-              isLowPerformanceMode={isLowPerformance}
-            />
-          </motion.div>
-        ))}
+
+        {/* graph-anchored waypoints */}
+        {allSegments.map(({ head, tail, waypoints }, index) => {
+          const offsetHeight = isDesktop ? 180 : 70;
+          return (
+            <>
+              <motion.div
+                key={index}
+                className="absolute left-0 top-0 z-20"
+                style={{
+                  rotateX: -cameraRotation,
+                  transformOrigin: "center bottom",
+                  height: offsetHeight,
+                  x: head.x * timelineScaleFactor,
+                  y: head.y * timelineScaleFactor - offsetHeight,
+                }}
+              >
+                <Waypoint
+                  inverted={head.x > SVGWidth * 0.5}
+                  waypoint={waypoints[0]}
+                  isActive={currentWaypoint === index}
+                  index={index}
+                  totalWaypointsCount={allSegments.length + 1}
+                  progress={progress}
+                  isLowPerformanceMode={isLowPerformance}
+                  withDetails={isDesktop}
+                  offsetHeight={offsetHeight}
+                />
+              </motion.div>
+            </>
+          );
+        })}
       </motion.div>
+
+      {/* fixed mobile waypoint info */}
+      {!isDesktop && (
+        <motion.div
+          animate={{
+            opacity: isTimelineActive ? 1 : 0,
+          }}
+          className="pointer-events-none fixed bottom-0 left-0 right-0 z-50 h-80 bg-gradient-to-t from-black to-transparent text-white"
+        >
+          {allSegments.map(({ head, tail, waypoints }, index) => {
+            return (
+              <WaypointInfoMobile
+                key={index}
+                isActive={currentWaypoint === index}
+                waypoint={waypoints[0]}
+              />
+            );
+          })}
+        </motion.div>
+      )}
     </div>
   );
 };
