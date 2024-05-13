@@ -25,6 +25,7 @@ import { debounce } from "@/app/utils/debounce";
 import { useMotionValueSwitch } from "@/hooks/useMotionValueSwitch";
 import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 import { secondsToTimeString } from "@/components/ScrollVideo/secondsToTimestring";
+import { isSafari } from "react-device-detect";
 
 type Props = {};
 
@@ -127,13 +128,22 @@ const HeroSection = (props: Props) => {
 
   return (
     <section className="relative z-10 min-h-screen bg-zinc-900 text-white">
-      {/* <LoadingScreen isLoaded={isVideoLoaded} /> */}
+      <LoadingScreen isLoaded={isVideoLoaded} />
       {/* playbackConst: higher it is, the slower it plays */}
       {!isLowPowerMode && (
         <ScrollVideo
           offset={timeStringToSeconds("0:0")}
           playbackConst={400}
+          onVideoReady={() => {
+            // safari would not fire onPlayThrough event after seek it ended up in
+            // a forever loop of false value when it seek after video loaded.
+            // so we handle it different with safari here
+            if (!isSafari) return;
+            setIsVideoLoaded(true);
+          }}
           onCanPlayThough={() => {
+            // other browser will use onplaythrough event to detect the readiness of the video
+            if (isSafari) return;
             setIsVideoLoaded(true);
           }}
           onLowPowerModeDetected={() => setIsLowPowerMode(true)}

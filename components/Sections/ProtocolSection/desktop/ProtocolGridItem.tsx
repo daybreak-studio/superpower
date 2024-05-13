@@ -1,4 +1,10 @@
-import { useMemo } from "react";
+import {
+  ButtonHTMLAttributes,
+  MutableRefObject,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 import { AnimationConfig } from "@/components/AnimationConfig";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -28,6 +34,7 @@ export const ProtocolGridItem = ({
   expandWidth,
   collapseWidth,
 }: ProtocolGridItmeProps) => {
+  const buttonRef = useRef() as MutableRefObject<HTMLButtonElement>;
   const currentWidth = useMemo(() => {
     if (isExpanded) return expandWidth;
     if (isCollapsed) return collapseWidth;
@@ -38,6 +45,12 @@ export const ProtocolGridItem = ({
     // TODO: refine logic of spacing out the content
     return [[areas[0], areas[1]], [areas[2]]];
   }, [areas]);
+
+  useEffect(() => {
+    if (isExpanded) {
+      buttonRef.current.focus();
+    }
+  }, [isExpanded]);
 
   return (
     <motion.button
@@ -51,7 +64,8 @@ export const ProtocolGridItem = ({
           ease: AnimationConfig.EASING,
         },
       }}
-      className={`relative flex h-full w-screen grow items-center justify-center overflow-hidden`}
+      ref={buttonRef}
+      className={`relative flex h-full w-screen grow items-center justify-center overflow-hidden outline-none`}
       onClick={() => onExpand()}
       // onPointerLeave={() => onUnexpand()}
       onFocus={() => onExpand()}
