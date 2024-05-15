@@ -88,7 +88,7 @@ const FeatureScrollVideo = ({
 
   return (
     <motion.div
-      className={"relative mt-[-200vh] flex w-full items-start bg-white"}
+      className={"relative mt-[-150vh] flex w-full items-start bg-white"}
       initial={{
         opacity: 0,
       }}

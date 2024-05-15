@@ -50,7 +50,7 @@ const ScrollVideo = ({
   const { videoRef, duration, isVideoReady, videoProgress, canPlayThrough } =
     useVideoScrubber(offset);
 
-  const videoScrollHeight = playbackConst * duration;
+  const videoScrollHeight = playbackConst * duration * 1.1;
   const currentTime = useMotionValue(0);
   const containerRef = useRef() as MutableRefObject<HTMLDivElement>;
 
