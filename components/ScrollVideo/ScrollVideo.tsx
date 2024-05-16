@@ -89,7 +89,7 @@ const ScrollVideo = ({
         opacity: isVideoReady ? 1 : 0,
       }}
       style={{
-        height: videoScrollHeight,
+        height: videoScrollHeight / 10 + "vh",
       }}
       ref={containerRef}
     >

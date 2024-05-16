@@ -6,7 +6,7 @@ type Props = {};
 
 const Navigation = (props: Props) => {
   const [scrollDir, setScrollDir] = useState("scrolling down");
-  const [scrolledPast1000, setScrolledPast1000] = useState(false);
+  const [scrolledPast, setScrolledPast] = useState(false);
 
   useEffect(() => {
     const threshold = 0;
@@ -31,10 +31,10 @@ const Navigation = (props: Props) => {
         ticking = true;
       }
       const scrollY = window.pageYOffset;
-      if (scrollY > 4000) {
-        setScrolledPast1000(true);
+      if (scrollY > window.innerHeight) {
+        setScrolledPast(true);
       } else {
-        setScrolledPast1000(false);
+        setScrolledPast(false);
       }
     };
 
@@ -47,7 +47,7 @@ const Navigation = (props: Props) => {
 
   return (
     <nav
-      className="fixed left-0 top-0 z-[100] flex h-auto w-full items-center justify-center mix-blend-difference sm:px-12"
+      className="fixed left-0 top-0 z-[100] flex h-auto w-full items-center justify-center sm:px-12"
       style={{
         opacity: scrollDir === "scrolling down" ? 0 : 1,
         transition: "opacity 0.3s ease-in-out",
@@ -56,21 +56,23 @@ const Navigation = (props: Props) => {
       <div
         className="relative flex h-14 w-full max-w-[1600px] items-center justify-center p-2 pl-3 sm:p-3 sm:pl-5"
         style={{
-          opacity: scrolledPast1000 == true ? 1 : 0,
-          pointerEvents: scrolledPast1000 == true ? "auto" : "none",
+          opacity: scrolledPast == true ? 1 : 0,
+          pointerEvents: scrolledPast == true ? "auto" : "none",
           transition: "opacity 0.3s ease-in-out",
         }}
       >
-        <div className="w-24">
+        <div className="w-24 mix-blend-difference">
           <Image src="/logo.svg" alt="logo" width={96} height={24} />
         </div>
         <div className="font-mono-xs flex h-full w-full items-center justify-end gap-4 text-[10px] tracking-tighter sm:gap-8">
-          <ul className="flex items-center justify-between gap-4 text-[rgba(134,134,134,1)] sm:gap-8">
-            <NavLink href="/#">Manifesto</NavLink>
-            <NavLink href="/#">Log in</NavLink>
-          </ul>
+          <div className="relative z-50 mix-blend-difference">
+            <ul className="flex items-center justify-between gap-4 text-[#fff] sm:gap-8">
+              <NavLink href="/#">Manifesto</NavLink>
+              <NavLink href="/#">Log in</NavLink>
+            </ul>
+          </div>
           <a className="h-full" href="https://app.superpower.com/signin">
-            <button className="h-full w-auto bg-white px-2 uppercase text-black sm:px-4">
+            <button className="h-full w-auto bg-[#FC5F2B] px-2 uppercase text-white sm:px-4">
               Get Started
             </button>
           </a>

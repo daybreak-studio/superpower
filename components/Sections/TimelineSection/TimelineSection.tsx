@@ -95,7 +95,7 @@ const TimelineSection = (props: Props) => {
         />
       </motion.div>
       <motion.div
-        className="fixed bottom-6 right-4 z-50 h-24 md:bottom-16 md:left-16"
+        className="pointer-events-none fixed bottom-6 right-4 z-50 h-24 md:bottom-16 md:left-16"
         animate={{
           opacity: shouldTimelineVisible ? 1 : 0,
         }}
