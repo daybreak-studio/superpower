@@ -14,6 +14,9 @@ const Footer = () => {
         <Arrow className="inline-block fill-none" />
         <Link
           className="inline-block text-black hover:text-[#FE8000]"
+          style={{
+            transition: "0.3s ease-in-out",
+          }}
           href={href}
         >
           {children}{" "}

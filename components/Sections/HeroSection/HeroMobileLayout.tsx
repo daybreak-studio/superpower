@@ -84,12 +84,12 @@ const HeroMobileLayout = ({ scrollTopOffset }: Props) => {
           />
         </div>
       </motion.div>
-      <motion.div
+      {/* <motion.div
         className="fixed inset-0  z-50 mt-12 flex h-4 justify-center"
         animate={{ opacity: shouldShowLogo ? 1 : 0 }}
       >
         <SuperpowerLogo />
-      </motion.div>
+      </motion.div> */}
     </>
   );
 };

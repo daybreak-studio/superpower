@@ -39,7 +39,7 @@ const HeroDesktopLayout = ({ shouldShowContent }: Props) => {
 
   return (
     <motion.div className="fixed left-0 right-0 top-0 z-10 h-screen w-full p-10">
-      <motion.div
+      {/* <motion.div
         className="absolute z-10 flex w-full justify-center"
         initial={{ opacity: 0, y: -10 }}
         animate={{
@@ -53,14 +53,14 @@ const HeroDesktopLayout = ({ shouldShowContent }: Props) => {
         }}
       >
         <SuperpowerLogo />
-      </motion.div>
+      </motion.div> */}
       <div className="mt-[30vh] flex w-full lg:flex-row">
         <h1 className="font-sans-3xl max-w-[8ch]">
           <FadingText progress={fadingAnimProgress}>
-            <span className="block">A new era of personal health</span>
+            <span className="block">A New Era of Personal Health</span>
           </FadingText>
         </h1>
-        <div className="ml-auto flex w-full max-w-[372px] flex-row">
+        <div className="ml-auto flex w-full max-w-[380px] flex-row">
           <FadeVertical progress={fadingAnimDelayed}>
             <LineElement
               length={"auto"}
@@ -68,16 +68,17 @@ const HeroDesktopLayout = ({ shouldShowContent }: Props) => {
               color={"rgba(255,255,255,.5)"}
             />
           </FadeVertical>
-          <div className="pointer-events-auto z-50 flex h-full max-w-[372px] flex-col px-4">
+          <div className="pointer-events-auto z-50 flex h-full max-w-[380px] flex-col px-4">
             <FadingText progress={fadingAnimDelayed}>
               <p className="font-sans-xl mb-3 leading-tight">
-                The world&apos;s most advanced digital clinic for prevention,
-                performance and longevity.
+                Superpower is the world&apos;s most advanced digital clinic
+                designed to help you prevent disease, look & feel better, and
+                live longer.
               </p>
-              <p className="font-sans-md mb-auto opacity-70">
+              {/* <p className="font-sans-md mb-auto opacity-70">
                 Test your whole body right from home, get personalized products
                 and tailored protocols you need.
-              </p>
+              </p> */}
             </FadingText>
             <motion.div
               className="mt-12"

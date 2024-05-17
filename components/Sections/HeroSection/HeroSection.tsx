@@ -223,7 +223,7 @@ const HeroSection = (props: Props) => {
               className="fixed inset-0 h-screen w-full object-cover"
             />
             {/* example for adding not only image to a slide */}
-            <SlideInText>This is literally so crazy omg</SlideInText>
+            <SlideInText>Slow aging. Feel energized.</SlideInText>
           </StickySlideItem>
         </StickySlide>
       )}
