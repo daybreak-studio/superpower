@@ -53,7 +53,7 @@ const ProtocolSection = (props: Props) => {
         </div>
       </div>
 
-      <div ref={biomarkerContainerRef}>
+      <div ref={biomarkerContainerRef} className="w-full overflow-x-hidden">
         <BiomarkerBanner isVisible={isBiomarkerInView} />
       </div>
       <div className="mx-auto w-[80%]">

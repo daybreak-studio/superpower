@@ -107,7 +107,7 @@ const FeatureScrollVideo = ({
       }}
       ref={containerRef}
     >
-      <div className="sticky top-0 flex h-screen w-full flex-col items-center justify-center">
+      <div className="sticky top-0 flex h-screen w-full flex-col items-center justify-center overflow-hidden">
         <motion.h2
           initial={{ opacity: 0 }}
           animate={{
@@ -123,6 +123,7 @@ const FeatureScrollVideo = ({
         >
           {headline}
         </motion.h2>
+
         <RotatingTablet
           scale={videoScale}
           glareOpacity={glareOpacity}
