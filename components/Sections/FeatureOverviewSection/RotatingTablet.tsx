@@ -52,7 +52,7 @@ const RotatingTablet = ({
 
   return (
     <motion.div
-      className="relative z-10 w-fit"
+      className="relative z-10 h-fit"
       style={{
         rotateY: isSafari ? "0" : rotHor,
         rotateX: isSafari ? "0" : rotVert,
