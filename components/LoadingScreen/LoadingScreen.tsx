@@ -127,7 +127,6 @@ const LoadingScreen = ({ isLoaded = false }: Props) => {
           opacity: isLoaded ? 0 : 1,
         }}
       >
-        <div className="glowing-pulse" />
         <div className="flex items-center justify-center gap-4">
           <div className="spinner spinner-anim-1" />
           <div className="spinner spinner-anim-2" />

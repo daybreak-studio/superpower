@@ -81,7 +81,7 @@ const ScrollVideo = ({
 
   return (
     <motion.div
-      className={"pointer-events-none relative flex items-start"}
+      className={"relative flex items-start"}
       initial={{
         opacity: 0,
       }}
@@ -94,7 +94,7 @@ const ScrollVideo = ({
       ref={containerRef}
     >
       <video
-        className="sticky top-0 h-screen w-full bg-black object-cover"
+        className="pointer-events-none sticky top-0 h-screen w-full bg-black object-cover"
         //@ts-ignore
         autobuffer="autobuffer"
         disablePictureInPicture

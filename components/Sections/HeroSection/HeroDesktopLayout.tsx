@@ -38,7 +38,12 @@ const HeroDesktopLayout = ({ shouldShowContent }: Props) => {
   );
 
   return (
-    <motion.div className="fixed left-0 right-0 top-0 z-10 h-screen w-full p-10">
+    <motion.div
+      className="fixed left-0 right-0 top-0 z-10 h-screen w-full p-10"
+      style={{
+        pointerEvents: isSectionVisible ? "all" : "none",
+      }}
+    >
       {/* <motion.div
         className="absolute z-10 flex w-full justify-center"
         initial={{ opacity: 0, y: -10 }}

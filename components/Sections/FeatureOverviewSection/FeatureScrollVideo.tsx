@@ -44,6 +44,11 @@ const FeatureScrollVideo = ({
   const { videoRef, videoProgress, isVideoReady, duration } =
     useVideoScrubber();
 
+  const isSectionVisible = useMotionValueSwitch(
+    videoProgress,
+    (latest) => latest > 0,
+  );
+
   const isLowPowerMode = useIsLowPowerMode(videoRef);
   useEffect(() => {
     if (isLowPowerMode) onLowPowerModeDetected?.();
@@ -98,6 +103,7 @@ const FeatureScrollVideo = ({
       style={{
         opacity: sectionOpacity,
         height: playbackConst * duration * 1,
+        pointerEvents: isSectionVisible ? "all" : "none",
       }}
       ref={containerRef}
     >
