@@ -176,31 +176,30 @@ const FeatureScrollVideo = ({
             </video>
           </motion.div>
         </RotatingTablet>
-        <div className="absolute top-[50%] z-[50] flex translate-y-[30vw] flex-col items-center gap-[3vh] lg:bottom-[3vh] lg:top-auto lg:translate-y-0">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{
-              opacity: canInteractWithTablet ? 1 : 0,
-              y: canInteractWithTablet ? 0 : 30,
-              transition: {
-                duration: canInteractWithTablet
-                  ? AnimationConfig.VERY_SLOW
-                  : AnimationConfig.NORMAL,
-                ease: AnimationConfig.EASING,
-                delay: canInteractWithTablet ? AnimationConfig.NORMAL : 0,
-              },
-            }}
-          >
-            <FeatureOverviewNav
-              currentPage={currentPage}
-              onChange={setCurrentPage}
-            />
-          </motion.div>
+        <motion.div
+          className="absolute top-[50%] z-[50] flex translate-y-[30vw] flex-col items-center gap-[3vh] lg:bottom-[3vh] lg:top-auto lg:translate-y-0"
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: canInteractWithTablet ? 1 : 0,
+            y: canInteractWithTablet ? 0 : 30,
+            transition: {
+              duration: canInteractWithTablet
+                ? AnimationConfig.VERY_SLOW
+                : AnimationConfig.NORMAL,
+              ease: AnimationConfig.EASING,
+              delay: canInteractWithTablet ? AnimationConfig.NORMAL : 0,
+            },
+          }}
+        >
+          <FeatureOverviewNav
+            currentPage={currentPage}
+            onChange={setCurrentPage}
+          />
           <p className="font-sans-lg mx-4 max-w-[32ch] text-center opacity-50">
             Combining whole-body testing, leading doctors and personalized
             health programs.
           </p>
-        </div>
+        </motion.div>
       </div>
     </motion.div>
   );
