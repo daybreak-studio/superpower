@@ -1,10 +1,4 @@
-export interface Advisor {
-  name: string;
-  title: string;
-  image: string;
-}
-
-export const EcosystemItems = [
+export const Advisors = [
   {
     name: "Arielle Zuckerberg",
     title: "Partner at Long Journey Ventures, formerly Coatue",
