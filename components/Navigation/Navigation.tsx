@@ -45,10 +45,12 @@ const Navigation = (props: Props) => {
 
   return (
     <nav className="font-mono-xs text-[8px] sm:text-[12px]">
+      <div className="fixed left-0 top-0 z-[100] block h-14 w-full bg-[rgba(0,0,0,0.5)] backdrop-blur-sm sm:hidden" />
       <div
-        className="fixed left-0 top-0 z-[100] flex h-auto w-full items-center justify-center bg-[rgba(0,0,0,0.5)] backdrop-blur-sm sm:bg-none sm:mix-blend-difference sm:backdrop-blur-none"
+        className="fixed left-0 top-0 z-[100] flex h-auto w-full items-center justify-center sm:mix-blend-difference "
         style={{
           // opacity: scrollDir === "scrolling down" ? 0 : 1,
+          transform: "translate3d(0,0,0)",
           transition: "opacity 0.3s ease-in-out",
         }}
       >
