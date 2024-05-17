@@ -65,15 +65,16 @@ const HeroMobileLayout = ({ scrollTopOffset }: Props) => {
         <div className="flex h-[100svh] flex-col items-center justify-stretch">
           <LineElement length="auto" color={"rgba(255,255,255,.5)"} vertical />
 
-          <div className="my-24 max-w-[24ch] text-center">
+          <div className="my-24 max-w-[28ch] text-center">
             <p className="font-sans-xl mb-3 leading-tight">
-              The world&apos;s most advanced digital clinic for prevention,
-              performance and longevity.
+              Superpower is the world&apos;s most advanced digital clinic
+              designed to help you prevent disease, look & feel better, and live
+              longer.
             </p>
-            <p className="font-sans-sm mb-auto opacity-70">
+            {/* <p className="font-sans-sm mb-auto opacity-70">
               Leading doctors, whole-body testing, and the latest technology,
               like you&apos;ve never experienced before.
-            </p>
+            </p> */}
           </div>
 
           <LineElement

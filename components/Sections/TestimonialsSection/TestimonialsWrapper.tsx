@@ -11,21 +11,19 @@ const clap = 800; // clap animation time
 
 const quotes = [
   {
-    quote:
-      "Testing with Superpower is exactly what I think medicine and health should be.",
+    quote: "Superpower is exactly what medicine should be.",
     name: "Erin Sharoni",
     title: "Harvard Medical School",
     photo: "/testimonials-section/erin-sharoni.png",
   },
   {
-    quote: "Went from in the dark on my health to fully in control.",
+    quote: "Went from in the dark to fully in control.",
     name: "Brett Goldstein",
     title: "Founder Micro",
     photo: "/testimonials-section/brett-goldstein.png",
   },
   {
-    quote:
-      "I found high levels of inflammation, and after my protocol there’s no more signs of them.",
+    quote: "Regular doctors don’t test for inflammation or hormones.",
     name: "Marc Baghadjan",
     title: "CEO Hypercard",
     photo: "/testimonials-section/marc-baghadjan.png",

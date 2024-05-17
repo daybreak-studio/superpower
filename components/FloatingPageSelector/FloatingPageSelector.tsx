@@ -218,7 +218,7 @@ const FloatingPageSelectorItem = ({
   return (
     <motion.button
       ref={buttonRef}
-      className="font-sans-sm relative flex flex-row items-center gap-2 rounded-full px-4 py-3 leading-none text-zinc-900"
+      className="font-sans-sm relative flex flex-row items-center gap-2 rounded-full px-4 py-3 leading-none text-zinc-900 duration-300 hover:opacity-30"
       animate={{
         color: isCurrent ? "black" : "",
         //@ts-ignore

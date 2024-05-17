@@ -40,33 +40,37 @@ const Navigation = (props: Props) => {
 
     window.addEventListener("scroll", onScroll);
 
-    console.log(scrollDir);
-
     return () => window.removeEventListener("scroll", onScroll);
   }, [scrollDir]);
 
   return (
-    <nav>
+    <nav className="font-mono-xs text-[8px] sm:text-[12px]">
       <div
-        className="fixed left-0 top-0 z-[100] flex h-auto w-full items-center justify-center mix-blend-difference"
+        className="fixed left-0 top-0 z-[100] flex h-auto w-full items-center justify-center bg-[rgba(0,0,0,0.5)] backdrop-blur-sm sm:bg-none sm:mix-blend-difference sm:backdrop-blur-none"
         style={{
           // opacity: scrollDir === "scrolling down" ? 0 : 1,
           transition: "opacity 0.3s ease-in-out",
         }}
       >
         <div
-          className="relative flex h-[68px] w-full items-center justify-center p-2 pl-3 sm:p-3 sm:pl-5"
+          className="relative flex h-14 w-full items-center justify-center p-2 pl-3 sm:h-[68px] sm:p-3 sm:pl-5"
           style={{
             // opacity: scrolledPast == true ? 1 : 0,
             // pointerEvents: scrolledPast == true ? "auto" : "none",
             transition: "opacity 0.3s ease-in-out",
           }}
         >
-          <a href="/" className="w-[200px]">
-            <Image src="/logo.svg" alt="logo" width={200} height={100} />
+          <a href="/" className="w-[140px] sm:w-[200px]">
+            <Image
+              className="w-full"
+              src="/logo.svg"
+              alt="logo"
+              width={180}
+              height={100}
+            />
           </a>
-          <div className="font-mono-xs flex h-full w-full items-center justify-end gap-8 tracking-tighter">
-            <ul className="flex items-center justify-between gap-8 text-white">
+          <div className="flex h-full w-full items-center justify-end gap-6 tracking-tighter sm:gap-8">
+            <ul className="flex items-center justify-between gap-6 text-white sm:gap-8">
               <NavLink href="/#">Manifesto</NavLink>
               <NavLink href="https://app.superpower.com/signin">Log in</NavLink>
             </ul>
@@ -75,7 +79,7 @@ const Navigation = (props: Props) => {
         </div>
       </div>
       <a
-        className="font-mono-xs fixed right-0 top-0 z-[101] h-[68px] cursor-pointer p-2 pl-3 sm:p-3 sm:pl-5"
+        className=" fixed right-0 top-0 z-[101] h-14 cursor-pointer p-2 pl-3 sm:h-[68px] sm:p-3 sm:pl-5"
         href="https://app.superpower.com/signin"
       >
         <CTAButton />

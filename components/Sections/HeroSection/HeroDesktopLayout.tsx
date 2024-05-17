@@ -96,7 +96,7 @@ const HeroDesktopLayout = ({ shouldShowContent }: Props) => {
               }}
             >
               <CTAButton href={"https://app.superpower.com/signin"}>
-                Get started
+                Join The Waitlist
               </CTAButton>
             </motion.div>
           </div>
