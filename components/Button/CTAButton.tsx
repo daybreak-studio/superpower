@@ -188,7 +188,7 @@ const CTAButtonOutline = ({ href, children, isVisible = true }: Props) => {
             ease: "linear",
           },
         }}
-        className="pointer-events-none absolute inset-0 -z-10 bg-[#F7791E] blur-2xl"
+        className="pointer-events-none absolute inset-0 z-0 bg-[#F7791E] blur-2xl"
       ></motion.div>
     </motion.a>
   );
