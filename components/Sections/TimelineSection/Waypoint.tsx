@@ -13,7 +13,6 @@ type Props = {
   waypoint: Waypoint;
   isActive: boolean;
   withDetails: boolean;
-  inverted?: boolean;
   index: number;
   totalWaypointsCount: number;
   progress: MotionValue<number>;
@@ -24,7 +23,6 @@ type Props = {
 const WaypointTag = ({
   waypoint,
   isActive,
-  inverted,
   progress,
   totalWaypointsCount,
   index,
@@ -75,9 +73,9 @@ const WaypointTag = ({
       }}
     >
       <div
-        className={`absolute ${inverted ? "right-0 flex-col text-right" : "flex-col"} -mt-1 flex w-fit justify-between gap-4 text-nowrap sm:-mt-2`}
+        className={`absolute ${waypoint.direction == "left" ? "right-0 flex-col text-right" : "flex-col"} -mt-1 flex w-fit justify-between gap-4 text-nowrap sm:-mt-2`}
       >
-        <motion.div className={inverted ? "mr-6" : "ml-6"}>
+        <motion.div className={waypoint.direction == "left" ? "mr-6" : "ml-6"}>
           <motion.div
             animate={{
               y: isActive ? 0 : elevatedHeight,
@@ -122,7 +120,7 @@ const WaypointTag = ({
               ease: AnimationConfig.EASING,
             },
           }}
-          className={`flex h-fit flex-col gap-2 ${inverted ? "border-r pr-4" : "border-l pl-4"} border-[rgba(255,255,255,.2)] `}
+          className={`flex h-fit flex-col gap-2 ${waypoint.direction == "left" ? "border-r pr-4" : "border-l pl-4"} border-[rgba(255,255,255,.2)] `}
         >
           {withDetails &&
             waypoint.details.map((detail, index) => (

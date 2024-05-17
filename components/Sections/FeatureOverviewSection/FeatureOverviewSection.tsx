@@ -15,7 +15,7 @@ const FeatureOverviewSection = (props: Props) => {
         <FeatureScrollVideo
           playbackConst={400}
           onLowPowerModeDetected={() => setIsLowPowerMode(true)}
-          headline={"Meet the world's most comprehensive digital clinic."}
+          headline={"The most complete picture of your health you’ve ever had."}
         >
           <source
             type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'

@@ -10,6 +10,7 @@ import TransitionSectionUp from "@/components/Sections/TransitionSection/Transit
 import TransitionSectionDown from "@/components/Sections/TransitionSection/TransitionSectionDown";
 import EcosystemSection from "@/components/Sections/EcosystemSection/EcosystemLayout";
 import TimelineSection from "@/components/Sections/TimelineSection/TimelineSection";
+import AdvisorsSection from "@/components/Sections/AdvisorsSection/AdvisorsSection";
 import ScrollingTextLayout from "@/components/Sections/ScrollingTextSection/ScrollingTextLayout";
 import Navigation from "@/components/Navigation/Navigation";
 import { Lenis } from "@studio-freight/react-lenis";
@@ -29,6 +30,7 @@ export default function Home() {
         <TimelineSection />
         <TransitionSectionDown />
         <EcosystemSection />
+        <AdvisorsSection />
         <ScrollingTextLayout />
         <Footer />
       </main>

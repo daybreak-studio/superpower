@@ -6,27 +6,27 @@ import LineElement from "@/components/LineElement/LineElement";
 import { useInView } from "framer-motion";
 
 type Props = {};
-const interval = 3500; // interval between quotes
+const interval = 4000; // interval between quotes
 const clap = 800; // clap animation time
 
 const quotes = [
   {
-    quote: "Superpower is exactly what medicine should be.",
+    quote: "Exactly what healthcare should be.",
     name: "Erin Sharoni",
     title: "Harvard Medical School",
     photo: "/testimonials-section/erin-sharoni.png",
   },
   {
-    quote: "Went from in the dark to fully in control.",
-    name: "Brett Goldstein",
-    title: "Founder Micro",
-    photo: "/testimonials-section/brett-goldstein.png",
+    quote: "Superpower put me on the road to feeling great.",
+    name: "Vinay Hiremath",
+    title: "Founder of Loom",
+    photo: "/testimonials-section/vinay-hiremath.png",
   },
   {
-    quote: "Regular doctors don’t test for inflammation or hormones.",
-    name: "Marc Baghadjan",
-    title: "CEO Hypercard",
-    photo: "/testimonials-section/marc-baghadjan.png",
+    quote: "Becoming a healthier dad for my kids - priceless.",
+    name: "Jordi Hays",
+    title: "Founder of Capital",
+    photo: "/testimonials-section/jordi-hays.png",
   },
 ];
 

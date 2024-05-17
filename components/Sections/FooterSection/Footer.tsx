@@ -76,7 +76,7 @@ const Footer = () => {
               </FooterLink>
             </motion.div>
             <motion.div className="flex gap-4 border-l-2 border-zinc-300 pl-2 sm:flex-col sm:gap-0 lg:pl-4">
-              <FooterLink href="https://superpower.com/tos">
+              <FooterLink href="https://superpower.com/terms">
                 Terms of service
               </FooterLink>
               <FooterLink href="https://superpower.com/privacy">
@@ -85,7 +85,7 @@ const Footer = () => {
             </motion.div>
           </nav>
           <div className="mt-8 lg:absolute lg:bottom-0 lg:right-0 lg:text-right">
-            <small className="font-mono-xs leading-4 ">
+            <small className="font-mono-xs leading-4">
               2024 Superpower Health, Inc.
               <br />
               All Rights Reserved

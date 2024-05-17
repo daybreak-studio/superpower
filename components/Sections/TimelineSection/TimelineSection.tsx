@@ -75,7 +75,7 @@ const TimelineSection = (props: Props) => {
           <h3 className="font-sans-2xl mx-auto mb-4 max-w-[18ch]">
             <FadingText progress={fadingTextProgress}>
               <div className="h-fit py-1">
-                A proactive system in every stage of your life
+                Unlock all the potential your life holds
               </div>
             </FadingText>
           </h3>

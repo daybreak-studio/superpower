@@ -7,7 +7,12 @@ export const segments: TimlineSegment[] = [
       {
         age: "Born",
         action: "C-Section",
-        details: ["Microbiome optimization", "Genetic test", "Diet personalized to genome"],
+        details: [
+          "Microbiome optimization",
+          "Genetic test",
+          "Diet personalized to genome",
+        ],
+        direction: "right",
       },
     ],
   },
@@ -17,7 +22,12 @@ export const segments: TimlineSegment[] = [
       {
         age: "Age 22",
         action: "Annual Superpower Baseline",
-        details: ["60 biomarker blood test", "DEXA scan", "Performance program"],
+        details: [
+          "60 biomarker blood test",
+          "DEXA scan",
+          "Performance program",
+        ],
+        direction: "right",
       },
     ],
   },
@@ -27,7 +37,12 @@ export const segments: TimlineSegment[] = [
       {
         age: "Age 26",
         action: "Gut health protocol",
-        details: ["Microbiome test", "Personalized probiotic", "Gut lining peptide"],
+        details: [
+          "Microbiome test",
+          "Personalized probiotic",
+          "Gut lining peptide",
+        ],
+        direction: "left",
       },
     ],
   },
@@ -37,7 +52,8 @@ export const segments: TimlineSegment[] = [
       {
         age: "Age 31",
         action: "Fertility protocol",
-        details: ["Pre-natal vitamin stack","Post-partum nutrients"],
+        details: ["Pre-natal vitamin stack", "Post-partum nutrients"],
+        direction: "left",
       },
     ],
   },
@@ -47,7 +63,8 @@ export const segments: TimlineSegment[] = [
       {
         age: "Age 41",
         action: "Hormone optimization protocol",
-        details: ["Testosterone","Estrogren"],
+        details: ["Testosterone", "Estrogren"],
+        direction: "left",
       },
     ],
   },
@@ -57,7 +74,12 @@ export const segments: TimlineSegment[] = [
       {
         age: "Age 45",
         action: "Disease prevention program",
-        details: ["Coronary calcium scan", "Full body MRI", "Grail cancer screening"],
+        details: [
+          "Coronary calcium scan",
+          "Full body MRI",
+          "Grail cancer screening",
+        ],
+        direction: "right",
       },
     ],
   },
@@ -67,7 +89,12 @@ export const segments: TimlineSegment[] = [
       {
         age: "Age 60",
         action: "Longevity protocol",
-        details: ["Prevent Alzheimer’s, heart disease, cancer", "Reduce biological age", "Reduce skin age"],
+        details: [
+          "Prevent Alzheimer’s, heart disease, cancer",
+          "Reduce biological age",
+          "Reduce skin age",
+        ],
+        direction: "right",
       },
     ],
   },
@@ -78,6 +105,7 @@ export const segments: TimlineSegment[] = [
         age: "Age 120",
         action: "Ageing goal",
         details: [""],
+        direction: "left",
       },
     ],
   },

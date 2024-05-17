@@ -60,15 +60,15 @@ const TestimonialsDesktop = ({
         <motion.div
           className="relative flex items-center justify-center overflow-hidden"
           initial={{
-            width: 624,
+            width: 600,
             // height: 500,
           }}
           animate={{
-            width: [624, 0, 0, 624],
+            width: [600, 0, 0, 600],
             // height: [500, 0, 0, 500],
           }}
           exit={{
-            width: 624,
+            width: 600,
             // height: 500,
           }}
           transition={{
@@ -82,7 +82,7 @@ const TestimonialsDesktop = ({
         >
           <CornerBox cornerSize={20} cornerColor={"#000"} />
           <motion.div
-            className="flex min-h-[500px] min-w-[700px] flex-col flex-wrap items-center justify-between p-4 text-center"
+            className="flex min-h-[500px] min-w-[600px] flex-col flex-wrap items-center justify-between p-4 text-center"
             // initial={{
             //   opacity: 0,
             // }}

@@ -176,7 +176,7 @@ const FeatureScrollVideo = ({
             </video>
           </motion.div>
         </RotatingTablet>
-        <div className="absolute top-[50%] z-[50] translate-y-[30vw] lg:bottom-16 lg:top-auto lg:translate-y-0">
+        <div className="absolute top-[50%] z-[50] flex translate-y-[30vw] flex-col items-center gap-[3vh] lg:bottom-[3vh] lg:top-auto lg:translate-y-0">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{
@@ -196,6 +196,10 @@ const FeatureScrollVideo = ({
               onChange={setCurrentPage}
             />
           </motion.div>
+          <p className="font-sans-lg mx-4 max-w-[32ch] text-center opacity-50">
+            Combining whole-body testing, leading doctors and personalized
+            health programs.
+          </p>
         </div>
       </div>
     </motion.div>

@@ -5,8 +5,9 @@ import { useMotionValueSwitch } from "@/hooks/useMotionValueSwitch";
 
 type Props = {};
 const sentence = // sentence to be displayed, use < to indicate a line break
-  "As the world demands more of us, we must command more for ourselves. Protect and prioritize health. < Existing institutions aren’t working and don’t have our backs.";
-const sentenceArray = sentence.split(" ");
+  "We believe that if you improve your health, you can improve every other aspect of your life. < But mainstream medicine hasn’t helped many of us do that. It ignores red flags, reacts too late, and misses the full picture. < Our vision of the future is a completely different way of looking at health. A system where proactive health is the norm. Where it’s easy to slow aging and prevent disease. Where our food and environments are default healthy and toxin free. Where everyone is able to reach their peak potential. < It’s time to unleash your inner Superpower.";
+const ogSentenceArray = sentence.split(" ");
+const sentenceArray = ogSentenceArray.concat("Read our manifesto.");
 
 const ScrollingTextLayout = (props: Props) => {
   const buttonContainerRef = useRef() as MutableRefObject<HTMLDivElement>;
@@ -35,15 +36,32 @@ const ScrollingTextLayout = (props: Props) => {
   return (
     <section className="relative">
       <div className="align-center flex justify-center px-6">
-        <div className="flex w-full max-w-[600px] flex-col items-center justify-center gap-[30px] py-[200px] lg:max-w-[1011px] lg:py-[300px] ">
-          <p className="font-mono-sm text-center text-[#7B7B7C]">
-            What we believe
-          </p>
-          <h2 className="font-sans-2xl text-center" ref={paragraphRef}>
+        <div className="flex w-full max-w-[600px] flex-col items-center justify-center gap-[30px] py-[200px] lg:max-w-[670px] lg:py-[300px] ">
+          <h2 className="font-sans-2xl mx-4 mb-6 max-w-[10ch] text-center">
+            For people who want more
+          </h2>
+          <h2
+            className="font-sans-xl text-center text-[#5a5a5a]"
+            ref={paragraphRef}
+          >
             {sentenceArray.map((word, index) =>
               word === "<" ? (
                 <div key={index}>
                   <br />
+                </div>
+              ) : index === sentenceArray.length - 1 ? (
+                <div key={index}>
+                  <a
+                    className="cursor-pointer underline duration-300 hover:text-[#FC5F2B]"
+                    href="https://www.superpower.com/manifesto"
+                    target="_blank"
+                  >
+                    <FadingText
+                      word={`${word} `}
+                      isVisible={currentWord > index}
+                      key={index}
+                    />
+                  </a>
                 </div>
               ) : (
                 <FadingText
@@ -56,7 +74,7 @@ const ScrollingTextLayout = (props: Props) => {
           </h2>
           <div className="pt-8" ref={buttonContainerRef}>
             <CTAButton outline isVisible={shouldShowButton}>
-              Read Our Why
+              Join the waitlist
             </CTAButton>
           </div>
         </div>

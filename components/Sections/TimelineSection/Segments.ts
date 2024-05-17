@@ -4,6 +4,7 @@ export type Waypoint = {
   age: string;
   action: string;
   details: string[];
+  direction: "left" | "right";
 };
 export type TimlineSegment = {
   path: string;

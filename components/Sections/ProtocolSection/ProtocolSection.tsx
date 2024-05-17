@@ -36,8 +36,7 @@ const ProtocolSection = (props: Props) => {
           Finally, healthcare that looks at the whole you
         </h2>
         <p className="font-sans-lg mx-4 mb-6 max-w-[40ch] text-center opacity-50">
-          A revolutionary approach to health, starting with over 60 advanced lab
-          tests and a custom action plan.
+          Personalized programs to improve every aspect of your health
         </p>
         <Scrim height={"64px"} />
       </motion.div>

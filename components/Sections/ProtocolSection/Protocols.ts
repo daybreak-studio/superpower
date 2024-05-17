@@ -10,7 +10,7 @@ export const PROTOCOLS = [
     name: "Gut Health",
     icon: "/protocol-section/gut-health.svg",
     image: "/protocol-section/gut-health.png",
-    areas: ["Microbiome", "diversity", "nutrient absorption"],
+    areas: ["Microbiome Diversity", "Digestion", "Nutrient Absorption"],
   },
   {
     name: "Male Hormones",
@@ -34,29 +34,25 @@ export const PROTOCOLS = [
     name: "Toxins",
     icon: "/protocol-section/toxins.svg",
     image: "/protocol-section/toxins.png",
-    areas: ["Plastics", "Heavy metals", "Mold"],
+    areas: ["Plastics", "Heavy Metals", "Mold"],
   },
   {
     name: "Disease Risk",
     icon: "/protocol-section/disease-risk.svg",
     image: "/protocol-section/disease-risk.png",
-    areas: [
-      "Early heart issue detection",
-      "Cancer",
-      "and 100s of diseases",
-    ],
+    areas: ["Heart Disease", "Cancer", "And 100s More"],
   },
   {
     name: "Body composition",
     icon: "/protocol-section/body-composition.svg",
     image: "/protocol-section/body-composition.png",
-    areas: ["Gain muscle", "Lose weight", "Grip strength"],
+    areas: ["Gain Muscle", "Lose Weight", "Grip Strength"],
   },
   {
     name: "Sleep optimization",
     icon: "/protocol-section/sleep-optimization.svg",
     image: "/protocol-section/sleep-optimization.png",
-    areas: ["Sleep quality", "Stress level", "Nervous system calibration"],
+    areas: ["Sleep Quality", "Stress Level", "Nervous System Calibration"],
   },
   {
     name: "Cognitive health",
@@ -68,6 +64,6 @@ export const PROTOCOLS = [
     name: "Metabolic health",
     icon: "/protocol-section/metabolic-health.svg",
     image: "/protocol-section/metabolic-health.png",
-    areas: ["Energy", "Body fat %", "VO2 Max"],
+    areas: ["Energy", "HbA1c", "VO2 Max"],
   },
 ];
