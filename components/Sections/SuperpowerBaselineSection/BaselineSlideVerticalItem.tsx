@@ -32,7 +32,7 @@ const BaselineSlideVerticalItem = ({
     >
       {/* top text */}
       <motion.div
-        className="relative max-w-[270px] 2xl:max-w-[340px]"
+        className="relative max-w-[270px] xl:max-w-[340px]"
         animate={{ height: isExpanded ? (index == "4" ? 112 : 92) : 40 }}
       >
         <div className="flex flex-col items-center gap-2 text-center">

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import NavLink from "./NavLink";
 import Image from "next/image";
+import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
 
 type Props = {};
 
 const Navigation = (props: Props) => {
   const [scrollDir, setScrollDir] = useState("scrolling down");
   const [scrolledPast, setScrolledPast] = useState(false);
+  const isDesktop = useBreakpoint(breakpoints.md);
 
   useEffect(() => {
     const threshold = 0;
@@ -47,21 +49,19 @@ const Navigation = (props: Props) => {
     <nav className="font-mono-xs text-[8px] sm:text-[12px]">
       <div className="fixed left-0 top-0 z-[100] block h-14 w-full bg-[rgba(0,0,0,0.5)] backdrop-blur-sm sm:hidden" />
       <div
-        className="fixed left-0 top-0 z-[100] flex h-auto w-full items-center justify-center sm:mix-blend-difference "
+        className="fixed left-0 top-0 z-[100] flex h-auto w-full items-center justify-center sm:mix-blend-normal"
         style={{
-          // opacity: scrollDir === "scrolling down" ? 0 : 1,
-          transform: "translate3d(0,0,0)",
-          transition: "opacity 0.3s ease-in-out",
+          mixBlendMode: isDesktop
+            ? scrolledPast == true
+              ? "difference"
+              : "normal"
+            : "normal",
+          // opacity:
+          //   scrolledPast == true ? (scrollDir === "scrolling down" ? 0 : 1) : 1,
+          // transition: "opacity 0.3s ease-in-out",
         }}
       >
-        <div
-          className="relative flex h-14 w-full items-center justify-center p-2 pl-3 sm:h-[68px] sm:p-3 sm:pl-5"
-          style={{
-            // opacity: scrolledPast == true ? 1 : 0,
-            // pointerEvents: scrolledPast == true ? "auto" : "none",
-            transition: "opacity 0.3s ease-in-out",
-          }}
-        >
+        <div className="relative flex h-14 w-full items-center justify-center p-2 pl-3 sm:h-[68px] sm:p-3 sm:pl-5">
           <a href="/" className="w-[140px] sm:w-[200px]">
             <Image
               className="w-full"

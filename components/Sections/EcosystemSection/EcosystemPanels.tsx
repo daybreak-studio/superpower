@@ -96,7 +96,7 @@ const EcosystemPanels = ({
             z: isDesktop ? "-80vw" : "-110vw",
           }}
         >
-          <div className="absolute flex translate-x-[-50%] translate-y-[-50%] flex-col items-center gap-4">
+          <div className="absolute flex translate-x-[-50%] translate-y-[-50%] flex-col items-center gap-4 duration-300 hover:opacity-80">
             <Image
               src={item.image}
               alt={item.name}
@@ -110,7 +110,7 @@ const EcosystemPanels = ({
               height={500}
               priority
             />
-            <div className="font-sans-lg text-center text-black 2xl:font-sans-xl">
+            <div className="font-sans-lg text-center text-black 2xl:text-[2vw]">
               {item.name}
             </div>
           </div>
