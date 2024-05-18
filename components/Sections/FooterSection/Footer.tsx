@@ -28,7 +28,7 @@ const Footer = () => {
   return (
     <>
       <section
-        className="mx-4 flex flex-col gap-20 lg:mx-14 lg:gap-10 lg:pb-12"
+        className="mx-4 flex flex-col gap-20 pb-8 lg:mx-14 lg:gap-10 lg:pb-12"
         style={{ textRendering: "geometricPrecision" }}
       >
         <div className="relative">
