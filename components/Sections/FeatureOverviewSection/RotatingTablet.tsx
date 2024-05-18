@@ -67,7 +67,7 @@ const RotatingTablet = ({
     >
       <div className="absolute inset-0 grid grid-cols-1 grid-rows-1 px-[0.3%] py-[0.4%]">
         <motion.div
-          className="relative overflow-hidden rounded-ipad-outer md:rounded-ipad-outer-md 3xl:rounded-ipad-outer-3xl"
+          className="relative overflow-hidden rounded-ipad-outer md:rounded-ipad-outer-md"
           style={{ scale: scale }}
         >
           <motion.div
@@ -96,14 +96,14 @@ const RotatingTablet = ({
       </div>
       <div className="absolute inset-0 grid grid-cols-1 grid-rows-1 px-[0.6%] py-[0.7%]">
         <motion.div
-          className="relative overflow-hidden rounded-ipad-inner bg-black md:rounded-ipad-inner-md 3xl:rounded-ipad-inner-3xl"
+          className="relative overflow-hidden rounded-ipad-inner bg-black md:rounded-ipad-inner-md"
           style={{ scale: scale }}
         ></motion.div>
       </div>
       {children}
       <div className="absolute inset-0 grid grid-cols-1 grid-rows-1 p-[0.3%] pl-[0.5%] pt-[0.5%]">
         <motion.div
-          className="relative z-20 overflow-hidden rounded-ipad-inner md:rounded-ipad-inner-md 3xl:rounded-ipad-inner-3xl"
+          className="relative z-20 overflow-hidden rounded-ipad-inner md:rounded-ipad-inner-md"
           style={{
             scale: scale,
           }}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SuperpowerLogo from "./SuperpowerLogo";
 import CTAButton from "@/components/Button/CTAButton";
 import { motion, useTransform } from "framer-motion";
@@ -41,7 +41,7 @@ const HeroDesktopLayout = ({ shouldShowContent }: Props) => {
     <motion.div
       className="fixed left-0 right-0 top-0 z-10 h-screen w-full p-10"
       style={{
-        pointerEvents: isSectionVisible ? "all" : "none",
+        display: isSectionVisible ? "block" : "none",
       }}
     >
       {/* <motion.div

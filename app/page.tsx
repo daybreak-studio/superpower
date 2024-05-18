@@ -13,6 +13,7 @@ import TimelineSection from "@/components/Sections/TimelineSection/TimelineSecti
 import AdvisorsSection from "@/components/Sections/AdvisorsSection/AdvisorsSection";
 import ScrollingTextLayout from "@/components/Sections/ScrollingTextSection/ScrollingTextLayout";
 import Navigation from "@/components/Navigation/Navigation";
+import FadeIn from "@/components/FadeIn/FadeIn";
 import { Lenis } from "@studio-freight/react-lenis";
 import { ReactLenis } from "@studio-freight/react-lenis";
 
@@ -21,6 +22,7 @@ export default function Home() {
     <ReactLenis root options={{ lerp: 0.1, duration: 1.5 }}>
       <main className="bg-white">
         <Navigation />
+        <FadeIn />
         <HeroSection />
         <FeatureOverviewSection />
         <SuperpowerBaselineSection />

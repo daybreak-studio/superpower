@@ -15,6 +15,7 @@ import { useProgress } from "@/components/ProgressProvider/ProgressProvider";
 import { timeStringToSeconds } from "@/components/ScrollVideo/timeStringToSeconds";
 import IntroVideo from "./IntroVideoDeprecated";
 import {
+  motion,
   useAnimationFrame,
   useMotionValue,
   useMotionValueEvent,
@@ -40,7 +41,7 @@ const HeroSection = (props: Props) => {
 
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
-  const introLastFrame = timeStringToSeconds("0:01");
+  const introLastFrame = timeStringToSeconds("0:02");
   const introLastFrameScrollPos = useMemo(
     () => secondsToScrollPosition(introLastFrame, 400),
     [introLastFrame],

@@ -119,7 +119,7 @@ const LoadingScreen = ({ isLoaded = false }: Props) => {
           `}
       </style>
       <motion.div
-        className="pointer-events-none fixed inset-0 z-[9999999] flex items-center  justify-center bg-black"
+        className="pointer-events-none fixed inset-0 z-[9999999999] flex items-center justify-center bg-black"
         initial={{
           opacity: 1,
         }}

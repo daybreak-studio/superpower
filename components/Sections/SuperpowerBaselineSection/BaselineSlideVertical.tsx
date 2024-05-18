@@ -12,7 +12,7 @@ const BaselineSlideVertical = ({ slides }: Props) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
-    <div className="mt-12 flex w-full flex-col items-center gap-3 overflow-x-hidden pb-24">
+    <div className="mt-12 flex w-full flex-col items-center gap-3 overflow-x-hidden">
       {slides.map((slide, index) => (
         <BaselineSlideVerticalItem
           key={index}

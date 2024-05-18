@@ -5,6 +5,7 @@ import BaselineSlide from "./BaselineSlideVerticalItem";
 import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
 import BaselineSlideVertical from "./BaselineSlideVertical";
 import BaselineCarousel from "./BaselineCarousel";
+import LineElement from "@/components/LineElement/LineElement";
 
 type Props = {};
 
@@ -20,42 +21,34 @@ const SLIDES = [
   {
     previewSrc: "/baseline-section/baseline-1-preview.png",
     expandedSrc: "/baseline-section/baseline-1.png",
-    header: "Test 80+ Biomarkers",
+    header: "Test your whole body and visualize all your data.",
     description:
-      "Hormones, stress, thyroid, heart, metabolic, toxins and much more.",
+      "Hormones, thyroid, heart, toxins, genetics, microbiome, cancer risk, wearables, & more.",
     color: "#063D2A",
   },
   {
     previewSrc: "/baseline-section/baseline-2-preview.png",
     expandedSrc: "/baseline-section/baseline-2.png",
-    header: "Visualize your results",
+    header: "Get an annual roadmap so you know exactly what to do.",
     description:
-      "Track blood biomarkers, genetics. Microbiome testing, and data from any wearable device.",
+      "Go from in the dark to in control – we’ll show you how to improve every aspect of your health.",
     color: "#B9431C",
   },
   {
     previewSrc: "/baseline-section/baseline-3-preview.png",
     expandedSrc: "/baseline-section/baseline-3.png",
-    header: "Longevity Clinician Assessment",
+    header: "Access your private concierge doctor.",
     description:
-      "Your data is reviewed by our leading clinicians, drawing out functional insights.",
+      "Text your health concierge at any time, from help with orders and scheduling to questions and coaching.",
     color: "#12495B",
   },
   {
     previewSrc: "/baseline-section/baseline-4-preview.png",
     expandedSrc: "/baseline-section/baseline-4.png",
-    header: "Personalized Action PLan",
+    header: "Everything you need in one place.",
     description:
-      "With the latest in research and science to superpower your health.",
+      "Save 1,000s of hours of research. Your membership comes with a marketplace of the world’s best health products, tests, and services at insider prices. New additions every week.",
     color: "#4E1308",
-  },
-  {
-    previewSrc: "/baseline-section/baseline-5-preview.png",
-    expandedSrc: "/baseline-section/baseline-5.png",
-    header: "Unlimited Concierge SMS",
-    description:
-      "For everyday questions about diet, supplements, performance, testing, general healthcare and more.",
-    color: "#8D4B32",
   },
 ];
 
@@ -63,16 +56,13 @@ function SuperpowerBaselineSection({}: Props) {
   const isDesktop = useBreakpoint(breakpoints.lg);
 
   return (
-    <section className="relative z-10 my-24 flex flex-col items-center bg-white">
-      <div className="font-mono-sm mx-4 mb-4 text-center">How it works</div>
-      <h2 className="font-sans-2xl mx-4 mb-6 max-w-[20ch] text-center">
-        Our cornerstone is the Superpower baseline
+    <section className="relative z-10 mt-4 flex flex-col items-center bg-white">
+      <LineElement length={288} color={"#bbb"} vertical tail={40} />
+      <div className="font-mono-sm mx-4 mt-16 text-center">How it works</div>
+      <h2 className="font-sans-2xl mx-4 mb-6 max-w-[17ch] text-center">
+        An all-in-one health membership, for people who want more.
       </h2>
-      <p className="font-sans-lg mx-4 max-w-[50ch] text-center opacity-50">
-        Membership includes unlimited messaging with your doctor team, a
-        comprehensive annual assessment with 80 advanced lab tests, and a custom
-        action plan to improve your health and transform your life.
-      </p>
+      <LineElement length={40} color={"#bbb"} vertical tail={40} />
       {isDesktop && <BaselineSlideVertical slides={SLIDES} />}
       {!isDesktop && <BaselineCarousel slides={SLIDES} />}
     </section>
