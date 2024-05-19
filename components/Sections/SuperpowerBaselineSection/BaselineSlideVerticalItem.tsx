@@ -7,8 +7,8 @@ import { AnimationConfig } from "../../AnimationConfig";
 import LineElement from "@/components/LineElement/LineElement";
 
 type Props = {
-  previewSrc: string;
-  expandedSrc: string;
+  mobileSrc: string;
+  desktopSrc: string;
   index: string;
   header: string;
   description: string;
@@ -17,8 +17,8 @@ type Props = {
 };
 
 const BaselineSlideVerticalItem = ({
-  previewSrc,
-  expandedSrc,
+  mobileSrc,
+  desktopSrc,
   isExpanded,
   onSelect,
   header,
@@ -66,11 +66,11 @@ const BaselineSlideVerticalItem = ({
           className="relative z-0 flex flex-col items-center justify-center overflow-hidden rounded-[20px]"
           initial={{
             width: 340,
-            height: 122,
+            height: 160,
           }}
           animate={{
             width: isExpanded ? "auto" : 340,
-            height: isExpanded ? "auto" : 122,
+            height: isExpanded ? "auto" : 160,
             transition: {
               ease: AnimationConfig.EASING,
               duration: AnimationConfig.SLOW,
@@ -79,10 +79,10 @@ const BaselineSlideVerticalItem = ({
         >
           <motion.div className="h-full w-full">
             <Image
-              className="absolute left-0 top-0 -z-10 h-full w-full"
-              src={previewSrc}
+              className="absolute left-0 top-0 -z-10 h-full w-full object-cover"
+              src={desktopSrc}
               width={340}
-              height={122}
+              height={0}
               alt={""}
             />
           </motion.div>
@@ -92,7 +92,7 @@ const BaselineSlideVerticalItem = ({
               opacity: isExpanded ? 1 : 0,
             }}
           >
-            <Image src={expandedSrc} width={830} height={362} alt={""} />
+            <Image src={desktopSrc} width={830} height={362} alt={""} />
           </motion.div>
         </motion.div>
         {/* left decorative element */}

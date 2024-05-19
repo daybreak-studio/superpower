@@ -10,8 +10,8 @@ import LineElement from "@/components/LineElement/LineElement";
 type Props = {};
 
 export type SlideInfo = {
-  previewSrc: string;
-  expandedSrc: string;
+  mobileSrc: string;
+  desktopSrc: string;
   header: string;
   description: string;
   color: string;
@@ -19,32 +19,32 @@ export type SlideInfo = {
 
 const SLIDES = [
   {
-    previewSrc: "/baseline-section/baseline-1-preview.png",
-    expandedSrc: "/baseline-section/baseline-1.png",
+    mobileSrc: "/baseline-section/baseline-1-m.png",
+    desktopSrc: "/baseline-section/baseline-1.png",
     header: "Test your whole body and visualize all your data.",
     description:
       "Hormones, thyroid, heart, toxins, genetics, microbiome, cancer risk, wearables, & more.",
     color: "#063D2A",
   },
   {
-    previewSrc: "/baseline-section/baseline-2-preview.png",
-    expandedSrc: "/baseline-section/baseline-2.png",
+    mobileSrc: "/baseline-section/baseline-2-m.png",
+    desktopSrc: "/baseline-section/baseline-2.png",
     header: "Get an annual roadmap so you know exactly what to do.",
     description:
       "Go from in the dark to in control – we’ll show you how to improve every aspect of your health.",
     color: "#B9431C",
   },
   {
-    previewSrc: "/baseline-section/baseline-3-preview.png",
-    expandedSrc: "/baseline-section/baseline-3.png",
+    mobileSrc: "/baseline-section/baseline-3-m.png",
+    desktopSrc: "/baseline-section/baseline-3.png",
     header: "Access your private concierge doctor.",
     description:
       "Text your health concierge at any time, from help with orders and scheduling to questions and coaching.",
     color: "#12495B",
   },
   {
-    previewSrc: "/baseline-section/baseline-4-preview.png",
-    expandedSrc: "/baseline-section/baseline-4.png",
+    mobileSrc: "/baseline-section/baseline-4-m.png",
+    desktopSrc: "/baseline-section/baseline-4.png",
     header: "Everything you need in one place.",
     description:
       "Save 1,000s of hours of research. Your membership comes with a marketplace of the world’s best health products, tests, and services at insider prices. New additions every week.",

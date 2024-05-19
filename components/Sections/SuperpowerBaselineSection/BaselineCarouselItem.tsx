@@ -56,7 +56,7 @@ const BaselineCarouselItem = ({ slide }: Props) => {
         <motion.div className="h-full w-full">
           <Image
             className="h-full w-full object-cover"
-            src={slide.previewSrc}
+            src={slide.mobileSrc}
             width={282}
             height={122}
             alt={""}
@@ -73,8 +73,8 @@ const BaselineCarouselItem = ({ slide }: Props) => {
           }}
         >
           <Image
-            className="h-full w-full object-cover"
-            src={slide.expandedSrc}
+            className="h-full w-full object-contain"
+            src={slide.mobileSrc}
             width={282}
             height={122}
             alt={""}
