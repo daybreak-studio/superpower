@@ -7,11 +7,7 @@ export const segments: TimlineSegment[] = [
       {
         age: "Born",
         action: "C-Section",
-        details: [
-          "Microbiome optimization",
-          "Genetic test",
-          "Diet personalized to genome",
-        ],
+        details: ["Microbiome optimization", "Genetic test"],
         direction: "right",
       },
     ],
@@ -22,11 +18,7 @@ export const segments: TimlineSegment[] = [
       {
         age: "Age 22",
         action: "Annual Superpower Baseline",
-        details: [
-          "60 biomarker blood test",
-          "DEXA scan",
-          "Performance program",
-        ],
+        details: ["60 biomarker blood test", "Microbiome test"],
         direction: "right",
       },
     ],
@@ -37,11 +29,7 @@ export const segments: TimlineSegment[] = [
       {
         age: "Age 26",
         action: "Gut health protocol",
-        details: [
-          "Microbiome test",
-          "Personalized probiotic",
-          "Gut lining peptide",
-        ],
+        details: ["Personalized probiotic", "Gut lining peptide"],
         direction: "left",
       },
     ],
@@ -74,11 +62,7 @@ export const segments: TimlineSegment[] = [
       {
         age: "Age 45",
         action: "Disease prevention program",
-        details: [
-          "Coronary calcium scan",
-          "Full body MRI",
-          "Grail cancer screening",
-        ],
+        details: ["Full body MRI", "Grail cancer screening"],
         direction: "right",
       },
     ],
@@ -91,7 +75,6 @@ export const segments: TimlineSegment[] = [
         action: "Longevity protocol",
         details: [
           "Prevent Alzheimer’s, heart disease, cancer",
-          "Reduce biological age",
           "Reduce skin age",
         ],
         direction: "right",
@@ -103,8 +86,8 @@ export const segments: TimlineSegment[] = [
     waypoints: [
       {
         age: "Age 120",
-        action: "Ageing goal",
-        details: [""],
+        action: "Aging goal",
+        details: [],
         direction: "left",
       },
     ],

@@ -38,6 +38,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="text/javascript"
+          src="https://app.viral-loops.com/widgetsV2/core/loader.js"
+          data-campaign-id="2X8NEjvQ9c5KJYR7178Sizt9pxM"
+          id="viral-loops-loader"
+        ></script>
+      </head>
       <body
         className={`
           ${nb_international_regular.className} 

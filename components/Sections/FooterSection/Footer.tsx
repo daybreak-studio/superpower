@@ -17,6 +17,8 @@ const Footer = () => {
           style={{
             transition: "0.3s ease-in-out",
           }}
+          target="_blank"
+          rel="noreferrer"
           href={href}
         >
           {children}{" "}
@@ -56,28 +58,31 @@ const Footer = () => {
               <FooterLink href="https://twitter.com/superpower">
                 Twitter
               </FooterLink>
-              <FooterLink href="https://instagram.com/superpower">
+              <FooterLink href="https://www.instagram.com/superpower.health">
                 Instagram
               </FooterLink>
-              <FooterLink href="https://tiktok.com/superpower">
-                Tiktok
+              <FooterLink href="https://www.linkedin.com/company/superpower-health">
+                LinkedIn
               </FooterLink>
             </motion.div>
 
             <motion.div className="flex gap-4 border-l-2 border-zinc-300 pl-2 sm:flex-col sm:gap-0 lg:pl-4">
-              <FooterLink href="https://superpower.com/careers">
+              <FooterLink href="https://superpowerhealth.notion.site/Build-Superpower-with-us-484d862f400a4bcd95c5e15c406e720f?pvs=4">
                 Careers
               </FooterLink>
-              <FooterLink href="https://superpower.com/contact">
-                Contact
+              <FooterLink href="https://superpower.com/manifesto">
+                Manifesto
               </FooterLink>
-              <FooterLink href="https://superpower.com/support">
-                Support
+              <FooterLink href="https://app.superpower.com/signin">
+                Log in
               </FooterLink>
             </motion.div>
             <motion.div className="flex gap-4 border-l-2 border-zinc-300 pl-2 sm:flex-col sm:gap-0 lg:pl-4">
+              <FooterLink href="https://www.superpower.com/medical-group-of-informed-consent">
+                Clinical Policy
+              </FooterLink>
               <FooterLink href="https://superpower.com/terms">
-                Terms of service
+                Terms of Service
               </FooterLink>
               <FooterLink href="https://superpower.com/privacy">
                 Privacy Policy

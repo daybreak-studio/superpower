@@ -12,17 +12,17 @@ const AdvisorsSection = (props: Props) => {
 
   return (
     <section
-      className="relative flex h-auto w-screen flex-col items-center bg-white px-4"
+      className="relative my-[20vw] flex h-auto w-screen flex-col items-center bg-white px-4"
       ref={gridRef}
     >
       <div className="flex max-w-[1132px] flex-col items-center gap-[72px]">
         <div className="flex w-full max-w-[585px] flex-col items-center gap-6 px-4">
           <div className="font-sans-2xl text-center text-black">
-            <h1>Who are we?</h1>
+            <h1>Backed by the best</h1>
           </div>
           <div className="w-full max-w-[533px]">
             <p className="font-sans-lg text-center text-black opacity-50">
-              Supported by the world’s top longevity doctors, scientists, and
+              Supported by the world's top longevity doctors, scientists, and
               technologists.
             </p>
           </div>

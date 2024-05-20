@@ -195,19 +195,23 @@ const CTAButtonOutline = ({ href, children, isVisible = true }: Props) => {
 };
 
 const CTAButtonGlow = ({ href, children, outline }: Props) => (
-  <a
-    href={href || DEFAULT_CTA_LINK}
-    target="blank"
-    className={`
+  // TODO
+  <div className="relative inline-block">
+    <a
+      href={href || DEFAULT_CTA_LINK}
+      target="blank"
+      className={`
       font-mono-sm 
-      relative inline-block 
-      bg-white px-8 py-4 
+      relative z-10 
+      inline-block bg-white px-8 
+      py-4
       text-zinc-900
     `}
-  >
-    {children}
-    <div className="absolute inset-0 bg-white blur-2xl"></div>
-  </a>
+    >
+      <span>{children}</span>
+    </a>
+    <div className="absolute inset-0 z-0 blur-2xl"></div>
+  </div>
 );
 
 export default CTAButton;

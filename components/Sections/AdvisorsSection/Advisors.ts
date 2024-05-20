@@ -6,7 +6,7 @@ export const Advisors = [
   },
   {
     name: "Shaan Puri",
-    title: "6x Founder, investor, famous podcaster",
+    title: "6x Founder, investor, co-host of My First Million podcast",
     image: "/advisors-section/shaan.png",
   },
   {
@@ -28,13 +28,12 @@ export const Advisors = [
   {
     name: "Dr. Robert Lufkin, MD",
     title:
-      "Physician & medical school professor at UCLA & USC, author, entrepreneu",
+      "Physician & medical school professor at UCLA & USC, author, entrepreneur",
     image: "/advisors-section/robert.png",
   },
   {
     name: "Dr. Leigh Erin Connealy, MD",
-    title:
-      "Physician & medical school professor at UCLA & USC, author, entrepreneur",
+    title: "Physician & founder of The Centre for New Medicine",
     image: "/advisors-section/leigh.png",
   },
   {

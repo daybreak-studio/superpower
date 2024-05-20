@@ -33,6 +33,13 @@ const config: Config = {
       },
       backgroundColor: {
         blur: `rgba(255,255,255,.05)`,
+        vermilion: {
+          900: "#FC5F2B",
+          700: "#F7861E",
+          500: "#FDBA74",
+          300: "#FED7AA",
+          100: "#FFEDD5",
+        },
       },
       fontFamily: {
         sans: ["var(--font-nb-international)", "ui-sans-serif", "system-ui"],

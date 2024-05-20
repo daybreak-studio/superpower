@@ -31,7 +31,6 @@ export default function Home() {
         <TransitionSectionUp />
         <TimelineSection />
         <TransitionSectionDown />
-        <EcosystemSection />
         <AdvisorsSection />
         <ScrollingTextLayout />
         <Footer />

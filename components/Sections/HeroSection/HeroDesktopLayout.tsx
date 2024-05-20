@@ -39,7 +39,7 @@ const HeroDesktopLayout = ({ shouldShowContent }: Props) => {
 
   return (
     <motion.div
-      className="fixed left-0 right-0 top-0 z-10 h-screen w-full p-10"
+      className="fixed left-0 right-0 top-0 z-10 h-screen w-full pl-60"
       style={{
         display: isSectionVisible ? "block" : "none",
       }}
@@ -60,52 +60,50 @@ const HeroDesktopLayout = ({ shouldShowContent }: Props) => {
         <SuperpowerLogo />
       </motion.div> */}
       <div className="mt-[30vh] flex w-full lg:flex-row">
-        <h1 className="font-sans-3xl max-w-[8ch]">
+        <h1 className="font-sans-2xl max-w-[12ch] space-y-10">
           <FadingText progress={fadingAnimProgress}>
             <span className="block">A New Era of Personal Health</span>
           </FadingText>
-        </h1>
-        <div className="ml-auto flex w-full max-w-[380px] flex-row">
-          <FadeVertical progress={fadingAnimDelayed}>
-            <LineElement
-              length={"auto"}
-              vertical
-              color={"rgba(255,255,255,.5)"}
-            />
-          </FadeVertical>
-          <div className="pointer-events-auto z-50 flex h-full max-w-[380px] flex-col px-4">
-            <FadingText progress={fadingAnimDelayed}>
-              <p className="font-sans-xl mb-3 leading-tight">
-                Superpower is the world&apos;s most advanced digital clinic
-                designed to help you prevent disease, look & feel better, and
-                live longer.
-              </p>
-              {/* <p className="font-sans-md mb-auto opacity-70">
+
+          <div className="flex w-full max-w-[500px] flex-row">
+            <div className="pointer-events-auto z-50 flex h-full max-w-[500px] flex-col">
+              <FadingText progress={fadingAnimDelayed}>
+                <p className="font-sans-xl mb-3 leading-tight">
+                  Superpower is the world&apos;s most advanced digital clinic
+                  designed to help you prevent disease, look & feel better, and
+                  live longer.
+                </p>
+                {/* <p className="font-sans-md mb-auto opacity-70">
                 Test your whole body right from home, get personalized products
                 and tailored protocols you need.
               </p> */}
-            </FadingText>
-            <motion.div
-              className="mt-12"
-              initial={{ opacity: 0 }}
-              animate={{
-                // x: isCTAVisible ? 0 : -10,
-                opacity: isCTAVisible ? 1 : 0,
-                transition: {
-                  duration: isCTAVisible
-                    ? AnimationConfig.VERY_SLOW
-                    : AnimationConfig.FAST,
-                  ease: "linear",
-                  delay: 0,
-                },
-              }}
-            >
-              <CTAButton href={"https://app.superpower.com/signin"}>
-                Join The Waitlist
-              </CTAButton>
-            </motion.div>
+              </FadingText>
+              <motion.div
+                className="mt-4"
+                initial={{ opacity: 0 }}
+                animate={{
+                  // x: isCTAVisible ? 0 : -10,
+                  opacity: isCTAVisible ? 1 : 0,
+                  transition: {
+                    duration: isCTAVisible
+                      ? AnimationConfig.VERY_SLOW
+                      : AnimationConfig.FAST,
+                    ease: "linear",
+                    delay: 0,
+                  },
+                }}
+              >
+                {/* <form-widget
+                  mode="popup"
+                  ucid="2X8NEjvQ9c5KJYR7178Sizt9pxM"
+                ></form-widget> */}
+                <CTAButton href={"https://app.superpower.com/signin"}>
+                  Join The Waitlist
+                </CTAButton>
+              </motion.div>
+            </div>
           </div>
-        </div>
+        </h1>
       </div>
     </motion.div>
   );

@@ -7,7 +7,13 @@ type Props = {
 
 const NavLink = ({ href, children }: Props) => {
   return (
-    <a href={href} className="" style={{ textDecoration: "none" }}>
+    <a
+      href={href}
+      className=""
+      style={{ textDecoration: "none" }}
+      target="_black"
+      rel="noreferrer"
+    >
       {children}
     </a>
   );

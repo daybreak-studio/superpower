@@ -66,11 +66,13 @@ export const ProtocolGridItem = ({
       }}
       ref={buttonRef}
       className={`relative flex h-full w-screen grow items-center justify-center overflow-hidden outline-none`}
-      onClick={() => onExpand()}
-      // onPointerLeave={() => onUnexpand()}
-      onFocus={() => onExpand()}
-      onBlur={() => onUnexpand()}
+      // onClick={() => onExpand()}
+      // // onPointerLeave={() => onUnexpand()}
+      // onFocus={() => onExpand()}
+      // onBlur={() => onUnexpand()}
       initial={{}}
+      onMouseEnter={() => onExpand()}
+      onMouseLeave={() => onUnexpand()}
       whileHover={{
         //@ts-ignore
         "--greyscale-progress": 0,

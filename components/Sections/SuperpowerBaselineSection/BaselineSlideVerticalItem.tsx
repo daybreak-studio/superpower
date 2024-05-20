@@ -32,18 +32,24 @@ const BaselineSlideVerticalItem = ({
     >
       {/* top text */}
       <motion.div
-        className="relative max-w-[270px] xl:max-w-[340px]"
+        className="relative"
         animate={{ height: isExpanded ? (index == "4" ? 112 : 92) : 40 }}
       >
         <div className="flex flex-col items-center gap-2 text-center">
-          <div
-            className="font-sans-md max-w-[230px]"
-            style={{ maxWidth: index == "4" ? 180 : 230 }}
-          >
-            {header}
-          </div>
           <motion.div
             className="font-sans-xs h-0 text-[#696969] xl:font-sans-sm xl:min-w-56"
+            animate={{
+              fontSize: isExpanded ? "32px" : "18px",
+              transition: {
+                ease: AnimationConfig.EASING,
+                duration: AnimationConfig.SLOW,
+              },
+            }}
+          >
+            {header}
+          </motion.div>
+          <motion.div
+            className="font-sans-xs mt-12 h-0 max-w-[700px] text-[#696969] xl:font-sans-sm xl:min-w-56"
             animate={{
               opacity: isExpanded ? 1 : 0,
               y: isExpanded ? 0 : -10,

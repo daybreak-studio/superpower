@@ -37,9 +37,6 @@ const ProtocolSection = (props: Props) => {
           <LineElement length={0} color={"#bbb"} vertical head={40} />
           <LineElement length={170} color={"#bbb"} vertical tail={600} />
         </div>
-        <div className="font-mono-sm mx-4 mb-4 text-center">
-          Unleashing the Superpower
-        </div>
         <h2 className="font-sans-2xl mx-4 mb-6 max-w-[16ch] text-center">
           Finally, healthcare that looks at the whole you
         </h2>
@@ -56,9 +53,10 @@ const ProtocolSection = (props: Props) => {
         <LineElement length={48} color={"#BBBBBB"} vertical />
         <div ref={buttonContainerRef}>
           <CTAButton outline isVisible={isButtonInView}>
-            Start Now
+            Join the waitlist
           </CTAButton>
         </div>
+        <LineElement length={48} color={"#BBBBBB"} vertical />
       </div>
 
       <div ref={biomarkerContainerRef} className="w-full overflow-x-hidden">
