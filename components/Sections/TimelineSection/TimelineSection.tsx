@@ -72,9 +72,9 @@ const TimelineSection = (props: Props) => {
         className="sticky top-0 z-20 h-fit w-full bg-[rgba(0,0,0,.8)] pt-12 text-center text-white"
       >
         <div className="flex flex-col items-center justify-center gap-2">
-          <h3 className="font-sans-2xl mx-auto mb-4 max-w-[18ch]">
+          <h3 className="font-sans-3xl mx-auto mb-4 max-w-[18ch] lg:font-sans-2xl">
             <FadingText progress={fadingTextProgress}>
-              <div className="h-fit py-1">
+              <div className="mt-20 h-fit">
                 Unlock all the potential your life holds
               </div>
             </FadingText>

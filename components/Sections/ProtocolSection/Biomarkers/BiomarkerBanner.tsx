@@ -19,7 +19,7 @@ type Props = {
   isVisible?: boolean;
 };
 
-const colors = ["#35BE95", "#F7791E", "#6268EB"];
+const colors = ["#F7791E", "#6268EB", "#35BE95", "#F71E1E"];
 
 const BiomarkerBanner = ({ isVisible = true }: Props) => {
   const random = useRandom([isVisible]);

@@ -132,7 +132,7 @@ const FloatingPageSelector = ({
         />
         <div className="relative flex">
           <motion.div
-            className="absolute inset-0  h-full backdrop-invert"
+            className="absolute inset-0 h-full backdrop-invert"
             animate={highlightAnim}
             style={{
               x: xOffsetRound,

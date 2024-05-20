@@ -107,7 +107,7 @@ const FeatureScrollVideo = ({
       }}
       ref={containerRef}
     >
-      <div className="sticky top-0 flex h-screen w-full flex-col items-center justify-center overflow-hidden">
+      <div className="sticky top-0 -mb-40 flex h-screen w-full flex-col items-center justify-center overflow-hidden lg:mb-0">
         <motion.h2
           initial={{ opacity: 0 }}
           animate={{
@@ -119,7 +119,7 @@ const FeatureScrollVideo = ({
               ease: "linear",
             },
           }}
-          className="font-sans-2xl absolute mx-4 my-12 max-w-[20ch] translate-y-[-35vw] text-center md:translate-y-[-40vh]"
+          className="font-sans-3xl absolute mx-4 my-12 max-w-[20ch] translate-y-[-35vw] text-center lg:font-sans-2xl md:translate-y-[-40vh] lg:text-[42px]"
         >
           {headline}
         </motion.h2>
@@ -184,7 +184,7 @@ const FeatureScrollVideo = ({
           </motion.div>
         </RotatingTablet>
         <motion.div
-          className="absolute bottom-[15%] z-[50] flex translate-y-[30vw] flex-col items-center gap-[3vh] lg:bottom-[3vh] lg:top-auto lg:translate-y-0"
+          className="absolute bottom-[25%] z-[50] flex translate-y-[30vw] flex-col items-center gap-[3vh] lg:bottom-[3vh] lg:top-auto lg:translate-y-0"
           initial={{ opacity: 0 }}
           animate={{
             opacity: canInteractWithTablet ? 1 : 0,
@@ -198,10 +198,12 @@ const FeatureScrollVideo = ({
             },
           }}
         >
-          <FeatureOverviewNav
-            currentPage={currentPage}
-            onChange={setCurrentPage}
-          />
+          <div className="hidden lg:block">
+            <FeatureOverviewNav
+              currentPage={currentPage}
+              onChange={setCurrentPage}
+            />
+          </div>
           <p className="font-sans-lg mx-4 max-w-[32ch] text-center opacity-50">
             Combining whole-body testing, leading doctors and personalized
             health programs.

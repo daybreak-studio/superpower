@@ -57,11 +57,16 @@ function SuperpowerBaselineSection({}: Props) {
 
   return (
     <section className="relative z-10 mt-4 flex flex-col items-center bg-white">
-      <LineElement length={288} color={"#bbb"} vertical tail={40} />
+      <LineElement
+        length={isDesktop ? 288 : 144}
+        color={"#bbb"}
+        vertical
+        tail={40}
+      />
       <div className="font-mono-sm mx-4 mb-4 mt-16 text-center">
         How it works
       </div>
-      <h2 className="font-sans-2xl mx-4 mb-6 max-w-[17ch] text-center">
+      <h2 className="font-sans-3xl mx-4 mb-6 max-w-[17ch] text-center lg:font-sans-2xl">
         An all-in-one health membership, for people who want more
       </h2>
       <LineElement length={40} color={"#bbb"} vertical tail={40} />

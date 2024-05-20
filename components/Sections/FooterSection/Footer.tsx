@@ -34,63 +34,97 @@ const Footer = () => {
         style={{ textRendering: "geometricPrecision" }}
       >
         <div className="relative">
-          <div className="relative flex w-full flex-col gap-6 self-center object-center">
-            {/* <SuperpowerLogo className="w-11/12 p-6" /> */}
+          <div className="flex flex-col-reverse lg:flex-col">
+            <div className="relative flex w-full flex-col gap-6 self-center object-center">
+              {/* <SuperpowerLogo className="w-11/12 p-6" /> */}
 
-            <video
-              src="footer-section/bg-vid.webm"
-              className="h-[16vw] w-full bg-cover object-cover lg:h-[14vw]"
-              style={{
-                maskRepeat: "no-repeat",
-                maskImage: "url(../footer-section/logo.svg)",
-                maskOrigin: "left",
-                maskSize: "100%",
-                maskPosition: "top left",
-              }}
-              autoPlay
-              muted
-              loop
-              playsInline
-            ></video>
+              <video
+                src="footer-section/bg-vid.webm"
+                className="h-[16vw] w-full bg-cover object-cover lg:h-[14vw]"
+                style={{
+                  maskRepeat: "no-repeat",
+                  maskImage: "url(../footer-section/logo.svg)",
+                  maskOrigin: "left",
+                  maskSize: "100%",
+                  maskPosition: "top left",
+                }}
+                autoPlay
+                muted
+                loop
+                playsInline
+              ></video>
+            </div>
+            <div className="flex-row-reverse items-end justify-between lg:flex">
+              <nav className="hidden grid-cols-2 gap-4 pb-10 sm:w-[500px] sm:grid-cols-3 lg:grid lg:pb-0">
+                <FooterLink href="https://twitter.com/superpower">
+                  Twitter
+                </FooterLink>
+                <FooterLink href="https://www.instagram.com/superpower.health">
+                  Instagram
+                </FooterLink>
+                <FooterLink href="https://www.linkedin.com/company/superpower-health">
+                  LinkedIn
+                </FooterLink>
+
+                <FooterLink href="https://superpowerhealth.notion.site/Build-Superpower-with-us-484d862f400a4bcd95c5e15c406e720f?pvs=4">
+                  Join the Team
+                </FooterLink>
+                <FooterLink href="https://superpower.com/manifesto">
+                  Manifesto
+                </FooterLink>
+                <FooterLink href="https://app.superpower.com/signin">
+                  Log in
+                </FooterLink>
+                <FooterLink href="https://www.superpower.com/medical-group-of-informed-consent">
+                  Clinical Policy
+                </FooterLink>
+                <FooterLink href="https://superpower.com/terms">
+                  Terms of Service
+                </FooterLink>
+                <FooterLink href="https://superpower.com/privacy">
+                  Privacy Policy
+                </FooterLink>
+              </nav>
+              <nav className="grid grid-cols-2 gap-4 pb-10 sm:w-[500px] sm:grid-cols-3 lg:hidden lg:pb-0">
+                <FooterLink href="https://twitter.com/superpower">
+                  Twitter
+                </FooterLink>
+                <FooterLink href="https://superpowerhealth.notion.site/Build-Superpower-with-us-484d862f400a4bcd95c5e15c406e720f?pvs=4">
+                  Join the Team
+                </FooterLink>
+                <FooterLink href="https://www.superpower.com/medical-group-of-informed-consent">
+                  Clinical Policy
+                </FooterLink>
+                <FooterLink href="https://www.instagram.com/superpower.health">
+                  Instagram
+                </FooterLink>
+                <FooterLink href="https://superpower.com/manifesto">
+                  Manifesto
+                </FooterLink>
+                <FooterLink href="https://superpower.com/terms">
+                  Terms of Service
+                </FooterLink>
+                <FooterLink href="https://www.linkedin.com/company/superpower-health">
+                  LinkedIn
+                </FooterLink>
+                <FooterLink href="https://app.superpower.com/signin">
+                  Log in
+                </FooterLink>
+                <FooterLink href="https://superpower.com/privacy">
+                  Privacy Policy
+                </FooterLink>
+              </nav>
+              <div className="hidden lg:block">
+                <small className="font-mono-xs leading-4">
+                  2024 Superpower Health, Inc.
+                  <br />
+                  All Rights Reserved
+                </small>
+              </div>
+            </div>
           </div>
-          <nav className="grid grid-cols-1 gap-4 sm:w-[500px] sm:grid-cols-3 sm:grid-rows-1">
-            <motion.div className="flex gap-4 border-l-2 border-zinc-300 pl-2 sm:flex-col sm:gap-0 lg:pl-4">
-              <FooterLink href="https://twitter.com/superpower">
-                Twitter
-              </FooterLink>
-              <FooterLink href="https://www.instagram.com/superpower.health">
-                Instagram
-              </FooterLink>
-              <FooterLink href="https://www.linkedin.com/company/superpower-health">
-                LinkedIn
-              </FooterLink>
-            </motion.div>
-
-            <motion.div className="flex gap-4 border-l-2 border-zinc-300 pl-2 sm:flex-col sm:gap-0 lg:pl-4">
-              <FooterLink href="https://superpowerhealth.notion.site/Build-Superpower-with-us-484d862f400a4bcd95c5e15c406e720f?pvs=4">
-                Careers
-              </FooterLink>
-              <FooterLink href="https://superpower.com/manifesto">
-                Manifesto
-              </FooterLink>
-              <FooterLink href="https://app.superpower.com/signin">
-                Log in
-              </FooterLink>
-            </motion.div>
-            <motion.div className="flex gap-4 border-l-2 border-zinc-300 pl-2 sm:flex-col sm:gap-0 lg:pl-4">
-              <FooterLink href="https://www.superpower.com/medical-group-of-informed-consent">
-                Clinical Policy
-              </FooterLink>
-              <FooterLink href="https://superpower.com/terms">
-                Terms of Service
-              </FooterLink>
-              <FooterLink href="https://superpower.com/privacy">
-                Privacy Policy
-              </FooterLink>
-            </motion.div>
-          </nav>
-          <div className="mt-8 lg:absolute lg:bottom-0 lg:right-0 lg:text-right">
-            <small className="font-mono-xs leading-4">
+          <div>
+            <small className="font-mono-xs block leading-4 lg:hidden">
               2024 Superpower Health, Inc.
               <br />
               All Rights Reserved

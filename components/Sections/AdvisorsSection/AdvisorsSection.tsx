@@ -17,7 +17,7 @@ const AdvisorsSection = (props: Props) => {
     >
       <div className="flex max-w-[1132px] flex-col items-center gap-[72px]">
         <div className="flex w-full max-w-[585px] flex-col items-center gap-6 px-4">
-          <div className="font-sans-2xl text-center text-black">
+          <div className="font-sans-3xl text-center text-black lg:font-sans-2xl">
             <h1>Backed by the best</h1>
           </div>
           <div className="w-full max-w-[533px]">

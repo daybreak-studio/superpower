@@ -37,7 +37,7 @@ const ProtocolSection = (props: Props) => {
           <LineElement length={0} color={"#bbb"} vertical head={40} />
           <LineElement length={170} color={"#bbb"} vertical tail={600} />
         </div>
-        <h2 className="font-sans-2xl mx-4 mb-6 max-w-[16ch] text-center">
+        <h2 className="font-sans-3xl mx-4 mb-6 max-w-[16ch] text-center lg:font-sans-2xl">
           Finally, healthcare that looks at the whole you
         </h2>
         <p className="font-sans-lg mx-4 mb-6 max-w-[24ch] text-center opacity-50">

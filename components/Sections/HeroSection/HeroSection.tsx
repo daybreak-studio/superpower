@@ -229,7 +229,7 @@ const HeroSection = (props: Props) => {
         </StickySlide>
       )}
       {!isDesktop && (
-        <HeroMobileLayout scrollTopOffset={introLastFrameScrollPos} />
+        <HeroMobileLayout scrollTopOffset={introLastFrameScrollPos - 140} />
       )}
     </section>
   );

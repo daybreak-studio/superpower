@@ -28,7 +28,7 @@ const BaselineSlideVerticalItem = ({
   return (
     <button
       onPointerEnter={() => onSelect()}
-      className="relative mt-2 flex flex-col items-center gap-6"
+      className="relative mt-2 flex max-w-[600px] flex-col items-center gap-6"
     >
       {/* top text */}
       <motion.div
@@ -37,7 +37,7 @@ const BaselineSlideVerticalItem = ({
       >
         <div className="flex flex-col items-center gap-2 text-center">
           <motion.div
-            className="font-sans-xs h-0 text-[#696969] xl:font-sans-sm xl:min-w-56"
+            className="font-sans-xs h-0 text-nowrap text-[#696969] xl:font-sans-sm xl:min-w-56"
             animate={{
               fontSize: isExpanded ? "32px" : "18px",
               transition: {
@@ -49,7 +49,7 @@ const BaselineSlideVerticalItem = ({
             {header}
           </motion.div>
           <motion.div
-            className="font-sans-xs mt-12 h-0 max-w-[700px] text-[#696969] xl:font-sans-sm xl:min-w-56"
+            className="font-sans-sm mt-12 h-0 max-w-[700px] text-[#696969] xl:font-sans-sm xl:min-w-56"
             animate={{
               opacity: isExpanded ? 1 : 0,
               y: isExpanded ? 0 : -10,
@@ -102,7 +102,7 @@ const BaselineSlideVerticalItem = ({
           </motion.div>
         </motion.div>
         {/* left decorative element */}
-        <div className="absolute -left-[84px] flex flex-row items-center gap-2 px-4">
+        <div className="absolute -left-[64px] flex flex-row items-center gap-2 px-4">
           <div
             className="font-mono-xs flex h-[26px] items-center justify-center rounded-lg border border-zinc-900 p-2"
             style={{
@@ -118,7 +118,7 @@ const BaselineSlideVerticalItem = ({
           />
         </div>
         {/* right decorative element */}
-        <div className="absolute -right-[84px] flex flex-row items-center gap-2 px-4">
+        <div className="absolute -right-[64px] flex flex-row items-center gap-2 px-4">
           <div
             className="w-6 border-t border-zinc-500"
             style={{ borderColor: isExpanded ? "#FC5F2B" : "#18181B" }}

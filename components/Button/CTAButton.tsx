@@ -79,8 +79,9 @@ const CTAButtonOutline = ({ href, children, isVisible = true }: Props) => {
       whileHover={{
         // opacity: [0, 1, 0, 1],
         scale: 1.05,
+        backgroundColor: "#FC5F2B",
         transition: {
-          duration: AnimationConfig.NORMAL,
+          duration: AnimationConfig.SLOW,
         },
       }}
       whileTap={{
@@ -140,7 +141,7 @@ const CTAButtonOutline = ({ href, children, isVisible = true }: Props) => {
       >
         <motion.div
           animate={{
-            color: isHovering ? "#F7791E" : "#18181b",
+            color: isHovering ? "white" : "#18181b",
             scale: isHovering ? 0.95 : 1,
             transition: {
               duration: AnimationConfig.NORMAL,

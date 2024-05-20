@@ -57,15 +57,10 @@ const HeroMobileLayout = ({ scrollTopOffset }: Props) => {
         className="absolute left-0 right-0 top-0 z-10 flex min-h-screen w-full flex-col items-center px-4"
       >
         <div className="mb-12 mt-[65vh] flex flex-col items-center text-center">
-          <h1 className="font-sans-3xl mb-6 max-w-[13ch]">
+          <h1 className="font-sans-3xl max-w-[13ch]">
             A new era of personal health
           </h1>
-          <CTAButton href={"https://www.google.com"}>Get started</CTAButton>
-        </div>
-        <div className="flex h-[100svh] flex-col items-center justify-stretch">
-          <LineElement length={200} color={"rgba(255,255,255,.5)"} vertical />
-
-          <div className="my-24 max-w-[28ch] text-center">
+          <div className="my-12 max-w-[28ch] text-center">
             <p className="font-sans-xl mb-3 leading-tight">
               Superpower is the world&apos;s most advanced digital clinic
               designed to help you prevent disease, look & feel better, and live
@@ -76,13 +71,7 @@ const HeroMobileLayout = ({ scrollTopOffset }: Props) => {
               like you&apos;ve never experienced before.
             </p> */}
           </div>
-
-          <LineElement
-            length={200}
-            color={"rgba(255,255,255,.5)"}
-            vertical
-            tail={32}
-          />
+          <CTAButton href={"https://www.google.com"}>Get started</CTAButton>
         </div>
       </motion.div>
       {/* <motion.div

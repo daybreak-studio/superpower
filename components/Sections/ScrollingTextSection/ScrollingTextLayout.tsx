@@ -37,7 +37,7 @@ const ScrollingTextLayout = (props: Props) => {
     <section className="relative">
       <div className="align-center flex justify-center px-6">
         <div className="flex w-full max-w-[600px] flex-col items-center justify-center gap-[30px] py-[200px] lg:max-w-[670px] lg:py-[300px] ">
-          <h2 className="font-sans-2xl mx-4 mb-6 max-w-[450px] text-center">
+          <h2 className="font-sans-3xl mx-4 mb-6 max-w-[450px] text-center lg:font-sans-2xl">
             For people who want more
           </h2>
           <h2
