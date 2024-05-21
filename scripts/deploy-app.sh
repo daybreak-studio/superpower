@@ -113,6 +113,14 @@ aws s3 cp dist/ "s3://${APP_BUCKET}/" \
 
 aws s3 cp dist/ "s3://${APP_BUCKET}/" \
   --recursive \
+  --content-type "text/html" \
+  --cache-control "no-cache" \
+  --exclude="*/" \
+  --exclude "*/.*" \
+  --exclude "*/*"
+
+aws s3 cp dist/ "s3://${APP_BUCKET}/" \
+  --recursive \
   --content-type "application/manifest+json" \
   --cache-control "no-cache" \
   --exclude "*" \

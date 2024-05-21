@@ -84,13 +84,13 @@ window.addEventListener('load', function() {
         </a>
       </div>
       <div class="footer-privacy">
-        <a href="terms2.html" class="link-privacy w-inline-block">
+        <a href="terms2" class="link-privacy w-inline-block">
           <div class="caption-var text-white">Terms </div>
         </a>
-        <a href="privacy2.html" class="link-privacy w-inline-block">
+        <a href="privacy2" class="link-privacy w-inline-block">
           <div class="caption-var text-white">Privacy</div>
         </a>
-        <a href="medical-group-of-informed-consent.html" class="link-privacy w-inline-block">
+        <a href="medical-group-of-informed-consent" class="link-privacy w-inline-block">
           <div class="caption-var text-white">Clinical policy</div>
         </a>
       </div>
