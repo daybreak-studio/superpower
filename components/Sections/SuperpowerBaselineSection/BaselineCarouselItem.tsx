@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { motion, useTransform } from "framer-motion";
 import { AnimationConfig } from "../../AnimationConfig";
 import { useCarouselItemContext } from "../../Carousel/Carousel";
@@ -54,7 +53,7 @@ const BaselineCarouselItem = ({ slide }: Props) => {
         }}
       >
         <motion.div className="h-full w-full">
-          <Image
+          <img
             className="h-full w-full object-cover"
             src={slide.mobileSrc}
             width={282}
@@ -72,7 +71,7 @@ const BaselineCarouselItem = ({ slide }: Props) => {
             },
           }}
         >
-          <Image
+          <img
             className="h-full w-full object-contain"
             src={slide.mobileSrc}
             width={282}

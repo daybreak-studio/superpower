@@ -111,11 +111,10 @@ const TestimonialsDesktop = ({
             </p>
             <div className="flex items-center justify-center gap-4">
               <div className="relative h-8 w-8 overflow-hidden rounded-full">
-                <Image
+                <img
                   src={quotesList[quoteIndex].photo}
                   alt={quotesList[quoteIndex].name}
-                  layout="fill"
-                  objectFit="cover"
+                  className="bg-cover"
                 />
               </div>
               <p className="font-mono-sm text-center">

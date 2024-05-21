@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { AnimationConfig } from "../../AnimationConfig";
 import LineElement from "@/components/LineElement/LineElement";
@@ -84,7 +83,7 @@ const BaselineSlideVerticalItem = ({
           }}
         >
           <motion.div className="h-full w-full">
-            <Image
+            <img
               className="absolute left-0 top-0 -z-10 h-full w-full object-cover"
               src={desktopSrc}
               width={340}
@@ -98,7 +97,7 @@ const BaselineSlideVerticalItem = ({
               opacity: isExpanded ? 1 : 0,
             }}
           >
-            <Image src={desktopSrc} width={830} height={362} alt={""} />
+            <img src={desktopSrc} width={830} height={362} alt={""} />
           </motion.div>
         </motion.div>
         {/* left decorative element */}

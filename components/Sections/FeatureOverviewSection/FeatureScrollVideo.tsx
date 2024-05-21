@@ -142,7 +142,7 @@ const FeatureScrollVideo = ({
                         opacity: currentPage === index ? 1 : 0,
                       }}
                     >
-                      <Image
+                      <img
                         className=""
                         src={src} //change for each screen selection
                         alt={""}

@@ -1,6 +1,5 @@
 import React from "react";
 import { Protocol } from "../Protocols";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import LineElement from "@/components/LineElement/LineElement";
 import { AnimationConfig } from "@/components/AnimationConfig";
@@ -55,7 +54,7 @@ const ProtocolListItem = ({ protocol, isCurrent }: Props) => {
           },
         }}
       >
-        <Image
+        <img
           style={{
             filter: "grayscale(var(--greyscale-progress))",
           }}

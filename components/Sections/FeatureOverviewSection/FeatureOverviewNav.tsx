@@ -37,14 +37,14 @@ const FeatureOverviewNav = ({ onChange, currentPage }: Props) => {
           className="flex flex-row"
           animate={{ filter: "invert(var(--invert-color))" }}
         >
-          <Image
+          <img
             className="-mr-2 rounded-full border border-[#F0EAE6]"
             src="/doctor-icon-1.png"
             alt=""
             width={13}
             height={13}
           />
-          <Image
+          <img
             className="rounded-full border border-[#F0EAE6]"
             src="/doctor-icon-2.png"
             alt=""

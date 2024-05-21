@@ -1,5 +1,4 @@
 import React, { MutableRefObject, useRef } from "react";
-import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { Advisors } from "./Advisors";
 import LineElement from "@/components/LineElement/LineElement";
@@ -40,7 +39,7 @@ const AdvisorsSection = (props: Props) => {
                   animate={{ opacity: isInView ? 1 : 0 }}
                   transition={{ duration: 1, delay: index * 0.1 }}
                 >
-                  <Image
+                  <img
                     className="width-[72px] height-[72px]"
                     src={item.image}
                     alt=""

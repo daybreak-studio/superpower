@@ -8,7 +8,6 @@ import {
   StickySlideItem,
 } from "@/components/StickySlide/StickySlide";
 import { useWindowDimension } from "@/hooks/useWindowDimension";
-import Image from "next/image";
 import FadingText from "@/components/FadingText/FadingText";
 import ScrollVideoAnnotation from "@/components/ScrollVideo/ScrollVideoAnnotation";
 import { useProgress } from "@/components/ProgressProvider/ProgressProvider";
@@ -198,7 +197,7 @@ const HeroSection = (props: Props) => {
               remember to style it with fixed positioning if you want
               it to remain fixed at the viewport all the time.
             */}
-            <Image
+            <img
               src={"/hero-section/hero-mobile-slide-1.jpg"}
               width={393}
               height={852}
@@ -207,7 +206,7 @@ const HeroSection = (props: Props) => {
             />
           </StickySlideItem>
           <StickySlideItem scrollHeight={windowDim.height * 1}>
-            <Image
+            <img
               src={"/hero-section/hero-mobile-slide-2.jpg"}
               width={393}
               height={852}
@@ -216,7 +215,7 @@ const HeroSection = (props: Props) => {
             />
           </StickySlideItem>
           <StickySlideItem scrollHeight={windowDim.height * 2}>
-            <Image
+            <img
               src={"/hero-section/hero-mobile-slide-3.jpg"}
               width={393}
               height={852}

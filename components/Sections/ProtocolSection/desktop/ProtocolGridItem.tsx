@@ -107,7 +107,7 @@ export const ProtocolGridItem = ({
             opacity: "0.5",
           }}
         />
-        <Image
+        <img
           className="h-full w-full object-cover"
           src={image}
           alt={""}
@@ -135,7 +135,7 @@ export const ProtocolGridItem = ({
           }}
         >
           {/* the icon of the item */}
-          <Image src={icon} width={20} height={20} alt={""} />
+          <img src={icon} width={20} height={20} alt={""} />
         </motion.div>
         <motion.div
           className="flex flex-col leading-tight"

@@ -97,7 +97,7 @@ const EcosystemPanels = ({
           }}
         >
           <div className="absolute flex translate-x-[-50%] translate-y-[-50%] flex-col items-center gap-4 duration-300 hover:opacity-80">
-            <Image
+            <img
               src={item.image}
               alt={item.name}
               style={{
@@ -109,7 +109,6 @@ const EcosystemPanels = ({
               className="rounded-3xl"
               width={500}
               height={500}
-              priority
             />
             <div className="font-sans-lg text-center text-black 2xl:text-[2vw]">
               {item.name}

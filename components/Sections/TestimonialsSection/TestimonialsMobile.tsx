@@ -12,7 +12,6 @@ import {
 import TestimonialsSelector from "./TestimonialsSelector";
 import CornerBox from "@/components/Button/CornerBox";
 import { AnimationConfig } from "@/components/AnimationConfig";
-import Image from "next/image";
 
 type Props = {
   clapTime: number;
@@ -107,7 +106,7 @@ const TestimonialsMobile = ({
               </p>
               <div className="flex flex-col items-center justify-center gap-4">
                 <div className="relative h-8 w-8 overflow-hidden rounded-full">
-                  <Image
+                  <img
                     src={quotesList[quoteIndex].photo}
                     alt={quotesList[quoteIndex].name}
                     layout="fill"

@@ -63,7 +63,7 @@ const Navigation = (props: Props) => {
       >
         <div className="relative flex h-14 w-full items-center justify-center p-2 pl-3 sm:h-[68px] sm:p-3 sm:pl-5">
           <a href="/" className="w-[140px] sm:w-[200px]">
-            <Image
+            <img
               className="w-full"
               src="/logo.svg"
               alt="logo"

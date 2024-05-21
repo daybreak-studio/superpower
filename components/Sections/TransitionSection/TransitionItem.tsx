@@ -108,7 +108,7 @@ const TransitionItem = ({ direction }: Props) => {
                 y: direction == "up" ? "0" : "-32vw",
               }}
             >
-              <Image
+              <img
                 src="/transition-section/transition.png"
                 width="0"
                 height="0"
