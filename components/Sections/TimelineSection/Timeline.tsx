@@ -65,9 +65,9 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
   }, [allWaypointPositions, windowDim.width, isDesktop]);
   const movementYPoints = useMemo(() => {
     const offsetFactor = isDesktop ? 0 : 0;
-    const speed = isDesktop ? 0.35 : 0.7;
+    const speed = isDesktop ? 0.35 : 0.8;
 
-    return movementZPoints.map((z) => z * speed + 800 - offsetFactor);
+    return movementZPoints.map((z) => z * speed + 720 - offsetFactor);
   }, [movementZPoints, isDesktop]);
 
   const [currentWaypoint, setCurrentWaypoint] = useState(0);

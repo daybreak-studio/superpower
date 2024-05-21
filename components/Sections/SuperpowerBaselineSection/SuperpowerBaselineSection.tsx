@@ -72,6 +72,12 @@ function SuperpowerBaselineSection({}: Props) {
       <LineElement length={40} color={"#bbb"} vertical tail={40} />
       {isDesktop && <BaselineSlideVertical slides={SLIDES} />}
       {!isDesktop && <BaselineCarousel slides={SLIDES} />}
+      <LineElement
+        length={isDesktop ? 200 : 100}
+        color={"#bbb"}
+        vertical
+        tail={40}
+      />
     </section>
   );
 }

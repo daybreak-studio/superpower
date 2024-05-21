@@ -22,6 +22,7 @@ import { EcosystemItems } from "./EcosystemItems";
 import { AnimationConfig } from "@/components/AnimationConfig";
 import { easing } from "@/components/AnimationConfig";
 import EcosystemPanels from "./EcosystemPanels";
+import LineElement from "@/components/LineElement/LineElement";
 
 type Props = {};
 

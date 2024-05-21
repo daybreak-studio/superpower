@@ -57,8 +57,8 @@ export const EcosystemItems = [
     mobileWidth: 400,
   },
   {
-    name: "Toxin test kit",
-    image: "/ecosystem-section/toxin-test-kit.png",
+    name: "Prescriptions",
+    image: "/ecosystem-section/prescriptions.png",
     desktopAngle: { y: 0, x: 45 },
     mobileAngle: { y: 35, x: 35 },
     desktopWidth: 253,

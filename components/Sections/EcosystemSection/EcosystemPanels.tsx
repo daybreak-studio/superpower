@@ -106,6 +106,7 @@ const EcosystemPanels = ({
                   : `${item.mobileWidth / 10}vw`,
                 // opacity: opacity,
               }}
+              className="rounded-3xl"
               width={500}
               height={500}
               priority

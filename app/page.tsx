@@ -26,6 +26,7 @@ export default function Home() {
         <HeroSection />
         <FeatureOverviewSection />
         <SuperpowerBaselineSection />
+        <EcosystemSection />
         <ProtocolSection />
         <AdvisorsSection />
         <TestimonialsSection />
