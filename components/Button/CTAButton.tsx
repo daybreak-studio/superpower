@@ -19,6 +19,7 @@ type Props = {
   children: string;
   outline?: boolean;
   isVisible?: boolean;
+  hover?: boolean;
 };
 
 const DEFAULT_CTA_LINK = "#";
@@ -32,11 +33,16 @@ const CTAButton = ({ outline, ...props }: Props) => {
   );
 };
 
-const CTAButtonOutline = ({ href, children, isVisible = true }: Props) => {
+const CTAButtonOutline = ({
+  href,
+  children,
+  hover,
+  isVisible = true,
+}: Props) => {
   const containerRef = useRef() as MutableRefObject<HTMLDivElement>;
 
   const inViewDelay = 0.3;
-  const [isHovering, setIsHovering] = useState(false);
+  const [isHovering, setIsHovering] = useState(hover || false);
 
   const bounds = useViewportBounds(containerRef);
   const pointerOffset = usePointerOffset(isHovering, containerRef, "center");
@@ -70,11 +76,12 @@ const CTAButtonOutline = ({ href, children, isVisible = true }: Props) => {
 
   const el = (
     <motion.div
-      onPointerEnter={() => setIsHovering(true)}
-      onPointerLeave={() => setIsHovering(false)}
+      onPointerEnter={() => setIsHovering(true || hover)}
+      onPointerLeave={() => setIsHovering(false || hover || false)}
       initial={{
         opacity: 1,
         scale: 1,
+        backgroundColor: hover ? "#FC5F2B" : undefined,
       }}
       whileHover={{
         // opacity: [0, 1, 0, 1],

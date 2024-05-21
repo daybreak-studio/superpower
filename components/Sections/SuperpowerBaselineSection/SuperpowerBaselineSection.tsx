@@ -47,7 +47,7 @@ const SLIDES = [
     desktopSrc: "/baseline-section/baseline-4.png",
     header: "Everything you need in one place.",
     description:
-      "Save 1,000s of hours of research. Your membership comes with a marketplace of the world’s best health products, tests, and services at insider prices. New additions every week.",
+      "Save 1,000s of hours on research. Get the best health products, tests, & services at insider prices. New additions every week",
     color: "#4E1308",
   },
 ];

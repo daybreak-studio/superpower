@@ -22,18 +22,19 @@ export default function Home() {
       <main className="bg-white">
         <Navigation />
         <FadeIn />
-        <HeroSection />
-        <FeatureOverviewSection />
-        <SuperpowerBaselineSection />
-        <EcosystemSection />
-        <ProtocolSection />
-        <AdvisorsSection />
-        <TestimonialsSection />
-        <TransitionSectionUp />
-        <TimelineSection />
-        <TransitionSectionDown />
-        <ScrollingTextLayout />
-        <Footer />
+        <HeroSection>
+          <FeatureOverviewSection />
+          <SuperpowerBaselineSection />
+          <EcosystemSection />
+          <ProtocolSection />
+          <AdvisorsSection />
+          <TestimonialsSection />
+          <TransitionSectionUp />
+          <TimelineSection />
+          <TransitionSectionDown />
+          <ScrollingTextLayout />
+          <Footer />
+        </HeroSection>
       </main>
     </ReactLenis>
   );

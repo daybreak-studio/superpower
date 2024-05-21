@@ -76,7 +76,7 @@ const EcosystemSection = (props: Props) => {
       <div className="z-1 pointer-events-none absolute flex h-full w-full flex-col items-center justify-center">
         <div className="flex w-full max-w-[585px] flex-col items-center gap-6 px-4">
           <div className="font-sans-2xl text-center text-black">
-            <h1>Get Exclusive Access to Our Ecosystem</h1>
+            <h1>Get exclusive access to our marketplace</h1>
           </div>
           <div className="w-full max-w-[533px]">
             <p className="font-sans-lg text-center text-black opacity-50">
