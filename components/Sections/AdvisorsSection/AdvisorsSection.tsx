@@ -22,8 +22,9 @@ const AdvisorsSection = (props: Props) => {
           </div>
           <div className="w-full max-w-[533px]">
             <p className="font-sans-lg text-center text-black opacity-50">
-              Supported by the world's top longevity doctors, scientists, and
-              technologists.
+              {
+                "Supported by the world's top longevity doctors, scientists, and technologists."
+              }
             </p>
           </div>
         </div>
