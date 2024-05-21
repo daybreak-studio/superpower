@@ -45,6 +45,31 @@ export default function RootLayout({
           data-campaign-id="2X8NEjvQ9c5KJYR7178Sizt9pxM"
           id="viral-loops-loader"
         ></script>
+        <title>Superpower</title>
+        <meta
+          content="Become the best version&nbsp;of&nbsp;yourself with the world's most advanced health platform."
+          name="description"
+        />
+        <meta content="Superpower" property="og:title" />
+        <meta
+          content="Become the best version&nbsp;of&nbsp;yourself with the world's most advanced health platform."
+          property="og:description"
+        />
+        <meta
+          content="https://daybreak-superpower.netlify.app/og.png"
+          property="og:image"
+        />
+        <meta content="Superpower" property="twitter:title" />
+        <meta
+          content="Become the best version&nbsp;of&nbsp;yourself with the world's most advanced health platform."
+          property="twitter:description"
+        />
+        <meta
+          content="https://daybreak-superpower.netlify.app/og.png"
+          property="twitter:image"
+        />
+        <meta property="og:type" content="website" />
+        <meta content="summary_large_image" name="twitter:card" />
       </head>
       <body
         className={`

@@ -47,10 +47,6 @@ export function ViralLoopsDialog({
                 }
               </p>
             </div>
-            <p className="text-xl">
-              Share your personal link to move up the waitlist when your friends
-              sign up.
-            </p>
           </div>
           <div className="-ml-[15px] -mr-[15px]">
             <form-widget ucid="2X8NEjvQ9c5KJYR7178Sizt9pxM"></form-widget>
