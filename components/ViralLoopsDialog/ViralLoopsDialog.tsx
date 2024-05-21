@@ -2,6 +2,7 @@ import { DialogClose } from "@radix-ui/react-dialog";
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 import React from "react";
 import { X } from "lucide-react";
+import { useLenis } from "@studio-freight/react-lenis";
 
 declare global {
   namespace JSX {
@@ -16,20 +17,24 @@ export function ViralLoopsDialog({
 }: {
   children: JSX.Element;
 }): JSX.Element {
+  const lenis = useLenis();
+
   return (
-    <Dialog>
+    <Dialog
+      onOpenChange={(isOpen: boolean) => {
+        if (isOpen) {
+          lenis?.stop();
+        } else {
+          lenis?.start();
+        }
+      }}
+    >
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent
-        className="overflow-y-scoll z-[200] ml-[10%] max-h-[90vh] w-[85%] md:max-w-xl"
+        className="z-[200] ml-[10%] max-h-[90vh] w-[85%] overflow-x-visible md:max-w-xl"
         style={{ borderRadius: 32 }}
+        data-lenis-prevent="true"
       >
-        <DialogClose
-          className="absolute left-0 z-[200] rounded-full rounded-sm p-4 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none data-[state=open]:text-slate-500 md:-left-20"
-          style={{ backgroundColor: "white", borderRadius: "100%" }}
-        >
-          <X className="h-6 w-6" />
-          <span className="sr-only">Close</span>
-        </DialogClose>
         <div className="px-8 lg:px-12">
           <div className="-mt-6 overflow-hidden">
             <img

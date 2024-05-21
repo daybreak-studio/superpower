@@ -14,7 +14,6 @@ import AdvisorsSection from "@/components/Sections/AdvisorsSection/AdvisorsSecti
 import ScrollingTextLayout from "@/components/Sections/ScrollingTextSection/ScrollingTextLayout";
 import Navigation from "@/components/Navigation/Navigation";
 import FadeIn from "@/components/FadeIn/FadeIn";
-import { Lenis } from "@studio-freight/react-lenis";
 import { ReactLenis } from "@studio-freight/react-lenis";
 
 export default function Home() {
