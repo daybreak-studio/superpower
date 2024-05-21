@@ -69,21 +69,15 @@ const Footer = () => {
                 <FooterLink href="https://superpowerhealth.notion.site/Build-Superpower-with-us-484d862f400a4bcd95c5e15c406e720f?pvs=4">
                   Join the Team
                 </FooterLink>
-                <FooterLink href="https://superpower.com/manifesto">
-                  Manifesto
-                </FooterLink>
+                <FooterLink href="/manifesto">Manifesto</FooterLink>
                 <FooterLink href="https://app.superpower.com/signin">
                   Log in
                 </FooterLink>
-                <FooterLink href="https://www.superpower.com/medical-group-of-informed-consent">
+                <FooterLink href="/medical-group-of-informed-consent">
                   Clinical Policy
                 </FooterLink>
-                <FooterLink href="https://superpower.com/terms">
-                  Terms of Service
-                </FooterLink>
-                <FooterLink href="https://superpower.com/privacy">
-                  Privacy Policy
-                </FooterLink>
+                <FooterLink href="/terms">Terms of Service</FooterLink>
+                <FooterLink href="/privacy">Privacy Policy</FooterLink>
               </nav>
               <nav className="grid grid-cols-2 gap-4 pb-10 sm:w-[500px] sm:grid-cols-3 lg:hidden lg:pb-0">
                 <FooterLink href="https://twitter.com/superpower">
@@ -92,27 +86,19 @@ const Footer = () => {
                 <FooterLink href="https://superpowerhealth.notion.site/Build-Superpower-with-us-484d862f400a4bcd95c5e15c406e720f?pvs=4">
                   Join the Team
                 </FooterLink>
-                <FooterLink href="https://www.superpower.com/medical-group-of-informed-consent">
+                <FooterLink href="/medical-group-of-informed-consent">
                   Clinical Policy
                 </FooterLink>
-                <FooterLink href="https://www.instagram.com/superpower.health">
-                  Instagram
-                </FooterLink>
-                <FooterLink href="https://superpower.com/manifesto">
-                  Manifesto
-                </FooterLink>
-                <FooterLink href="https://superpower.com/terms">
-                  Terms of Service
-                </FooterLink>
+                <FooterLink href="/superpower.health">Instagram</FooterLink>
+                <FooterLink href="/manifesto">Manifesto</FooterLink>
+                <FooterLink href="/terms">Terms of Service</FooterLink>
                 <FooterLink href="https://www.linkedin.com/company/superpower-health">
                   LinkedIn
                 </FooterLink>
                 <FooterLink href="https://app.superpower.com/signin">
                   Log in
                 </FooterLink>
-                <FooterLink href="https://superpower.com/privacy">
-                  Privacy Policy
-                </FooterLink>
+                <FooterLink href="/privacy">Privacy Policy</FooterLink>
               </nav>
               <div className="hidden lg:block">
                 <small className="font-mono-xs leading-4">
