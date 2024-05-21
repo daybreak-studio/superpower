@@ -109,8 +109,7 @@ const TestimonialsMobile = ({
                   <img
                     src={quotesList[quoteIndex].photo}
                     alt={quotesList[quoteIndex].name}
-                    layout="fill"
-                    objectFit="cover"
+                    className="bg-cover"
                   />
                 </div>
                 <p className="font-mono-sm text-center">
