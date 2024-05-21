@@ -21,7 +21,7 @@ type Props = {
   isVisible?: boolean;
 };
 
-const DEFAULT_CTA_LINK = "https://www.google.com";
+const DEFAULT_CTA_LINK = "#";
 
 const CTAButton = ({ outline, ...props }: Props) => {
   return (
@@ -33,7 +33,7 @@ const CTAButton = ({ outline, ...props }: Props) => {
 };
 
 const CTAButtonOutline = ({ href, children, isVisible = true }: Props) => {
-  const containerRef = useRef() as MutableRefObject<HTMLAnchorElement>;
+  const containerRef = useRef() as MutableRefObject<HTMLDivElement>;
 
   const inViewDelay = 0.3;
   const [isHovering, setIsHovering] = useState(false);
@@ -68,8 +68,8 @@ const CTAButtonOutline = ({ href, children, isVisible = true }: Props) => {
 
   // useMotionValueEvent(glowX, "change", (latest) => console.log(latest));
 
-  return (
-    <motion.a
+  const el = (
+    <motion.div
       onPointerEnter={() => setIsHovering(true)}
       onPointerLeave={() => setIsHovering(false)}
       initial={{
@@ -88,8 +88,6 @@ const CTAButtonOutline = ({ href, children, isVisible = true }: Props) => {
         scale: 0.98,
       }}
       ref={containerRef}
-      href={href || DEFAULT_CTA_LINK}
-      target="blank"
       className={`
     font-mono-sm
       relative inline-flex
@@ -191,16 +189,24 @@ const CTAButtonOutline = ({ href, children, isVisible = true }: Props) => {
         }}
         className="pointer-events-none absolute inset-0 z-0 bg-[#F7791E] blur-2xl"
       ></motion.div>
-    </motion.a>
+    </motion.div>
   );
+
+  if (href) {
+    return (
+      <a href={href || DEFAULT_CTA_LINK} target="blank">
+        {el}
+      </a>
+    );
+  }
+
+  return el;
 };
 
 const CTAButtonGlow = ({ href, children, outline }: Props) => (
   // TODO
   <div className="relative inline-block">
-    <a
-      href={href || DEFAULT_CTA_LINK}
-      target="blank"
+    <div
       className={`
       font-mono-sm 
       relative z-10 
@@ -210,7 +216,7 @@ const CTAButtonGlow = ({ href, children, outline }: Props) => (
     `}
     >
       <span>{children}</span>
-    </a>
+    </div>
     <div className="absolute inset-0 z-0 blur-2xl"></div>
   </div>
 );
