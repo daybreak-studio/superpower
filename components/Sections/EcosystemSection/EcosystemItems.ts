@@ -9,7 +9,7 @@ export interface Protocol {
 
 export const EcosystemItems = [
   {
-    name: "Vo2 max",
+    name: "VO2 Max",
     image: "/ecosystem-section/vo2-max.png",
     desktopAngle: { y: 60, x: -35 },
     mobileAngle: { y: 35, x: -35 },
@@ -17,7 +17,7 @@ export const EcosystemItems = [
     mobileWidth: 450,
   },
   {
-    name: "Genomic test kit",
+    name: "Full Genome Sequencing",
     image: "/ecosystem-section/genomic-test-kit.png",
     desktopAngle: { y: 0, x: -45 },
     mobileAngle: { y: 0, x: -45 },
@@ -25,7 +25,7 @@ export const EcosystemItems = [
     mobileWidth: 250,
   },
   {
-    name: "CGM charts",
+    name: "Continuous Glucose Monitoring",
     image: "/ecosystem-section/cgm-charts.png",
     desktopAngle: { y: -60, x: -35 },
     mobileAngle: { y: -35, x: -35 },
@@ -33,7 +33,7 @@ export const EcosystemItems = [
     mobileWidth: 400,
   },
   {
-    name: "Blood biomarker chart",
+    name: "Biomarker Tracking",
     image: "/ecosystem-section/blood-biomarker-chart.png",
     desktopAngle: { y: 70, x: 0 },
     mobileAngle: { y: 35, x: -60 },
@@ -41,7 +41,7 @@ export const EcosystemItems = [
     mobileWidth: 300,
   },
   {
-    name: "Grail cancer test",
+    name: "Grail Cancer Test",
     image: "/ecosystem-section/grail-cancer-test.png",
     desktopAngle: { y: -70, x: 0 },
     mobileAngle: { y: -35, x: 35 },
@@ -49,7 +49,7 @@ export const EcosystemItems = [
     mobileWidth: 350,
   },
   {
-    name: "Intestinal permeability panel",
+    name: "Intestinal Permeability Panel",
     image: "/ecosystem-section/intestinal-permeability-panel.png",
     desktopAngle: { y: 60, x: 35 },
     mobileAngle: { y: 0, x: 35 },
@@ -65,7 +65,7 @@ export const EcosystemItems = [
     mobileWidth: 300,
   },
   {
-    name: "DEXA scan",
+    name: "DEXA Scan",
     image: "/ecosystem-section/dexa-scan.png",
     desktopAngle: { y: -60, x: 35 },
     mobileAngle: { y: -35, x: 60 },
@@ -73,7 +73,7 @@ export const EcosystemItems = [
     mobileWidth: 320,
   },
   {
-    name: "Microbiome test kit",
+    name: "Microbiome Test Kit",
     image: "/ecosystem-section/microbiome-test-kit.png",
     desktopAngle: { y: 25, x: -30 },
     mobileAngle: { y: -35, x: -60 },

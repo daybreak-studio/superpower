@@ -80,9 +80,7 @@ const EcosystemSection = (props: Props) => {
           </div>
           <div className="w-full max-w-[533px]">
             <p className="font-sans-lg text-center text-black opacity-50">
-              Your superpower membership comes with an ecosystem to access
-              anytime. Unlimited tools to change the way you engage w/ your
-              health, for life.
+              Unlimited tools to transform your health and change your life.
             </p>
           </div>
         </div>
