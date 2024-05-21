@@ -38,9 +38,7 @@ const TestimonialsWrapper = (props: Props) => {
   return (
     <section className="relative z-10 h-svh overflow-hidden bg-white">
       <div className="absolute flex h-full w-full flex-col items-center justify-center gap-6">
-        <div className="flex h-full">
-          <LineElement length={"auto"} color={"#bbb"} vertical tail={16} />
-        </div>
+        <div className="flex h-full"></div>
 
         <div className="flex w-full flex-row items-center justify-center gap-12">
           <div className="flex w-full flex-row">

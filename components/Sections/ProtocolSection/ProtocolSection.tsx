@@ -59,11 +59,15 @@ const ProtocolSection = (props: Props) => {
         <LineElement length={48} color={"#BBBBBB"} vertical />
       </div>
 
+      <div className="mx-auto w-[80%]">
+        <LineElement length={"auto"} color={"#BBBBBB"} horizontal />
+      </div>
       <div ref={biomarkerContainerRef} className="w-full overflow-x-hidden">
         <BiomarkerBanner isVisible={isBiomarkerInView} />
       </div>
       <div className="mx-auto w-[80%]">
         <LineElement length={"auto"} color={"#BBBBBB"} horizontal />
+        <LineElement length={200} color={"#BBBBBB"} vertical />
       </div>
     </section>
   );

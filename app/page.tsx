@@ -27,11 +27,11 @@ export default function Home() {
         <FeatureOverviewSection />
         <SuperpowerBaselineSection />
         <ProtocolSection />
+        <AdvisorsSection />
         <TestimonialsSection />
         <TransitionSectionUp />
         <TimelineSection />
         <TransitionSectionDown />
-        <AdvisorsSection />
         <ScrollingTextLayout />
         <Footer />
       </main>

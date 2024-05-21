@@ -86,7 +86,7 @@ const Timeline = ({ timelineProgress, transitionProgress }: Props) => {
   const cameraRotation = isDesktop ? 70 : 60;
 
   const SVGWidth = 1406;
-  const minSVGWidth = 800;
+  const minSVGWidth = 720;
 
   // scale factor x would be 1 when browser width = svg width
   const timelineScaleFactor =

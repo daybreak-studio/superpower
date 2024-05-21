@@ -12,7 +12,7 @@ const AdvisorsSection = (props: Props) => {
 
   return (
     <section
-      className="relative my-[20vw] flex h-auto w-screen flex-col items-center bg-white px-4"
+      className="relative mb-[5vw] mt-[10vw] flex h-auto w-screen flex-col items-center bg-white px-4"
       ref={gridRef}
     >
       <div className="flex max-w-[1132px] flex-col items-center gap-[72px]">

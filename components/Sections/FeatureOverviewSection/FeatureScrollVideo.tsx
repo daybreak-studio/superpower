@@ -119,7 +119,7 @@ const FeatureScrollVideo = ({
               ease: "linear",
             },
           }}
-          className="font-sans-3xl absolute mx-4 my-12 max-w-[20ch] translate-y-[-35vw] text-center lg:font-sans-2xl md:translate-y-[-40vh] lg:text-[42px]"
+          className="font-sans-3xl absolute mx-4 my-12 mb-32 max-w-[20ch] translate-y-[-35vw] text-center lg:font-sans-2xl md:translate-y-[-40vh] lg:mb-0 lg:text-[42px]"
         >
           {headline}
         </motion.h2>
