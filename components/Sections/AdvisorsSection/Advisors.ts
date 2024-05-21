@@ -5,15 +5,15 @@ export const Advisors = [
     image: "/advisors-section/arielle.png",
   },
   {
-    name: "Shaan Puri",
-    title: "6x Founder, investor, co-host of My First Million podcast",
-    image: "/advisors-section/shaan.png",
-  },
-  {
     name: "Dr. Jordan Shlain, MD",
     title:
       "Founder of Private Medical, America's top concierge medicine service",
     image: "/advisors-section/jordan.png",
+  },
+  {
+    name: "Shaan Puri",
+    title: "6x Founder, investor, co-host of My First Million podcast",
+    image: "/advisors-section/shaan.png",
   },
   {
     name: "Justin Mares",
