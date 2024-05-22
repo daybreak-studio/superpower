@@ -39,7 +39,7 @@ const EcosystemSection = (props: Props) => {
 
   return (
     <section
-      className="relative my-[20vw] h-screen w-screen bg-white"
+      className="relative mb-[5vh] mt-[10vh] h-screen w-screen bg-white"
       onPointerEnter={() => setIsHovering(true)}
       onPointerLeave={() => setIsHovering(false)}
       ref={containerRef as unknown as MutableRefObject<HTMLDivElement>}
@@ -75,7 +75,7 @@ const EcosystemSection = (props: Props) => {
       </motion.div>
       <div className="z-1 pointer-events-none absolute flex h-full w-full flex-col items-center justify-center">
         <div className="flex w-full max-w-[585px] flex-col items-center gap-6 px-4">
-          <div className="font-sans-2xl text-center text-black">
+          <div className="font-sans-3xl text-center text-black lg:font-sans-2xl">
             <h1>Get exclusive access to our marketplace</h1>
           </div>
           <div className="w-full max-w-[533px]">

@@ -224,7 +224,7 @@ const CTAButtonGlow = ({ href, children, outline }: Props) => (
     >
       <span>{children}</span>
     </div>
-    <div className="absolute inset-0 z-0 blur-2xl"></div>
+    <div className="absolute inset-0 z-0 bg-white blur-2xl"></div>
   </div>
 );
 

@@ -11,7 +11,7 @@ const AdvisorsSection = (props: Props) => {
 
   return (
     <section
-      className="relative mb-[5vw] mt-[10vw] flex h-auto w-screen flex-col items-center bg-white px-4"
+      className="relative mt-[10vw] flex h-auto w-screen flex-col items-center bg-white px-4"
       ref={gridRef}
     >
       <div className="flex max-w-[1132px] flex-col items-center gap-[72px]">
@@ -21,9 +21,8 @@ const AdvisorsSection = (props: Props) => {
           </div>
           <div className="w-full max-w-[533px]">
             <p className="font-sans-lg text-center text-black opacity-50">
-              {
-                "Supported by the world's top longevity doctors, scientists, and technologists."
-              }
+              {"Supported by the world's top longevity doctors,"}
+              <br /> scientists, and technologists.
             </p>
           </div>
         </div>

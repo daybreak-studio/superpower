@@ -15,6 +15,7 @@ import { useVideoScrubber } from "@/components/ScrollVideo/useVideoScrubber";
 import { useMotionValueSwitch } from "@/hooks/useMotionValueSwitch";
 import { AnimationConfig } from "@/components/AnimationConfig";
 import { isSafari } from "react-device-detect";
+import { useWindowDimension } from "@/hooks/useWindowDimension";
 
 type Props = {
   playbackConst: number; // higher it is, the slower it plays
@@ -38,6 +39,9 @@ const FeatureScrollVideo = ({
   onLowPowerModeDetected,
 }: Props) => {
   // const [containerRef, bounds] = useBounds<HTMLDivElement>([duration]);
+  //
+
+  const { width } = useWindowDimension();
 
   const containerRef = useRef() as MutableRefObject<HTMLDivElement>;
 
@@ -63,9 +67,16 @@ const FeatureScrollVideo = ({
     videoProgress.set(latest * 2.3);
   });
 
-  const videoScale = useTransform(scrollYProgress, [0.4, 1], [10, 1], {
+  let videoScale = useTransform(scrollYProgress, [0.4, 1], [10, 1], {
     ease: cubicBezier(0.16, 1, 0.3, 1),
   });
+
+  // if (width < 768) {
+  //   videoScale = useTransform(scrollYProgress, [0.6, 1], [10, 1], {
+  //     ease: cubicBezier(0.16, 1, 0.3, 1),
+  //   });
+  // }
+
   const videoY = useTransform(scrollYProgress, [0.4, 0.7], ["-50%", "-20%"], {
     ease: cubicBezier(0.16, 1, 0.3, 1),
   });
@@ -119,7 +130,7 @@ const FeatureScrollVideo = ({
               ease: "linear",
             },
           }}
-          className="font-sans-3xl absolute mx-4 my-12 mb-32 max-w-[20ch] translate-y-[-35vw] text-center lg:font-sans-2xl md:translate-y-[-40vh] lg:mb-0 lg:text-[42px]"
+          className="font-sans-3xl absolute mx-4 my-12 mb-32 max-w-[20ch] translate-y-[-35vw] text-center lg:font-sans-2xl lg:font-sans-2xl md:translate-y-[-40vh] lg:mb-0"
         >
           {headline}
         </motion.h2>
@@ -184,7 +195,7 @@ const FeatureScrollVideo = ({
           </motion.div>
         </RotatingTablet>
         <motion.div
-          className="absolute bottom-[25%] z-[50] flex translate-y-[30vw] flex-col items-center gap-[3vh] lg:bottom-[3vh] lg:top-auto lg:translate-y-0"
+          className="absolute bottom-[15%] z-[50] flex translate-y-[30vw] flex-col items-center gap-[3vh] lg:bottom-[3vh] lg:top-auto lg:translate-y-0"
           initial={{ opacity: 0 }}
           animate={{
             opacity: canInteractWithTablet ? 1 : 0,
@@ -198,7 +209,7 @@ const FeatureScrollVideo = ({
             },
           }}
         >
-          <div className="hidden lg:block">
+          <div>
             <FeatureOverviewNav
               currentPage={currentPage}
               onChange={setCurrentPage}

@@ -61,7 +61,7 @@ const HeroDesktopLayout = ({ shouldShowContent }: Props) => {
         <SuperpowerLogo />
       </motion.div> */}
       <div className="mt-[30vh] flex w-full lg:flex-row">
-        <h1 className="font-sans-2xl max-w-[12ch] space-y-10">
+        <h1 className="font-sans-2xl max-w-[12ch] space-y-4">
           <FadingText progress={fadingAnimProgress}>
             <span className="block">A new era of personal health</span>
           </FadingText>
@@ -69,7 +69,7 @@ const HeroDesktopLayout = ({ shouldShowContent }: Props) => {
           <div className="flex w-full max-w-[500px] flex-row">
             <div className="pointer-events-auto z-50 flex h-full max-w-[500px] flex-col">
               <FadingText progress={fadingAnimDelayed}>
-                <p className="font-sans-xl mb-3 leading-tight">
+                <p className="font-sans-xl mb-8 leading-tight text-white/70">
                   The world’s most advanced digital clinic to help you live
                   longer, prevent disease, and feel your best
                 </p>
@@ -79,7 +79,7 @@ const HeroDesktopLayout = ({ shouldShowContent }: Props) => {
               </p> */}
               </FadingText>
               <motion.div
-                className="mt-4"
+                className="-mt-2"
                 initial={{ opacity: 0 }}
                 animate={{
                   // x: isCTAVisible ? 0 : -10,

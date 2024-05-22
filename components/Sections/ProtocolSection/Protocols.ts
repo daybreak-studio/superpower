@@ -16,7 +16,7 @@ export const PROTOCOLS = [
     name: "Male Hormones",
     icon: "/protocol-section/male-hormones.svg",
     image: "/protocol-section/male-hormones.png",
-    areas: ["Testorsterone", "Free Testosterone", "Thyroid"],
+    areas: ["Testosterone", "Free Testosterone", "Thyroid"],
   },
   {
     name: "Female Hormones",
