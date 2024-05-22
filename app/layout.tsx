@@ -31,6 +31,12 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
+declare global {
+  interface Window {
+    dataLayer?: Record<string, unknown>[];
+  }
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -50,6 +56,15 @@ export default function RootLayout({
           rel="shortcut icon"
           type="image/x-icon"
         />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-BT53JGR46J"
+        ></script>
+        <script type="text/javascript">
+          window.dataLayer = window.dataLayer || []; function gtag(){" "}
+          {window.dataLayer?.push(arguments as any)}; gtag('js', new Date());
+          gtag('config', 'G-BT53JGR46J');
+        </script>
         <title>Superpower</title>
         <meta
           content="Become the best version&nbsp;of&nbsp;yourself with the world's most advanced health platform."
