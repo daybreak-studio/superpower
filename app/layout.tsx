@@ -84,7 +84,7 @@ export default function RootLayout({
           ${nb_international_regular.className} 
           ${nb_international_regular.variable} 
           ${nb_international_mono.variable} 
-          overflow-hidden
+          overflow-x-hidden
         `}
       >
         <WindowDimensionContextProvider>
