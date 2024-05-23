@@ -148,7 +148,7 @@ const HeroSection = (props: Props) => {
               window.scrollTo(0, 0);
               setIsVideoLoaded(true);
             }}
-            onLowPowerModeDetected={() => setIsLowPowerMode(true)}
+            // onLowPowerModeDetected={() => setIsLowPowerMode(true)}
             sources={[
               // {
               //   type: 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"',
