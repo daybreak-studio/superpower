@@ -28,7 +28,7 @@ export const PROTOCOLS = [
     name: "Aging",
     icon: "/protocol-section/ageing.svg",
     image: "/protocol-section/ageing.png",
-    areas: ["Epigenetics", "Telomeres", "Mitochondria"],
+    areas: ["Epigenetics", "Senescence", "Mitochondria"],
   },
   {
     name: "Toxins",
