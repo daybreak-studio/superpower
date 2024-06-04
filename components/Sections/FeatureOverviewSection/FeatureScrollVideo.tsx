@@ -20,7 +20,6 @@ import RotatingTablet from "./RotatingTablet";
 import { useVideoScrubber } from "@/components/ScrollVideo/useVideoScrubber";
 import { useMotionValueSwitch } from "@/hooks/useMotionValueSwitch";
 import { AnimationConfig } from "@/components/AnimationConfig";
-import { isSafari } from "react-device-detect";
 import { useWindowDimension } from "@/hooks/useWindowDimension";
 import useResponsiveSources from "@/components/ScrollVideo/useResponsiveSources";
 
@@ -112,8 +111,8 @@ const FeatureScrollVideo = ({
     {
       type: "video/mp4",
       src: "/ipad-section/transition_720p.mp4",
-      width: 854,
-      height: 480,
+      width: 1280,
+      height: 720,
     },
     {
       type: "video/mp4",

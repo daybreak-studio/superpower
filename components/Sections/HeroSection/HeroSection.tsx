@@ -105,10 +105,12 @@ const HeroSection = (props: Props) => {
       // wheel event
       setIsUserScrolling(true);
       resetScrollingStateDebounced();
+
+      console.log("firing wheel event");
     };
 
     const handleTouchEnd = () => {
-      // setIsUserScrolling(false);
+      resetScrollingStateDebounced();
     };
     const handleTouchStart = () => {
       setIsUserScrolling(true);
@@ -119,7 +121,7 @@ const HeroSection = (props: Props) => {
     window.addEventListener("touchstart", handleTouchStart);
     return () => {
       window.removeEventListener("wheel", handleWheel);
-      window.addEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchend", handleTouchEnd);
       resetScrollingStateDebounced.abort();
     };
