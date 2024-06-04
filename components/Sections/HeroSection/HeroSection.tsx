@@ -26,12 +26,17 @@ import { useMotionValueSwitch } from "@/hooks/useMotionValueSwitch";
 import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 import { secondsToTimeString } from "@/components/ScrollVideo/secondsToTimestring";
 import { isSafari } from "react-device-detect";
+import Image from "next/image";
+import { useLenis } from "@studio-freight/react-lenis";
 
 type Props = { children: React.ReactNode };
 
 const secondsToScrollPosition = (second: number, playbackConst: number) => {
   return second * playbackConst;
 };
+
+const MAX_LOAD_TIME = 5000;
+const MIN_LOAD_TIME = 1000;
 
 const HeroSection = (props: Props) => {
   const windowDim = useWindowDimension();
@@ -40,34 +45,57 @@ const HeroSection = (props: Props) => {
 
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
-  const introLastFrame = timeStringToSeconds("0:02");
+  const introLastFrame = useMemo(() => timeStringToSeconds("0:02"), []);
   const introLastFrameScrollPos = useMemo(
     () => secondsToScrollPosition(introLastFrame, 400),
     [introLastFrame],
   );
 
+  const lenis = useLenis();
+  // useEffect(() => {
+  //   if (isVideoLoaded) {
+  //     lenis?.scrollTo(introLastFrameScrollPos, { lerp: 0.03 });
+  //   }
+  // }, [lenis, introLastFrameScrollPos, isVideoLoaded]);
+
   const { scrollY } = useScroll();
 
-  const targetScroll = useMotionValue(0);
   const [isUserScrolling, setIsUserScrolling] = useState(false);
-  const [followingScroll, isMoving] = useFollowMotionValue(targetScroll, {
-    responsiveness: 0.03,
-  });
 
-  useMotionValueEvent(followingScroll, "change", (latest) => {
-    if (isUserScrolling) {
-      // give the agency back to the user, match the scroll to the target scroll
-      followingScroll.set(scrollY.get());
-      targetScroll.set(scrollY.get());
+  useEffect(() => {
+    const scrollYPos = scrollY.get();
+
+    if (
+      !isUserScrolling &&
+      isVideoLoaded &&
+      scrollYPos < introLastFrameScrollPos
+    ) {
+      console.log("Scroll to landing position");
+      lenis?.scrollTo(introLastFrameScrollPos, { lerp: 0.03 });
       return;
     }
+  }, [introLastFrameScrollPos, scrollY, isUserScrolling, isVideoLoaded, lenis]);
 
-    window.scrollTo(0, followingScroll.get());
-  });
+  // const targetScroll = useMotionValue(0);
+  // const [isUserScrolling, setIsUserScrolling] = useState(false);
+  // const [followingScroll, isMoving] = useFollowMotionValue(targetScroll, {
+  //   responsiveness: 0.03,
+  // });
 
-  useMotionValueEvent(scrollY, "change", (latest) =>
-    followingScroll.set(latest),
-  );
+  // useMotionValueEvent(followingScroll, "change", (latest) => {
+  //   if (isUserScrolling) {
+  //     // give the agency back to the user, match the scroll to the target scroll
+  //     followingScroll.set(scrollY.get());
+  //     targetScroll.set(scrollY.get());
+  //     return;
+  //   }
+
+  //   window.scrollTo(0, followingScroll.get());
+  // });
+
+  // useMotionValueEvent(scrollY, "change", (latest) =>
+  //   followingScroll.set(latest),
+  // );
 
   useEffect(() => {
     const resetScrollingStateDebounced = debounce(() => {
@@ -97,34 +125,34 @@ const HeroSection = (props: Props) => {
     };
   }, []);
 
-  // reset scroll once user scroll to zero
-  useEffect(() => {
-    const scrollYPos = scrollY.get();
-    if (
-      !isUserScrolling &&
-      isVideoLoaded &&
-      scrollYPos < introLastFrameScrollPos
-    ) {
-      targetScroll.set(introLastFrameScrollPos);
-      return;
-    }
-  }, [
-    introLastFrameScrollPos,
-    scrollY,
-    isUserScrolling,
-    targetScroll,
-    followingScroll,
-    isVideoLoaded,
-  ]);
+  // // reset scroll once user scroll to zero
+  // useEffect(() => {
+  //   const scrollYPos = scrollY.get();
+  //   if (
+  //     !isUserScrolling &&
+  //     isVideoLoaded &&
+  //     scrollYPos < introLastFrameScrollPos
+  //   ) {
+  //     targetScroll.set(introLastFrameScrollPos);
+  //     return;
+  //   }
+  // }, [
+  //   introLastFrameScrollPos,
+  //   scrollY,
+  //   isUserScrolling,
+  //   targetScroll,
+  //   followingScroll,
+  //   isVideoLoaded,
+  // ]);
 
-  const pageLoadTime = useRef(Date.now());
-  useEffect(() => {
-    if (!isVideoLoaded) return;
+  // const pageLoadTime = useRef(Date.now());
+  // useEffect(() => {
+  //   if (!isVideoLoaded) return;
 
-    const loadedVideoIn = Date.now() - pageLoadTime.current;
-    console.log(`Video loaded in ${secondsToTimeString(loadedVideoIn / 1000)}`);
-    window.scrollTo(0, 0);
-  }, [isVideoLoaded]);
+  //   const loadedVideoIn = Date.now() - pageLoadTime.current;
+  //   console.log(`Video loaded in ${secondsToTimeString(loadedVideoIn / 1000)}`);
+  //   window.scrollTo(0, 0);
+  // }, [isVideoLoaded]);
 
   return (
     <>
@@ -155,32 +183,28 @@ const HeroSection = (props: Props) => {
               //   src: "https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4",
               // },
               {
-                type: 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"',
-                src: "/hero-section/sp-wormhole-final.mp4",
+                width: 1280,
+                height: 720,
+                type: "video/mp4",
+                src: "/hero-section/sp-wormhole-final_720p.mp4",
+              },
+              {
+                width: 854,
+                height: 480,
+                type: "video/mp4",
+                src: "/hero-section/sp-wormhole-final_480p.mp4",
+              },
+              {
+                width: 406,
+                height: 720,
+                type: "video/mp4",
+                src: "/hero-section/sp-wormhole-final_mobile.mp4",
               },
             ]}
           >
             <ScrollVideoAnnotation enter={"0:00"} exit={"0:06"}>
               {isDesktop && <HeroDesktopLayout shouldShowContent={true} />}
             </ScrollVideoAnnotation>
-            {/* <ScrollVideoAnnotation enter={"0:20"} exit={"0:22"}>
-            <SlideInText>Slow aging</SlideInText>
-          </ScrollVideoAnnotation>
-          <ScrollVideoAnnotation enter={"0:22"} exit={"0:24"}>
-            <SlideInText>Feel energized</SlideInText>
-          </ScrollVideoAnnotation>
-          <ScrollVideoAnnotation enter={"0:24"} exit={"0:26"}>
-            <SlideInText>Heal your gut</SlideInText>
-          </ScrollVideoAnnotation>
-          <ScrollVideoAnnotation enter={"0:26"} exit={"0:28"}>
-            <SlideInText>Gain muscle</SlideInText>
-          </ScrollVideoAnnotation>
-          <ScrollVideoAnnotation enter={"0:28"} exit={"0:30"}>
-            <SlideInText>Sleep better</SlideInText>
-          </ScrollVideoAnnotation>
-          <ScrollVideoAnnotation enter={"0:30"} exit={"0:32"}>
-            <SlideInText>Live longer</SlideInText>
-          </ScrollVideoAnnotation> */}
           </ScrollVideo>
         )}
         {isLowPowerMode && (
@@ -199,7 +223,7 @@ const HeroSection = (props: Props) => {
               remember to style it with fixed positioning if you want
               it to remain fixed at the viewport all the time.
             */}
-              <img
+              <Image
                 src={"/hero-section/hero-mobile-slide-1.jpg"}
                 width={393}
                 height={852}
@@ -208,7 +232,7 @@ const HeroSection = (props: Props) => {
               />
             </StickySlideItem>
             <StickySlideItem scrollHeight={windowDim.height * 1}>
-              <img
+              <Image
                 src={"/hero-section/hero-mobile-slide-2.jpg"}
                 width={393}
                 height={852}
@@ -217,7 +241,7 @@ const HeroSection = (props: Props) => {
               />
             </StickySlideItem>
             <StickySlideItem scrollHeight={windowDim.height * 2}>
-              <img
+              <Image
                 src={"/hero-section/hero-mobile-slide-3.jpg"}
                 width={393}
                 height={852}

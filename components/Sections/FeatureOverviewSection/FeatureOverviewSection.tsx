@@ -16,12 +16,7 @@ const FeatureOverviewSection = (props: Props) => {
           playbackConst={400}
           onLowPowerModeDetected={() => setIsLowPowerMode(true)}
           headline={"The most complete picture of your health you’ve ever had"}
-        >
-          <source
-            type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
-            src="/ipad-section/transition.mp4"
-          />
-        </FeatureScrollVideo>
+        />
       )}
 
       {isLowPowerMode && <div></div>}

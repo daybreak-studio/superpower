@@ -81,11 +81,13 @@ const Navigation = (props: Props) => {
           </div>
         </div>
       </div>
-      <ViralLoopsDialog>
-        <a className=" fixed right-0 top-0 z-[101] h-14 cursor-pointer p-2 pl-3 sm:h-[68px] sm:p-3 sm:pl-5">
-          <CTAButton />
-        </a>
-      </ViralLoopsDialog>
+      <div className="flex">
+        <ViralLoopsDialog>
+          <a className=" fixed right-0 top-0 z-[101] h-14 cursor-pointer p-2 pl-3 sm:h-[68px] sm:p-3 sm:pl-5">
+            <CTAButton />
+          </a>
+        </ViralLoopsDialog>
+      </div>
     </nav>
   );
 };

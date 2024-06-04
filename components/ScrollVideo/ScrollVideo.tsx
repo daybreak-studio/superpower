@@ -17,6 +17,7 @@ import {
 import { useIsLowPowerMode } from "@/hooks/useIsLowPowerMode";
 import { useVideoScrubber } from "./useVideoScrubber";
 import { secondsToTimeString } from "./secondsToTimestring";
+import useResponsiveSources, { VideoSource } from "./useResponsiveSources";
 
 type Props = {
   playbackConst: number; // higher it is, the slower it plays
@@ -24,7 +25,7 @@ type Props = {
   onVideoReady?: () => void;
   onCanPlayThough?: () => void;
   onLowPowerModeDetected?: () => void;
-  sources: { type: string; src: string }[];
+  sources: VideoSource[];
   offset?: number;
   showDebugTimestamp?: boolean;
 };
@@ -79,6 +80,8 @@ const ScrollVideo = ({
     if (isLowPowerMode) onLowPowerModeDetected?.();
   }, [isLowPowerMode]);
 
+  const bestSource = useResponsiveSources(sources);
+
   return (
     <motion.div
       className={"relative flex items-start"}
@@ -94,7 +97,7 @@ const ScrollVideo = ({
       ref={containerRef}
     >
       <video
-        className="pointer-events-none sticky top-0 h-screen w-full bg-black object-cover"
+        className="pointer-events-none sticky inset-0 h-screen w-full bg-black object-cover"
         //@ts-ignore
         autobuffer="autobuffer"
         disablePictureInPicture
@@ -104,10 +107,12 @@ const ScrollVideo = ({
         loop
         muted
         autoPlay
+        src={bestSource && bestSource.src}
       >
-        {sources.map(({ type, src }, index) => (
+        {/* {bestSource && <source type={bestSource.type} src={bestSource.src} />} */}
+        {/* {sources.map(({ type, src }, index) => (
           <source type={type} src={src} key={index} />
-        ))}
+        ))} */}
       </video>
       <ScrollVideoContext.Provider
         value={{ duration, progress: scrollYProgress, currentTime }}

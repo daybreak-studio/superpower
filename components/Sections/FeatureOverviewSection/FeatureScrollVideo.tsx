@@ -1,4 +1,10 @@
-import React, { MutableRefObject, useEffect, useRef, useState } from "react";
+import React, {
+  MutableRefObject,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 import Image from "next/image";
 import {
@@ -16,10 +22,11 @@ import { useMotionValueSwitch } from "@/hooks/useMotionValueSwitch";
 import { AnimationConfig } from "@/components/AnimationConfig";
 import { isSafari } from "react-device-detect";
 import { useWindowDimension } from "@/hooks/useWindowDimension";
+import useResponsiveSources from "@/components/ScrollVideo/useResponsiveSources";
 
 type Props = {
   playbackConst: number; // higher it is, the slower it plays
-  children: React.ReactNode;
+  // children: React.ReactNode;
   headline: string;
   onLowPowerModeDetected?: () => void;
 };
@@ -34,7 +41,6 @@ const SCREENS = [
 
 const FeatureScrollVideo = ({
   playbackConst,
-  children,
   headline,
   onLowPowerModeDetected,
 }: Props) => {
@@ -102,6 +108,32 @@ const FeatureScrollVideo = ({
     }
   }, [canInteractWithTablet]);
 
+  const currentSource = useResponsiveSources([
+    {
+      type: "video/mp4",
+      src: "/ipad-section/transition_720p.mp4",
+      width: 854,
+      height: 480,
+    },
+    {
+      type: "video/mp4",
+      src: "/ipad-section/transition_480p.mp4",
+      width: 854,
+      height: 480,
+    },
+    {
+      type: "video/mp4",
+      src: "/ipad-section/transition_mobile.mp4",
+      width: 406,
+      height: 720,
+    },
+  ]);
+
+  const isMobileSource = useMemo(
+    () => currentSource.src.includes("mobile"),
+    [currentSource],
+  );
+
   return (
     <motion.div
       className={"relative mt-[-200vh] flex w-full items-start bg-white"}
@@ -167,7 +199,7 @@ const FeatureScrollVideo = ({
             </div>
           </motion.div>
           <motion.div
-            className="absolute left-[50%] top-[50%] z-10 h-fit w-[50%]"
+            className="absolute left-[50%] top-[50%] z-10"
             animate={{
               // only exist on home page
               opacity: currentPage === 0 ? 1 : 0,
@@ -176,6 +208,7 @@ const FeatureScrollVideo = ({
               x: "-50%",
               y: videoY,
               scale: videoScale,
+              width: isMobileSource ? "15%" : "50%",
             }}
           >
             <video
@@ -189,9 +222,8 @@ const FeatureScrollVideo = ({
               loop
               muted
               autoPlay
-            >
-              {children}
-            </video>
+              src={currentSource.src}
+            />
           </motion.div>
         </RotatingTablet>
         <motion.div
