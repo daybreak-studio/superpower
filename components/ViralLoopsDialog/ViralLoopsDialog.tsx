@@ -41,6 +41,9 @@ export function ViralLoopsDialog({
             <Image
               src="/dialog-feature.png"
               className="-mt-14 mb-12 max-h-[550px] w-full rounded-3xl"
+              alt={"dialog feature"}
+              width={1512 / 2}
+              height={930 / 2}
             />
           </div>
 
