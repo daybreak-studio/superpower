@@ -74,7 +74,14 @@ const HeroSection = (props: Props) => {
       lenis?.scrollTo(introLastFrameScrollPos, { lerp: 0.03 });
       return;
     }
-  }, [introLastFrameScrollPos, scrollY, isUserScrolling, isVideoLoaded, lenis]);
+  }, [
+    introLastFrameScrollPos,
+    scrollY,
+    isUserScrolling,
+    isVideoLoaded,
+    lenis,
+    windowDim.debounced.width,
+  ]);
 
   // const targetScroll = useMotionValue(0);
   // const [isUserScrolling, setIsUserScrolling] = useState(false);

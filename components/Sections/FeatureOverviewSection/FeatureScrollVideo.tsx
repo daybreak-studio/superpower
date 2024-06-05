@@ -13,6 +13,8 @@ import {
   useScroll,
   useTransform,
   cubicBezier,
+  useMotionValue,
+  clamp,
 } from "framer-motion";
 import { useIsLowPowerMode } from "@/hooks/useIsLowPowerMode";
 import FeatureOverviewNav from "./FeatureOverviewNav";
@@ -22,6 +24,7 @@ import { useMotionValueSwitch } from "@/hooks/useMotionValueSwitch";
 import { AnimationConfig } from "@/components/AnimationConfig";
 import { useWindowDimension } from "@/hooks/useWindowDimension";
 import useResponsiveSources from "@/components/ScrollVideo/useResponsiveSources";
+import { usePageBounds } from "@/hooks/useBounds";
 
 type Props = {
   playbackConst: number; // higher it is, the slower it plays
@@ -68,13 +71,29 @@ const FeatureScrollVideo = ({
     target: containerRef,
   });
 
+  // const bounds = usePageBounds(containerRef, []);
+  // const scrollYProgress = useTransform(scrollY, (latest) =>
+  //   clamp(0, 1, (latest - bounds.top) / bounds.height),
+  // );
+
+  // const scrollYProgress = useTransform(
+  //   scrollYProgressInverted,
+  //   (latest) => 1 - latest,
+  // );
+
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     videoProgress.set(latest);
   });
 
-  let videoScale = useTransform(scrollYProgress, [0.4, 1], [10, 1], {
-    ease: cubicBezier(0.16, 1, 0.3, 1),
-  });
+  const exitTransitionBeginPoint = 0.66;
+  let videoScale = useTransform(
+    scrollYProgress,
+    [exitTransitionBeginPoint, 1],
+    [10, 1],
+    {
+      ease: cubicBezier(0.16, 1, 0.3, 1),
+    },
+  );
 
   // if (width < 768) {
   //   videoScale = useTransform(scrollYProgress, [0.6, 1], [10, 1], {
@@ -82,17 +101,32 @@ const FeatureScrollVideo = ({
   //   });
   // }
 
-  const videoY = useTransform(scrollYProgress, [0.4, 0.7], ["-50%", "-20%"], {
-    ease: cubicBezier(0.16, 1, 0.3, 1),
-  });
-  const screenOpacity = useTransform(scrollYProgress, [0.7, 1], [0, 1], {
-    ease: cubicBezier(0.16, 1, 0.3, 1),
-  });
-  const glareOpacity = useTransform(scrollYProgress, [0.8, 1], [0, 1], {
-    ease: cubicBezier(0.16, 1, 0.3, 1),
-  });
+  const videoY = useTransform(
+    scrollYProgress,
+    [exitTransitionBeginPoint, 0.7],
+    ["-50%", "-20%"],
+    {
+      ease: cubicBezier(0.16, 1, 0.3, 1),
+    },
+  );
+  const screenOpacity = useTransform(
+    scrollYProgress,
+    [exitTransitionBeginPoint + 0.2, 1],
+    [0, 1],
+    {
+      ease: cubicBezier(0.16, 1, 0.3, 1),
+    },
+  );
+  const glareOpacity = useTransform(
+    scrollYProgress,
+    [exitTransitionBeginPoint + 0.3, 1],
+    [0, 1],
+    {
+      ease: cubicBezier(0.16, 1, 0.3, 1),
+    },
+  );
 
-  const sectionOpacity = useTransform(scrollYProgress, [0.1, 0.2], [0, 1]);
+  const sectionOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   const canInteractWithTablet = useMotionValueSwitch(
     screenOpacity,
@@ -139,9 +173,6 @@ const FeatureScrollVideo = ({
       initial={{
         opacity: 0,
       }}
-      // animate={{
-      //   opacity: isVideoReady ? 1 : 0,
-      // }}
       style={{
         opacity: sectionOpacity,
         height: playbackConst * duration,
