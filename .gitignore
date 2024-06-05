@@ -6,6 +6,10 @@
 .pnp.js
 .yarn/install-state.gz
 
+# image export, ignore images created by next-image-export-optimizer
+*.WEBP
+*next-image-export-optimizer-hashes.json
+
 # testing
 /coverage
 
