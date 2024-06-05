@@ -28,12 +28,12 @@ const BaselineSlideVerticalItem = ({
   return (
     <>
       <motion.div
-        className="relative"
+        className="relative mt-8"
         animate={{ height: isExpanded ? (index == "4" ? 112 : 92) : 40 }}
       >
         <div className="flex flex-col items-center gap-2 text-center">
           <motion.div
-            className="font-sans-xs h-0 text-nowrap xl:font-sans-sm xl:min-w-56"
+            className="font-sans-xs text-nowrap xl:font-sans-sm xl:min-w-56"
             animate={{
               fontSize: isExpanded ? "32px" : "18px",
               color: isExpanded ? "#18181B" : "#696969",
@@ -46,12 +46,12 @@ const BaselineSlideVerticalItem = ({
             {header}
           </motion.div>
           <motion.div
-            className="font-sans-sm mt-12 h-0 max-w-[700px] text-[#696969] xl:font-sans-sm xl:min-w-56"
+            className="font-sans-sm h-0 max-w-[700px] text-[#696969] xl:font-sans-sm xl:min-w-56"
             animate={{
               opacity: isExpanded ? 1 : 0,
               y: isExpanded ? 0 : -10,
               transition: {
-                delay: isExpanded ? AnimationConfig.FAST : 0,
+                delay: isExpanded ? 0.15 : 0,
                 duration: isExpanded
                   ? AnimationConfig.SLOW
                   : AnimationConfig.FAST,
@@ -65,7 +65,7 @@ const BaselineSlideVerticalItem = ({
       </motion.div>
       <button
         onPointerEnter={() => onSelect()}
-        className="relative mt-2 flex flex-col items-center gap-6"
+        className="relative flex flex-col items-center"
       >
         {/* top text */}
         <div className="max-w-[600px]">
@@ -86,21 +86,7 @@ const BaselineSlideVerticalItem = ({
                 },
               }}
             >
-              <motion.div className="h-full w-full">
-                <Image
-                  className="absolute left-0 top-0 -z-10 h-full w-full object-cover"
-                  src={desktopSrc}
-                  width={1833}
-                  height={905}
-                  alt={""}
-                />
-              </motion.div>
-              <motion.div
-                className="h-full max-w-[40vw]"
-                animate={{
-                  opacity: isExpanded ? 1 : 0,
-                }}
-              >
+              <motion.div className="h-full max-w-[40vw]">
                 <Image src={desktopSrc} width={830} height={362} alt={""} />
               </motion.div>
             </motion.div>
