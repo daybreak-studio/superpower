@@ -2,8 +2,8 @@ import { debounce } from "@/app/utils/debounce";
 import useStateRef from "@/hooks/useStateRef";
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 
-export function useVideoInfo() {
-  const [duration, setDuration] = useState(0);
+export function useVideoInfo(defautlDuration?: number) {
+  const [duration, setDuration] = useState(defautlDuration || 0);
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [canPlayThrough, setCanPlayThrough, canPlayThroughRef] =
     useStateRef(false);

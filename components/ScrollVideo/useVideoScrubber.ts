@@ -13,11 +13,15 @@ import { useEffect, useMemo } from "react";
  * startAt determines the frames when beginning of the video is.
  * @returns
  */
-export function useVideoScrubber(startAt: number = 0) {
+export function useVideoScrubber(
+  startAt: number = 0,
+  defaultDuration?: number,
+) {
   //scroll video
   const videoProgress = useMotionValue(0);
 
-  const { videoRef, duration, isVideoReady, canPlayThrough } = useVideoInfo();
+  const { videoRef, duration, isVideoReady, canPlayThrough } =
+    useVideoInfo(defaultDuration);
 
   const durationClamped = useMemo(
     () => duration - startAt,

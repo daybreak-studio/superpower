@@ -28,6 +28,7 @@ type Props = {
   sources: VideoSource[];
   offset?: number;
   showDebugTimestamp?: boolean;
+  defaultDuration?: number;
 };
 
 const ScrollVideoContext = createContext({
@@ -47,9 +48,10 @@ const ScrollVideo = ({
   onLowPowerModeDetected,
   offset = 0,
   showDebugTimestamp,
+  defaultDuration,
 }: Props) => {
   const { videoRef, duration, isVideoReady, videoProgress, canPlayThrough } =
-    useVideoScrubber(offset);
+    useVideoScrubber(offset, defaultDuration);
 
   const videoScrollHeight = playbackConst * duration;
   const currentTime = useMotionValue(0);

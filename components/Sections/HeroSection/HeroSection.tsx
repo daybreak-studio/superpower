@@ -184,6 +184,7 @@ const HeroSection = (props: Props) => {
               setIsVideoLoaded(true);
             }}
             // onLowPowerModeDetected={() => setIsLowPowerMode(true)}
+            defaultDuration={6.006}
             sources={[
               // {
               //   type: 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"',

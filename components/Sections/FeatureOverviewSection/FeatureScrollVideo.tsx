@@ -41,6 +41,8 @@ const SCREENS = [
   { src: "/ipad-section/screen-5.png" },
 ];
 
+const VIDEO_DURATION = 4.483333; // according to client side javascritp
+
 const FeatureScrollVideo = ({
   playbackConst,
   headline,
@@ -53,8 +55,10 @@ const FeatureScrollVideo = ({
 
   const containerRef = useRef() as MutableRefObject<HTMLDivElement>;
 
-  const { videoRef, videoProgress, isVideoReady, duration } =
-    useVideoScrubber();
+  const { videoRef, videoProgress, isVideoReady, duration } = useVideoScrubber(
+    0,
+    VIDEO_DURATION,
+  );
 
   const isSectionVisible = useMotionValueSwitch(
     videoProgress,
