@@ -11,15 +11,15 @@ const FeatureOverviewSection = (props: Props) => {
 
   return (
     <section className="relative z-10 flex w-full">
-      {!isLowPowerMode && (
-        <FeatureScrollVideo
-          playbackConst={400}
-          onLowPowerModeDetected={() => setIsLowPowerMode(true)}
-          headline={"The most complete picture of your health you’ve ever had"}
-        />
-      )}
+      {/* {!isLowPowerMode && ( */}
+      <FeatureScrollVideo
+        playbackConst={800}
+        onLowPowerModeDetected={() => setIsLowPowerMode(true)}
+        headline={"The most complete picture of your health you’ve ever had"}
+      />
+      {/* )} */}
 
-      {isLowPowerMode && <div></div>}
+      {/* {isLowPowerMode && <div></div>} */}
     </section>
   );
 };

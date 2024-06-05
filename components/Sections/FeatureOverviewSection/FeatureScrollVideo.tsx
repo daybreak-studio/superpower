@@ -69,7 +69,7 @@ const FeatureScrollVideo = ({
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    videoProgress.set(latest * 2.3);
+    videoProgress.set(latest);
   });
 
   let videoScale = useTransform(scrollYProgress, [0.4, 1], [10, 1], {
@@ -110,19 +110,19 @@ const FeatureScrollVideo = ({
   const currentSource = useResponsiveSources([
     {
       type: "video/mp4",
-      src: "/ipad-section/transition_720p.mp4",
+      src: "/ipad-section/transition-short_720p.mp4",
       width: 1280,
       height: 720,
     },
     {
       type: "video/mp4",
-      src: "/ipad-section/transition_480p.mp4",
+      src: "/ipad-section/transition-short_480p.mp4",
       width: 854,
       height: 480,
     },
     {
       type: "video/mp4",
-      src: "/ipad-section/transition_mobile.mp4",
+      src: "/ipad-section/transition-short_mobile.mp4",
       width: 406,
       height: 720,
     },
@@ -144,12 +144,12 @@ const FeatureScrollVideo = ({
       // }}
       style={{
         opacity: sectionOpacity,
-        height: playbackConst * duration * 1,
+        height: playbackConst * duration,
         pointerEvents: isSectionVisible ? "all" : "none",
       }}
       ref={containerRef}
     >
-      <div className="sticky top-0 -mb-40 flex h-screen w-full flex-col items-center justify-center overflow-hidden lg:mb-0">
+      <div className="sticky top-0 -mb-0 flex h-screen w-full flex-col items-center justify-center overflow-hidden lg:mb-0">
         <motion.h2
           initial={{ opacity: 0 }}
           animate={{
@@ -161,7 +161,7 @@ const FeatureScrollVideo = ({
               ease: "linear",
             },
           }}
-          className="font-sans-3xl absolute mx-4 my-12 mb-32 max-w-[20ch] translate-y-[-35vw] text-center lg:font-sans-2xl lg:font-sans-2xl md:translate-y-[-40vh] lg:mb-0"
+          className="font-sans-3xl absolute mx-4 my-12 mb-32 max-w-[20ch] translate-y-[-35vw] text-center lg:font-sans-2xl md:translate-y-[-40vh] lg:mb-0"
         >
           {headline}
         </motion.h2>
