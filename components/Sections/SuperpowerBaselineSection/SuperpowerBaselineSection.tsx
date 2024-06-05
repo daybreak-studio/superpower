@@ -19,7 +19,7 @@ export type SlideInfo = {
 
 const SLIDES = [
   {
-    mobileSrc: "/baseline-section/baseline-1-m.png",
+    mobileSrc: "/baseline-section/mobile-card-1.png",
     desktopSrc: "/baseline-section/baseline-1.png",
     header: "Test your whole body and visualize all your data.",
     description:
@@ -27,7 +27,7 @@ const SLIDES = [
     color: "#063D2A",
   },
   {
-    mobileSrc: "/baseline-section/baseline-2-m.png",
+    mobileSrc: "/baseline-section/mobile-card-2.png",
     desktopSrc: "/baseline-section/baseline-2.png",
     header: "Get an annual roadmap so you know exactly what to do.",
     description:
@@ -35,7 +35,7 @@ const SLIDES = [
     color: "#B9431C",
   },
   {
-    mobileSrc: "/baseline-section/baseline-3-m.png",
+    mobileSrc: "/baseline-section/mobile-card-3.png",
     desktopSrc: "/baseline-section/baseline-3.png",
     header: "Access your private concierge doctor.",
     description:
@@ -43,7 +43,7 @@ const SLIDES = [
     color: "#12495B",
   },
   {
-    mobileSrc: "/baseline-section/baseline-4-m.png",
+    mobileSrc: "/baseline-section/mobile-card-4.png",
     desktopSrc: "/baseline-section/baseline-4.png",
     header: "Everything you need in one place.",
     description:
