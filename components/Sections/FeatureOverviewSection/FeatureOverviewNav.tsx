@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+import Image from "next-image-export-optimizer";
 import {
   FloatingPageSelector,
   FloatingPageSelectorItem,
@@ -37,14 +37,14 @@ const FeatureOverviewNav = ({ onChange, currentPage }: Props) => {
           className="flex flex-row"
           animate={{ filter: "invert(var(--invert-color))" }}
         >
-          <img
+          <Image
             className="-mr-2 rounded-full border border-[#F0EAE6]"
             src="/doctor-icon-1.png"
             alt=""
             width={13}
             height={13}
           />
-          <img
+          <Image
             className="rounded-full border border-[#F0EAE6]"
             src="/doctor-icon-2.png"
             alt=""

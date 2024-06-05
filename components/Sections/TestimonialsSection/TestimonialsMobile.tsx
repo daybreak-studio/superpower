@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useInView,
-  useMotionValueEvent,
-  useSpring,
-  useTransform,
-  easeIn,
-  easeOut,
-} from "framer-motion";
+import { motion, AnimatePresence, easeIn, easeOut } from "framer-motion";
 import TestimonialsSelector from "./TestimonialsSelector";
 import CornerBox from "@/components/Button/CornerBox";
 import { AnimationConfig } from "@/components/AnimationConfig";
+import Image from "next-image-export-optimizer";
 
 type Props = {
   clapTime: number;
@@ -106,10 +98,12 @@ const TestimonialsMobile = ({
               </p>
               <div className="flex flex-col items-center justify-center gap-4">
                 <div className="relative h-8 w-8 overflow-hidden rounded-full">
-                  <img
+                  <Image
                     src={quotesList[quoteIndex].photo}
                     alt={quotesList[quoteIndex].name}
                     className="bg-cover"
+                    width={64}
+                    height={64}
                   />
                 </div>
                 <p className="font-mono-sm text-center">

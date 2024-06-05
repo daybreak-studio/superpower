@@ -12,7 +12,7 @@ import {
 import TestimonialsSelector from "./TestimonialsSelector";
 import CornerBox from "@/components/Button/CornerBox";
 import { AnimationConfig } from "@/components/AnimationConfig";
-import Image from "next/image";
+import Image from "next-image-export-optimizer";
 
 type Props = {
   clapTime: number;
@@ -111,10 +111,12 @@ const TestimonialsDesktop = ({
             </p>
             <div className="flex items-center justify-center gap-4">
               <div className="relative h-8 w-8 overflow-hidden rounded-full">
-                <img
+                <Image
                   src={quotesList[quoteIndex].photo}
                   alt={quotesList[quoteIndex].name}
                   className="bg-cover"
+                  width={64}
+                  height={64}
                 />
               </div>
               <p className="font-mono-sm text-center">

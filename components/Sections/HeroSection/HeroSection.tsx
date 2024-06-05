@@ -105,8 +105,6 @@ const HeroSection = (props: Props) => {
       // wheel event
       setIsUserScrolling(true);
       resetScrollingStateDebounced();
-
-      console.log("firing wheel event");
     };
 
     const handleTouchEnd = () => {

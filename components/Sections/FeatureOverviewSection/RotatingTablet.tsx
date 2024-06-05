@@ -7,6 +7,7 @@ import { MotionValue, motion, useInView, useTransform } from "framer-motion";
 import React, { MutableRefObject, useRef } from "react";
 import { useInactiveMotionValue } from "@/hooks/useInactiveMotionValue";
 import { isSafari } from "react-device-detect";
+import Image from "next-image-export-optimizer";
 
 type Props = {
   children: React.ReactNode;
@@ -79,7 +80,7 @@ const RotatingTablet = ({
             }}
             className="relative inset-0 left-[100%] top-[50vw]"
           >
-            <img
+            <Image
               className="w-full"
               src={"/ipad-section/glare-edges.png"}
               width={4000}
@@ -117,12 +118,12 @@ const RotatingTablet = ({
             }}
             className="relative inset-0 left-[100%] top-[50vw]"
           >
-            <img
+            <Image
               alt={""}
               className="w-full"
               src={"/ipad-section/glare.png"}
-              width={4000}
-              height={3000}
+              width={4000 / 2}
+              height={3000 / 2}
             />
           </motion.div>
         </motion.div>
@@ -135,12 +136,12 @@ const RotatingTablet = ({
           scale: scale,
         }}
       >
-        <img
+        <Image
           src={"/ipad-section/ipad.png"}
           className=""
           alt={""}
-          width={3000}
-          height={1000}
+          width={3000 / 2}
+          height={1000 / 2}
         />
       </motion.div>
     </motion.div>

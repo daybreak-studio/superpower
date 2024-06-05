@@ -1,7 +1,7 @@
 import { MotionValue, motion, useSpring, useTransform } from "framer-motion";
 import React, { useMemo } from "react";
 import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
-import Image from "next/image";
+import Image from "next-image-export-optimizer";
 
 type EcosystemItem = {
   desktopAngle: { x: number; y: number };
@@ -97,7 +97,7 @@ const EcosystemPanels = ({
           }}
         >
           <div className="absolute flex translate-x-[-50%] translate-y-[-50%] flex-col items-center gap-4 duration-300 hover:opacity-80">
-            <img
+            <Image
               src={item.image}
               alt={item.name}
               style={{

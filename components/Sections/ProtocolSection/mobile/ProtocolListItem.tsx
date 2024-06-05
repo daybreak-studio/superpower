@@ -3,6 +3,7 @@ import { Protocol } from "../Protocols";
 import { motion } from "framer-motion";
 import LineElement from "@/components/LineElement/LineElement";
 import { AnimationConfig } from "@/components/AnimationConfig";
+import Image from "next-image-export-optimizer";
 
 type Props = {
   protocol: Protocol;
@@ -54,7 +55,7 @@ const ProtocolListItem = ({ protocol, isCurrent }: Props) => {
           },
         }}
       >
-        <img
+        <Image
           style={{
             filter: "grayscale(var(--greyscale-progress))",
           }}

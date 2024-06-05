@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 
-import Image from "next/image";
+import Image from "next-image-export-optimizer";
 import {
   motion,
   useMotionValueEvent,
@@ -184,12 +184,12 @@ const FeatureScrollVideo = ({
                         opacity: currentPage === index ? 1 : 0,
                       }}
                     >
-                      <img
+                      <Image
                         className=""
                         src={src} //change for each screen selection
                         alt={""}
                         width={3000}
-                        height={0}
+                        height={1500}
                       />
                     </motion.div>
                   </motion.div>

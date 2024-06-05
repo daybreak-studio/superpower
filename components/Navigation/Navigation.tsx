@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import NavLink from "./NavLink";
-import Image from "next/image";
 import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
 import { ViralLoopsDialog } from "../ViralLoopsDialog/ViralLoopsDialog";
+import Image from "next-image-export-optimizer";
 
 type Props = {};
 
@@ -64,7 +64,7 @@ const Navigation = (props: Props) => {
       >
         <div className="relative flex h-14 w-full items-center justify-center p-2 pl-3 sm:h-[68px] sm:p-3 sm:pl-5">
           <a href="/" className="w-[140px] sm:w-[200px]">
-            <img
+            <Image
               className="w-full"
               src="/logo.svg"
               alt="logo"

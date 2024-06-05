@@ -18,7 +18,7 @@ import {
   usePointerOffset,
   usePointerOffsetNormalized,
 } from "@/hooks/usePointerInfo";
-import Image from "next/image";
+import Image from "next-image-export-optimizer";
 import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
 import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
@@ -108,7 +108,7 @@ const TransitionItem = ({ direction }: Props) => {
                 y: direction == "up" ? "0" : "-32vw",
               }}
             >
-              <img
+              <Image
                 src="/transition-section/transition.png"
                 width="0"
                 height="0"

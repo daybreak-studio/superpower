@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 import React from "react";
 import { X } from "lucide-react";
 import { useLenis } from "@studio-freight/react-lenis";
+import Image from "next-image-export-optimizer";
 
 declare global {
   namespace JSX {
@@ -37,7 +38,7 @@ export function ViralLoopsDialog({
       >
         <div className="px-8 lg:px-12">
           <div className="-mt-6 overflow-hidden">
-            <img
+            <Image
               src="/dialog-feature.png"
               className="-mt-14 mb-12 max-h-[550px] w-full rounded-3xl"
             />

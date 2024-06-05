@@ -3,6 +3,8 @@ import { motion, useInView } from "framer-motion";
 import { Advisors } from "./Advisors";
 import LineElement from "@/components/LineElement/LineElement";
 
+import Image from "next-image-export-optimizer";
+
 type Props = {};
 
 const AdvisorsSection = (props: Props) => {
@@ -38,7 +40,7 @@ const AdvisorsSection = (props: Props) => {
                   animate={{ opacity: isInView ? 1 : 0 }}
                   transition={{ duration: 1, delay: index * 0.1 }}
                 >
-                  <img
+                  <Image
                     className="width-[72px] height-[72px]"
                     src={item.image}
                     alt=""

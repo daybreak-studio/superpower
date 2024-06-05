@@ -7,7 +7,7 @@ import {
 } from "react";
 import { AnimationConfig } from "@/components/AnimationConfig";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import Image from "next-image-export-optimizer";
 import { HealthArea } from "./HealthArea";
 import { Protocol } from "../Protocols";
 
@@ -107,7 +107,7 @@ export const ProtocolGridItem = ({
             opacity: "0.5",
           }}
         />
-        <img
+        <Image
           className="h-full w-full object-cover"
           src={image}
           alt={""}
@@ -135,7 +135,7 @@ export const ProtocolGridItem = ({
           }}
         >
           {/* the icon of the item */}
-          <img src={icon} width={20} height={20} alt={""} />
+          <Image src={icon} width={20} height={20} alt={""} />
         </motion.div>
         <motion.div
           className="flex flex-col leading-tight"
