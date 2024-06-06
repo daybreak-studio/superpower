@@ -48,11 +48,6 @@ const FeatureScrollVideo = ({
   headline,
   onLowPowerModeDetected,
 }: Props) => {
-  // const [containerRef, bounds] = useBounds<HTMLDivElement>([duration]);
-  //
-
-  const { width } = useWindowDimension();
-
   const containerRef = useRef() as MutableRefObject<HTMLDivElement>;
 
   const { videoRef, videoProgress, isVideoReady, duration } = useVideoScrubber(
@@ -123,7 +118,7 @@ const FeatureScrollVideo = ({
   );
   const glareOpacity = useTransform(
     scrollYProgress,
-    [exitTransitionBeginPoint + 0.3, 1],
+    [exitTransitionBeginPoint + 0.25, 1],
     [0, 1],
     {
       ease: cubicBezier(0.16, 1, 0.3, 1),
@@ -220,11 +215,11 @@ const FeatureScrollVideo = ({
                       }}
                     >
                       <Image
-                        className=""
+                        className="w-full"
                         src={src} //change for each screen selection
                         alt={""}
-                        width={3000}
-                        height={1500}
+                        width={3000 / 4}
+                        height={1500 / 4}
                       />
                     </motion.div>
                   </motion.div>
