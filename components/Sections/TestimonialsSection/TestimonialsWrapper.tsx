@@ -36,7 +36,7 @@ const TestimonialsWrapper = (props: Props) => {
   const isButtonInView = useInView(quoteContainerRef);
 
   return (
-    <section className="relative z-10 h-svh overflow-hidden bg-white">
+    <section className="relative z-10 h-screen overflow-hidden bg-white">
       <div className="absolute flex h-full w-full flex-col items-center justify-center gap-6">
         <div className="flex h-full"></div>
 
