@@ -1,5 +1,11 @@
 import ScrollVideo from "@/components/ScrollVideo/ScrollVideo";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import HeroDesktopLayout from "./HeroDesktopLayout";
 import { breakpoints, useBreakpoint } from "@/hooks/useBreakpoints";
 import HeroMobileLayout from "./HeroMobileLayout";
@@ -35,9 +41,6 @@ const secondsToScrollPosition = (second: number, playbackConst: number) => {
   return second * playbackConst;
 };
 
-const MAX_LOAD_TIME = 5000;
-const MIN_LOAD_TIME = 1000;
-
 const HeroSection = (props: Props) => {
   const windowDim = useWindowDimension();
   const isDesktop = useBreakpoint(breakpoints.md);
@@ -52,11 +55,16 @@ const HeroSection = (props: Props) => {
   );
 
   const lenis = useLenis();
-  // useEffect(() => {
-  //   if (isVideoLoaded) {
-  //     lenis?.scrollTo(introLastFrameScrollPos, { lerp: 0.03 });
-  //   }
-  // }, [lenis, introLastFrameScrollPos, isVideoLoaded]);
+
+  const [isReadyForIntroAnim, setIsReadyForIntroAnim] = useState(false);
+
+  // jump to top when the video is loaded
+  useLayoutEffect(() => {
+    if (isVideoLoaded) {
+      // window.scrollTo(0, 0);
+      setIsReadyForIntroAnim(true);
+    }
+  }, [introLastFrameScrollPos, isVideoLoaded, lenis]);
 
   const { scrollY } = useScroll();
 
@@ -66,6 +74,7 @@ const HeroSection = (props: Props) => {
     const scrollYPos = scrollY.get();
 
     if (
+      isReadyForIntroAnim &&
       !isUserScrolling &&
       isVideoLoaded &&
       scrollYPos < introLastFrameScrollPos
@@ -81,6 +90,7 @@ const HeroSection = (props: Props) => {
     isVideoLoaded,
     lenis,
     windowDim.debounced.width,
+    isReadyForIntroAnim,
   ]);
 
   // const targetScroll = useMotionValue(0);
@@ -284,3 +294,38 @@ const SlideInText = ({ children }: { children: string }) => {
 };
 
 export default HeroSection;
+
+// call this to Disable
+function disableScroll() {
+  // left: 37, up: 38, right: 39, down: 40,
+  // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+  var keys: any = { 37: 1, 38: 1, 39: 1, 40: 1 };
+
+  function preventDefault(e: Event) {
+    e.preventDefault();
+  }
+
+  function preventDefaultForScrollKeys(e: KeyboardEvent) {
+    if (keys[e.keyCode]) {
+      preventDefault(e);
+      return false;
+    }
+  }
+
+  var wheelEvent =
+    "onwheel" in document.createElement("div") ? "wheel" : "mousewheel";
+
+  // window.addEventListener("DOMMouseScroll", preventDefault, false); // older FF
+  window.addEventListener("wheel", preventDefault, { passive: false }); // modern desktop
+  window.addEventListener("touchmove", preventDefault, { passive: false }); // mobile
+  window.addEventListener("keydown", preventDefaultForScrollKeys, false);
+
+  return () => {
+    // window.removeEventListener("DOMMouseScroll", preventDefault, false); // older FF
+    //@ts-ignore
+    window.removeEventListener("wheel", preventDefault, { passive: false }); // modern desktop
+    //@ts-ignore
+    window.removeEventListener("touchmove", preventDefault, { passive: false }); // mobile
+    window.removeEventListener("keydown", preventDefaultForScrollKeys, false);
+  };
+}

@@ -2,6 +2,9 @@ import { debounce } from "@/app/utils/debounce";
 import useStateRef from "@/hooks/useStateRef";
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 
+const MAX_LOAD_TIME = 5000;
+const MIN_LOAD_TIME = 1000;
+
 export function useVideoInfo(defautlDuration?: number) {
   const [duration, setDuration] = useState(defautlDuration || 0);
   const [isVideoReady, setIsVideoReady] = useState(false);
@@ -9,6 +12,8 @@ export function useVideoInfo(defautlDuration?: number) {
     useStateRef(false);
 
   const videoRef = useRef() as MutableRefObject<HTMLVideoElement>;
+
+  const beginLoadTimeRef = useRef(Date.now());
 
   useEffect(() => {
     // have enough info
@@ -18,6 +23,13 @@ export function useVideoInfo(defautlDuration?: number) {
     // 2 - HAVE_CURRENT_DATA;
     // 3 - HAVE_FUTURE_DATA;
     // 4 - HAVE_ENOUGH_DATA;
+
+    beginLoadTimeRef.current = Date.now();
+
+    const timeout = setTimeout(() => {
+      setIsVideoReady(true);
+      setCanPlayThrough(true);
+    }, MAX_LOAD_TIME);
 
     if (videoRef.current.readyState > 0) {
       setDuration(videoRef.current.duration);
@@ -35,6 +47,7 @@ export function useVideoInfo(defautlDuration?: number) {
 
     const setCanPlayThroughDebounced = debounce((canPlayThrough: boolean) => {
       if (canPlayThroughRef.current !== canPlayThrough) {
+        setIsVideoReady(true);
         setCanPlayThrough(canPlayThrough);
       }
     }, 500);
@@ -52,6 +65,9 @@ export function useVideoInfo(defautlDuration?: number) {
 
     return () => {
       if (!videoRef.current) return;
+
+      clearTimeout(timeout);
+
       videoRef.current.removeEventListener(
         "loadedmetadata",
         handleLoadedMetadata,
