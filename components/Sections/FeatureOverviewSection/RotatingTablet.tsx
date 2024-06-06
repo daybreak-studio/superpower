@@ -83,8 +83,8 @@ const RotatingTablet = ({
             <Image
               className="w-full"
               src={"/ipad-section/glare-edges.png"}
-              width={4000}
-              height={3000}
+              width={4000 / 4}
+              height={3000 / 4}
               alt={""}
             />
           </motion.div>
@@ -122,8 +122,8 @@ const RotatingTablet = ({
               alt={""}
               className="w-full"
               src={"/ipad-section/glare.png"}
-              width={4000 / 2}
-              height={3000 / 2}
+              width={4000 / 4}
+              height={3000 / 4}
             />
           </motion.div>
         </motion.div>
@@ -138,10 +138,10 @@ const RotatingTablet = ({
       >
         <Image
           src={"/ipad-section/ipad.png"}
-          className=""
+          className="w-full"
           alt={""}
-          width={3000 / 2}
-          height={1000 / 2}
+          width={3000 / 3}
+          height={1000 / 3}
         />
       </motion.div>
     </motion.div>

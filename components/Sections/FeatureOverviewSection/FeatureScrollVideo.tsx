@@ -218,8 +218,8 @@ const FeatureScrollVideo = ({
                         className="w-full"
                         src={src} //change for each screen selection
                         alt={""}
-                        width={3000 / 4}
-                        height={1500 / 4}
+                        width={3000 / 2}
+                        height={1500 / 2}
                       />
                     </motion.div>
                   </motion.div>
