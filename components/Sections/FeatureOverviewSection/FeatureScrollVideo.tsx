@@ -116,10 +116,22 @@ const FeatureScrollVideo = ({
   });
 
   const exitTransitionBeginPoint = 0.66;
+
+  const windowDim = useWindowDimension();
+  const desktopSouceScale = useMemo(() => {
+    const aspect = windowDim.debounced.width / windowDim.debounced.height;
+    if (aspect > 1) {
+      // when wide
+      return aspect * 2.1 + 1;
+    }
+    // when narrow
+    return 4.4;
+  }, [windowDim.debounced.width, windowDim.debounced.height]);
+
   let videoScale = useTransform(
     scrollYProgress,
     [exitTransitionBeginPoint, 1],
-    [isMobileSource ? 10 : 4.4, 1],
+    [isMobileSource ? 10 : desktopSouceScale, 1],
     {
       ease: cubicBezier(0.16, 1, 0.3, 1),
     },
