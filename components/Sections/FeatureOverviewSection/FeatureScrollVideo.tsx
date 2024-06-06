@@ -70,6 +70,37 @@ const FeatureScrollVideo = ({
     target: containerRef,
   });
 
+  const currentSource = useResponsiveSources([
+    {
+      type: "video/mp4",
+      src: "/ipad-section/transition-short_1080p.mp4",
+      width: 1920,
+      height: 1080,
+    },
+    {
+      type: "video/mp4",
+      src: "/ipad-section/transition-short_720p.mp4",
+      width: 1280,
+      height: 720,
+    },
+    {
+      type: "video/mp4",
+      src: "/ipad-section/transition-short_480p.mp4",
+      width: 854,
+      height: 480,
+    },
+    {
+      type: "video/mp4",
+      src: "/ipad-section/transition-short_mobile.mp4",
+      width: 406,
+      height: 720,
+    },
+  ]);
+
+  const isMobileSource = useMemo(
+    () => currentSource.src.includes("mobile"),
+    [currentSource],
+  );
   // const bounds = usePageBounds(containerRef, []);
   // const scrollYProgress = useTransform(scrollY, (latest) =>
   //   clamp(0, 1, (latest - bounds.top) / bounds.height),
@@ -88,7 +119,7 @@ const FeatureScrollVideo = ({
   let videoScale = useTransform(
     scrollYProgress,
     [exitTransitionBeginPoint, 1],
-    [10, 1],
+    [isMobileSource ? 10 : 4.4, 1],
     {
       ease: cubicBezier(0.16, 1, 0.3, 1),
     },
@@ -139,32 +170,6 @@ const FeatureScrollVideo = ({
       setCurrentPage(0);
     }
   }, [canInteractWithTablet]);
-
-  const currentSource = useResponsiveSources([
-    {
-      type: "video/mp4",
-      src: "/ipad-section/transition-short_720p.mp4",
-      width: 1280,
-      height: 720,
-    },
-    {
-      type: "video/mp4",
-      src: "/ipad-section/transition-short_480p.mp4",
-      width: 854,
-      height: 480,
-    },
-    {
-      type: "video/mp4",
-      src: "/ipad-section/transition-short_mobile.mp4",
-      width: 406,
-      height: 720,
-    },
-  ]);
-
-  const isMobileSource = useMemo(
-    () => currentSource.src.includes("mobile"),
-    [currentSource],
-  );
 
   return (
     <motion.div

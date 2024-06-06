@@ -18,17 +18,33 @@ if (!inputFilePath) {
 
 (async function () {
   // disable webm output cuz its bigger than mp4 for some scenario
+  const output1080pPath = generateOutputPath(inputFilePath, "_1080p", "mp4");
+  await convertVideo(
+    inputFilePath,
+    output1080pPath,
+    getMp4ConvertConfig({ resolution: 1080, keyframeDistance: 25 })
+  );
+
+  // disable webm output cuz its bigger than mp4 for some scenario
   const output720pPath = generateOutputPath(inputFilePath, "_720p", "mp4");
-  await convertVideo(inputFilePath, output720pPath, getMp4ConvertConfig(720));
+  await convertVideo(
+    inputFilePath,
+    output720pPath,
+    getMp4ConvertConfig({ resolution: 720, keyframeDistance: 5 })
+  );
 
   const output480pPath = generateOutputPath(inputFilePath, "_480p", "mp4");
-  await convertVideo(inputFilePath, output480pPath, getMp4ConvertConfig(480));
+  await convertVideo(
+    inputFilePath,
+    output480pPath,
+    getMp4ConvertConfig({ resolution: 480, keyframeDistance: 5 })
+  );
 
   const outputMobile = generateOutputPath(inputFilePath, "_mobile", "mp4");
   await convertVideo(
     inputFilePath,
     outputMobile,
-    getMp4ConvertConfig(720, true)
+    getMp4ConvertConfig({ resolution: 720, mobile: true, keyframeDistance: 5 })
   );
 })();
 
@@ -130,7 +146,11 @@ function getWebMConfig(resolution = 720, mobile = false) {
   };
 }
 
-function getMp4ConvertConfig(resolution = 720, mobile = false) {
+function getMp4ConvertConfig({
+  resolution = 720,
+  mobile = false,
+  keyframeDistance = 1,
+}) {
   return (inputFullPath, outputFullPath) => {
     let filter = getResizeFilter(resolution, mobile);
 
@@ -147,7 +167,7 @@ function getMp4ConvertConfig(resolution = 720, mobile = false) {
       "-crf",
       "23", // Constant quality setting (lower values mean better quality, typical range 18-28 for H.264)
       "-g",
-      "1", // Set maximum interval between keyframes to 25
+      keyframeDistance, // Set maximum interval between keyframes to 25
       "-preset",
       "medium", // Set encoding speed vs quality trade-off (ultrafast, superfast, veryfast, faster, fast, medium, slow, slower, veryslow)
       "-threads",
