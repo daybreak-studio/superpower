@@ -5,7 +5,7 @@ type Props = {};
 
 const TransitionSectionWrapper = (props: Props) => {
   return (
-    <section className="pointer-events-none relative z-10 h-[75vh] overflow-hidden bg-white">
+    <section className="pointer-events-none relative z-10 h-[75vh] bg-white">
       <TransitionItem direction="up" />
     </section>
   );
