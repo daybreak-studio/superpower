@@ -201,6 +201,12 @@ const HeroSection = (props: Props) => {
               //   src: "https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4",
               // },
               {
+                width: 1920,
+                height: 1080,
+                type: "video/mp4",
+                src: "/hero-section/sp-wormhole-final_1080p.mp4",
+              },
+              {
                 width: 1280,
                 height: 720,
                 type: "video/mp4",
