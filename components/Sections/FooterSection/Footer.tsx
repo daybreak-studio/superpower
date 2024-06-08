@@ -38,7 +38,7 @@ const Footer = () => {
               {/* <SuperpowerLogo className="w-11/12 p-6" /> */}
 
               <video
-                src="footer-section/bg-vid.webm"
+                src="footer-section/bg-vid-short_400p.webm"
                 className="h-[16vw] w-full bg-cover object-cover lg:h-[14vw]"
                 style={{
                   maskRepeat: "no-repeat",

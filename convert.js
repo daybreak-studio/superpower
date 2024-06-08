@@ -17,6 +17,11 @@ if (!inputFilePath) {
 // =====================================================================================
 
 (async function () {
+  // const outputWebMPath = generateOutputPath(inputFilePath, "_400p", "webm");
+  // await convertVideo(inputFilePath, outputWebMPath, getWebMConfig(400, false));
+
+  // return;
+
   // disable webm output cuz its bigger than mp4 for some scenario
   const output1080pPath = generateOutputPath(inputFilePath, "_1080p", "mp4");
   await convertVideo(
@@ -132,14 +137,14 @@ function getWebMConfig(resolution = 720, mobile = false) {
       filter, // Scale while preserving aspect ratio
       "-an", // Remove audio
       "-c:v",
-      // "libvpx", // Use VP8 codec for WebM
-      "libvpx-vp9", // Use VP9 codec for WebM
+      "libvpx", // Use VP8 codec for WebM
+      // "libvpx-vp9", // Use VP9 codec for WebM
       "-b:v",
-      "750k", // Set bitrate to 1Mbps
+      "500k", // Set bitrate to 1Mbps
       "-crf",
-      "23", // Constant quality setting (lower values mean better quality)
+      "50", // Constant quality setting (lower values mean better quality)
       "-g",
-      "1", // Set maximum interval between keyframes to 1 (keyframe every frame)
+      "250", // Set maximum interval between keyframes to 1 (keyframe every frame)
       outputFullPath,
     ];
     return ffmpegArgs;
